@@ -5,6 +5,7 @@ use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Helpers\TimeAgoHelper;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -16,6 +17,7 @@ class ViewsController extends Controller {
           $actividades = Actividad::all();
           $eventos = Evento::all();
           $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
+
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
                'eventos' => $eventos,
@@ -40,7 +42,15 @@ class ViewsController extends Controller {
      }
      
      public function blog (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'blog.twig');
+          // $blog = Blog::find(5);
+          // $date =  new TimeAgoHelper($blog->created_at);
+          // echo ($date);
+          die();
+          $blogs = [];
+          $blogs = Blog::all();
+          return $this->container->view->render($response, 'blog.twig', [
+               'blogs' => $blogs
+          ]);
      }
 
      public function comoApoyarnos (Request $request, Response $response, array $args) {

@@ -1,70 +1,32 @@
 <div class="container">
-     <h1 class="title is-2 has-text-info section-title has-text-centered">Blog</h1>
-     <section class="section">
-          <div class="columns section section-title-topbar">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-                    </figure>
-               </div>
-               <div class="column is-6">
-                    <p class="has-text-link is-size-6 has-text-right">Fundacion S&C Ago 02 10min.</p>
-                    <div class="section">
-                         <h2 class="title is-3 has-text-info last-section">
-                              12 tips para mejorar tu estilo de vida
-                         </h2>
-                         <p class="has-text-link has-text-weight-bold is-size-5">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis
-                              veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius
-                              amet hic quibusdam ab?
-                         </p>
+     <h1 class="title section is-2 has-text-info section-title has-text-centered">Blog</h1>
+     <section class="section last-section">
+          {% if blogs|length > 0 %}
+               {% for blog in blogs %}
+                    <div class="columns section">
+                         <div class="column is-6">
+                              <figure class="image is-16by9 queHacemos-img">
+                                   <img src="{{ base_url() }}{{ asset(blog.imagen) }}">
+                              </figure>
+                         </div>
+                         <div class="column is-6">
+                              <p class="has-text-link is-size-6 has-text-right">Fundacion S&C Ago 02 10min.</p>
+                              <div class="section">
+                                   <h2 class="title is-3 has-text-info last-section">
+                                        {{ blog.titulo }}
+                                   </h2>
+                                   <p class="has-text-link has-text-weight-bold is-size-5">
+                                        {{ blog.texto }}
+                                   </p>
+                              </div>
+                              <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
+                         </div>
                     </div>
-                    <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
-               </div>
-          </div>
-          <div class="columns section">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-                    </figure>
-               </div>
-               <div class="column is-6">
-                    <p class="has-text-link is-size-6 has-text-right">Fundacion S&C Ago 02 10min.</p>
-                    <div class="section">
-                         <h2 class="title is-3 has-text-info last-section">
-                              12 tips para mejorar tu estilo de vida
-                         </h2>
-                         <p class="has-text-link has-text-weight-bold is-size-5">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis
-                              veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique
-                              eius
-                              amet hic quibusdam ab?
-                         </p>
-                    </div>
-                    <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
-               </div>
-          </div>
-          <div class="columns section last-section">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-                    </figure>
-               </div>
-               <div class="column is-6">
-                    <p class="has-text-link is-size-6 has-text-right">Fundacion S&C Ago 02 10min.</p>
-                    <div class="section">
-                         <h2 class="title is-3 has-text-info last-section">
-                              12 tips para mejorar tu estilo de vida
-                         </h2>
-                         <p class="has-text-link has-text-weight-bold is-size-5">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis
-                              veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique
-                              eius
-                              amet hic quibusdam ab?
-                         </p>
-                    </div>
-                    <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
-               </div>
-          </div>
+               {% endfor %}
+          {% else %}
+               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+                    El blog esta vacio
+               </p>
+          {% endif %}
      </section>
 </div>
