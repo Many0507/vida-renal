@@ -41,6 +41,9 @@ i {
 .has-text-info {
   color: #4aa3df !important; }
 
+.has-background-info {
+  background-color: #5faee3 !important; }
+
 .section {
   padding: 3rem 1.5rem;
   padding-top: 1rem;

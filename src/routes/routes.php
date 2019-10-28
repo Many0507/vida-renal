@@ -13,6 +13,8 @@ $app->get('/que-hacemos', 'ViewsController:queHacemos');
 $app->get('/talleres', 'ViewsController:talleres');
 $app->get('/testimonios', 'ViewsController:testimonios');
 $app->get('/transparencia', 'ViewsController:transparencia');
+$app->get('/actividades', 'ViewsController:actividades');
+$app->get('/eventos', 'ViewsController:eventos');
 
 // api routes
 

@@ -45,6 +45,9 @@ i {
 .has-text-info {
 	color: $second-color !important;
 }
+.has-background-info {
+	background-color: lighten($second-color, 5) !important;
+}
 .section {
 	padding: 3rem 1.5rem;
 	padding-top: 1rem;

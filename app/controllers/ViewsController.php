@@ -1,13 +1,22 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Models\Actividad;
+use App\Models\Evento;
+use App\Models\Taller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class ViewsController extends Controller {
      public function index (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'index.twig');
+          $actividades = [];
+          $eventos = [];
+          $actividades = Actividad::all();
+          $eventos = Evento::all();
+          return $this->container->view->render($response, 'index.twig', [
+               'actividades' => $actividades,
+               'eventos' => $eventos
+          ]);
      }
 
      public function quienesSomos (Request $request, Response $response, array $args) {
@@ -15,7 +24,11 @@ class ViewsController extends Controller {
      }
 
      public function queHacemos (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'que-hacemos.twig');
+          $talleres = [];
+          $talleres = Taller::all();
+          return $this->container->view->render($response, 'que-hacemos.twig', [
+               'talleres' => $talleres,
+          ]);
      }
 
      public function aliados (Request $request, Response $response, array $args) {
@@ -52,6 +65,18 @@ class ViewsController extends Controller {
 
      public function transparencia (Request $request, Response $response, array $args) {
           return $this->container->view->render($response, 'transparencia.twig');
+     }
+
+     public function actividades (Request $request, Response $response, array $args) {
+          $actividades = [];
+          $actividades = Actividad::all();
+          return $this->container->view->render($response, 'actividades.twig', [
+               'actividades' => $actividades
+          ]);
+     }
+     
+     public function eventos (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'eventos.twig');
      }
 
      public function admin (Request $request, Response $response, array $args) {

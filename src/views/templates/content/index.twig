@@ -83,27 +83,20 @@
 
       <div class="swiper-container swiper-no_slider first-section">
          <div class="swiper-wrapper">
-            <div class="swiper-slide is-clipped" data-swiper-autoplay="4000">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
-            <div class="swiper-slide is-clipped">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
-            <div class="swiper-slide is-clipped">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
+            {% if actividades|length > 0 %}
+               {% for actividad in actividades %}
+                  <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
+                     <a href="/actividades">
+                        <img src="{{ base_url() }}{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
+                        class="image slider__img zoom">
+                     </a>
+                  </div>
+               {% endfor %}
+            {% else %}
+               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+                    No hay actividades
+               </p>
+            {% endif %}
          </div>
       </div>
    </section>
@@ -115,7 +108,7 @@
 
       <div class="swiper-container" id="swiper">
          <div class="swiper-wrapper">
-            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
+            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000" style="cursor: pointer;">
                <img
                   src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
                   alt="imagen Nuestras actividades"
@@ -125,7 +118,7 @@
                   Atención Médica
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content">
+            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
                <img
                   src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
                   alt="imagen Nuestras actividades"
@@ -135,7 +128,7 @@
                   Medicamentos
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content">
+            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
                <img
                   src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
                   alt="imagen Nuestras actividades"
@@ -145,7 +138,7 @@
                   Ayuda psicologica
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content">
+            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
                <img
                   src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
                   alt="imagen Nuestras actividades"
@@ -155,7 +148,7 @@
                   Ayuda nutricional
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content">
+            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
                <img
                   src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
                   alt="imagen Nuestras actividades"
@@ -178,27 +171,20 @@
 
       <div class="swiper-container swiper-no_slider first-section">
          <div class="swiper-wrapper">
-            <div class="swiper-slide is-clipped" data-swiper-autoplay="4000">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
-            <div class="swiper-slide is-clipped">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
-            <div class="swiper-slide is-clipped">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img zoom"
-               />
-            </div>
+            {% if eventos|length > 0 %}
+               {% for evento in eventos %}
+                  <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
+                     <a href="/actividades">
+                        <img src="{{ base_url() }}{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
+                        class="image slider__img zoom">
+                     </a>
+                  </div>
+               {% endfor %}
+            {% else %}
+               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+                    No hay eventos
+               </p>
+            {% endif %}
          </div>
       </div>
    </section>

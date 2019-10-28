@@ -62,41 +62,24 @@
           </h2>
           <div class="swiper-container" id="swiper">
                <div class="swiper-wrapper">
-                    <div class="swiper-slide is-flex slider__content">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                              alt="imagen Nuestras actividades" class="image slider__img" />
-                         <p class="has-text-link has-text-weight-semibold slider__text">
-                              Atención Médica
+                    {% if talleres|length > 0 %}
+                         {% for taller in talleres %}
+                              <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
+                                   <img
+                                        src="{{ base_url() }}{{ asset(taller.imagen) }}"
+                                        alt="imagen Nuestras actividades"
+                                        class="image slider__img"
+                                   />
+                                   <p class="has-text-link has-text-weight-semibold slider__text">
+                                        {{ taller.titulo }}
+                                   </p>
+                              </div>
+                         {% endfor %}
+                    {% else %}
+                         <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+                              No hay talleres
                          </p>
-                    </div>
-                    <div class="swiper-slide is-flex slider__content">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                              alt="imagen Nuestras actividades" class="image slider__img" />
-                         <p class="has-text-link has-text-weight-semibold slider__text">
-                              Medicamentos
-                         </p>
-                    </div>
-                    <div class="swiper-slide is-flex slider__content">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                              alt="imagen Nuestras actividades" class="image slider__img" />
-                         <p class="has-text-link has-text-weight-semibold slider__text">
-                              Ayuda psicologica
-                         </p>
-                    </div>
-                    <div class="swiper-slide is-flex slider__content">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                              alt="imagen Nuestras actividades" class="image slider__img" />
-                         <p class="has-text-link has-text-weight-semibold slider__text">
-                              Ayuda psicologica
-                         </p>
-                    </div>
-                    <div class="swiper-slide is-flex slider__content">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                              alt="imagen Nuestras actividades" class="image slider__img" />
-                         <p class="has-text-link has-text-weight-semibold slider__text">
-                              Ayuda psicologica
-                         </p>
-                    </div>
+                    {% endif %}
                </div>
           </div>
           <div class="swiper-button-next"></div>
