@@ -1,0 +1,71 @@
+<header class="header">
+   {% include './templates/nav.twig' %}
+   <div class="container">
+      <div class="columns header__columns">
+         <div class="column is-3 is-flex header__column">
+            <ul class="social is-flex">
+               <li class="social__item">
+                  <a href="#" class="social__link"
+                     ><img
+                        src="{{ base_url() }}{{
+                           asset('/public/icons/instagram.svg')
+                        }}"
+                        alt="icono de facebook"
+                        class="social__img"
+                  /></a>
+               </li>
+               <li class="social__item">
+                  <a href="#" class="social__link"
+                     ><img
+                        src="{{ base_url() }}{{
+                           asset('/public/icons/youtube.svg')
+                        }}"
+                        alt="icono de facebook"
+                        class="social__img"
+                  /></a>
+               </li>
+               <li class="social__item">
+                  <a href="#" class="social__link"
+                     ><img
+                        src="{{ base_url() }}{{
+                           asset('/public/icons/facebook.svg')
+                        }}"
+                        alt="icono de facebook"
+                        class="social__img"
+                  /></a>
+               </li>
+               <li class="social__item">
+                  <a href="#" class="social__link"
+                     ><img
+                        src="{{ base_url() }}{{
+                           asset('/public/icons/twitter.svg')
+                        }}"
+                        alt="icono de facebook"
+                        class="social__img"
+                  /></a>
+               </li>
+            </ul>
+            <p class="is-size-4 social__text has-text-link">/vidarenalmx</p>
+         </div>
+         <div class="column is-6 is-flex header__column">
+            <h1 class="title header__title is-2 is-uppercase has-text-link has-text-weight-bold">vida renal</h1>
+         </div>
+         <div class="column is-3 is-flex header__column">
+            <div class="field">
+               <div class="control">
+                  <input
+                     class="input is-rounded header_search"
+                     type="search"
+                     placeholder="Buscar"
+                  />
+               </div>
+            </div>
+            <button
+               class="button is-warning has-text-link is-rounded btn__help"
+            >
+               Ayudanos
+            </button>
+         </div>
+      </div>
+   </div>
+</header>

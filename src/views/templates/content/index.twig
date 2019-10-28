@@ -1,0 +1,205 @@
+<div class="container">
+   <div class="columns header__columns">
+      <div class="column is-8 is-flex header__column">
+         <figure class="image is-16by9 header__video">
+            <video class="has-ratio" controls autoplay muted>
+               <source
+                  src="{{ base_url() }}{{ asset('/public/video/video.mp4') }}"
+                  type="video/mp4"
+               />
+            </video>
+         </figure>
+      </div>
+      <div class="column is-4 is-flex header__column">
+         <h2 class="title is-3 has-text-link has-text-weight-bold">Blog</h2>
+
+         <div class="box blog-box">
+            <article class="media">
+               <div class="media-left">
+                  <figure class="image is-96x96 blog-img">
+                     <img
+                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                        alt="imagen de blog"
+                     />
+                  </figure>
+               </div>
+               <div class="media-content">
+                  <div class="content">
+                     <p>
+                        La importancia de cuidarme se tengo ERC (Enfermedad
+                        Renal Cronica)
+                     </p>
+                  </div>
+               </div>
+            </article>
+         </div>
+         <div class="box blog-box">
+            <article class="media">
+               <div class="media-left">
+                  <figure class="image is-96x96 blog-img">
+                     <img
+                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                        alt="imagen de blog"
+                     />
+                  </figure>
+               </div>
+               <div class="media-content">
+                  <div class="content">
+                     <p>
+                        La importancia de cuidarme se tengo ERC (Enfermedad
+                        Renal Cronica)
+                     </p>
+                  </div>
+               </div>
+            </article>
+         </div>
+         <div class="box blog-box">
+            <article class="media">
+               <div class="media-left">
+                  <figure class="image is-96x96 blog-img">
+                     <img
+                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                        alt="imagen de blog"
+                     />
+                  </figure>
+               </div>
+               <div class="media-content">
+                  <div class="content">
+                     <p>
+                        La importancia de cuidarme se tengo ERC (Enfermedad
+                        Renal Cronica)
+                     </p>
+                  </div>
+               </div>
+            </article>
+         </div>
+      </div>
+   </div>
+
+   <section class="section first-section">
+      <h3 class="title is-2 has-text-centered section-title has-text-info">
+         Nuestras actividades
+      </h3>
+
+      <div class="swiper-container swiper-no_slider first-section">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide is-clipped" data-swiper-autoplay="4000">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+            <div class="swiper-slide is-clipped">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+            <div class="swiper-slide is-clipped">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="section slider__section">
+      <h3 class="title is-2 has-text-centered section-subtitle has-text-info">
+         Servicios
+      </h3>
+
+      <div class="swiper-container" id="swiper">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img"
+               />
+               <p class="has-text-link has-text-weight-semibold slider__text">
+                  Atención Médica
+               </p>
+            </div>
+            <div class="swiper-slide is-flex slider__content">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img"
+               />
+               <p class="has-text-link has-text-weight-semibold slider__text">
+                  Medicamentos
+               </p>
+            </div>
+            <div class="swiper-slide is-flex slider__content">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img"
+               />
+               <p class="has-text-link has-text-weight-semibold slider__text">
+                  Ayuda psicologica
+               </p>
+            </div>
+            <div class="swiper-slide is-flex slider__content">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img"
+               />
+               <p class="has-text-link has-text-weight-semibold slider__text">
+                  Ayuda nutricional
+               </p>
+            </div>
+            <div class="swiper-slide is-flex slider__content">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img"
+               />
+               <p class="has-text-link has-text-weight-semibold slider__text">
+                  Estudios de laboratorio
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+   </section>
+
+   <section class="section last-section">
+      <h3 class="title is-2 has-text-centered section-subtitle has-text-info">
+         Proximos eventos
+      </h3>
+
+      <div class="swiper-container swiper-no_slider first-section">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide is-clipped" data-swiper-autoplay="4000">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+            <div class="swiper-slide is-clipped">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+            <div class="swiper-slide is-clipped">
+               <img
+                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  alt="imagen Nuestras actividades"
+                  class="image slider__img zoom"
+               />
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
