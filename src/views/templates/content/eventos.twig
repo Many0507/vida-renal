@@ -1,53 +1,27 @@
 <div class="container">
-     <h1 class="title is-2 has-text-info section-title has-text-centered">Proximos eventos</h1>
-     <div class="columns section section-title-topbar">
-          <div class="column is-6">
-               <figure class="image is-16by9 queHacemos-img">
-                    <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-               </figure>
-          </div>
-          <div class="column is-6 center">
-               <h2 class="title is-3 has-text-info last-section has-text-centered">
-                    Evento
-               </h2>
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius amet hic quibusdam ab?
-               </p>
-          </div>
-     </div>
-     <div class="columns section">
-          <div class="column is-6">
-               <figure class="image is-16by9 queHacemos-img">
-                    <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-               </figure>
-          </div>
-          <div class="column is-6 center">
-               <h2 class="title is-3 has-text-info last-section has-text-centered">
-                    Evento
-               </h2>
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis
-                    veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius
-                    amet hic quibusdam ab?
-               </p>
-          </div>
-     </div>
-     <div class="columns section">
-          <div class="column is-6">
-               <figure class="image is-16by9 queHacemos-img">
-                    <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
-               </figure>
-          </div>
-          <div class="column is-6 center">
-               <h2 class="title is-3 has-text-info last-section has-text-centered">
-                    Evento
-               </h2>
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis
-                    veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius
-                    amet hic quibusdam ab?
-               </p>
-          </div>
-     </div>
+     <h1 class="title section is-2 has-text-info section-title has-text-centered">Proximos eventos</h1>
+     {% if eventos|length > 0 %}
+          {% for evento in eventos %}
+               <div class="columns section">
+                    <div class="column is-6">
+                         <figure class="image is-16by9 queHacemos-img">
+                              <img src="{{ base_url() }}{{ asset(evento.imagen) }}">
+                         </figure>
+                    </div>
+                    <div class="column is-6 center">
+                         <h2 class="title is-3 has-text-info last-section has-text-centered">
+                              {{ evento.titulo }}
+                         </h2>
+                         <p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
+                              {{ evento.texto }}
+                         </p>
+                    </div>
+               </div>
+          {% endfor %}
+     {% else %}
+          <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+               No hay eventos
+          </p>
+     {% endif %}
 </div>
 

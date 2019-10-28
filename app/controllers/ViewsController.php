@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
+use App\Models\Blog;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -11,11 +12,14 @@ class ViewsController extends Controller {
      public function index (Request $request, Response $response, array $args) {
           $actividades = [];
           $eventos = [];
+          $blogs = [];
           $actividades = Actividad::all();
           $eventos = Evento::all();
+          $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
-               'eventos' => $eventos
+               'eventos' => $eventos,
+               'blogs' => $blogs
           ]);
      }
 
@@ -76,10 +80,14 @@ class ViewsController extends Controller {
      }
      
      public function eventos (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'eventos.twig');
+          $eventos = [];
+          $eventos = Evento::all();
+          return $this->container->view->render($response, 'eventos.twig', [
+               'eventos' => $eventos
+          ]);
      }
 
      public function admin (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'admin.twig');
+          return $this->container->view->render($response, '/admin.twig');
      }
 }

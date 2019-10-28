@@ -12,67 +12,33 @@
       </div>
       <div class="column is-4 is-flex header__column">
          <h2 class="title is-3 has-text-link has-text-weight-bold">Blog</h2>
-
-         <div class="box blog-box">
-            <article class="media">
-               <div class="media-left">
-                  <figure class="image is-96x96 blog-img">
-                     <img
-                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                        alt="imagen de blog"
-                     />
-                  </figure>
+         {% if blogs|length > 0 %}
+            {% for blog in blogs %}
+               <div class="box blog-box">
+                  <article class="media">
+                     <div class="media-left">
+                        <figure class="image is-96x96 blog-img">
+                           <img
+                              src="{{ base_url() }}{{ asset(blog.imagen) }}"
+                              alt="imagen de blog"
+                           />
+                        </figure>
+                     </div>
+                     <div class="media-content">
+                        <div class="content">
+                           <p>
+                              {{ blog.titulo }}
+                           </p>
+                        </div>
+                     </div>
+                  </article>
                </div>
-               <div class="media-content">
-                  <div class="content">
-                     <p>
-                        La importancia de cuidarme se tengo ERC (Enfermedad
-                        Renal Cronica)
-                     </p>
-                  </div>
-               </div>
-            </article>
-         </div>
-         <div class="box blog-box">
-            <article class="media">
-               <div class="media-left">
-                  <figure class="image is-96x96 blog-img">
-                     <img
-                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                        alt="imagen de blog"
-                     />
-                  </figure>
-               </div>
-               <div class="media-content">
-                  <div class="content">
-                     <p>
-                        La importancia de cuidarme se tengo ERC (Enfermedad
-                        Renal Cronica)
-                     </p>
-                  </div>
-               </div>
-            </article>
-         </div>
-         <div class="box blog-box">
-            <article class="media">
-               <div class="media-left">
-                  <figure class="image is-96x96 blog-img">
-                     <img
-                        src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
-                        alt="imagen de blog"
-                     />
-                  </figure>
-               </div>
-               <div class="media-content">
-                  <div class="content">
-                     <p>
-                        La importancia de cuidarme se tengo ERC (Enfermedad
-                        Renal Cronica)
-                     </p>
-                  </div>
-               </div>
-            </article>
-         </div>
+            {% endfor %}
+         {% else %}
+            <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+               El blog esta vacio
+            </p>
+         {% endif %}
       </div>
    </div>
 
@@ -86,7 +52,7 @@
             {% if actividades|length > 0 %}
                {% for actividad in actividades %}
                   <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
-                     <a href="/actividades">
+                     <a href="/actividades" style="height: 100%;">
                         <img src="{{ base_url() }}{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
                         class="image slider__img zoom">
                      </a>
@@ -174,7 +140,7 @@
             {% if eventos|length > 0 %}
                {% for evento in eventos %}
                   <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
-                     <a href="/actividades">
+                     <a href="/actividades" style="height: 100%;">
                         <img src="{{ base_url() }}{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
                         class="image slider__img zoom">
                      </a>
