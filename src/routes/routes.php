@@ -15,6 +15,7 @@ $app->get('/testimonios', 'ViewsController:testimonios');
 $app->get('/transparencia', 'ViewsController:transparencia');
 $app->get('/actividades', 'ViewsController:actividades');
 $app->get('/eventos', 'ViewsController:eventos');
+$app->get('/quiero-ayudar', 'ViewsController:Ayudar');
 
 // api routes
 

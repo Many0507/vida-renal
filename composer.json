@@ -1,12 +1,13 @@
 {
-  "name": "vida_renal",
+  "name": "vida_renal/vida_renal",
   "description": "Fundación vida renal, encargada a ayudar a las personas con la Enfermedad Renal Cronica a mejorar su calidad de vida. Juntos podemos mejorar la vida de nuestros pacientes.",
   "require": {
     "slim/slim": "^3.12",
     "slim/twig-view": "^2.5",
     "illuminate/database": "^6.2",
     "illuminate/events": "^6.2",
-    "lovecoding/twig-asset": "^1.1"
+    "lovecoding/twig-asset": "^1.1",
+    "statickidz/php-google-translate-free": "^1.1"
   },
   "scripts": {
     "start": "php -S localhost:8000",
