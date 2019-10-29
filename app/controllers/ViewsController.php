@@ -14,9 +14,9 @@ class ViewsController extends Controller {
           $actividades = [];
           $eventos = [];
           $blogs = [];
-          $actividades = Actividad::all();
-          $eventos = Evento::all();
-          $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
+          $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
+          $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
+          // $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
@@ -45,9 +45,9 @@ class ViewsController extends Controller {
           // $blog = Blog::find(5);
           // $date =  new TimeAgoHelper($blog->created_at);
           // echo ($date);
-          die();
+          // die();
           $blogs = [];
-          $blogs = Blog::all();
+          // $blogs = Blog::all();
           return $this->container->view->render($response, 'blog.twig', [
                'blogs' => $blogs
           ]);
