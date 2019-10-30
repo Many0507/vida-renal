@@ -1,27 +1,74 @@
 <?php
 namespace App\Helpers;
 
-function getTimeAgo ($date) {
-    $newDate = explode(" ", $date);
+class TimeAgoHelper {
+    public $timeAgo;
 
-    $time = date("g:i a", strtotime($newDate[1]));
-    $finalDate = $newDate[0] . ' ' . $time;
+    public function __construct ($timestamp) {
+        date_default_timezone_set('America/Mexico_City');
 
-    $timestamp = strtotime($finalDate);
-                
-    $strTime = array("segundo", "minuto", "hora", "dia", "mes", "año");
-    $length = array("60","60","24","30","12","10");
+        $time_ago = strtotime($timestamp);  
+        $current_time = time();  
+        $time_difference = $current_time - $time_ago;  
+        
+        $seconds = $time_difference;  
+        $minutes = round($seconds / 60 );           
+        $hours = round($seconds / 3600);            
+        $days = round($seconds / 86400);         
+        $weeks = round($seconds / 604800);         
+        $months = round($seconds / 2629440);     
+        $years = round($seconds / 31553280);
 
-    $currentTime = time();
-
-    if($currentTime >= $timestamp) {
-            $diff = time() - $timestamp;
-            for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
-                $diff = $diff / $length[$i];
-            }
-
-            $diff = round($diff);
-            $date = $diff . " " . $strTime[$i] . "(s) atras";
-            array_push($GLOBALS['blogsTimeAgo'], $date); 
+        if ($seconds <= 60) {  
+            $this->timeAgo = "Just Now";  
+        }  
+        else if($minutes <=60) {  
+            if($minutes==1) {  
+                $this->timeAgo = "one minute ago";  
+            }  
+            else {  
+                $this->timeAgo = "$minutes minutes ago";  
+            }  
+        }  
+        else if($hours <=24) {  
+            if($hours==1) {  
+                $this->timeAgo = "an hour ago";  
+            }  
+            else {  
+                $this->timeAgo = "$hours hrs ago";  
+            }  
+        }  
+        else if($days <= 7) {  
+            if($days==1) {  
+                $this->timeAgo = "yesterday";  
+            }  
+            else {  
+                $this->timeAgo = "$days days ago";  
+            }  
+        }  
+        else if($weeks <= 4.3) {  
+            if($weeks==1) {  
+                $this->timeAgo = "a week ago";  
+            }  
+            else {  
+                $this->timeAgo = "$weeks weeks ago";  
+            }  
+        }  
+        else if($months <=12) {  
+            if($months==1) {  
+                $this->timeAgo = "a month ago";  
+            }  
+            else {  
+                $this->timeAgo = "$months months ago";  
+            }  
+        }  
+        else {  
+            if($years==1) {  
+                $this->timeAgo = "one year ago";  
+            }  
+            else {  
+                $this->timeAgo = "$years years ago";  
+            }  
+        }
     }
 }

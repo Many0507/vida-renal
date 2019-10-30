@@ -1,11 +1,12 @@
 <?php
 namespace App\Controllers;
 
-use Statickidz\GoogleTranslate;
+// use Statickidz\GoogleTranslate;
 use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Helpers\TimeAgoHelper;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -16,7 +17,7 @@ class ViewsController extends Controller {
           $blogs = [];
           $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
           $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
-          $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
+          // $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
@@ -45,32 +46,7 @@ class ViewsController extends Controller {
           // $GLOBALS['blogsTimeAgo'] = [];
           $blogs = [];
           
-          $blogs = Blog::all();
-
-          // function getTimeAgo ($date) {
-          //      $newDate = explode(" ", $date);
-
-          //      $time = date("g:i a", strtotime($newDate[1]));
-          //      $finalDate = $newDate[0] . ' ' . $time;
-
-          //      $timestamp = strtotime($finalDate);
-                         
-          //      $strTime = array("segundo", "minuto", "hora", "dia", "mes", "año");
-          //      $length = array("60","60","24","30","12","10");
-
-          //      $currentTime = time();
-
-          //      if($currentTime >= $timestamp) {
-          //           $diff = time() - $timestamp;
-          //           for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
-          //                $diff = $diff / $length[$i];
-          //           }
-
-          //           $diff = round($diff);
-          //           $date = $diff . " " . $strTime[$i] . "(s) atras";
-          //           array_push($GLOBALS['blogsTimeAgo'], $date); 
-          //      }
-          // }
+          // $blogs = Blog::all();
 
           // for ($i = 0; $i < count($blogs); $i++) {
           //      getTimeAgo($blogs[$i]->created_at);      
@@ -78,7 +54,7 @@ class ViewsController extends Controller {
 
           // var_dump($blogsTimeAgo);
           // $blogsTimeAgo = $GLOBALS['blogsTimeAgo'];
-          // die();
+          
           // Google translate 
           // $source = 'es';
           // $target = 'en';
@@ -89,9 +65,13 @@ class ViewsController extends Controller {
 
           // var_dump($result);
           // die();
+
+          // -
+          // $time = new TimeAgoHelper('2019-10-29 22:00:00');
+          // echo $time->timeAgo;
+          // 
           return $this->container->view->render($response, 'blog.twig', [
                'blogs' => $blogs
-               // 'blogsTimeAgo' => $blogsTimeAgo
           ]);
      }
 

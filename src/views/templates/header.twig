@@ -48,6 +48,9 @@
             <p class="is-size-4 social__text has-text-link">/vidarenalmx</p>
          </div>
          <div class="column is-6 is-flex header__column">
+            {# <figure class="image is-3by2 queHacemos-img">
+               <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+            </figure>  #}
             <h1 class="title header__title is-2 is-uppercase has-text-link has-text-weight-bold">vida renal</h1>
          </div>
          <div class="column is-3 is-flex header__column">
@@ -60,11 +63,13 @@
                   />
                </div>
             </div>
-            <button
-               class="button is-warning has-text-link is-rounded btn__help"
-            >
-               Ayudanos
-            </button>
+            <a href="/quiero-ayudar">
+               <button
+                  class="button is-warning has-text-link is-rounded btn__help"
+               >
+                  Ayudanos
+               </button>
+            </a>
          </div>
       </div>
    </div>
