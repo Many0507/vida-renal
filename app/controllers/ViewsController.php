@@ -17,7 +17,7 @@ class ViewsController extends Controller {
           $blogs = [];
           $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
           $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
-          $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
+          $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
@@ -46,7 +46,7 @@ class ViewsController extends Controller {
           // $GLOBALS['blogsTimeAgo'] = [];
           $blogs = [];
           
-          $blogs = Blog::all();
+          $blogs = Blog::orderBy('created_at', 'desc')->get();
 
           // for ($i = 0; $i < count($blogs); $i++) {
           //      getTimeAgo($blogs[$i]->created_at);      
@@ -92,7 +92,12 @@ class ViewsController extends Controller {
      }
 
      public function talleres (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'talleres.twig');
+          $talleres = [];
+          $talleres = Taller::all();
+
+          return $this->container->view->render($response, 'talleres.twig', [
+               'talleres' => $talleres
+          ]);
      }
 
      public function testimonios (Request $request, Response $response, array $args) {

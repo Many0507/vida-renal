@@ -65,11 +65,13 @@
                     {% if talleres|length > 0 %}
                          {% for taller in talleres %}
                               <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
-                                   <img
-                                        src="{{ base_url() }}{{ asset(taller.imagen) }}"
-                                        alt="imagen Nuestras actividades"
-                                        class="image slider__img"
-                                   />
+                                   {# <a href="/talleres"> #}
+                                        <img
+                                             src="{{ base_url() }}{{ asset(taller.imagen) }}"
+                                             alt="imagen de Taller"
+                                             class="image slider__img"
+                                        />
+                                   {# </a> #}
                                    <p class="has-text-link has-text-weight-semibold slider__text">
                                         {{ taller.titulo }}
                                    </p>

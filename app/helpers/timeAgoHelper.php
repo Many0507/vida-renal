@@ -20,9 +20,9 @@ class TimeAgoHelper {
         $years = round($seconds / 31553280);
 
         if ($seconds <= 60) {  
-            $this->timeAgo = "Just Now";  
+            $this->timeAgo = "Justo ahora";  
         }  
-        else if($minutes <=60) {  
+        else if($minutes <= 60) {  
             if($minutes==1) {  
                 $this->timeAgo = "one minute ago";  
             }  

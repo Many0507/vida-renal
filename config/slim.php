@@ -22,12 +22,13 @@ $container['view'] = function($container) {
           $container->request->getUri()
      ));
      $assetManager = new TwigAssetManagement([
-        'verion' => '1'
+        'version' => '1'
     ]);
      $assetManager->addPath('css', '/css');
      $assetManager->addPath('icons', '/icons');
      $assetManager->addPath('js', '/js');
      $assetManager->addPath('video', '/video');
+     $assetManager->addPath('img', '/img');
      $view->addExtension($assetManager->getAssetExtension());
 
      return $view;

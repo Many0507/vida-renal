@@ -8,6 +8,9 @@ body {
 i {
   margin-right: 1rem; }
 
+img {
+  object-fit: cover; }
+
 .container-100 {
   max-width: 100%; }
 
@@ -205,6 +208,10 @@ i {
 .swiper-button-prev {
   top: 55%; }
 
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+  outline: none; }
+
 .swiper-button-next {
   right: -1rem; }
 
@@ -318,7 +325,7 @@ i {
       height: 100%;
       border: 3px solid #fff; }
   .valor-box:hover .valor-box__text {
-    opacity: .7; }
+    opacity: .8; }
   .valor-box__text {
     position: absolute;
     border-radius: 50%;

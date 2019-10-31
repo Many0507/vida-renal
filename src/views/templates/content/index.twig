@@ -74,9 +74,9 @@
 
       <div class="swiper-container" id="swiper">
          <div class="swiper-wrapper">
-            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000" style="cursor: pointer;">
+            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
                <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}"
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
@@ -84,9 +84,9 @@
                   Atención Médica
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
+            <div class="swiper-slide is-flex slider__content">
                <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}"
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
@@ -94,9 +94,9 @@
                   Medicamentos
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
+            <div class="swiper-slide is-flex slider__content">
                <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}"
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
@@ -104,9 +104,9 @@
                   Ayuda psicologica
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
+            <div class="swiper-slide is-flex slider__content">
                <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}"
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
@@ -114,9 +114,9 @@
                   Ayuda nutricional
                </p>
             </div>
-            <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
+            <div class="swiper-slide is-flex slider__content">
                <img
-                  src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}"
+                  src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}"
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
@@ -140,7 +140,7 @@
             {% if eventos|length > 0 %}
                {% for evento in eventos %}
                   <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
-                     <a href="/actividades" style="height: 100%;">
+                     <a href="/eventos" style="height: 100%;">
                         <img src="{{ base_url() }}{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
                         class="image slider__img zoom">
                      </a>

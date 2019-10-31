@@ -20,10 +20,10 @@ x.addListener(mediaQuery);
 
 const swiper = new Swiper("#swiper", {
   slidesPerView: slidePerView,
-  spaceBetween: 30,
-  slidesPerGroup: slidePerView,
+  spaceBetween: 20,
+  // slidesPerGroup: slidePerView,
   loop: true,
-  loopFillGroupWithBlank: true,
+  loopFillGroupWithBlank: false,
   autoplay: {
     delay: 5000
   },
@@ -35,7 +35,7 @@ const swiper = new Swiper("#swiper", {
 
 const swiper_noSlider = new Swiper(".swiper-no_slider", {
   slidesPerView: slidePerView,
-  spaceBetween: 30,
+  spaceBetween: 20,
   slidesPerGroup: slidePerView,
   loop: false,
   autoplay: {
