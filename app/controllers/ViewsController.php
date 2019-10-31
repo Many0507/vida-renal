@@ -17,7 +17,7 @@ class ViewsController extends Controller {
           $blogs = [];
           $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
           $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
-          // $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
+          $blogs = Blog::orderBy('id', 'desc')->take(3)->get();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
@@ -46,7 +46,7 @@ class ViewsController extends Controller {
           // $GLOBALS['blogsTimeAgo'] = [];
           $blogs = [];
           
-          // $blogs = Blog::all();
+          $blogs = Blog::all();
 
           // for ($i = 0; $i < count($blogs); $i++) {
           //      getTimeAgo($blogs[$i]->created_at);      
