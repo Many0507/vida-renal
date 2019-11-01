@@ -15,23 +15,25 @@
          {% if blogs|length > 0 %}
             {% for blog in blogs %}
                <div class="box blog-box">
-                  <article class="media">
-                     <div class="media-left">
-                        <figure class="image is-96x96 blog-img">
-                           <img
-                              src="{{ base_url() }}{{ asset(blog.imagen) }}"
-                              alt="imagen de blog"
-                           />
-                        </figure>
-                     </div>
-                     <div class="media-content">
-                        <div class="content">
-                           <p>
-                              {{ blog.titulo }}
-                           </p>
+                  <a href="/blog/ver/{{blog.id}}">
+                     <article class="media">
+                        <div class="media-left">
+                           <figure class="image is-96x96 blog-img">
+                              <img
+                                 src="{{ base_url() }}{{ asset(blog.imagen) }}"
+                                 alt="imagen de blog"
+                              />
+                           </figure>
                         </div>
-                     </div>
-                  </article>
+                        <div class="media-content">
+                           <div class="content">
+                              <p>
+                                 {{ blog.titulo }}
+                              </p>
+                           </div>
+                        </div>
+                     </article>
+                  </a>
                </div>
             {% endfor %}
          {% else %}

@@ -15,6 +15,12 @@ i {
 img {
   object-fit: cover;
 }
+a {
+  color: $primary-color;
+  &:hover {
+    color: darken($primary-color, 10);
+  }
+}
 .container-100 {
   max-width: 100%;
 }
@@ -404,6 +410,25 @@ img {
   width: 50%;
   @media screen and (max-width: 768px) {
     width: 100%;
+  }
+}
+.center-image {
+  padding-top: 25% !important;
+  width: 50% !important; 
+  margin: 0 auto !important;
+  @media screen and (max-width: 768px) {
+    padding-top: 56.25% !important;
+    width: 100% !important; 
+    margin: 0 !important;
+  }
+}
+
+.center-video {
+  bottom: 3rem !important; 
+  padding-top: 46% !important;
+  @media screen and (max-width: 768px) {
+    bottom: 0rem !important; 
+    padding-top: 56.25% !important;
   }
 }
 

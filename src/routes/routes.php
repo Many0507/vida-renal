@@ -5,6 +5,7 @@ $app->get('/', 'ViewsController:index');
 $app->get('/quienes-somos', 'ViewsController:quienesSomos');
 $app->get('/aliados', 'ViewsController:aliados');
 $app->get('/blog', 'ViewsController:blog');
+$app->get('/blog/ver/{id}', 'ViewsController:blogVer');
 $app->get('/como-apoyarnos', 'ViewsController:comoApoyarnos');
 $app->get('/conoce', 'ViewsController:conoce');
 $app->get('/donar', 'ViewsController:donar');

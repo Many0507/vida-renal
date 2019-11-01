@@ -8,7 +8,7 @@ use Slim\app;
 
 $app = new app([
      'settings' => [
-          'displayErrorDetails' => true,
+          'displayErrorDetails' => false,
      ],
 ]);
 $container = $app->getContainer();

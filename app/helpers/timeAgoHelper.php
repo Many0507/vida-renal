@@ -24,50 +24,50 @@ class TimeAgoHelper {
         }  
         else if($minutes <= 60) {  
             if($minutes==1) {  
-                $this->timeAgo = "one minute ago";  
+                $this->timeAgo = "Un minuto atrás";  
             }  
             else {  
-                $this->timeAgo = "$minutes minutes ago";  
+                $this->timeAgo = "$minutes minutos atrás";  
             }  
         }  
         else if($hours <=24) {  
             if($hours==1) {  
-                $this->timeAgo = "an hour ago";  
+                $this->timeAgo = "una hora atrás";  
             }  
             else {  
-                $this->timeAgo = "$hours hrs ago";  
+                $this->timeAgo = "$hours horas atrás";  
             }  
         }  
         else if($days <= 7) {  
             if($days==1) {  
-                $this->timeAgo = "yesterday";  
+                $this->timeAgo = "ayer";  
             }  
             else {  
-                $this->timeAgo = "$days days ago";  
+                $this->timeAgo = "$days dias atrás";  
             }  
         }  
         else if($weeks <= 4.3) {  
             if($weeks==1) {  
-                $this->timeAgo = "a week ago";  
+                $this->timeAgo = "una semana atrás";  
             }  
             else {  
-                $this->timeAgo = "$weeks weeks ago";  
+                $this->timeAgo = "$weeks semanas atrás";  
             }  
         }  
         else if($months <=12) {  
             if($months==1) {  
-                $this->timeAgo = "a month ago";  
+                $this->timeAgo = "un mes atrás";  
             }  
             else {  
-                $this->timeAgo = "$months months ago";  
+                $this->timeAgo = "$months meses atrás";  
             }  
         }  
         else {  
             if($years==1) {  
-                $this->timeAgo = "one year ago";  
+                $this->timeAgo = "un año atrás";  
             }  
             else {  
-                $this->timeAgo = "$years years ago";  
+                $this->timeAgo = "$years años atrás";  
             }  
         }
     }

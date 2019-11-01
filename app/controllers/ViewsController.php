@@ -44,6 +44,7 @@ class ViewsController extends Controller {
      
      public function blog (Request $request, Response $response, array $args) {
           // $GLOBALS['blogsTimeAgo'] = [];
+          $timeAgo = [];
           $blogs = [];
           
           $blogs = Blog::orderBy('created_at', 'desc')->get();
@@ -67,12 +68,33 @@ class ViewsController extends Controller {
           // die();
 
           // -
-          // $time = new TimeAgoHelper('2019-10-29 22:00:00');
-          // echo $time->timeAgo;
-          // 
+          foreach ($blogs as $blog) {
+               $time = new TimeAgoHelper($blog->created_at);
+               $timeAgo[$blog->id] = $time;
+          }
+          
           return $this->container->view->render($response, 'blog.twig', [
-               'blogs' => $blogs
+               'blogs' => $blogs,
+               'timeAgo' => $timeAgo
           ]);
+     }
+
+     public function blogVer (Request $request, Response $response, array $args) {
+          $blog = [];
+          $id = intval($request->getAttribute('id'));
+          
+          if ($id > 0) {
+               $blog = Blog::find($id);
+
+               if ($blog == null || empty($blog)) {
+                    return $response->withHeader('Location', '/');
+               }
+
+               return $this->container->view->render($response, 'blog-ver.twig', [
+                    'blog' => $blog
+               ]);
+          }
+          else return $response->withHeader('Location', '/');
      }
 
      public function comoApoyarnos (Request $request, Response $response, array $args) {
