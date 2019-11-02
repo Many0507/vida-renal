@@ -1,21 +1,25 @@
 {
-  "name": "vida_renal/vida_renal",
-  "description": "Fundación vida renal, encargada a ayudar a las personas con la Enfermedad Renal Cronica a mejorar su calidad de vida. Juntos podemos mejorar la vida de nuestros pacientes.",
-  "require": {
-    "slim/slim": "^3.12",
-    "slim/twig-view": "^2.5",
-    "illuminate/database": "^6.2",
-    "illuminate/events": "^6.2",
-    "lovecoding/twig-asset": "^1.1",
-    "statickidz/php-google-translate-free": "^1.1"
-  },
-  "scripts": {
-    "start": "php -S localhost:8000",
-    "sass": "node-sass --watch src/scss --output public/css"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/"
-    }
-  }
+	"name": "vida_renal/vida_renal",
+	"description": "Fundación vida renal, encargada a ayudar a las personas con la Enfermedad Renal Cronica a mejorar su calidad de vida. Juntos podemos mejorar la vida de nuestros pacientes.",
+	"require": {
+		"slim/slim": "^3.12",
+		"slim/twig-view": "^2.5",
+		"illuminate/database": "^6.2",
+		"illuminate/events": "^6.2",
+		"lovecoding/twig-asset": "^1.1",
+		"statickidz/php-google-translate-free": "^1.1"
+	},
+	"scripts": {
+		"start": "php -S localhost:8000",
+		"sass": "node-sass --watch src/scss --output public/css"
+	},
+	"config": {
+		"optimize-autoloader": true
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		},
+		"classmap": [ "app/" ]
+	}
 }
