@@ -11,19 +11,18 @@
                                    </a>
                               </figure>
                          </div>
-                         <div class="column is-6">
+                         <div class="column is-6 has-text-centered-touch">
                               <p class="has-text-link is-size-6 has-text-right is-italic">{{ blog.autor }} - {{ timeAgo[blog.id].timeAgo }}</p>
-                              {{ blog.created_at }}
-                              <a href="blog/ver/{{ blog.id }}">
                                    <div class="section" style="padding-top: 0;">
                                         <h2 class="title is-3 has-text-info last-section">
-                                             {{ blog.titulo }}
+                                             <a href="blog/ver/{{ blog.id }}">
+                                                  {{ blog.titulo }}
+                                             </a>
                                         </h2>
                                         <p class="has-text-link has-text-weight-bold is-size-5">
                                              {{ blog.texto_corto }}
                                         </p>
                                    </div>
-                              </a>
                               <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
                          </div>
                     </div>

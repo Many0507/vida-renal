@@ -155,4 +155,12 @@ class ViewsController extends Controller {
      public function admin (Request $request, Response $response, array $args) {
           return $this->container->view->render($response, '/admin.twig');
      }
+
+     public function adminActividades (Request $request, Response $response, array $args) {
+          $actividades = [];
+          $actividades = Actividad::orderBy('id', 'desc')->get();
+          return $this->container->view->render($response, '/admin-actividades.twig', [
+               'actividades' => $actividades
+          ]);
+     }
 }

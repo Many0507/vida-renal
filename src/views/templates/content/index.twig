@@ -55,7 +55,7 @@
                {% for actividad in actividades %}
                   <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
                      <a href="/actividades" style="height: 100%;">
-                        <img src="{{ base_url() }}{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
+                        <img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
                         class="image slider__img zoom">
                      </a>
                   </div>

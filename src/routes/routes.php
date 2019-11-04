@@ -19,7 +19,9 @@ $app->get('/eventos', 'ViewsController:eventos');
 $app->get('/quiero-ayudar', 'ViewsController:Ayudar');
 
 // api routes
+$app->post('/actividades', 'ApiController:crearActividad');
 
 // admin routes
 $app->get('/admin', 'ViewsController:admin');
+$app->get('/admin/actividades', 'ViewsController:adminActividades');
 

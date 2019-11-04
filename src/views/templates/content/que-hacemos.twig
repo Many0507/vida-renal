@@ -4,7 +4,7 @@
           <div class="columns">
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}" class="image queHacemos-image">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" class="image queHacemos-image">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Atencion Medica
@@ -12,7 +12,7 @@
                </div>
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Atencion Psicologica
@@ -22,7 +22,7 @@
           <div class="columns">
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Atencion Nutricional
@@ -30,7 +30,7 @@
                </div>
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Laboratorios - Estudios
@@ -40,7 +40,7 @@
           <div class="columns">
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio6.jpg') }}">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Platicas Informativas
@@ -48,7 +48,7 @@
                </div>
                <div class="column is-6">
                     <figure class="image is-16by9 queHacemos-img">
-                         <img src="{{ base_url() }}{{ asset('/public/icons/img.jpg') }}">
+                         <img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}">
                     </figure>
                     <p class="has-text-link has-text-weight-bold is-size-5 has-text-centered slider__text">
                          Apoyo con Medicamentos
@@ -65,15 +65,13 @@
                     {% if talleres|length > 0 %}
                          {% for taller in talleres %}
                               <div class="swiper-slide is-flex slider__content" style="cursor: pointer;">
-                                   {# <a href="/talleres"> #}
-                                        <img
-                                             src="{{ base_url() }}{{ asset(taller.imagen) }}"
-                                             alt="imagen de Taller"
-                                             class="image slider__img"
-                                        />
-                                   {# </a> #}
+                                   <img
+                                        src="{{ base_url() }}{{ asset(taller.imagen) }}"
+                                        alt="imagen de Taller"
+                                        class="image slider__img"
+                                   />
                                    <p class="has-text-link has-text-weight-semibold slider__text">
-                                        {{ taller.titulo }}
+                                        <a href="/talleres">{{ taller.titulo }}</a>
                                    </p>
                               </div>
                          {% endfor %}

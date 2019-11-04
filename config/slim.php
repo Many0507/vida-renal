@@ -1,6 +1,7 @@
 <?php
 use App\Controllers\Controller;
 use App\Controllers\ViewsController;
+use App\Controllers\ApiController;
 
 use Slim\Views\TwigExtension;
 use LoveCoding\TwigAsset\TwigAssetManagement;
@@ -8,10 +9,12 @@ use Slim\app;
 
 $app = new app([
      'settings' => [
-          'displayErrorDetails' => false,
+          'displayErrorDetails' => true,
      ],
 ]);
 $container = $app->getContainer();
+
+$container['upload_directory'] = __DIR__ . '/../public/uploads';
 
 $container['view'] = function($container) {
      $view = new \Slim\Views\Twig(__DIR__ . '/../src/views/', [
@@ -36,4 +39,7 @@ $container['view'] = function($container) {
 
 $container['ViewsController'] = function ($container) {
      return new ViewsController($container);
+};
+$container['ApiController'] = function ($container) {
+     return new ApiController($container);
 };

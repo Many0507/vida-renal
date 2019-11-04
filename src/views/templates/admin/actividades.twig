@@ -1,0 +1,61 @@
+<div class="container">
+     <h1 class="title is-2 section has-text-info section-title has-text-centered">Actividades</h1>
+     {% if actividades|length > 0 %}
+     {% for actividad in actividades %}
+     <div class="box blog-box">
+          <article class="media">
+               <div class="media-left">
+                    <figure class="image is-96x96 blog-img">
+                         <img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen de blog" />
+                    </figure>
+               </div>
+               <div class="media-content">
+                    <div class="content">
+                         <p>
+                              {{ actividad.titulo }}
+                         </p>
+                    </div>
+               </div>
+          </article>
+     </div>
+     {% endfor %}
+     {% else %}
+     <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+          No hay Actividades
+     </p>
+     {% endif %}
+     <form id="actividad-form" enctype="multipart/form-data">
+          <div class="field">
+               <label class="label">Titulo: </label>
+               <div class="control">
+                    <input class="input" type="text" name="titulo" id="titulo">
+               </div>
+          </div>
+          <div class="field">
+               <div id="file-js-example" class="file has-name">
+                    <label class="file-label">
+                         <input class="file-input" type="file" name="imagen">
+                         <span class="file-cta">
+                              <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                   Imagen
+                              </span>
+                         </span>
+                         <span class="file-name">
+                              Archivo no seleccionado.
+                         </span>
+                    </label>
+               </div>
+          </div>
+          <div class="field">
+               <textarea name="texto" class="textarea" rows="5" style="resize: none;"></textarea>
+          </div>
+          <div class="field">
+               <div class="control">
+                    <button class="button is-link" type="submit" id="actividad-submit">Submit</button>
+               </div>
+          </div>
+     </form>
+</div>

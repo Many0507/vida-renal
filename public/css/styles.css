@@ -12,9 +12,9 @@ img {
   object-fit: cover; }
 
 a {
-  color: #2980b9; }
+  color: #4aa3df; }
   a:hover {
-    color: #20638f; }
+    color: #258cd1; }
 
 .container-100 {
   max-width: 100%; }
@@ -295,8 +295,8 @@ a {
   height: 95%;
   top: 0;
   right: 0;
-  font-size: .8rem;
-  transition: width 0.2s ease-in, font-size 0.2s ease-in; }
+  font-size: .85rem;
+  transition: width 0.3s ease-in-out, font-size 0.3s ease-in-out; }
   @media screen and (max-width: 768px) {
     .card-content {
       width: 100%;
