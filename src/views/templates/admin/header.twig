@@ -10,7 +10,7 @@
           class="navbar-item has-text-weight-bold is-uppercase"
           href="https://bulma.io"
         >
-          Panel de administrador
+          <a href="/admin" class="has-text-white">Panel de administrador</a>
         </h1>
         <a
           role="button"
@@ -28,18 +28,22 @@
 
       <div id="navbar" class="navbar-menu navbar-admin is-flex">
         <div class="navbar-start navbar-list">
-          <a class="navbar-item" href="/">
+          <a class="navbar-item" href="/admin">
+            Inicio
+          </a>
+
+          <a class="navbar-item" href="/admin/actividades">
             Actividades
           </a>
 
-          <a class="navbar-item" href="/quienes-somos">
+          <a class="navbar-item" href="/admin/eventos">
             Eventos
           </a>
 
-          <a class="navbar-item" href="/que-hacemos">
+          <a class="navbar-item" href="/admin/talleres">
             Talleres
           </a>
-          <a class="navbar-item" href="/donar">
+          <a class="navbar-item" href="/admin/blog">
             Blog
           </a>
         </div>

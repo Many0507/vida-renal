@@ -7,7 +7,8 @@
 		"illuminate/database": "^6.2",
 		"illuminate/events": "^6.2",
 		"lovecoding/twig-asset": "^1.1",
-		"statickidz/php-google-translate-free": "^1.1"
+		"statickidz/php-google-translate-free": "^1.1",
+		"slim/flash": "^0.4.0"
 	},
 	"scripts": {
 		"start": "php -S localhost:8000",

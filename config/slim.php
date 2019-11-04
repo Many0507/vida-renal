@@ -1,5 +1,5 @@
 <?php
-use App\Controllers\Controller;
+session_start();
 use App\Controllers\ViewsController;
 use App\Controllers\ApiController;
 
@@ -15,6 +15,10 @@ $app = new app([
 $container = $app->getContainer();
 
 $container['upload_directory'] = __DIR__ . '/../public/uploads';
+
+$container['flash'] = function () {
+     return new \Slim\Flash\Messages();
+ };
 
 $container['view'] = function($container) {
      $view = new \Slim\Views\Twig(__DIR__ . '/../src/views/', [

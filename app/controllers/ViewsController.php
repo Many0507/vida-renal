@@ -150,17 +150,53 @@ class ViewsController extends Controller {
           return $this->container->view->render($response, 'ayudar.twig');
      }
      
-     // 
+     // Admin views
 
      public function admin (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, '/admin.twig');
+          return $this->container->view->render($response, 'admin.twig');
      }
 
      public function adminActividades (Request $request, Response $response, array $args) {
           $actividades = [];
           $actividades = Actividad::orderBy('id', 'desc')->get();
-          return $this->container->view->render($response, '/admin-actividades.twig', [
-               'actividades' => $actividades
+          $messages = $this->container->flash->getMessages();
+          
+          return $this->container->view->render($response, 'admin-actividades.twig', [
+               'actividades' => $actividades,
+               'mensajes' => $messages
+          ]);
+     }
+
+     public function adminEventos (Request $request, Response $response, array $args) {
+          $eventos = [];
+          $eventos = Evento::orderBy('id', 'desc')->get();
+          $messages = $this->container->flash->getMessages();
+          
+          return $this->container->view->render($response, 'admin-eventos.twig', [
+               'eventos' => $eventos,
+               'mensajes' => $messages
+          ]);
+     }
+
+     public function adminTalleres (Request $request, Response $response, array $args) {
+          $talleres = [];
+          $talleres = Taller::orderBy('id', 'desc')->get();
+          $messages = $this->container->flash->getMessages();
+          
+          return $this->container->view->render($response, 'admin-talleres.twig', [
+               'talleres' => $talleres,
+               'mensajes' => $messages
+          ]);
+     }
+
+     public function adminBlog (Request $request, Response $response, array $args) {
+          $blog = [];
+          $blog = Blog::orderBy('id', 'desc')->get();
+          $messages = $this->container->flash->getMessages();
+          
+          return $this->container->view->render($response, 'admin-blog.twig', [
+               'blog' => $blog,
+               'mensajes' => $messages
           ]);
      }
 }
