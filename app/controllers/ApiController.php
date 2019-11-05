@@ -32,7 +32,8 @@ class ApiController extends Controller {
                     $this->container->flash->addMessage('done', '¡Actividad creada con exito!');
                     return $response->withHeader('Location', '/admin/actividades');
                } catch (Exception $e) {
-                    return 'error: ' . $e;
+                    $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+                    return $response->withHeader('Location', '/admin/actividades');
                }
           } else {
                $this->container->flash->addMessage('error', $message);
