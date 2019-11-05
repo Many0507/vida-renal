@@ -43,18 +43,10 @@ class ViewsController extends Controller {
      }
      
      public function blog (Request $request, Response $response, array $args) {
-          // $GLOBALS['blogsTimeAgo'] = [];
           $timeAgo = [];
           $blogs = [];
           
           $blogs = Blog::orderBy('created_at', 'desc')->get();
-
-          // for ($i = 0; $i < count($blogs); $i++) {
-          //      getTimeAgo($blogs[$i]->created_at);      
-          // }
-
-          // var_dump($blogsTimeAgo);
-          // $blogsTimeAgo = $GLOBALS['blogsTimeAgo'];
           
           // Google translate 
           // $source = 'es';
@@ -64,10 +56,6 @@ class ViewsController extends Controller {
           // $trans = new GoogleTranslate();
           // $result = $trans->translate($source, $target, $text);
 
-          // var_dump($result);
-          // die();
-
-          // -
           foreach ($blogs as $blog) {
                $time = new TimeAgoHelper($blog->created_at);
                $timeAgo[$blog->id] = $time;
