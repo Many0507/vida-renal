@@ -37,6 +37,7 @@ $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');
 
 // admin routes
 $app->get('/admin', 'ViewsController:admin');
+$app->get('/admin/login', 'ViewsController:adminLogin');
 $app->get('/admin/actividades', 'ViewsController:adminActividades');
 $app->get('/admin/eventos', 'ViewsController:adminEventos');
 $app->get('/admin/talleres', 'ViewsController:adminTalleres');

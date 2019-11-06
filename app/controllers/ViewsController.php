@@ -187,4 +187,8 @@ class ViewsController extends Controller {
                'mensajes' => $messages
           ]);
      }
+
+     public function adminLogin (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'admin-login.twig');
+     }
 }
