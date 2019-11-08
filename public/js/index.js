@@ -69,12 +69,12 @@ if (createBtn != null) {
 	if (closeBtn != null) {
 		closeBtn.addEventListener('click', e => {
 			e.preventDefault();
-			formContainer.style.top = '-100vh';
+			formContainer.style.top = '-200vh';
 		});
 	}
 	formContainer.addEventListener('click', e => {
 		if (e.target.id == 'form-container') {
-			formContainer.style.top = '-100vh';
+			formContainer.style.top = '-200vh';
 		}
 	});
 }
