@@ -20,26 +20,28 @@ img {
 	object-fit: cover;
 }
 a {
-	color: $second-color;
+	color: $primary-color;
+	font-weight: 600;
 	&:hover {
-		color: darken($second-color, 10);
+		color: darken($primary-color, 10);
 	}
 }
 .container-100 {
 	max-width: 100%;
 }
 .is-fullwidth {
-	width: 100%;
+	width: 100% !important;
 }
 .navbar {
 	width: 100vw;
 	box-shadow: none;
-	transition: all ease .3s;
+	transition: all ease .2s;
 	border-bottom: 2px solid darken($primary-color, 10);
 }
 .navbar-menu {
 	margin-right: 0;
 	@media screen and (max-width: 1023px) {
+		width: 100%;
 		height: 100vh;
 		position: fixed;
 		right: -100vw;
@@ -333,7 +335,7 @@ a {
 	top: 0;
 	right: 0;
 	font-size: .85rem;
-	transition: width 0.3s ease-in-out, font-size 0.3s ease-in-out;
+	transition: width 0.3s ease, font-size 0.3s ease;
 	@media screen and (max-width: 768px) {
 		width: 100%;
 		position: relative;
