@@ -108,9 +108,7 @@ class ApiController extends Controller {
           if (is_null($message)) {
                $filename = $this->getFileName($request);
 
-               if (is_array($filename)) {
-                    $this->container->flash->addMessage('error', $filename['error']);
-               }
+               if (is_array($filename)) $this->container->flash->addMessage('error', $filename['error']);
                
                try {
                     $target = $model;
@@ -123,9 +121,7 @@ class ApiController extends Controller {
                } catch (Exception $e) {
                     $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                }
-          } else {
-               $this->container->flash->addMessage('error', $message);
-          }
+          } else $this->container->flash->addMessage('error', $message);
      }
 
      public function Read ($request, $section, $model) {
@@ -134,38 +130,31 @@ class ApiController extends Controller {
           if ($id > 0) {
                $target = $model::find($id);
 
-               if ($target == null || empty($target)) {
-                    $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
-               } else {
-                    return $target;
-               }
+               if ($target == null || empty($target)) $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+               else return $target;
           }
-          else {
-               $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
-          }
+          else $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
      }
 
      public function Update ($request, $section, $model) {
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
 
-          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === '' ? 'favor de llenar todos los campos' : null;
+          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === '' 
+          ? 'favor de llenar todos los campos' 
+          : null;
 
           if (is_null($message)) {
                $filename = $this->getFileName($request);
 
-               if (is_array($filename)) {
-                    $this->container->flash->addMessage('error_update', $filename['error']);
-               }
+               if (is_array($filename)) $this->container->flash->addMessage('error_update', $filename['error']);
                
                $id = intval($request->getAttribute('id'));
 
                if ($id > 0) {
                     $target = $model::find($id);
                     
-                    if ($target == null || empty($target)) {
-                         $this->container->flash->addMessage('error_update', 'hay un error');
-                    }
+                    if ($target == null || empty($target)) $this->container->flash->addMessage('error_update', 'hay un error');
                     
                     try {
                          $target->titulo = $titulo;
@@ -178,9 +167,7 @@ class ApiController extends Controller {
                          $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                     }                    
                }
-          } else {
-               $this->container->flash->addMessage('error_update', $message);
-          }
+          } else $this->container->flash->addMessage('error_update', $message);
      }
 
      public function Delete ($request, $section, $model) {
@@ -190,9 +177,8 @@ class ApiController extends Controller {
           if ($id > 0) {
                $target = $model::find($id);
 
-               if ($target == null || empty($target)) {
-                    $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
-               } else {
+               if ($target == null || empty($target)) $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+               else {
                     try {
                          $target->delete();
                          unlink($directory . '/' . $target->imagen);
@@ -203,14 +189,12 @@ class ApiController extends Controller {
                     }
                }
           }
-          else {
-               $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
-          }
+          else $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
      }
 
      // Helpers //
 
-     public function getFileName($request) {
+     public function getFileName ($request) {
           $directory = $this->container->get('upload_directory');
 
           $uploadedFiles = $request->getUploadedFiles();

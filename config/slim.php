@@ -5,9 +5,9 @@ use App\Controllers\ApiController;
 
 use Slim\Views\TwigExtension;
 use LoveCoding\TwigAsset\TwigAssetManagement;
-use Slim\app;
+use Slim\App;
 
-$app = new app([
+$app = new App([
      'settings' => [
           'displayErrorDetails' => true,
      ],
