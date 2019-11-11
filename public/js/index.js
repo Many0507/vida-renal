@@ -23,23 +23,27 @@ let slidePerView;
 if (deleteBtn != null) {
 	deleteBtn.forEach(btn => {
 		btn.addEventListener('click', async e => {
-			confirm = window.confirm("¿Desea eliminar la actividad?");
+			confirm = window.confirm('¿Desea eliminar la actividad?');
 			if (confirm) {
 				const id = btn.id.split('-')[1];
 				await axios.delete(`${window.location.href}/${id}`);
 				location.reload();
 			}
-		})
-	})
+		});
+	});
 }
 
 // update form
 if (updateBtn != null) {
 	updateBtn.forEach(btn => {
-		btn.addEventListener('click', e => {
-			formContainerUpdate.style.top = '0';
+		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
-			formUpdate.action = ''
+			const data = await axios.get(`${window.location.href}/${id}`);
+			document.getElementById('titulo').value = data.data.titulo;
+			document.getElementById('texto').value = data.data.texto;
+
+			formContainerUpdate.style.top = '0';
+			formUpdate.action = '';
 			formUpdate.action = `/admin/actividades/${id}`;
 		});
 		closeUpdate.addEventListener('click', e => {
@@ -50,7 +54,7 @@ if (updateBtn != null) {
 			if (e.target.id == 'form-container--update') {
 				formContainerUpdate.style.top = '-200vh';
 			}
-		})
+		});
 	});
 }
 
@@ -154,10 +158,19 @@ if (fileInputUpdate != null) {
 
 // delete btn
 document.addEventListener('DOMContentLoaded', () => {
-	(document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-	  $notification = $delete.parentNode;
-	  $delete.addEventListener('click', () => {
-		$notification.parentNode.removeChild($notification);
-	  });
+	(document.querySelectorAll('.notification .delete') || []).forEach($delete => {
+		$notification = $delete.parentNode;
+		$delete.addEventListener('click', () => {
+			$notification.parentNode.removeChild($notification);
+		});
 	});
-  });
+});
+
+//
+const navbarContent = document.getElementById('navbar-C');
+window.addEventListener('scroll', function (e) {
+	if (window.scrollY > 0) {
+		navbarContent.style.boxShadow = '1px 1px 5px #000';
+	}
+	else navbarContent.style.boxShadow = 'none';
+});

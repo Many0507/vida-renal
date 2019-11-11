@@ -19,6 +19,7 @@ $app->get('/eventos', 'ViewsController:eventos');
 $app->get('/quiero-ayudar', 'ViewsController:Ayudar');
 
 // api routes
+$app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');
 $app->post('/admin/actividades', 'ApiController:crearActividad');
 $app->put('/admin/actividades/{id}', 'ApiController:actualizarActividad');
 $app->delete('/admin/actividades/{id}', 'ApiController:eliminarActividad');

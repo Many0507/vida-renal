@@ -5,14 +5,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <title>{% block title %}{% endblock %} - Vida Renal</title>
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
-      />
-      <link
-         rel="stylesheet"
-         href="{{ base_url() }}{{ asset('/public/css/styles.css') }}"
-      />
+      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/bulma.min.css') }}" />
+      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/styles.css') }}" />
    </head>
    <body class="has-navbar-fixed-top" style="min-height: 100vh;">
       {% block header %}{% endblock %}
@@ -21,8 +15,8 @@
       </main>
    </body>
 
-   <script src="https://kit.fontawesome.com/d7496a38d5.js" crossorigin="anonymous"></script>
    <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="{{ base_url() }}{{ asset('/public/js/all.min.js') }}"></script>
+   <script src="{{ base_url() }}{{ asset('/public/js/axios.min.js') }}"></script>
    <script src="{{ base_url() }}{{ asset('/public/js/index.js') }}"></script>
 </html>

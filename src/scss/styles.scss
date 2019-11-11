@@ -2,13 +2,13 @@
 $primary-color: #2980b9;
 $second-color: lighten(#3498db, 5);
 
-// html, body {
-// 	height: 100vh;
-// }
+* {
+	box-sizing: border-box;
+}
 
 body {
 	background: #f4f4f4;
-	overflow: visible;
+	overflow: hidden;
 	@media screen and (max-width: 768px) {
 		overflow: hidden;
 	}
@@ -31,15 +31,24 @@ a {
 .is-fullwidth {
 	width: 100%;
 }
+.navbar {
+	width: 100vw;
+	box-shadow: none;
+	transition: all ease .3s;
+	border-bottom: 2px solid darken($primary-color, 10);
+}
 .navbar-menu {
 	margin-right: 0;
-	@media screen and (max-width: 1210px) {
-		width: 100%;
+	@media screen and (max-width: 1023px) {
 		height: 100vh;
 		position: fixed;
 		right: -100vw;
 		transition: right ease 0.3s;
 	}
+}
+.navbar-start {
+	flex-wrap: wrap;
+	justify-content: center;
 }
 .navbar-menu--active {
 	right: 0;
@@ -69,13 +78,13 @@ a {
 }
 .navbar-list {
 	margin-left: auto;
-	@media screen and (max-width: 1210px) {
+	@media screen and (max-width: 1023px) {
 		margin: 0 auto;
 		text-align: center;
 	}
 }
 .navbar-item {
-	@media screen and (max-width: 1210px) {
+	@media screen and (max-width: 1023px) {
 		&:hover,
 		&:focus {
 			color: #fff !important;
@@ -441,7 +450,7 @@ a {
 
 // admin
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1023px) {
 	.navbar-admin .navbar-start {
 		justify-content: flex-start;
 		margin-right: 3rem;
@@ -464,7 +473,7 @@ a {
 #form,
 #form--update {
 	min-width: 800px;
-    height: 500px;
+	height: 500px;
 	background: #fff;
 	padding: 3rem;
 	border-radius: 10px;

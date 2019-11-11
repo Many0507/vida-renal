@@ -5,18 +5,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <title>{% block title %}{% endblock %} - Vida Renal</title>
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
-      />
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
-      />
-      <link
-         rel="stylesheet"
-         href="{{ base_url() }}{{ asset('/public/css/styles.css') }}"
-      />
+      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/bulma.min.css') }}" />
+      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/swiper.min.css') }}" />
+      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/styles.css') }}" />
    </head>
    <body class="has-navbar-fixed-top">
       {% block header %}{% endblock %}
@@ -26,8 +17,8 @@
       {% block footer %}{% endblock %}
    </body>
 
-   <script async type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/d2c98d5e203110985e1da970bc67544a313cb67ba5a88962d546d9b7472f4dad.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
-   <script src="https://kit.fontawesome.com/d7496a38d5.js" crossorigin="anonymous"></script>
+   <script src="//code.tidio.co/toptfhy4temhj0yo0yfgz0gkovu5qc0x.js"></script>
+   <script src="{{ base_url() }}{{ asset('/public/js/swiper.min.js') }}"></script>
+   <script src="{{ base_url() }}{{ asset('/public/js/all.min.js') }}"></script>
    <script src="{{ base_url() }}{{ asset('/public/js/index.js') }}"></script>
 </html>

@@ -111,6 +111,25 @@ class ApiController extends Controller {
           }
      }
 
+     public function verUnaActividad (Request $request, Response $response, array $args) {
+          $id = intval($request->getAttribute('id'));
+
+          if ($id > 0) {
+               $actividad = Actividad::find($id);
+
+               if ($actividad == null || empty($actividad)) {
+                    $this->container->flash->addMessage('errorNoform', 'La actividad no existe');
+                    return $response->withHeader('Location', '/admin/actividades');
+               } else {
+                    return json_encode($actividad);
+               }
+          }
+          else {
+               $this->container->flash->addMessage('errorNoform', 'La actividad no existe');
+               return $response->withHeader('Location', '/admin/actividades');
+          }
+     }
+
      public function getFileName($request) {
           $directory = $this->container->get('upload_directory');
 
