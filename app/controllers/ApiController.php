@@ -86,6 +86,7 @@ class ApiController extends Controller {
 
      public function eliminarActividad (Request $request, Response $response, array $args) {
           $actividad = [];
+          $directory = $this->container->get('upload_directory');
           $id = intval($request->getAttribute('id'));
           
           if ($id > 0) {
@@ -97,6 +98,7 @@ class ApiController extends Controller {
                } else {
                     try {
                          $actividad->delete();
+                         unlink($directory . '/' . $actividad->imagen);
                          
                          $this->container->flash->addMessage('done', '¡Actividad Eliminada!');
                          return 'done';
