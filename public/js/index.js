@@ -23,7 +23,7 @@ let slidePerView;
 if (deleteBtn != null) {
 	deleteBtn.forEach(btn => {
 		btn.addEventListener('click', async e => {
-			confirm = window.confirm('¿Desea eliminar la actividad?');
+			confirm = window.confirm('¿Desea eliminar el elemento?');
 			if (confirm) {
 				const id = btn.id.split('-')[1];
 				await axios.delete(`${window.location.href}/${id}`);
@@ -39,12 +39,13 @@ if (updateBtn != null) {
 		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
 			const data = await axios.get(`${window.location.href}/${id}`);
+			console.log(data)
 			document.getElementById('titulo').value = data.data.titulo;
 			document.getElementById('texto').value = data.data.texto;
 
 			formContainerUpdate.style.top = '0';
 			formUpdate.action = '';
-			formUpdate.action = `/admin/actividades/${id}`;
+			formUpdate.action = `${window.location.href}/${id}`;
 		});
 		closeUpdate.addEventListener('click', e => {
 			e.preventDefault();

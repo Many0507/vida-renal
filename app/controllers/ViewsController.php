@@ -178,12 +178,12 @@ class ViewsController extends Controller {
      }
 
      public function adminBlog (Request $request, Response $response, array $args) {
-          $blog = [];
-          $blog = Blog::orderBy('id', 'desc')->get();
+          $blogs = [];
+          $blogs = Blog::orderBy('id', 'desc')->get();
           $messages = $this->container->flash->getMessages();
           
           return $this->container->view->render($response, 'admin-blog.twig', [
-               'blog' => $blog,
+               'blogs' => $blogs,
                'mensajes' => $messages
           ]);
      }

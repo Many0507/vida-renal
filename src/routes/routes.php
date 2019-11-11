@@ -24,14 +24,17 @@ $app->post('/admin/actividades', 'ApiController:crearActividad');
 $app->put('/admin/actividades/{id}', 'ApiController:actualizarActividad');
 $app->delete('/admin/actividades/{id}', 'ApiController:eliminarActividad');
 
+$app->get('/admin/eventos/{id}', 'ApiController:verUnEvento');
 $app->post('/admin/eventos', 'ApiController:crearEvento');
 $app->put('/admin/eventos/{id}', 'ApiController:actualizarEvento');
 $app->delete('/admin/eventos/{id}', 'ApiController:eliminarEvento');
 
+$app->get('/admin/talleres/{id}', 'ApiController:verUnTaller');
 $app->post('/admin/talleres', 'ApiController:crearTaller');
 $app->put('/admin/talleres/{id}', 'ApiController:actualizarTaller');
 $app->delete('/admin/talleres/{id}', 'ApiController:eliminarTaller');
 
+$app->get('/admin/blog/{id}', 'ApiController:verUnBlog');
 $app->post('/admin/blog', 'ApiController:crearBlog');
 $app->put('/admin/blog/{id}', 'ApiController:actualizarBlog');
 $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');

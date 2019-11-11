@@ -1,1 +1,136 @@
-Blog
+<div class="container main-admin">
+     <h1 class="title is-2 section has-text-info section-title has-text-centered">Blog</h1>
+     <button class="button is-info section-margin-bottom" id="create">Crear Entrada</button>
+     {% if mensajes.done|length > 0 %}
+          <div class="notification is-primary" id="message">
+               <button class="delete"></button>
+               {{ mensajes.done[0] }}
+          </div>
+     {% endif %}
+     {% if mensajes.errorNoform|length > 0 %}
+          <div class="notification is-danger" id="message">
+               <button class="delete"></button>
+               {{ mensajes.errorNoform[0] }}
+          </div>
+     {% endif %}
+     {% if mensajes.error_update|length > 0 %}
+          <div class="notification is-danger" id="message">
+               <button class="delete"></button>
+               {{ mensajes.error_update[0] }}
+          </div>
+     {% endif %}
+     {% if blogs|length > 0 %}
+          {% for blog in blogs %}
+          <div class="box">
+               <article class="media">
+                    <div class="media-left">
+                         <figure class="image is-96x96 blog-img">
+                              <img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" alt="imagen de blog" />
+                         </figure>
+                    </div>
+                    <div class="media-content">
+                         <div class="content">
+                              <p class="footer__text has-text-link">
+                                   {{ blog.titulo }}
+                              </p>
+                         </div>
+                    </div>
+                         <button class="update-btn button is-primary section-margin-bottom" style="margin-right: 1rem;" id="update-{{blog.id}}"><i class="fas fa-edit" style="margin: 0;"></i></button>
+
+                         <button class="delete-btn button is-danger section-margin-bottom" id="delete-{{blog.id}}"><i class="fas fa-trash-alt" style="margin: 0;"></i></button>
+               </article>
+          </div>
+          {% endfor %}
+     {% else %}
+     <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+          No hay entradas
+     </p>
+     {% endif %}
+</div>
+
+{# Crear evento #}
+<div id="form-container" style ="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
+     <form action="/admin/blog" method="POST" enctype="multipart/form-data" id="form">
+          <h2 class="title is-3 has-text-link has-text-weight-bold">Crear entrada</h2>
+          {% if mensajes.error|length > 0 %}
+               <p class="help has-text-danger" id="message">{{ mensajes.error[0] }}</p>
+          {% endif %}
+          <div class="field">
+               <label class="label" for="titulo">Titulo: </label>
+               <div class="control">
+                    <input class="input" type="text" name="titulo" value="{{ old.titulo }}">
+               </div>
+          </div>
+          <div class="field">
+               <div class="file has-name" id="fileJs">
+                    <label class="file-label" for="file">
+                         <input class="file-input" type="file" name="imagen" id="file" value="{{ oldImage }}">
+                         <span class="file-cta">
+                              <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label has-background-light">
+                                   Imagen: 
+                              </span>
+                         </span>
+                         <span class="file-name has-background-white">
+                              Imagen no seleccionada.
+                         </span>
+                    </label>
+               </div>
+          </div>
+          <div class="field">
+               <label class="label" for="texto">Descripción: </label>
+               <textarea name="texto" class="textarea" id="editor">{{ old.texto }}</textarea>
+          </div>
+          <div class="field">
+               <div class="control">
+                    <button class="button is-link" type="submit">Agregar</button>
+                    <button class="button is-light" id="close">Cerrar</button>
+               </div>
+          </div>
+     </form>
+</div>
+
+{# Actializar actividad #}
+<div id="form-container--update">
+     <form action="/admin/blog" method="POST" enctype="multipart/form-data" id="form--update">
+          <h2 class="title is-3 has-text-link has-text-weight-bold">Actualizar entrada</h2>
+          <input type="hidden" name="_METHOD" value="PUT"/>
+          <div class="field">
+               <label class="label" for="titulo">Titulo: </label>
+               <div class="control">
+                    <input class="input" type="text" name="titulo" id="titulo">
+               </div>
+          </div>
+          <div class="field">
+               <div id="fileJsUpdate" class="file has-name">
+                    <label class="file-label" for="fileUpdate">
+                         <input class="file-input" type="file" name="imagen" id="fileUpdate">
+                         <span class="file-cta">
+                              <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label has-background-light">
+                                   Imagen: 
+                              </span>
+                         </span>
+                         <span class="file-name has-background-white">
+                              Imagen no seleccionada.
+                         </span>
+                    </label>
+               </div>
+          </div>
+          <div class="field">
+               <label class="label" for="texto">Descripción: </label>
+               <textarea name="texto" class="textarea" id="texto" rows="5" style="resize: none;"></textarea>
+          </div>
+          <div class="field">
+               <div class="control">
+                    <button class="button is-link update" type="submit">Actualizar</button>
+                    <button class="button is-light" id="close-update">Cerrar</button>
+               </div>
+          </div>
+     </form>
+</div>
+

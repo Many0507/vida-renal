@@ -143,7 +143,7 @@
                {% for evento in eventos %}
                   <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
                      <a href="/eventos" style="height: 100%;">
-                        <img src="{{ base_url() }}{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
+                        <img src="{{ base_url() }}/public/uploads/{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
                         class="image slider__img zoom">
                      </a>
                   </div>
