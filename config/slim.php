@@ -47,9 +47,6 @@ $container['notFoundHandler'] = function ($container) {
      };
  };
 
-// $container['csrf'] = function ($container) {
-//      return new \Slim\Csrf\Guard;
-// };
 $container['ViewsController'] = function ($container) {
      return new ViewsController($container);
 };
@@ -58,4 +55,3 @@ $container['ApiController'] = function ($container) {
 };
 
 $app->add(new \App\Middleware\OldDataMiddleware($container));
-// $app->add(new \Slim\Csrf\Guard);

@@ -2,7 +2,6 @@ const nextBtn = document.querySelector('.swiper-button-next');
 const prevBtn = document.querySelector('.swiper-button-prev');
 const noSwiper = document.querySelector('.swiper-no_slider');
 const swiper = document.getElementById('swiper');
-const editor = document.querySelector('#editor');
 const createBtn = document.getElementById('create');
 const closeBtn = document.getElementById('close');
 const closeUpdate = document.getElementById('close-update');
@@ -60,10 +59,22 @@ if (updateBtn != null) {
 }
 
 // Editor textarea
+// if (editor != null) {
+// 	ClassicEditor.create(editor).catch(error => {
+// 		console.error(error);
+// 	});
+// }
+
+const editor = document.getElementById('editor');
 if (editor != null) {
-	ClassicEditor.create(editor).catch(error => {
-		console.error(error);
-	});
+	DecoupledEditor.create(editor)
+		.then( editor => {
+			const toolbarContainer = document.querySelector( '#toolbar-container' );
+			toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+		})
+		.catch( error => {
+			console.error( error );
+		});
 }
 
 // Btns

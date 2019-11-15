@@ -188,6 +188,14 @@ class ViewsController extends Controller {
           ]);
      }
 
+     public function adminBlogContent (Request $request, Response $response, array $args) {
+          $messages = $this->container->flash->getMessages();
+          
+          return $this->container->view->render($response, 'admin-blogContent.twig', [
+               'mensajes' => $messages
+          ]);
+     }
+
      public function adminLogin (Request $request, Response $response, array $args) {
           return $this->container->view->render($response, 'admin-login.twig');
      }
