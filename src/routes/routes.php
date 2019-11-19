@@ -17,6 +17,12 @@ $app->get('/transparencia', 'ViewsController:transparencia');
 $app->get('/actividades', 'ViewsController:actividades');
 $app->get('/eventos', 'ViewsController:eventos');
 $app->get('/quiero-ayudar', 'ViewsController:Ayudar');
+$app->get('/que-hacen-nuestros-rinones', 'ViewsController:queHacenNR');
+$app->get('/tu-salud-tus-rinones', 'ViewsController:tuSalud');
+$app->get('/irc', 'ViewsController:irc');
+$app->get('/causas-principales', 'ViewsController:causasPrincipales');
+$app->get('/sintomas', 'ViewsController:sintomas');
+$app->get('/tratamientos', 'ViewsController:tratamientos');
 
 // api routes
 $app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');

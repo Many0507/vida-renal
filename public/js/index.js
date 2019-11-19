@@ -17,6 +17,7 @@ const x = window.matchMedia('(max-width: 768px)');
 let formData;
 let confirm;
 let slidePerView;
+let autoplay;
 
 // tooltip
 if (document.querySelectorAll('.tooltip').length > 0) {
@@ -103,12 +104,16 @@ if (createBtn != null) {
 const mediaQuery = x => {
 	if (x.matches) {
 		slidePerView = 1;
+		autoplay = {
+			delay: 5000
+		}
 		if (nextBtn && prevBtn) {
 			nextBtn.style.display = 'none';
 			prevBtn.style.display = 'none';
 		}
 	}
 	else {
+		autoplay = false;
 		slidePerView = 3;
 	}
 };
@@ -137,10 +142,8 @@ if (noSwiper != null) {
 	new Swiper('.swiper-no_slider', {
 		slidesPerView: slidePerView,
 		spaceBetween: 20,
-		loop: false,
-		autoplay: {
-			delay: 5000
-		}
+		loop: true,
+		autoplay: autoplay
 	});
 }
 

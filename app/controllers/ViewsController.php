@@ -129,7 +129,31 @@ class ViewsController extends Controller {
      public function Ayudar (Request $request, Response $response, array $args) {
           return $this->container->view->render($response, 'ayudar.twig');
      }
+
+     public function queHacenNR (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'qhnr.twig');
+     }
      
+     public function tuSalud (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'tu-salud.twig');
+     }
+
+     public function irc (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'irc.twig');
+     }
+     
+     public function causasPrincipales (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'causas-principales.twig');
+     }
+
+     public function sintomas (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'sintomas.twig');
+     }
+
+     public function tratamientos (Request $request, Response $response, array $args) {
+          return $this->container->view->render($response, 'tratamientos.twig');
+     }
+
      // Admin views
 
      public function admin (Request $request, Response $response, array $args) {
