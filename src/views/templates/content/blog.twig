@@ -32,5 +32,34 @@
                     El blog esta vacio
                </p>
           {% endif %}
+          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+               <a class="pagination-previous" 
+                    {% if prev <= 0 %}
+                         {{'disabled'}}
+                    {% else %}
+                         href="/blog?page={{ prev }}"
+                    {% endif %}><i class="fas fa-chevron-left"></i>
+               </a>
+               <a class="pagination-next"
+                    {% if next > totalPages %}
+                         {{'disabled'}}
+                    {% else %}
+                         href="/blog?page={{ next }}"
+                    {% endif %}><i class="fas fa-chevron-right"></i>
+               </a>
+               
+               <ul class="pagination-list">
+                    {% for i in 1..totalPages %}
+                         <li>
+                              <a class="pagination-link 
+                                   {% if i == page %}
+                                        is-current
+                                   {% endif %}" 
+                              aria-label="Goto page {{i}}" href="/blog?page={{i}}">{{i}}</a>
+                         </li>
+                    {% endfor %}
+               </ul>
+          </nav>
+          <a href="/blog?page={{i}}">{{i}}</a>
      </section>
 </div>

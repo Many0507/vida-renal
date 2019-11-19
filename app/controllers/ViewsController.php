@@ -46,7 +46,22 @@ class ViewsController extends Controller {
           $timeAgo = [];
           $blogs = [];
           
-          $blogs = Blog::orderBy('created_at', 'desc')->get();
+          $n_per_page = 4;
+          $page = $request->getParam('page');
+          if (!$page) $page = 1;
+
+          
+          $total_rows = Blog::count();
+          $total_pages = ceil($total_rows / $n_per_page);
+
+          if ($page > $total_pages || $page <= 0) $page = 1;
+
+          $offset = ($page - 1) * $n_per_page;
+
+          $prev = $page - 1;
+          $next = $page + 1;
+
+          $blogs = Blog::orderBy('created_at', 'desc')->take($n_per_page)->skip($offset)->get();
 
           foreach ($blogs as $blog) {
                $time = new TimeAgoHelper($blog->created_at);
@@ -55,7 +70,11 @@ class ViewsController extends Controller {
           
           return $this->container->view->render($response, 'blog.twig', [
                'blogs' => $blogs,
-               'timeAgo' => $timeAgo
+               'timeAgo' => $timeAgo,
+               'totalPages' => $total_pages,
+               'page' => $page,
+               'next' => $next,
+               'prev' => $prev
           ]);
      }
 
