@@ -47,14 +47,6 @@ class ViewsController extends Controller {
           $blogs = [];
           
           $blogs = Blog::orderBy('created_at', 'desc')->get();
-          
-          // Google translate 
-          // $source = 'es';
-          // $target = 'en';
-          // $text = 'buenos días';
-
-          // $trans = new GoogleTranslate();
-          // $result = $trans->translate($source, $target, $text);
 
           foreach ($blogs as $blog) {
                $time = new TimeAgoHelper($blog->created_at);
@@ -141,62 +133,78 @@ class ViewsController extends Controller {
      // Admin views
 
      public function admin (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'admin.twig');
+          if ($_SESSION['user']) {
+               return $this->container->view->render($response, 'admin.twig');
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminActividades (Request $request, Response $response, array $args) {
-          $actividades = [];
-          $actividades = Actividad::orderBy('id', 'desc')->get();
-          $messages = $this->container->flash->getMessages();
-          
-          return $this->container->view->render($response, 'admin-actividades.twig', [
-               'actividades' => $actividades,
-               'mensajes' => $messages
-          ]);
+          if ($_SESSION['user']) {
+               $actividades = [];
+               $actividades = Actividad::orderBy('id', 'desc')->get();
+               $messages = $this->container->flash->getMessages();
+               
+               return $this->container->view->render($response, 'admin-actividades.twig', [
+                    'actividades' => $actividades,
+                    'mensajes' => $messages
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminEventos (Request $request, Response $response, array $args) {
-          $eventos = [];
-          $eventos = Evento::orderBy('id', 'desc')->get();
-          $messages = $this->container->flash->getMessages();
-          
-          return $this->container->view->render($response, 'admin-eventos.twig', [
-               'eventos' => $eventos,
-               'mensajes' => $messages
-          ]);
+          if ($_SESSION['user']) { 
+               $eventos = [];
+               $eventos = Evento::orderBy('id', 'desc')->get();
+               $messages = $this->container->flash->getMessages();
+               
+               return $this->container->view->render($response, 'admin-eventos.twig', [
+                    'eventos' => $eventos,
+                    'mensajes' => $messages
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminTalleres (Request $request, Response $response, array $args) {
-          $talleres = [];
-          $talleres = Taller::orderBy('id', 'desc')->get();
-          $messages = $this->container->flash->getMessages();
-          
-          return $this->container->view->render($response, 'admin-talleres.twig', [
-               'talleres' => $talleres,
-               'mensajes' => $messages
-          ]);
+          if ($_SESSION['user']) { 
+               $talleres = [];
+               $talleres = Taller::orderBy('id', 'desc')->get();
+               $messages = $this->container->flash->getMessages();
+               
+               return $this->container->view->render($response, 'admin-talleres.twig', [
+                    'talleres' => $talleres,
+                    'mensajes' => $messages
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminBlog (Request $request, Response $response, array $args) {
-          $blogs = [];
-          $blogs = Blog::orderBy('id', 'desc')->get();
-          $messages = $this->container->flash->getMessages();
-          
-          return $this->container->view->render($response, 'admin-blog.twig', [
-               'blogs' => $blogs,
-               'mensajes' => $messages
-          ]);
+          if ($_SESSION['user']) {
+               $blogs = [];
+               $blogs = Blog::orderBy('id', 'desc')->get();
+               $messages = $this->container->flash->getMessages();
+               
+               return $this->container->view->render($response, 'admin-blog.twig', [
+                    'blogs' => $blogs,
+                    'mensajes' => $messages
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminBlogContent (Request $request, Response $response, array $args) {
-          $messages = $this->container->flash->getMessages();
+          if ($_SESSION['user']) {
+               $messages = $this->container->flash->getMessages();
           
-          return $this->container->view->render($response, 'admin-blogContent.twig', [
-               'mensajes' => $messages
-          ]);
+               return $this->container->view->render($response, 'admin-blogContent.twig', [
+                    'mensajes' => $messages
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
      }
 
      public function adminLogin (Request $request, Response $response, array $args) {
-          return $this->container->view->render($response, 'admin-login.twig');
+          $messages = $this->container->flash->getMessages();
+
+          return $this->container->view->render($response, 'admin-login.twig', [
+               'mensajes' => $messages
+          ]);
      }
 }

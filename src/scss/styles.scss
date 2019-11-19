@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 // Variables
 $primary-color: #2980b9;
 $second-color: lighten(#3498db, 5);
@@ -7,6 +8,7 @@ $second-color: lighten(#3498db, 5);
 }
 
 body {
+	font-family: 'Lato', sans-serif;
 	background: #f4f4f4;
 	overflow: hidden;
 	@media screen and (max-width: 768px) {
@@ -35,7 +37,8 @@ h3 {
 h4 {
 	font-size: 1.10rem;
 }
-ul, ol {
+ul,
+ol {
 	display: block;
 	margin-top: 1em;
 	margin-bottom: 1em;
@@ -48,6 +51,9 @@ ol {
 }
 ul {
 	list-style-type: disc;
+}
+.font-weight-bolder {
+	font-weight: 900 !important;
 }
 .swiper-slide a {
 	width: 100%;
@@ -129,6 +135,7 @@ ul {
 	justify-content: center;
 }
 .title {
+	font-weight: 900;
 	@media screen and (max-width: 768px) {
 		text-align: center;
 	}
@@ -140,8 +147,10 @@ ul {
 	width: 100%;
 }
 .social {
+	padding: 0;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 0;
 }
 .social__item {
 	display: flex;
@@ -162,6 +171,9 @@ ul {
 }
 .blog-img {
 	height: auto !important;
+	& img {
+		height: 65px;
+	}
 }
 .box {
 	box-shadow: 0 1px 1px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !important;
@@ -193,6 +205,7 @@ ul {
 .main-admin {
 	position: relative;
 	padding-bottom: 2rem;
+	margin-top: 2rem;
 }
 .section {
 	border-bottom: 4px solid $primary-color;
@@ -301,11 +314,11 @@ ul {
 }
 .footer__title,
 .footer__text {
-	letter-spacing: 0.1rem;
+	letter-spacing: 0.2rem;
 	text-transform: uppercase;
 }
 .footer__title {
-	font-weight: 700 !important;
+	margin-top: 1rem;
 }
 .footer__text {
 	margin-bottom: 0 !important;
@@ -356,21 +369,35 @@ ul {
 	background: #fff;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
-	width: 50.2%;
+	width: 50.1%;
 	position: absolute;
 	height: 95%;
 	top: 0;
 	right: 0;
-	font-size: .85rem;
+	font-size: 1rem;
 	transition: width 0.3s ease, font-size 0.3s ease;
+	@media screen and (max-width: 1408px) {
+		font-size: .8rem;
+	}
+	@media screen and (max-width: 1216px) {
+		font-size: .8rem;
+		width: 80%;
+	}
 	@media screen and (max-width: 768px) {
 		width: 100%;
+		font-size: 1rem;
 		position: relative;
 	}
 }
 .card-container:hover .card-content {
 	width: 80%;
-	font-size: 1rem;
+	font-size: 1.2rem;
+	@media screen and (max-width: 1408px) {
+		font-size: 1rem;
+	}
+	@media screen and (max-width: 1216px) {
+		font-size: .8rem;
+	}
 	@media screen and (max-width: 768px) {
 		width: 100%;
 		font-size: 1rem;
@@ -385,6 +412,7 @@ ul {
 .valor-box {
 	width: 90%;
 	border-radius: 0;
+	overflow: hidden;
 	@media screen and (max-width: 768px) {
 		width: 100%;
 	}
@@ -398,25 +426,33 @@ ul {
 		}
 	}
 	&:hover &__text {
-		opacity: .8;
+		left: 0;
 	}
 	&__text {
 		position: absolute;
-		border-radius: 50%;
 		width: 100%;
 		top: 0;
+		left: -100%;
 		display: flex;
 		height: 100%;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		background: #f2f2f2;
-		border: 3px solid darken($primary-color, 20);
-		opacity: 0;
+		border: 2px solid #fff;
 		padding: .2rem;
-		transition: opacity ease-in .2s;
+		opacity: .9;
+		transition: left ease-in .2s;
 		text-align: center;
 		@media screen and(max-width: 768px) {
-			opacity: .7;
+			left: 0;
+			opacity: .8;
+		}
+		@media screen and(max-width: 1281px) {
+			font-size: .8rem;
+		}
+		& span {
+			color: $primary-color;
 		}
 	}
 }
@@ -427,7 +463,8 @@ ul {
 
 .objective-icon {
 	opacity: 0.8;
-	font-size: 3rem;
+	font-size: 2.5rem;
+	margin-right: 1rem;
 }
 //
 .queHacemos__content {
@@ -540,4 +577,9 @@ ul {
 #form .field,
 #form--update .field {
 	width: 100%;
+}
+.login-form {
+	padding: 2rem;
+	margin: 0 auto;
+	max-width: 500px;
 }

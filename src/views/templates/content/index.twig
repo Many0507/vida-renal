@@ -11,7 +11,7 @@
          </figure>
       </div>
       <div class="column is-4 is-flex header__column">
-         <h2 class="title is-3 has-text-link has-text-weight-bold">Blog</h2>
+         <h2 class="title is-3 has-text-link font-weight-bolder">Blog</h2>
          {% if blogs|length > 0 %}
             {% for blog in blogs %}
                <div class="box blog-box">
@@ -45,7 +45,7 @@
    </div>
 
    <section class="section first-section">
-      <h3 class="title is-2 has-text-centered section-title has-text-info">
+      <h3 class="title is-2 has-text-centered section-title has-text-info font-weight-bolder">
          Nuestras actividades
       </h3>
 
@@ -53,7 +53,7 @@
          <div class="swiper-wrapper">
             {% if actividades|length > 0 %}
                {% for actividad in actividades %}
-                  <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
+                  <div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ actividad.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
                      <a href="/actividades" style="height: 100%;">
                         <img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
                         class="image slider__img zoom">
@@ -70,7 +70,7 @@
    </section>
 
    <section class="section slider__section">
-      <h3 class="title is-2 has-text-centered section-subtitle has-text-info">
+      <h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
          Servicios
       </h3>
 
@@ -82,7 +82,7 @@
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
-               <p class="has-text-link has-text-weight-semibold slider__text">
+               <p class="has-text-link font-weight-bolder slider__text">
                   Atención Médica
                </p>
             </div>
@@ -92,7 +92,7 @@
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
-               <p class="has-text-link has-text-weight-semibold slider__text">
+               <p class="has-text-link font-weight-bolder slider__text">
                   Medicamentos
                </p>
             </div>
@@ -102,7 +102,7 @@
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
-               <p class="has-text-link has-text-weight-semibold slider__text">
+               <p class="has-text-link font-weight-bolder slider__text">
                   Ayuda psicologica
                </p>
             </div>
@@ -112,7 +112,7 @@
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
-               <p class="has-text-link has-text-weight-semibold slider__text">
+               <p class="has-text-link font-weight-bolder slider__text">
                   Ayuda nutricional
                </p>
             </div>
@@ -122,7 +122,7 @@
                   alt="imagen Nuestras actividades"
                   class="image slider__img"
                />
-               <p class="has-text-link has-text-weight-semibold slider__text">
+               <p class="has-text-link font-weight-bolder slider__text">
                   Estudios de laboratorio
                </p>
             </div>
@@ -133,7 +133,7 @@
    </section>
 
    <section class="section last-section">
-      <h3 class="title is-2 has-text-centered section-subtitle has-text-info">
+      <h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
          Proximos eventos
       </h3>
 
@@ -141,7 +141,7 @@
          <div class="swiper-wrapper">
             {% if eventos|length > 0 %}
                {% for evento in eventos %}
-                  <div class="swiper-slide is-clipped" data-swiper-autoplay="4000" style="cursor: pointer;">
+                  <div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ evento.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
                      <a href="/eventos" style="height: 100%;">
                         <img src="{{ base_url() }}/public/uploads/{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
                         class="image slider__img zoom">

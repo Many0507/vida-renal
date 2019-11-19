@@ -18,6 +18,11 @@ let formData;
 let confirm;
 let slidePerView;
 
+// tooltip
+if (document.querySelectorAll('.tooltip').length > 0) {
+	tippy('.tooltip');
+}
+
 // delete axios
 if (deleteBtn != null) {
 	deleteBtn.forEach(btn => {
@@ -38,7 +43,6 @@ if (updateBtn != null) {
 		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
 			const data = await axios.get(`${window.location.href}/${id}`);
-			console.log(data)
 			document.getElementById('titulo').value = data.data.titulo;
 			document.getElementById('texto').value = data.data.texto;
 
@@ -68,12 +72,12 @@ if (updateBtn != null) {
 const editor = document.getElementById('editor');
 if (editor != null) {
 	DecoupledEditor.create(editor)
-		.then( editor => {
-			const toolbarContainer = document.querySelector( '#toolbar-container' );
-			toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+		.then(editor => {
+			const toolbarContainer = document.querySelector('#toolbar-container');
+			toolbarContainer.appendChild(editor.ui.view.toolbar.element);
 		})
-		.catch( error => {
-			console.error( error );
+		.catch(error => {
+			console.error(error);
 		});
 }
 
@@ -143,10 +147,11 @@ if (noSwiper != null) {
 // Navbar hamburguer menu
 const navbarBtn = document.getElementById('navbar-btn');
 const navbar = document.getElementById('navbar');
-navbarBtn.addEventListener('click', e => {
-	navbar.classList.toggle('navbar-menu--active');
-});
-
+if (navbarBtn != null) {
+	navbarBtn.addEventListener('click', e => {
+		navbar.classList.toggle('navbar-menu--active');
+	});
+}
 // Form file, change file
 const fileInput = document.querySelector('#fileJs input[type=file]');
 if (fileInput != null) {

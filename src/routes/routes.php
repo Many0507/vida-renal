@@ -39,6 +39,9 @@ $app->post('/admin/blog', 'ApiController:crearBlog');
 $app->put('/admin/blog/{id}', 'ApiController:actualizarBlog');
 $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');
 
+$app->post('/admin/verifyUser', 'ApiController:verifyUser');
+$app->get('/admin/logoutUser', 'ApiController:logoutUser');
+
 // admin routes
 $app->get('/admin', 'ViewsController:admin');
 $app->get('/admin/login', 'ViewsController:adminLogin');
