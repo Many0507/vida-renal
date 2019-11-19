@@ -1,7 +1,19 @@
-<div class="container">
-    <div id="toolbar-container"></div>
-
-    <div id="editor" class="has-background-white" style="border: 1px solid #ddd;">
-        <p>Nueva entrada de blog</p>
-    </div>
+<div class="container main-admin">
+    <h1 class="title is-2 section has-text-info section-title has-text-centered">Agregar contenido</h1>
+    <section class="section">
+        <div style="margin: 2rem 0">
+            <div id="notification" style="display: none;">
+                <div class="notification is-primary">
+                    <button class="delete"></button>
+                    ¡Contenido agregado exitosamente!
+                </div>
+            </div>
+        </div>
+        <div id="toolbar-container"></div>
+        <div id="editor" class="has-background-white" style="border: 1px solid #ddd;">
+            <p>{{ blog.texto|raw }}</p>
+        </div>
+        <div style="margin: 2rem 0"></div>
+        <button class="button is-link blog-content-save" type="submit" id="blog-{{blog.id}}">Guardar</button>
+    </section>
 </div>

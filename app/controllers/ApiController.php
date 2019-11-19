@@ -96,6 +96,22 @@ class ApiController extends Controller {
           $this->Delete($request, 'Blog', new Blog);
      }
 
+     public function crearContenidoBlog (Request $request, Response $response, array $args) {
+          $id = intval($request->getAttribute('id'));
+          $texto = $request->getParam('texto');
+
+          $blog = Blog::find($id);
+
+          try {
+               $blog->texto = $texto;
+               $blog->save();
+
+               return true;
+          } catch (Exception $e) {
+               return false;
+          }    
+     }
+
      // Verify User Login
 
      public function verifyUser (Request $request, Response $response, array $args) {
@@ -140,26 +156,37 @@ class ApiController extends Controller {
      public function Create ($request, $section, $model) {
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
+          $error = null;
 
+          if ($section == 'Blog') {
+               $autor = $request->getParam('autor');
+               $texto = 'Blog';
+               $error = empty($autor) || $autor === '' ? true : false;
+
+               if ($error) $this->container->flash->addMessage('error', 'Favor de llenar todos los campos');
+               else $error = null;
+          }
           $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === '' 
           ? 'favor de llenar todos los campos' 
           : null;
 
-          if (is_null($message)) {
+          if (is_null($message) && is_null($error)) {
                $filename = $this->getFileName($request);
 
-               if (is_array($filename)) $this->container->flash->addMessage('error', $filename['error']);
-               
-               try {
-                    $target = $model;
-                    $target->titulo = $titulo;
-                    $target->texto = $texto;
-                    $target->imagen = $filename;
-                    $target->save();
-
-                    $this->container->flash->addMessage('done', '!'.$section.' creado con exito!');
-               } catch (Exception $e) {
-                    $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+               if (is_array($filename)) {
+                    $this->container->flash->addMessage('error', $filename['error']);
+               } else {
+                    try {
+                         $target = $model;
+                         $target->titulo = $titulo;
+                         $target->texto = $texto;
+                         $target->imagen = $filename;
+                         $target->save();
+     
+                         $this->container->flash->addMessage('done', '!'.$section.' creado con exito!');
+                    } catch (Exception $e) {
+                         $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+                    }
                }
           } else $this->container->flash->addMessage('error', $message);
      }

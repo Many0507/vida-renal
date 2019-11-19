@@ -166,6 +166,21 @@ if (fileInput != null) {
 	};
 }
 
+const blogSaveContent = document.querySelector('.blog-content-save');
+if (blogSaveContent != null) {
+	blogSaveContent.addEventListener('click', async e => {
+		e.preventDefault();
+		const id = blogSaveContent.id.split('-')[1];
+		const data = await axios.patch(`http://localhost:8000/admin/blog-content/${id}`, {
+			texto: editor.innerHTML
+		});
+		
+		if (data) {
+			document.getElementById('notification').style.display = 'block';
+		}
+	});
+}
+
 const fileInputUpdate = document.querySelector('#fileJsUpdate input[type=file]');
 if (fileInputUpdate != null) {
 	fileInputUpdate.onchange = () => {
@@ -188,9 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //
 const navbarContent = document.getElementById('navbar-C');
-window.addEventListener('scroll', function (e) {
-	if (window.scrollY > 0) {
-		navbarContent.style.boxShadow = '1px 1px 5px #000';
-	}
-	else navbarContent.style.boxShadow = 'none';
-});
+if (navbarContent != null) {
+	window.addEventListener('scroll', function (e) {
+		if (window.scrollY > 0) {
+			navbarContent.style.boxShadow = '1px 1px 5px #000';
+		}
+		else navbarContent.style.boxShadow = 'none';
+	});
+}

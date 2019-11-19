@@ -46,10 +46,9 @@ class ViewsController extends Controller {
           $timeAgo = [];
           $blogs = [];
           
-          $n_per_page = 4;
+          $n_per_page = 10;
           $page = $request->getParam('page');
           if (!$page) $page = 1;
-
           
           $total_rows = Blog::count();
           $total_pages = ceil($total_rows / $n_per_page);
@@ -236,9 +235,15 @@ class ViewsController extends Controller {
      public function adminBlogContent (Request $request, Response $response, array $args) {
           if ($_SESSION['user']) {
                $messages = $this->container->flash->getMessages();
+               $blogId = $request->getParam('id');
+
+               if (!$blogId || $blogId < 0) return $response->withHeader('Location', '/admin/blog');
+
+               $blog = Blog::find($blogId);
           
                return $this->container->view->render($response, 'admin-blogContent.twig', [
-                    'mensajes' => $messages
+                    'mensajes' => $messages,
+                    'blog' => $blog
                ]);
           } else return $response->withHeader('Location', '/admin/login');
      }

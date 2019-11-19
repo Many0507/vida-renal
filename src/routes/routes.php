@@ -45,6 +45,8 @@ $app->post('/admin/blog', 'ApiController:crearBlog');
 $app->put('/admin/blog/{id}', 'ApiController:actualizarBlog');
 $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');
 
+$app->patch('/admin/blog-content/{id}', 'ApiController:crearContenidoBlog');
+
 $app->post('/admin/verifyUser', 'ApiController:verifyUser');
 $app->get('/admin/logoutUser', 'ApiController:logoutUser');
 
