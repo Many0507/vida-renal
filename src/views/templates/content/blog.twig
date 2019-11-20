@@ -33,18 +33,20 @@
                </p>
           {% endif %}
           <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-               <a class="pagination-previous" 
+               <a class="pagination-previous {% if prev > 0 %} tooltip {% endif %}" 
                     {% if prev <= 0 %}
                          {{'disabled'}}
                     {% else %}
                          href="/blog?page={{ prev }}"
+                         data-tippy-content="Página anterior"
                     {% endif %}><i class="fas fa-chevron-left"></i>
                </a>
-               <a class="pagination-next"
+               <a class="pagination-next {% if next <= totalPages %} tooltip {% endif %}"
                     {% if next > totalPages %}
                          {{'disabled'}}
                     {% else %}
                          href="/blog?page={{ next }}"
+                         data-tippy-content="Página siguiente"
                     {% endif %}><i class="fas fa-chevron-right"></i>
                </a>
                

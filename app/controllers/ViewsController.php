@@ -7,6 +7,7 @@ use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
 use App\Helpers\TimeAgoHelper;
+use App\Helpers\PaginationHelper;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -46,21 +47,12 @@ class ViewsController extends Controller {
           $timeAgo = [];
           $blogs = [];
           
-          $n_per_page = 10;
           $page = $request->getParam('page');
-          if (!$page) $page = 1;
-          
           $total_rows = Blog::count();
-          $total_pages = ceil($total_rows / $n_per_page);
 
-          if ($page > $total_pages || $page <= 0) $page = 1;
+          $pagination = new PaginationHelper($page, $total_rows);
 
-          $offset = ($page - 1) * $n_per_page;
-
-          $prev = $page - 1;
-          $next = $page + 1;
-
-          $blogs = Blog::orderBy('created_at', 'desc')->take($n_per_page)->skip($offset)->get();
+          $blogs = Blog::orderBy('created_at', 'desc')->take($pagination->n_per_page)->skip($pagination->offset)->get();
 
           foreach ($blogs as $blog) {
                $time = new TimeAgoHelper($blog->created_at);
@@ -70,10 +62,10 @@ class ViewsController extends Controller {
           return $this->container->view->render($response, 'blog.twig', [
                'blogs' => $blogs,
                'timeAgo' => $timeAgo,
-               'totalPages' => $total_pages,
+               'totalPages' => $pagination->total_pages,
                'page' => $page,
-               'next' => $next,
-               'prev' => $prev
+               'next' => $pagination->next,
+               'prev' => $pagination->prev
           ]);
      }
 
