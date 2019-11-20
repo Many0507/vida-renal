@@ -99,11 +99,13 @@ class ApiController extends Controller {
      public function crearContenidoBlog (Request $request, Response $response, array $args) {
           $id = intval($request->getAttribute('id'));
           $texto = $request->getParam('texto');
+          $rawTexto = strip_tags($texto);
 
           $blog = Blog::find($id);
 
           try {
                $blog->texto = $texto;
+               $blog->texto_corto = substr($rawTexto, 0, 30);
                $blog->save();
 
                return true;
@@ -181,6 +183,7 @@ class ApiController extends Controller {
                          $target->titulo = $titulo;
                          $target->texto = $texto;
                          $target->imagen = $filename;
+                         if ($section == 'Blog') $target->autor = $autor;
                          $target->save();
      
                          $this->container->flash->addMessage('done', '!'.$section.' creado con exito!');
