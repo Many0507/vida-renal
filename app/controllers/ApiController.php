@@ -100,18 +100,26 @@ class ApiController extends Controller {
           $id = intval($request->getAttribute('id'));
           $texto = $request->getParam('texto');
           $rawTexto = strip_tags($texto);
+          if ($id > 0) {
+               $message = empty($rawTexto) || $rawTexto === '' || strlen($rawTexto) <= 0
+               ? 'Favor de incluir contenido' 
+               : null;
 
-          $blog = Blog::find($id);
+               if (is_null($message)) {
+                    $blog = Blog::find($id);
 
-          try {
-               $blog->texto = $texto;
-               $blog->texto_corto = substr($rawTexto, 0, 30);
-               $blog->save();
+                    if ($blog) {
+                         try {
+                              $blog->texto = $texto;
+                              $blog->texto_corto = substr($rawTexto, 0, 30);
+                              $blog->save();
 
-               return true;
-          } catch (Exception $e) {
-               return false;
-          }    
+                              return json_encode(['success' => true]);
+                         } catch (Exception $e) { return json_encode(['success' => false]); }    
+                    } 
+               } 
+          } 
+          return json_encode(['success' => false]);
      }
 
      // Verify User Login
@@ -200,10 +208,9 @@ class ApiController extends Controller {
           if ($id > 0) {
                $target = $model::find($id);
 
-               if ($target == null || empty($target)) $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
-               else return $target;
+               if ($target != null || !empty($target)) return ['success' => true, 'data' => $target];
           }
-          else $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+          return json_encode(['success' => false]);
      }
 
      public function Update ($request, $section, $model) {
@@ -218,24 +225,29 @@ class ApiController extends Controller {
                $filename = $this->getFileName($request);
 
                if (is_array($filename)) $this->container->flash->addMessage('error_update', $filename['error']);
-               
-               $id = intval($request->getAttribute('id'));
+               else {
+                    $id = intval($request->getAttribute('id'));
 
-               if ($id > 0) {
-                    $target = $model::find($id);
-                    
-                    if ($target == null || empty($target)) $this->container->flash->addMessage('error_update', 'hay un error');
-                    
-                    try {
-                         $target->titulo = $titulo;
-                         $target->texto = $texto;
-                         $target->imagen = $filename;
-                         $target->save();
-     
-                         $this->container->flash->addMessage('done', '!'.$section.' actualizado con exito!');
-                    } catch (Exception $e) {
-                         $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
-                    }                    
+                    if ($id > 0) {
+                         $target = $model::find($id);
+                         
+                         if ($target == null || empty($target)) $this->container->flash->addMessage('error_update', 'hay un error');
+                         else {
+                              try {
+                                 $directory = $this->container->get('upload_directory');
+                                 unlink($directory . '/' . $target->imagen);
+
+                                   $target->titulo = $titulo;
+                                   $target->texto = $texto;
+                                   $target->imagen = $filename;
+                                   $target->save();
+               
+                                   $this->container->flash->addMessage('done', '!'.$section.' actualizado con exito!');
+                              } catch (Exception $e) {
+                                   $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+                              }      
+                         }              
+                    } else $this->container->flash->addMessage('error', 'Error al enviar la informacion, favor de intentar mas tarde');
                }
           } else $this->container->flash->addMessage('error_update', $message);
      }

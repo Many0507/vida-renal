@@ -182,10 +182,11 @@ if (updateBtn != null) {
 		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
 			const data = await axios.get(`${window.location.href}/${id}`);
-
-			document.getElementById('titulo').value = data.data.titulo;
-			document.getElementById('texto').value = data.data.texto;
-
+			
+			if (data.data.success) {
+				document.getElementById('titulo').value = data.data.data.titulo;
+				document.getElementById('texto').value = data.data.data.texto;
+			} else console.log('Error al traer los datos')
 			formContainerUpdate.style.top = '0';
 			formUpdate.action = '';
 			formUpdate.action = `${window.location.href}/${id}`;
@@ -204,12 +205,13 @@ if (updateBtn != null) {
 if (blogSaveContent != null) {
 	blogSaveContent.addEventListener('click', async e => {
 		e.preventDefault();
-
+		
 		const id = blogSaveContent.id.split('-')[1];
 		const data = await axios.patch(`http://localhost:8000/admin/blog-content/${id}`, {
 			texto: editor.innerHTML
 		});
 		
-		if (data) document.getElementById('notification').style.display = 'block';
+		if (data.data.success) document.getElementById('notification').style.display = 'block';
+		else document.getElementById('notification-error').style.display = 'block';
 	});
 }
