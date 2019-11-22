@@ -557,3 +557,6 @@ h4 {
   padding: 2rem;
   margin: 0 auto;
   max-width: 500px; }
+
+#editor {
+  word-break: break-word; }
