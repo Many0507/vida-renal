@@ -1,28 +1,36 @@
 <div class="container main-admin">
-     <h1 class="title is-2 section has-text-info section-title has-text-centered">Iniciar Sesion</h1>
-     {% if mensajes.error|length > 0 %}
-          <div class="notification is-danger" id="message">
-               <button class="delete"></button>
-               {{ mensajes.error[0] }}
-          </div>
-     {% endif %}
-     <form action="/admin/verifyUser" method="POST" class="login-form">
-          <div class="field">
-               <label class="label">Usuario</label>
-               <div class="control">
-                    <input class="input" type="text" name="user">
-               </div>
-          </div>
-          <div class="field">
-               <label class="label">Contraseña</label>
-               <div class="control">
-                    <input class="input" type="password" name="pass">
-               </div>
-          </div>
-          <div class="field">
-               <div class="control">
-                    <button class="button is-link" type="submit">Iniciar sesión </button>
-               </div>
-          </div>
-     </form>
+	<h1 class="title is-2 section has-text-info section-title has-text-centered">
+		Iniciar Sesion
+	</h1>
+	{% if mensajes.error|length > 0 %}
+		<div class="notification is-danger" id="message">
+			<button class="delete"></button>
+			{{ mensajes.error[0] }}
+		</div>
+	{% endif %}
+	<form action="/admin/verifyUser" method="POST" class="login-form">
+		<div class="field">
+			<label class="label">
+				Usuario
+			</label>
+			<div class="control">
+				<input class="input" type="text" name="user" value="{{ old.user }}">
+			</div>
+		</div>
+		<div class="field">
+			<label class="label">
+				Contraseña
+			</label>
+			<div class="control">
+				<input class="input" type="password" name="pass" value="{{ old.pass }}">
+			</div>
+		</div>
+		<div class="field">
+			<div class="control">
+				<button class="button is-link" type="submit">
+					Iniciar sesión
+				</button>
+			</div>
+		</div>
+	</form>
 </div>

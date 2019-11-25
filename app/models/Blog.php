@@ -1,10 +1,12 @@
-<?php 
+<?php
+
 namespace App\Models;
 
 use App\Database\DbConnection as Connect;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model {
+class Blog extends Model
+{
     protected $table = 'vr_blog';
 
     protected $primaryKey = 'id';
@@ -19,7 +21,8 @@ class Blog extends Model {
 
     public $timestamps = true;
 
-    public function __construct () {
+    public function __construct()
+    {
         return new Connect;
     }
 }

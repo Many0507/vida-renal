@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <title>{% block title %}{% endblock %} - Vida Renal</title>
-      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/bulma.min.css') }}" />
-      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/swiper.min.css') }}" />
-      <link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/styles.css') }}" />
-   </head>
-   <body class="has-navbar-fixed-top">
-      {% block header %}{% endblock %}
-      <main class="main">
-         {% block body %}{% endblock %}
-      </main>
-      {% block footer %}{% endblock %}
-   </body>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+		<title>
+			{% block title %}
+			{% endblock %}
+			- Vida Renal
+		</title>
+		<link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/bulma.min.css') }}"/>
+		<link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/swiper.min.css') }}"/>
+		<link rel="stylesheet" href="{{ base_url() }}{{ asset('/public/css/styles.min.css') }}"/>
+	</head>
+	<body class="has-navbar-fixed-top"> {% block header %}{% endblock %}
+		<main class="main"> {% block body %}{% endblock %}
+			</main>
+			{% block footer %}
+			{% endblock %}
+		</body>
 
-   <script src="https://unpkg.com/popper.js@1"></script>
-   <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
-   <script src="//code.tidio.co/toptfhy4temhj0yo0yfgz0gkovu5qc0x.js"></script>
-   <script src="{{ base_url() }}{{ asset('/public/js/swiper.min.js') }}"></script>
-   <script src="{{ base_url() }}{{ asset('/public/js/all.min.js') }}"></script>
-   <script src="{{ base_url() }}{{ asset('/public/js/index.js') }}"></script>
-</html>
+		<script src="https://unpkg.com/popper.js@1"></script>
+		<script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
+		<script src="//code.tidio.co/toptfhy4temhj0yo0yfgz0gkovu5qc0x.js"></script>
+		<script src="{{ base_url() }}{{ asset('/public/js/swiper.min.js') }}"></script>
+		<script src="{{ base_url() }}{{ asset('/public/js/all.min.js') }}"></script>
+		<script src="{{ base_url() }}{{ asset('/public/js/index.min.js') }}"></script>
+	</html>

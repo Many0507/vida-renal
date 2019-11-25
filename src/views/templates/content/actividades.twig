@@ -1,26 +1,28 @@
 <div class="container">
-     <h1 class="title is-2 section has-text-info section-title has-text-centered">Actividades</h1>
-     {% if actividades|length > 0 %}
-          {% for actividad in actividades %}
-               <div class="columns section">
-                    <div class="column is-6">
-                         <figure class="image is-16by9 queHacemos-img">
-                              <img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" class="zoom">
-                         </figure>
-                    </div>
-                    <div class="column is-6 center">
-                         <h2 class="title is-3 has-text-info last-section has-text-centered">
-                              {{ actividad.titulo }}
-                         </h2>
-                         <p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
-                              {{ actividad.texto }}
-                         </p>
-                    </div>
-               </div>
-          {% endfor %}
-     {% else %}
-          <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-               No hay actividades
-          </p>
-     {% endif %}
+	<h1 class="title is-2 section has-text-info section-title has-text-centered">
+		Actividades
+	</h1>
+	{% if actividades|length > 0 %}
+		{% for actividad in actividades %}
+			<div class="columns section">
+				<div class="column is-6">
+					<figure class="image is-16by9 queHacemos-img">
+						<img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" class="zoom">
+					</figure>
+				</div>
+				<div class="column is-6 center">
+					<h2 class="title is-3 has-text-info last-section has-text-centered">
+						{{ actividad.titulo }}
+					</h2>
+					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
+						{{ actividad.texto }}
+					</p>
+				</div>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+			No hay actividades
+		</p>
+	{% endif %}
 </div>

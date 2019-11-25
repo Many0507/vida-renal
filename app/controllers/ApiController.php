@@ -1,169 +1,116 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
-use App\Models\Admin;
 use Slim\Http\UploadedFile;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class ApiController extends Controller {
-
+class ApiController extends Controller
+{
      // Actividades //
-
-     public function crearActividad (Request $request, Response $response, array $args) {
+     public function crearActividad(Request $request, Response $response, array $args)
+     {
           $this->Create($request, 'Actividad', new Actividad);
           return $response->withHeader('Location', '/admin/actividades');
      }
 
-     public function verUnaActividad (Request $request, Response $response, array $args) {
+     public function verUnaActividad(Request $request, Response $response, array $args)
+     {
           $target = $this->Read($request, 'Actividad', new Actividad);
           return json_encode($target);
      }
 
-     public function actualizarActividad (Request $request, Response $response, array $args) {
+     public function actualizarActividad(Request $request, Response $response, array $args)
+     {
           $this->Update($request, 'Actividad', new Actividad);
           return $response->withHeader('Location', '/admin/actividades');
      }
 
-     public function eliminarActividad (Request $request, Response $response, array $args) {
+     public function eliminarActividad(Request $request, Response $response, array $args)
+     {
           $this->Delete($request, 'Actividad', new Actividad);
      }
 
      // Eventos //
-
-     public function crearEvento (Request $request, Response $response, array $args) {
+     public function crearEvento(Request $request, Response $response, array $args)
+     {
           $this->Create($request, 'Evento', new Evento);
           return $response->withHeader('Location', '/admin/eventos');
      }
 
-     public function verUnEvento (Request $request, Response $response, array $args) {
+     public function verUnEvento(Request $request, Response $response, array $args)
+     {
           $target = $this->Read($request, 'Evento', new Evento);
           return json_encode($target);
      }
 
-     public function actualizarEvento (Request $request, Response $response, array $args) {
+     public function actualizarEvento(Request $request, Response $response, array $args)
+     {
           $this->Update($request, 'Evento', new Evento);
           return $response->withHeader('Location', '/admin/eventos');
      }
 
-     public function eliminarEvento (Request $request, Response $response, array $args) {
+     public function eliminarEvento(Request $request, Response $response, array $args)
+     {
           $this->Delete($request, 'Evento', new Evento);
      }
 
      // Talleres //
-
-     public function crearTaller (Request $request, Response $response, array $args) {
+     public function crearTaller(Request $request, Response $response, array $args)
+     {
           $this->Create($request, 'Taller', new Taller);
           return $response->withHeader('Location', '/admin/talleres');
      }
 
-     public function verUnTaller (Request $request, Response $response, array $args) {
+     public function verUnTaller(Request $request, Response $response, array $args)
+     {
           $target = $this->Read($request, 'Taller', new Taller);
           return json_encode($target);
      }
 
-     public function actualizarTaller (Request $request, Response $response, array $args) {
+     public function actualizarTaller(Request $request, Response $response, array $args)
+     {
           $this->Update($request, 'Taller', new Taller);
           return $response->withHeader('Location', '/admin/talleres');
      }
 
-     public function eliminarTaller (Request $request, Response $response, array $args) {
+     public function eliminarTaller(Request $request, Response $response, array $args)
+     {
           $this->Delete($request, 'Taller', new Taller);
      }
 
      // Blogs //
-
-     public function crearBlog (Request $request, Response $response, array $args) {
+     public function crearBlog(Request $request, Response $response, array $args)
+     {
           $this->Create($request, 'Blog', new Blog);
           return $response->withHeader('Location', '/admin/blog');
      }
 
-     public function verUnBlog (Request $request, Response $response, array $args) {
+     public function verUnBlog(Request $request, Response $response, array $args)
+     {
           $target = $this->Read($request, 'Blog', new Blog);
           return json_encode($target);
      }
 
-     public function actualizarBlog (Request $request, Response $response, array $args) {
+     public function actualizarBlog(Request $request, Response $response, array $args)
+     {
           $this->Update($request, 'Blog', new Blog);
           return $response->withHeader('Location', '/admin/blog');
      }
 
-     public function eliminarBlog (Request $request, Response $response, array $args) {
+     public function eliminarBlog(Request $request, Response $response, array $args)
+     {
           $this->Delete($request, 'Blog', new Blog);
      }
 
-     public function crearContenidoBlog (Request $request, Response $response, array $args) {
-          $id = intval($request->getAttribute('id'));
-          $texto = $request->getParam('texto');
-          $rawTexto = strip_tags($texto);
-          if ($id > 0) {
-               $message = empty($rawTexto) || $rawTexto === '' || strlen($rawTexto) <= 0
-               ? 'Favor de incluir contenido' 
-               : null;
-
-               if (is_null($message)) {
-                    $blog = Blog::find($id);
-
-                    if ($blog) {
-                         try {
-                              $blog->texto = $texto;
-                              $blog->texto_corto = substr($rawTexto, 0, 30);
-                              $blog->save();
-
-                              return json_encode(['success' => true]);
-                         } catch (Exception $e) { return json_encode(['success' => false]); }    
-                    } 
-               } 
-          } 
-          return json_encode(['success' => false]);
-     }
-
-     // Verify User Login
-
-     public function verifyUser (Request $request, Response $response, array $args) {
-          $user = $request->getParam('user');
-          $pass = $request->getParam('pass');
-
-          $message = empty($user) || $user === '' || empty($pass) || $pass === '' 
-          ? 'favor de llenar todos los campos' 
-          : null;
-
-          if (is_null($message)) {
-               $admin = Admin::where('user', $user)->first();
-
-               if ($admin) {
-                    if (password_verify($pass, $admin->pass)) {
-                         $_SESSION['user'] = $admin->id;
-                         return $response->withHeader('Location', '/admin');
-                    } else {
-                         $this->container->flash->addMessage('error', 'El usuario o la contraseña son incorrectos');
-                         return $response->withHeader('Location', '/admin/login');
-                    }
-               } else {
-                    $this->container->flash->addMessage('error', 'El usuario o la contraseña son incorrectos');
-                    return $response->withHeader('Location', '/admin/login');
-               }
-          } else {
-               $this->container->flash->addMessage('error', $message);
-               return $response->withHeader('Location', '/admin/login');
-          }
-     }
-
-     // Logout User
-
-     public function logoutUser (Request $request, Response $response, array $args) {
-          session_unset();
-          session_destroy();
-          return $response->withHeader('Location', '/admin/login');
-     }
-
      // CRUD //
-
-     public function Create ($request, $section, $model) {
+     public function Create($request, $section, $model)
+     {
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
           $error = null;
@@ -176,9 +123,9 @@ class ApiController extends Controller {
                if ($error) $this->container->flash->addMessage('error', 'Favor de llenar todos los campos');
                else $error = null;
           }
-          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === '' 
-          ? 'favor de llenar todos los campos' 
-          : null;
+          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === ''
+               ? 'favor de llenar todos los campos'
+               : null;
 
           if (is_null($message) && is_null($error)) {
                $filename = $this->getFileName($request);
@@ -193,8 +140,8 @@ class ApiController extends Controller {
                          $target->imagen = $filename;
                          if ($section == 'Blog') $target->autor = $autor;
                          $target->save();
-     
-                         $this->container->flash->addMessage('done', '!'.$section.' creado con exito!');
+
+                         $this->container->flash->addMessage('done', '!' . $section . ' creado con exito!');
                     } catch (Exception $e) {
                          $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                     }
@@ -202,7 +149,8 @@ class ApiController extends Controller {
           } else $this->container->flash->addMessage('error', $message);
      }
 
-     public function Read ($request, $section, $model) {
+     public function Read($request, $section, $model)
+     {
           $id = intval($request->getAttribute('id'));
 
           if ($id > 0) {
@@ -210,83 +158,118 @@ class ApiController extends Controller {
 
                if ($target != null || !empty($target)) return ['success' => true, 'data' => $target];
           }
-          return json_encode(['success' => false]);
+          return ['success' => false];
      }
 
-     public function Update ($request, $section, $model) {
+     public function Update($request, $section, $model)
+     {
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
 
-          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === '' 
-          ? 'favor de llenar todos los campos' 
-          : null;
+          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === ''
+               ? 'favor de llenar todos los campos'
+               : null;
 
           if (is_null($message)) {
                $filename = $this->getFileName($request);
 
-               if (is_array($filename)) $this->container->flash->addMessage('error_update', $filename['error']);
+               if (is_array($filename))
+                    $this->container->flash->addMessage('error_update', $filename['error']);
                else {
                     $id = intval($request->getAttribute('id'));
 
                     if ($id > 0) {
                          $target = $model::find($id);
-                         
-                         if ($target == null || empty($target)) $this->container->flash->addMessage('error_update', 'hay un error');
+
+                         if ($target == null || empty($target))
+                              $this->container->flash->addMessage('error_update', 'hay un error');
                          else {
                               try {
-                                 $directory = $this->container->get('upload_directory');
-                                 unlink($directory . '/' . $target->imagen);
+                                   $directory = $this->container->get('upload_directory');
+                                   unlink($directory . '/' . $target->imagen);
 
                                    $target->titulo = $titulo;
                                    $target->texto = $texto;
                                    $target->imagen = $filename;
                                    $target->save();
-               
-                                   $this->container->flash->addMessage('done', '!'.$section.' actualizado con exito!');
+
+                                   $this->container->flash->addMessage('done', '!' . $section . ' actualizado con exito!');
                               } catch (Exception $e) {
                                    $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
-                              }      
-                         }              
+                              }
+                         }
                     } else $this->container->flash->addMessage('error', 'Error al enviar la informacion, favor de intentar mas tarde');
                }
           } else $this->container->flash->addMessage('error_update', $message);
      }
 
-     public function Delete ($request, $section, $model) {
+     public function Delete($request, $section, $model)
+     {
           $directory = $this->container->get('upload_directory');
           $id = intval($request->getAttribute('id'));
 
           if ($id > 0) {
                $target = $model::find($id);
 
-               if ($target == null || empty($target)) $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+               if ($target == null || empty($target))
+                    $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
                else {
                     try {
                          $target->delete();
                          unlink($directory . '/' . $target->imagen);
-                         
-                         $this->container->flash->addMessage('done', '¡'.$section.' Eliminado!');
+
+                         $this->container->flash->addMessage('done', '¡' . $section . ' Eliminado!');
                     } catch (Exception $e) {
                          $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                     }
                }
+          } else $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+     }
+
+     // Blog Content //
+     public function crearContenidoBlog(Request $request, Response $response, array $args)
+     {
+          $id = intval($request->getAttribute('id'));
+          $texto = $request->getParam('texto');
+          $rawTexto = strip_tags($texto);
+
+          if ($id > 0) {
+               $message = empty($rawTexto) || $rawTexto === '' || strlen($rawTexto) <= 0
+                    ? 'Favor de incluir contenido'
+                    : null;
+
+               if (is_null($message)) {
+                    $blog = Blog::find($id);
+
+                    if ($blog) {
+                         try {
+                              $blog->texto = $texto;
+                              $blog->texto_corto = substr($rawTexto, 0, 260);
+                              $blog->save();
+
+                              return json_encode(['success' => true]);
+                         } catch (Exception $e) {
+                              return json_encode(['success' => false]);
+                         }
+                    }
+               }
           }
-          else $this->container->flash->addMessage('errorNoform', 'El elemento no existe');
+          return json_encode(['success' => false]);
      }
 
      // Helpers //
-
-     public function getFileName ($request) {
+     public function getFileName($request)
+     {
           $directory = $this->container->get('upload_directory');
 
           $uploadedFiles = $request->getUploadedFiles();
           $uploadedFile = $uploadedFiles['imagen'];
 
-          if (strlen($uploadedFile->file) <= 0) {
+          if (strlen($uploadedFile->file) <= 0)
                return array('error' => 'Favor de agregar una imagen');
-          }
 
-          function moveUploadedFile ($directory, UploadedFile $uploadedFile) {
+          function moveUploadedFile($directory, UploadedFile $uploadedFile)
+          {
                $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
 
                if ($extension == 'png' || $extension == 'jpg' || $extension == 'jpeg') {

@@ -1,106 +1,106 @@
 <div class="container">
-     <h1 class="title section is-2 has-text-info section-title has-text-centered">¿Qué hacemos?</h1>
-     <section class="section">
-          <div class="columns">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" class="image queHacemos-image">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Atencion Medica
-                    </p>
-               </div>
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Atencion Psicologica
-                    </p>
-               </div>
-          </div>
-          <div class="columns">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Atencion Nutricional
-                    </p>
-               </div>
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Laboratorios - Estudios
-                    </p>
-               </div>
-          </div>
-          <div class="columns">
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio6.jpg') }}">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Platicas Informativas
-                    </p>
-               </div>
-               <div class="column is-6">
-                    <figure class="image is-16by9 queHacemos-img is-relative">
-                         <img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}">
-                         <div class="queHacemos__content">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
-                         </div>
-                    </figure>
-                    <p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
-                         Apoyo con Medicamentos
-                    </p>
-               </div>
-          </div>
-     </section>
-     <section class="section slider__section">
-          <h2 class="title section-title-topbar is-3 has-text-info last-section has-text-centered">
-               Talleres
-          </h2>
-          <div class="swiper-container" id="swiper">
-               <div class="swiper-wrapper">
-                    {% if talleres|length > 0 %}
-                         {% for taller in talleres %}
-                              <div class="swiper-slide is-flex slider__content">
-                                   <img
-                                        src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}"
-                                        alt="imagen de Taller"
-                                        class="image slider__img"
-                                   />
-                                   <p class="has-text-link slider__text">
-                                        <a href="/talleres" class="font-weight-bolder">{{ taller.titulo }}</a>
-                                   </p>
-                              </div>
-                         {% endfor %}
-                    {% else %}
-                         <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-                              No hay talleres
-                         </p>
-                    {% endif %}
-               </div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-     </section>
+	<h1 class="title section is-2 has-text-info section-title has-text-centered">
+		¿Qué hacemos?
+	</h1>
+	<section class="section">
+		<div class="columns">
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" class="image queHacemos-image">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Atencion Medica
+				</p>
+			</div>
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Atencion Psicologica
+				</p>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Atencion Nutricional
+				</p>
+			</div>
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Laboratorios - Estudios
+				</p>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio6.jpg') }}">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Platicas Informativas
+				</p>
+			</div>
+			<div class="column is-6">
+				<figure class="image is-16by9 queHacemos-img is-relative">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}">
+					<div class="queHacemos__content">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias sequi doloremque nobis omnis atque! Eligendi fugiat, quod voluptatem repudiandae nulla, enim quas quaerat veritatis possimus doloremque perspiciatis iste suscipit!
+					</div>
+				</figure>
+				<p class="has-text-link font-weight-bolder is-size-5 has-text-centered slider__text">
+					Apoyo con Medicamentos
+				</p>
+			</div>
+		</div>
+	</section>
+	<section class="section slider__section">
+		<h2 class="title section-title-topbar is-3 has-text-info last-section has-text-centered">
+			Talleres
+		</h2>
+		<div class="swiper-container" id="swiper">
+			<div class="swiper-wrapper">
+				{% if talleres|length > 0 %}
+					{% for taller in talleres %}
+						<div class="swiper-slide is-flex slider__content">
+							<img src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}" alt="imagen de Taller" class="image slider__img"/>
+							<p class="has-text-link slider__text">
+								<a href="/talleres" class="font-weight-bolder">
+									{{ taller.titulo }}
+								</a>
+							</p>
+						</div>
+					{% endfor %}
+				{% else %}
+					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+						No hay talleres
+					</p>
+				{% endif %}
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</section>
 </div>

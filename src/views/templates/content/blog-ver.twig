@@ -1,15 +1,19 @@
 <div class="container">
-    <h1 class="title is-2 has-text-info section-title has-text-centered">{{ blog.titulo }}</h1>
-    <section class="section section-title-topbar">
-        <div class="columns center">
-            <div class="column is-12 conoce-column">
-                <figure class="image is-16by9 queHacemos-img center-image">
-                    <img src="{{ base_url() }}{{ asset(blog.imagen) }}" class="zoom">
-                </figure>
-            </div>
-        </div>
-    </section>
-    <section class="section" style="word-break: break-word;">
-        <p class="is-size-5">{{ blog.texto|raw }}</p>
-    </section>
+	<h1 class="title is-2 has-text-info section-title has-text-centered">
+		{{ blog.titulo }}
+	</h1>
+	<section class="section section-title-topbar">
+		<div class="columns center">
+			<div class="column is-12 conoce-column">
+				<figure class="image is-16by9 queHacemos-img center-image">
+					<img src="{{ base_url() }}{{ asset(blog.imagen) }}" class="zoom">
+				</figure>
+			</div>
+		</div>
+	</section>
+	<section class="section" style="word-break: break-word;">
+		<p class="is-size-5">
+			{{ blog.texto|raw }}
+		</p>
+	</section>
 </div>

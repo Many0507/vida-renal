@@ -1,159 +1,133 @@
 <div class="container">
-   <div class="columns header__columns">
-      <div class="column is-8 is-flex header__column">
-         <figure class="image is-16by9 header__video">
-            <video class="has-ratio" controls autoplay muted>
-               <source
-                  src="{{ base_url() }}{{ asset('/public/video/video.mp4') }}"
-                  type="video/mp4"
-               />
-            </video>
-         </figure>
-      </div>
-      <div class="column is-4 is-flex header__column">
-         <h2 class="title is-3 has-text-link font-weight-bolder">Blog</h2>
-         {% if blogs|length > 0 %}
-            {% for blog in blogs %}
-               <div class="box blog-box">
-                  <a href="/blog/ver/{{blog.id}}">
-                     <article class="media">
-                        <div class="media-left">
-                           <figure class="image is-96x96 blog-img">
-                              <img
-                                 src="{{ base_url() }}{{ asset(blog.imagen) }}"
-                                 alt="imagen de blog"
-                              />
-                           </figure>
-                        </div>
-                        <div class="media-content">
-                           <div class="content">
-                              <p>
-                                 {{ blog.titulo }}
-                              </p>
-                           </div>
-                        </div>
-                     </article>
-                  </a>
-               </div>
-            {% endfor %}
-         {% else %}
-            <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-               El blog esta vacio
-            </p>
-         {% endif %}
-      </div>
-   </div>
+	<div class="columns header__columns">
+		<div class="column is-8 is-flex header__column">
+			<figure class="image is-16by9 header__video">
+				<video class="has-ratio" controls autoplay muted>
+					<source src="{{ base_url() }}{{ asset('/public/video/video.mp4') }}" type="video/mp4"/>
+				</video>
+			</figure>
+		</div>
+		<div class="column is-4 is-flex header__column">
+			<h2 class="title is-3 has-text-link font-weight-bolder">
+				Blog
+			</h2>
+			{% if blogs|length > 0 %}
+				{% for blog in blogs %}
+					<div class="box blog-box">
+						<a href="/blog/ver/{{blog.id}}">
+							<article class="media">
+								<div class="media-left">
+									<figure class="image is-96x96 blog-img">
+										<img src="{{ base_url() }}{{ asset(blog.imagen) }}" alt="imagen de blog"/>
+									</figure>
+								</div>
+								<div class="media-content">
+									<div class="content">
+										<p>
+											{{ blog.titulo }}
+										</p>
+									</div>
+								</div>
+							</article>
+						</a>
+					</div>
+				{% endfor %}
+			{% else %}
+				<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+					El blog esta vacio
+				</p>
+			{% endif %}
+		</div>
+	</div>
 
-   <section class="section first-section">
-      <h3 class="title is-2 has-text-centered section-title has-text-info font-weight-bolder">
-         Nuestras actividades
-      </h3>
+	<section class="section first-section">
+		<h3 class="title is-2 has-text-centered section-title has-text-info font-weight-bolder">
+			Nuestras actividades
+		</h3>
 
-      <div class="swiper-container swiper-no_slider first-section">
-         <div class="swiper-wrapper">
-            {% if actividades|length > 0 %}
-               {% for actividad in actividades %}
-                  <div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ actividad.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
-                     <a href="/actividades" style="height: 100%;">
-                        <img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades"
-                        class="image slider__img zoom">
-                     </a>
-                  </div>
-               {% endfor %}
-            {% else %}
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-                    No hay actividades
-               </p>
-            {% endif %}
-         </div>
-      </div>
-   </section>
+		<div class="swiper-container swiper-no_slider first-section">
+			<div class="swiper-wrapper">
+				{% if actividades|length > 0 %}
+					{% for actividad in actividades %}
+						<div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ actividad.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
+							<a href="/actividades" style="height: 100%;">
+								<img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades" class="image slider__img zoom">
+							</a>
+						</div>
+					{% endfor %}
+				{% else %}
+					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+						No hay actividades
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	</section>
 
-   <section class="section slider__section">
-      <h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
-         Servicios
-      </h3>
+	<section class="section slider__section">
+		<h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
+			Servicios
+		</h3>
 
-      <div class="swiper-container" id="swiper">
-         <div class="swiper-wrapper">
-            <div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img"
-               />
-               <p class="has-text-link font-weight-bolder slider__text">
-                  Atención Médica
-               </p>
-            </div>
-            <div class="swiper-slide is-flex slider__content">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img"
-               />
-               <p class="has-text-link font-weight-bolder slider__text">
-                  Medicamentos
-               </p>
-            </div>
-            <div class="swiper-slide is-flex slider__content">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img"
-               />
-               <p class="has-text-link font-weight-bolder slider__text">
-                  Ayuda psicologica
-               </p>
-            </div>
-            <div class="swiper-slide is-flex slider__content">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img"
-               />
-               <p class="has-text-link font-weight-bolder slider__text">
-                  Ayuda nutricional
-               </p>
-            </div>
-            <div class="swiper-slide is-flex slider__content">
-               <img
-                  src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}"
-                  alt="imagen Nuestras actividades"
-                  class="image slider__img"
-               />
-               <p class="has-text-link font-weight-bolder slider__text">
-                  Estudios de laboratorio
-               </p>
-            </div>
-         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-   </section>
+		<div class="swiper-container" id="swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+					<p class="has-text-link font-weight-bolder slider__text">
+						Atención Médica
+					</p>
+				</div>
+				<div class="swiper-slide is-flex slider__content">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+					<p class="has-text-link font-weight-bolder slider__text">
+						Medicamentos
+					</p>
+				</div>
+				<div class="swiper-slide is-flex slider__content">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+					<p class="has-text-link font-weight-bolder slider__text">
+						Ayuda psicologica
+					</p>
+				</div>
+				<div class="swiper-slide is-flex slider__content">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+					<p class="has-text-link font-weight-bolder slider__text">
+						Ayuda nutricional
+					</p>
+				</div>
+				<div class="swiper-slide is-flex slider__content">
+					<img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+					<p class="has-text-link font-weight-bolder slider__text">
+						Estudios de laboratorio
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</section>
 
-   <section class="section last-section">
-      <h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
-         Proximos eventos
-      </h3>
+	<section class="section last-section">
+		<h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
+			Proximos eventos
+		</h3>
 
-      <div class="swiper-container swiper-no_slider first-section">
-         <div class="swiper-wrapper">
-            {% if eventos|length > 0 %}
-               {% for evento in eventos %}
-                  <div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ evento.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
-                     <a href="/eventos" style="height: 100%;">
-                        <img src="{{ base_url() }}/public/uploads/{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos"
-                        class="image slider__img zoom">
-                     </a>
-                  </div>
-               {% endfor %}
-            {% else %}
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-                    No hay eventos
-               </p>
-            {% endif %}
-         </div>
-      </div>
-   </section>
+		<div class="swiper-container swiper-no_slider first-section">
+			<div class="swiper-wrapper">
+				{% if eventos|length > 0 %}
+					{% for evento in eventos %}
+						<div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ evento.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
+							<a href="/eventos" style="height: 100%;">
+								<img src="{{ base_url() }}/public/uploads/{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos" class="image slider__img zoom">
+							</a>
+						</div>
+					{% endfor %}
+				{% else %}
+					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+						No hay eventos
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	</section>
 </div>

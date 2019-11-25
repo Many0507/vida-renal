@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 use App\Controllers\ViewsController;
 use App\Controllers\ApiController;
+use App\Controllers\LoginController;
 
 use Slim\Views\TwigExtension;
 use LoveCoding\TwigAsset\TwigAssetManagement;
@@ -18,9 +20,9 @@ $container['upload_directory'] = __DIR__ . '/../public/uploads';
 
 $container['flash'] = function () {
      return new \Slim\Flash\Messages();
- };
+};
 
-$container['view'] = function($container) {
+$container['view'] = function ($container) {
      $view = new \Slim\Views\Twig(__DIR__ . '/../src/views/', [
           'cache' => false
      ]);
@@ -29,8 +31,8 @@ $container['view'] = function($container) {
           $container->request->getUri()
      ));
      $assetManager = new TwigAssetManagement([
-        'version' => '1'
-    ]);
+          'version' => '1'
+     ]);
      $assetManager->addPath('css', '/css');
      $assetManager->addPath('icons', '/icons');
      $assetManager->addPath('js', '/js');
@@ -45,13 +47,16 @@ $container['notFoundHandler'] = function ($container) {
      return function ($request, $response) use ($container) {
           return $container->view->render($response, '404.twig')->withStatus(404);
      };
- };
+};
 
 $container['ViewsController'] = function ($container) {
      return new ViewsController($container);
 };
 $container['ApiController'] = function ($container) {
      return new ApiController($container);
+};
+$container['LoginController'] = function ($container) {
+     return new LoginController($container);
 };
 
 $app->add(new \App\Middleware\OldDataMiddleware($container));

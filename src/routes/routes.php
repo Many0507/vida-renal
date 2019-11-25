@@ -1,6 +1,6 @@
 <?php
 
-// view routes
+// view routes //
 $app->get('/', 'ViewsController:index');
 $app->get('/quienes-somos', 'ViewsController:quienesSomos');
 $app->get('/aliados', 'ViewsController:aliados');
@@ -24,7 +24,7 @@ $app->get('/causas-principales', 'ViewsController:causasPrincipales');
 $app->get('/sintomas', 'ViewsController:sintomas');
 $app->get('/tratamientos', 'ViewsController:tratamientos');
 
-// api routes
+// api routes //
 $app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');
 $app->post('/admin/actividades', 'ApiController:crearActividad');
 $app->put('/admin/actividades/{id}', 'ApiController:actualizarActividad');
@@ -47,10 +47,10 @@ $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');
 
 $app->patch('/admin/blog-content/{id}', 'ApiController:crearContenidoBlog');
 
-$app->post('/admin/verifyUser', 'ApiController:verifyUser');
-$app->get('/admin/logoutUser', 'ApiController:logoutUser');
+$app->post('/admin/verifyUser', 'LoginController:verifyUser');
+$app->get('/admin/logoutUser', 'LoginController:logoutUser');
 
-// admin routes
+// admin routes //
 $app->get('/admin', 'ViewsController:admin');
 $app->get('/admin/login', 'ViewsController:adminLogin');
 $app->get('/admin/actividades', 'ViewsController:adminActividades');
@@ -58,4 +58,3 @@ $app->get('/admin/eventos', 'ViewsController:adminEventos');
 $app->get('/admin/talleres', 'ViewsController:adminTalleres');
 $app->get('/admin/blog', 'ViewsController:adminBlog');
 $app->get('/admin/blog-content', 'ViewsController:adminBlogContent');
-

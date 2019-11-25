@@ -1,29 +1,30 @@
 <div class="container">
-     <h1 class="title section is-2 has-text-info section-title has-text-centered">Talleres</h1>
-     <section>
-          {% if talleres|length > 0 %}
-               {% for taller in talleres %}
-                    <div class="columns section">
-                         <div class="column is-6">
-                              <figure class="image is-16by9 queHacemos-img">
-                                   <img src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}">
-                              </figure>
-                         </div>
-                         <div class="column is-6 center">       
-                              <h2 class="title is-3 has-text-info last-section center">
-                                   {{taller.titulo}}
-                              </h2>
-                              <p class="has-text-link has-text-centered has-text-weight-bold is-size-5">
-                                   {{taller.texto}}
-                              </p>
-                         </div>
-                    </div>
-               {% endfor %}
-          {% else %}
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-                    No hay Talleres
-               </p>
-          {% endif %}
-     </section>
+	<h1 class="title section is-2 has-text-info section-title has-text-centered">
+		Talleres
+	</h1>
+	<section>
+		{% if talleres|length > 0 %}
+			{% for taller in talleres %}
+				<div class="columns section">
+					<div class="column is-6">
+						<figure class="image is-16by9 queHacemos-img">
+							<img src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}">
+						</figure>
+					</div>
+					<div class="column is-6 center">
+						<h2 class="title is-3 has-text-info last-section center">
+							{{taller.titulo}}
+						</h2>
+						<p class="has-text-link has-text-centered has-text-weight-bold is-size-5">
+							{{taller.texto}}
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+				No hay Talleres
+			</p>
+		{% endif %}
+	</section>
 </div>
-

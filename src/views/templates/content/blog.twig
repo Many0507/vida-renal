@@ -1,67 +1,76 @@
 <div class="container">
-     <h1 class="title section is-2 has-text-info section-title has-text-centered">Blog</h1>
-     <section class="section last-section">
-          {% if blogs|length > 0 %}
-               {% for blog in blogs %}
-                    <div class="columns section">
-                         <div class="column is-6">
-                              <figure class="image is-16by9 queHacemos-img">
-                                   <a href="blog/ver/{{ blog.id }}">
-                                        <img src="{{ base_url() }}{{ asset(blog.imagen) }}" class="zoom">
-                                   </a>
-                              </figure>
-                         </div>
-                         <div class="column is-6 has-text-centered-touch">
-                              <p class="has-text-link is-size-6 has-text-right is-italic">{{ blog.autor }} - {{ timeAgo[blog.id].timeAgo }}</p>
-                                   <div class="section" style="padding-top: 0;">
-                                        <h2 class="title is-3 has-text-info last-section">
-                                             <a href="blog/ver/{{ blog.id }}">
-                                                  {{ blog.titulo }}
-                                             </a>
-                                        </h2>
-                                        <p class="has-text-link has-text-weight-bold is-size-5">
-                                             {{ blog.texto_corto }}
-                                        </p>
-                                   </div>
-                              <p class="has-text-link is-size-6 has-text-right">2 vistas | Escribir un comentario</p>
-                         </div>
-                    </div>
-               {% endfor %}
-          {% else %}
-               <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-                    El blog esta vacio
-               </p>
-          {% endif %}
-          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-               <a class="pagination-previous {% if prev > 0 %} tooltip {% endif %}" 
-                    {% if prev <= 0 %}
-                         {{'disabled'}}
-                    {% else %}
-                         href="/blog?page={{ prev }}"
-                         data-tippy-content="Página anterior"
-                    {% endif %}><i class="fas fa-chevron-left"></i>
-               </a>
-               <a class="pagination-next {% if next <= totalPages %} tooltip {% endif %}"
-                    {% if next > totalPages %}
-                         {{'disabled'}}
-                    {% else %}
-                         href="/blog?page={{ next }}"
-                         data-tippy-content="Página siguiente"
-                    {% endif %}><i class="fas fa-chevron-right"></i>
-               </a>
+	<h1 class="title section is-2 has-text-info section-title has-text-centered">
+		Blog
+	</h1>
+	<section class="section last-section">
+		{% if blogs|length > 0 %}
+			{% for blog in blogs %}
+				<div class="columns section">
+					<div class="column is-6">
+						<figure class="image is-16by9 queHacemos-img">
+							<a href="blog/ver/{{ blog.id }}">
+								<img src="{{ base_url() }}{{ asset(blog.imagen) }}" class="zoom">
+							</a>
+						</figure>
+					</div>
+					<div class="column is-6 has-text-centered-touch">
+						<p class="has-text-link is-size-6 has-text-right is-italic">
+							{{ blog.autor }}
+							-
+							{{ timeAgo[blog.id].timeAgo }}
+						</p>
+						<div class="section" style="padding-top: 0;">
+							<h2 class="title is-3 has-text-info last-section">
+								<a href="blog/ver/{{ blog.id }}">
+									{{ blog.titulo }}
+								</a>
+							</h2>
+							<p class="has-text-link has-text-weight-bold is-size-5">
+								{{ blog.texto_corto }}
+								...
+							</p>
+						</div>
+						<p class="has-text-link is-size-6 has-text-right">
+							2 vistas | Escribir un comentario
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+				El blog esta vacio
+			</p>
+		{% endif %}
+		<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" 
+				{% if prev <= 0 %}
+					{{'disabled'}}
+				{% else %}
+					href="/blog?page={{ prev }}"
+				{% endif %}>
+				<i class="fas fa-chevron-left"></i>
+            </a>
+			<a class="pagination-next"
+				{% if next > totalPages %}
+					{{'disabled'}}
+				{% else %}
+					href="/blog?page={{ next }}"
+				{% endif %}>
+				<i class="fas fa-chevron-right"></i>
+			</a>
                
-               <ul class="pagination-list">
-                    {% for i in 1..totalPages %}
-                         <li>
-                              <a class="pagination-link 
-                                   {% if i == page %}
-                                        is-current
-                                   {% endif %}" 
-                              aria-label="Goto page {{i}}" href="/blog?page={{i}}">{{i}}</a>
-                         </li>
-                    {% endfor %}
-               </ul>
-          </nav>
-          <a href="/blog?page={{i}}">{{i}}</a>
-     </section>
+			<ul class="pagination-list">
+				{% for i in 1..totalPages %}
+					<li>
+						<a class="pagination-link 
+							{% if i == page %}
+								is-current
+							{% endif %}" 
+						aria-label="Goto page {{i}}" href="/blog?page={{i}}">{{i}}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</nav>
+		<a href="/blog?page={{i}}">{{i}}</a>
+	</section>
 </div>
