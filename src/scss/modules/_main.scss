@@ -1,0 +1,118 @@
+// Main Classes //
+.social {
+	padding: 0;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0;
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&__img {
+		margin: 0.5rem;
+		width: 3rem;
+		transition: transform ease 0.5s;
+		&:hover {
+			transform: rotateY(-360deg);
+		}
+	}
+	&__text {
+		letter-spacing: 0.2rem;
+		font-weight: 600;
+	}
+}
+.valor-box {
+	width: 90%;
+	border-radius: 5px;
+	overflow: hidden;
+	@media screen and (max-width: 768px) {
+		width: 100%;
+	}
+	&__img {
+		width: 100% !important;
+		& img {
+			border-radius: 50%;
+			width: 100%;
+			height: 100%;
+			border: 3px solid #fff;
+			transition: all ease-in 0.2s;
+		}
+	}
+	&:hover &__text {
+		left: 0;
+	}
+	&:hover &__img img {
+		transform: rotate(-25deg);
+	}
+	&__text {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		left: -100%;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background: #f2f2f2;
+		border: 2px solid #fff;
+		padding: 0.2rem;
+		opacity: 0.9;
+		transition: left ease-in 0.2s;
+		text-align: center;
+		@media screen and(max-width: 768px) {
+			left: 0;
+			opacity: 0.8;
+		}
+		@media screen and(max-width: 1281px) {
+			font-size: 0.8rem;
+		}
+		& span {
+			color: $primary-color;
+		}
+	}
+}
+.queHacemos__content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 100%;
+	left: 0;
+	padding: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	transition: all ease-in-out 0.3s;
+	text-align: center;
+	background: rgba(#000, 0.75);
+}
+.queHacemos-img {
+	width: 100%;
+	left: 0;
+	position: relative;
+	overflow: hidden;
+	& img {
+		transition: all ease 0.3s;
+	}
+	&:hover img {
+		transform: scale(1.3);
+	}
+	&:hover .queHacemos__content {
+		top: 0;
+	}
+}
+.testimonios-video {
+	width: auto !important;
+	height: 30rem !important;
+	margin: 0 auto;
+	top: 15% !important;
+	@media screen and (max-width: 768px) {
+		height: 100% !important;
+		top: 0 !important;
+	}
+}
+.testimonios__bg {
+	background: rgba(#fff, 0.7) !important;
+}

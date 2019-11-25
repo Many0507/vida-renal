@@ -1,0 +1,36 @@
+// Base //
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Lato', sans-serif;
+	background: #f4f4f4;
+	overflow: hidden;
+	@media screen and (max-width: 768px) {
+		overflow: hidden;
+	}
+}
+i {
+	margin-right: 1rem;
+}
+img {
+	object-fit: cover;
+}
+a {
+	color: $primary-color;
+	font-weight: 900;
+	&:hover {
+		color: darken($primary-color, 10);
+	}
+}
+h2 {
+	font-size: 1.5rem;
+}
+h3 {
+	font-size: 1.17rem;
+}
+h4 {
+	font-size: 1.1rem;
+}

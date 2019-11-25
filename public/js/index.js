@@ -24,7 +24,9 @@ const blogSaveContent = document.querySelector('.blog-content-save');
 
 // File Input //
 const fileInput = document.querySelector('#fileJs input[type=file]');
-const fileInputUpdate = document.querySelector('#fileJsUpdate input[type=file]');
+const fileInputUpdate = document.querySelector(
+	'#fileJsUpdate input[type=file]'
+);
 
 // Admin Message //
 const message = document.getElementById('message');
@@ -49,12 +51,27 @@ if (tooltip.length > 0) tippy('.tooltip');
 if (editor != null) {
 	const editorInit = async () => {
 		try {
-			const decoupledEditor = await DecoupledEditor.create(editor, { removePlugins: ['ImageUpload'] });
+			const decoupledEditor = await DecoupledEditor.create(editor, {
+				removePlugins: ['ImageUpload']
+			});
 			const toolbarContainer = document.getElementById('toolbar-container');
 			toolbarContainer.appendChild(decoupledEditor.ui.view.toolbar.element);
-		} catch (e) { console.log(`error: ${e}`); }
-	}
+		} catch (e) {
+			console.log(`error: ${e}`);
+		}
+	};
 	editorInit();
+
+	const editorP = editor.childNodes;
+	editorP.forEach(p => {
+		if (p.childNodes[0]) {
+			if (p.tagName === 'P' && p.childNodes[0].tagName === 'BR') {
+				p.childNodes[0].parentNode.parentNode.removeChild(
+					p.childNodes[0].parentNode
+				);
+			}
+		}
+	});
 }
 
 // Media Query //
@@ -63,17 +80,16 @@ const mediaQuery = x => {
 		slidePerView = 1;
 		autoplay = {
 			delay: 5000
-		}
+		};
 		if (nextBtn && prevBtn) {
 			nextBtn.style.display = 'none';
 			prevBtn.style.display = 'none';
 		}
-	}
-	else {
+	} else {
 		autoplay = false;
 		slidePerView = 3;
 	}
-}
+};
 mediaQuery(x);
 x.addListener(mediaQuery);
 
@@ -115,17 +131,21 @@ if (navbarContent != null) {
 	window.addEventListener('scroll', e => {
 		if (window.scrollY > 0) navbarContent.style.boxShadow = '1px 1px 5px #000';
 		else navbarContent.style.boxShadow = 'none';
-	})
+	});
 }
 
 // Delete Notifiction //
 document.addEventListener('DOMContentLoaded', () => {
-	(document.querySelectorAll('.notification .delete') || []).forEach($delete => {
-		$notification = $delete.parentNode;
-		$delete.addEventListener('click', () => {
-			$notification.parentNode.removeChild($notification);
-		});
-	});
+	(document.querySelectorAll('.notification .delete') || []).forEach(
+		$delete => {
+			$notification = $delete.parentNode;
+			$delete.addEventListener('click', () => {
+				if ($notification.parentNode.classList[0] == 'blog-e')
+					$notification.parentNode.parentNode.style.display = 'none';
+				else $notification.parentNode.removeChild($notification);
+			});
+		}
+	);
 });
 
 // File Name Change //
@@ -135,7 +155,7 @@ if (fileInput != null) {
 			const fileName = document.querySelector('#fileJs .file-name');
 			fileName.textContent = fileInput.files[0].name;
 		}
-	}
+	};
 }
 
 if (fileInputUpdate != null) {
@@ -144,13 +164,14 @@ if (fileInputUpdate != null) {
 			const fileNameUpdate = document.querySelector('#fileJsUpdate .file-name');
 			fileNameUpdate.textContent = fileInputUpdate.files[0].name;
 		}
-	}
+	};
 }
 
 // Btn Events //
 if (createBtn != null) {
 	createBtn.addEventListener('click', e => {
 		formContainer.style.top = '0';
+		document.querySelector('.textarea').value = '';
 	});
 	if (closeBtn != null) {
 		closeBtn.addEventListener('click', e => {
@@ -182,11 +203,11 @@ if (updateBtn != null) {
 		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
 			const data = await axios.get(`${window.location.href}/${id}`);
-			
+
 			if (data.data.success) {
 				document.getElementById('titulo').value = data.data.data.titulo;
 				document.getElementById('texto').value = data.data.data.texto;
-			} else console.log('Error al traer los datos')
+			} else console.log('Error al traer los datos');
 			formContainerUpdate.style.top = '0';
 			formUpdate.action = '';
 			formUpdate.action = `${window.location.href}/${id}`;
@@ -196,7 +217,8 @@ if (updateBtn != null) {
 			formContainerUpdate.style.top = '-200vh';
 		});
 		formContainerUpdate.addEventListener('click', e => {
-			if (e.target.id == 'form-container--update') formContainerUpdate.style.top = '-200vh';
+			if (e.target.id == 'form-container--update')
+				formContainerUpdate.style.top = '-200vh';
 		});
 	});
 }
@@ -205,13 +227,20 @@ if (updateBtn != null) {
 if (blogSaveContent != null) {
 	blogSaveContent.addEventListener('click', async e => {
 		e.preventDefault();
-		
+
 		const id = blogSaveContent.id.split('-')[1];
-		const data = await axios.patch(`http://localhost:8000/admin/blog-content/${id}`, {
-			texto: editor.innerHTML
-		});
-		
-		if (data.data.success) document.getElementById('notification').style.display = 'block';
-		else document.getElementById('notification-error').style.display = 'block';
+		const data = await axios.patch(
+			`http://localhost:8000/admin/blog-content/${id}`,
+			{
+				texto: editor.innerHTML
+			}
+		);
+
+		notification.parentNode.style.display = 'block';
+		if (data.data.success) {
+			const notification = document.getElementById('notification');
+			notification.style.display = 'block';
+		} else
+			document.getElementById('notification-error').style.display = 'block';
 	});
 }

@@ -1,0 +1,63 @@
+// Admin //
+#form-container,
+#form-container--update {
+	position: fixed;
+	background: rgba(#000, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	top: -200vh;
+	z-index: 20000;
+	transition: ease top 0.3s;
+}
+#form,
+#form--update {
+	min-width: 800px;
+	height: 500px;
+	background: #fff;
+	padding: 3rem;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	@media screen and (max-width: 768px) {
+		width: 100%;
+		min-width: 100%;
+	}
+}
+#form .field,
+#form--update .field {
+	width: 100%;
+}
+.login-form {
+	padding: 2rem;
+	margin: 0 auto;
+	max-width: 500px;
+}
+#editor {
+	word-break: break-word;
+}
+.toolbar-container ul,
+.toolbar-container ol {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 40px;
+}
+.toolbar-container ol {
+	list-style-type: decimal;
+}
+.toolbar-container ul {
+	list-style-type: disc;
+}
+@media screen and (min-width: 1023px) {
+	.navbar-admin .navbar-start {
+		justify-content: flex-start;
+		margin-right: 0.5rem;
+	}
+}

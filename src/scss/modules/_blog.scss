@@ -1,0 +1,13 @@
+// Blog //
+.blog {
+	&-box {
+		width: 100%;
+		cursor: pointer;
+	}
+	&-img {
+		height: auto !important;
+		& img {
+			height: 65px;
+		}
+	}
+}

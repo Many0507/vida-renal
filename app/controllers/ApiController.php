@@ -141,7 +141,7 @@ class ApiController extends Controller
                          if ($section == 'Blog') $target->autor = $autor;
                          $target->save();
 
-                         $this->container->flash->addMessage('done', '!' . $section . ' creado con exito!');
+                         $this->container->flash->addMessage('done', '¡' . $section . ' creado con exito!');
                     } catch (Exception $e) {
                          $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                     }
@@ -193,7 +193,7 @@ class ApiController extends Controller
                                    $target->imagen = $filename;
                                    $target->save();
 
-                                   $this->container->flash->addMessage('done', '!' . $section . ' actualizado con exito!');
+                                   $this->container->flash->addMessage('done', '¡' . $section . ' actualizado con exito!');
                               } catch (Exception $e) {
                                    $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
                               }
