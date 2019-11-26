@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2019 a las 01:41:20
+-- Tiempo de generación: 26-11-2019 a las 06:21:45
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -42,9 +42,9 @@ CREATE TABLE `vr_actividades` (
 --
 
 INSERT INTO `vr_actividades` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `updated_at`) VALUES
-(33, 'Actividad 1', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '74dfb8e7d322c368.jpg', '2019-11-05 05:25:50', '2019-11-05 05:25:50'),
-(34, 'Actividad 2', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '5aa3978e36fd04c3.jpg', '2019-11-05 05:26:05', '2019-11-05 05:26:05'),
-(35, 'Actividad 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', 'c97e7f5d9e1c0c69.jpg', '2019-11-05 05:26:16', '2019-11-05 05:26:16');
+(36, 'Actividad 1', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '4a0c9a3eb30df233.jpg', '2019-11-25 10:20:25', '2019-11-25 10:20:25'),
+(37, 'Actividad 2', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '2ed4bf4e9680b686.jpg', '2019-11-25 10:20:54', '2019-11-25 10:20:54'),
+(38, 'Actividad 3', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', 'f61610e195bb1c31.jpg', '2019-11-25 10:21:17', '2019-11-25 10:21:17');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ INSERT INTO `vr_blog` (`id`, `titulo`, `texto`, `texto_corto`, `autor`, `imagen`
 (2, 'Tu cuerpo, tu salud, tus riñones', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora exercitationem quibusdam obcaecati accusantium excepturi laudantium dolorum velit quos autem. Voluptatum.', 'Fundacion S&C', '/public/img/blog2.jpg', '2019-10-28 20:07:35', '2019-10-28 20:08:35'),
 (3, '¿Que actividades son buenas para mi salud?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam.', 'Fundacion S&C', '/public/img/blog3.jpg', '2019-10-28 20:07:35', '2019-10-28 20:08:35'),
 (4, '¿La importancia de cuidarme si tengo ERC?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam.', 'Fundacion S&C', '/public/img/blog4.jpg', '2019-10-28 20:07:35', '2019-10-28 20:08:35'),
-(7, '¿Como se si tengo ERC?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam.', 'Fundacion S&C', '/public/img/blog5.jpg', '2019-10-31 21:31:40', '2019-10-31 21:31:40');
+(7, '¿Como se si tengo ERC?', '<p><br data-cke-filler=\"true\"></p><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?</p><p><br data-cke-filler=\"true\"></p>', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus autem, id animi, veniam exercitationem quaerat debitis expedita necessitatibus explicabo deserunt rem, dicta laboriosam. Temporibus tenetur deserunt laborum, saepe earum aspernatur?', 'Fundacion S&C', '/public/img/blog5.jpg', '2019-10-31 21:31:40', '2019-11-25 09:37:24');
 
 -- --------------------------------------------------------
 
@@ -115,9 +115,9 @@ CREATE TABLE `vr_eventos` (
 --
 
 INSERT INTO `vr_eventos` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `updated_at`) VALUES
-(5, 'Evento 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius amet hic quibusdam ab?', 'a3ddf2fb657caf6e.jpg', '2019-11-11 22:51:44', '2019-11-11 22:51:44'),
-(6, 'Evento 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius amet hic quibusdam ab?', '96554097513d3add.jpg', '2019-11-11 22:52:01', '2019-11-11 22:52:01'),
-(7, 'Evento 3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolore inventore nulla blanditiis veritatis. Explicabo fugiat modi accusamus facilis. Animi dolor quo asperiores, voluptatum similique eius amet hic quibusdam ab?', '8ac2d91f334e161b.jpg', '2019-11-11 22:52:16', '2019-11-11 22:52:16');
+(8, 'Evento 1', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '1f865a8605ea5bc5.jpg', '2019-11-25 10:22:08', '2019-11-25 10:22:08'),
+(9, 'Evento 2', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '58b5b79073e4dcd5.jpg', '2019-11-25 10:22:40', '2019-11-25 10:22:40'),
+(10, 'Evento 3', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', '6c1cededdbfa8c23.jpg', '2019-11-25 10:24:13', '2019-11-25 10:24:13');
 
 -- --------------------------------------------------------
 
@@ -139,9 +139,9 @@ CREATE TABLE `vr_talleres` (
 --
 
 INSERT INTO `vr_talleres` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `updated_at`) VALUES
-(4, 'Resiliencia', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '5d4cf7fd3c2829ba.jpg', '2019-11-12 00:04:14', '2019-11-12 00:04:14'),
-(5, 'Inteligencia emocional', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '2882025cf83d4a59.jpg', '2019-11-12 00:04:52', '2019-11-12 00:04:52'),
-(6, 'Tanatoloía', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '5f3e43a1d89cc6af.jpg', '2019-11-12 00:05:27', '2019-11-12 00:05:27');
+(7, 'Tanatologia', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.				\r\n			', 'bb858d8924b29ccc.jpg', '2019-11-25 10:25:11', '2019-11-25 10:25:11'),
+(8, 'Inteligencia emocional', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.				\r\n			\r\n			', '13c2a2601e1d190d.jpg', '2019-11-25 10:25:42', '2019-11-25 10:25:42'),
+(9, 'Resiliencia', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', 'b693f65b652cf491.jpg', '2019-11-25 10:26:14', '2019-11-25 10:26:14');
 
 --
 -- Índices para tablas volcadas
@@ -185,7 +185,7 @@ ALTER TABLE `vr_talleres`
 -- AUTO_INCREMENT de la tabla `vr_actividades`
 --
 ALTER TABLE `vr_actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `vr_admin`
@@ -203,13 +203,13 @@ ALTER TABLE `vr_blog`
 -- AUTO_INCREMENT de la tabla `vr_eventos`
 --
 ALTER TABLE `vr_eventos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `vr_talleres`
 --
 ALTER TABLE `vr_talleres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
