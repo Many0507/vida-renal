@@ -3,7 +3,7 @@
 		Talleres
 	</h1>
 	<button class="button is-info section-margin-bottom" id="create">
-		Crear Taller
+		Nuevo Taller
 	</button>
 	{% if mensajes.done|length > 0 %}
 		<div class="notification is-primary" id="message">
@@ -24,34 +24,65 @@
 		</div>
 	{% endif %}
 	{% if talleres|length > 0 %}
-		{% for taller in talleres %}
-			<div class="box">
-				<article class="media">
-					<div class="media-left">
-						<figure class="image is-96x96 blog-img">
-							<img src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}" alt="imagen de blog"/>
-						</figure>
-					</div>
-					<div class="media-content">
-						<div class="content">
-							<p class="footer__text has-text-link">
-								{{ taller.titulo }}
-							</p>
-							<p>
-								{{ taller.texto }}
-							</p>
-						</div>
-					</div>
-					<button class="update-btn button is-primary section-margin-bottom" style="margin-right: 1rem;" id="update-{{taller.id}}">
-						<i class="fas fa-edit" style="margin: 0;"></i>
-					</button>
+		<div class="columns">
+			{% for taller in talleres %}
+				<div class="column is-3 center">
+					<div class="box is-fullwidth admin-box">
+						<article class="media center" style="flex-direction: column;">
+							<figure class="image is-16by9 blog-img has-background-grey-dark" style="width: 100%;">
+								<img src="{{ base_url() }}/public/uploads/{{ asset(taller.imagen) }}" alt="Actividad" style="opacity: 0.8"/>
+							</figure>
+							<div class="content center" style="height: 50px;">
+								<p class="footer__text has-text-centered has-text-link">
+									{{ taller.titulo }}
+								</p>
+							</div>
+							<button class="update-btn button is-primary is-fullwidth has-text-weight-bold" id="update-{{taller.id}}">
+								Editar
+								<i class="fas fa-edit" style="margin: 0;"></i>
+							</button>
 
-					<button class="delete-btn button is-danger section-margin-bottom" id="delete-{{taller.id}}">
-						<i class="fas fa-trash-alt" style="margin: 0;"></i>
-					</button>
-				</article>
-			</div>
-		{% endfor %}
+							<button class="delete-btn button is-danger is-fullwidth has-text-weight-bold" id="delete-{{taller.id}}">
+								Eliminar
+								<i class="fas fa-trash-alt" style="margin: 0;"></i>
+							</button>
+						</article>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+            <a class="pagination-previous" 
+				{% if prev <= 0 %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/talleres?page={{ prev }}"
+				{% endif %}>
+				<i class="fas fa-chevron-left"></i>
+            </a>
+			<a class="pagination-next"
+				{% if next > totalPages %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/talleres?page={{ next }}"
+				{% endif %}>
+				<i class="fas fa-chevron-right"></i>
+			</a>
+			<ul class="pagination-list">
+				{% for i in 1..totalPages %}
+					{% if i <= 20 %}
+						<li>
+							<a class="pagination-link 
+								{% if i == page %}
+									is-current
+								{% endif %}" 
+							aria-label="Goto page {{i}}" href="/admin/talleres?page={{i}}">{{i}}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</nav>
+		<a href="/admin/talleres?page={{i}}">{{i}}</a>
 	{% else %}
 		<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
 			No hay talleres

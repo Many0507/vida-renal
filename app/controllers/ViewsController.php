@@ -54,6 +54,7 @@ class ViewsController extends Controller
           $blogs = [];
 
           $page = $request->getParam('page');
+          if (!$page) $page = 1;
           $total_rows = Blog::count();
 
           $pagination = new PaginationHelper($page, $total_rows);
@@ -201,12 +202,24 @@ class ViewsController extends Controller
      {
           if ($_SESSION['user']) {
                $actividades = [];
-               $actividades = Actividad::orderBy('id', 'desc')->get();
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Actividad::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
+               $actividades = Actividad::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
                $messages = $this->container->flash->getMessages();
 
                return $this->container->view->render($response, 'admin-actividades.twig', [
                     'actividades' => $actividades,
-                    'mensajes' => $messages
+                    'mensajes' => $messages,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
                ]);
           } else return $response->withHeader('Location', '/admin/login');
      }
@@ -215,12 +228,24 @@ class ViewsController extends Controller
      {
           if ($_SESSION['user']) {
                $eventos = [];
-               $eventos = Evento::orderBy('id', 'desc')->get();
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Evento::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
+               $eventos = Evento::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
                $messages = $this->container->flash->getMessages();
 
                return $this->container->view->render($response, 'admin-eventos.twig', [
                     'eventos' => $eventos,
-                    'mensajes' => $messages
+                    'mensajes' => $messages,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
                ]);
           } else return $response->withHeader('Location', '/admin/login');
      }
@@ -229,13 +254,29 @@ class ViewsController extends Controller
      {
           if ($_SESSION['user']) {
                $talleres = [];
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Taller::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
                $talleres = Taller::orderBy('id', 'desc')->get();
                $messages = $this->container->flash->getMessages();
 
                return $this->container->view->render($response, 'admin-talleres.twig', [
                     'talleres' => $talleres,
-                    'mensajes' => $messages
+                    'mensajes' => $messages,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
                ]);
+          } else return $response->withHeader('Location', '/admin/login');
+     }
+
+     public function adminTestimonios(Request $request, Response $response, array $args)
+     {
+          if ($_SESSION['user']) {
+               return $this->container->view->render($response, 'admin-testimonios.twig');
           } else return $response->withHeader('Location', '/admin/login');
      }
 

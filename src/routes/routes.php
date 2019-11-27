@@ -56,5 +56,6 @@ $app->get('/admin/login', 'ViewsController:adminLogin');
 $app->get('/admin/actividades', 'ViewsController:adminActividades');
 $app->get('/admin/eventos', 'ViewsController:adminEventos');
 $app->get('/admin/talleres', 'ViewsController:adminTalleres');
+$app->get('/admin/testimonios', 'ViewsController:adminTestimonios');
 $app->get('/admin/blog', 'ViewsController:adminBlog');
 $app->get('/admin/blog-content', 'ViewsController:adminBlogContent');

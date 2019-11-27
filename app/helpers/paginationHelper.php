@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class PaginationHelper
 {
-    public $n_per_page = 10;
+    public $n_per_page = 12;
     public $page;
     public $total_rows;
     public $total_pages;
@@ -15,8 +15,6 @@ class PaginationHelper
     public function __construct($page, $total_rows)
     {
         $this->page = $page;
-        if (!$this->page) $this->page = 1;
-
         $this->total_rows = $total_rows;
 
         $this->total_pages = ceil($this->total_rows / $this->n_per_page);

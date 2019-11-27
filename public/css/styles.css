@@ -520,6 +520,14 @@ h4 {
   margin: 0 auto;
   max-width: 500px; }
 
+.admin-box {
+  box-shadow: 0 0.4em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02) !important; }
+
+.update-btn,
+.delete-btn {
+  justify-content: space-between;
+  margin-bottom: 0.5rem; }
+
 #editor {
   word-break: break-word; }
 
@@ -553,7 +561,8 @@ h4 {
     color: #000;
     opacity: 0.55; }
   .admin-cards .title {
-    color: #2980b9; }
+    color: #2980b9;
+    overflow: hidden; }
 
 @media screen and (min-width: 1023px) {
   .navbar-admin .navbar-start {
