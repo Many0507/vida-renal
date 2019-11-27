@@ -55,6 +55,27 @@
 .toolbar-container ul {
 	list-style-type: disc;
 }
+.admin-cards {
+	cursor: pointer;
+	top: 0;
+	transition: all ease-in 0.1s;
+	min-width: 270px;
+	max-width: 280px;
+	border-radius: 5px;
+	&:hover {
+		top: -0.5rem;
+		box-shadow: 0 1.5em 1.5em -0.125em rgba(10, 10, 10, 0.1),
+			0 0 0 1px rgba(10, 10, 10, 0.02);
+	}
+	&__img {
+		padding: 1rem;
+		color: #000;
+		opacity: 0.55;
+	}
+	& .title {
+		color: $primary-color;
+	}
+}
 @media screen and (min-width: 1023px) {
 	.navbar-admin .navbar-start {
 		justify-content: flex-start;

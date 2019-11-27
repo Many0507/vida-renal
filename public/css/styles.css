@@ -112,28 +112,28 @@ h4 {
   justify-content: center;
   align-items: center; }
 
-.card-container {
+.quienesSomos__Section .card-container {
   width: 90%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: #3498db;
   overflow: hidden; }
   @media screen and (max-width: 768px) {
-    .card-container {
+    .quienesSomos__Section .card-container {
       display: block; } }
 
-.card-image {
+.quienesSomos__Section .card-image {
   display: flex;
   align-items: center;
   justify-content: center; }
-  .card-image figure {
+  .quienesSomos__Section .card-image figure {
     width: 100%;
     z-index: 0; }
-    .card-image figure img {
+    .quienesSomos__Section .card-image figure img {
       transition: 0.2s ease-in;
       object-fit: cover; }
 
-.card-content {
+.quienesSomos__Section .card-content {
   z-index: 1;
   background: #fff;
   margin-top: 0.5rem;
@@ -146,14 +146,14 @@ h4 {
   font-size: 1rem;
   transition: width 0.3s ease, font-size 0.3s ease; }
   @media screen and (max-width: 1408px) {
-    .card-content {
+    .quienesSomos__Section .card-content {
       font-size: 0.8rem; } }
   @media screen and (max-width: 1216px) {
-    .card-content {
+    .quienesSomos__Section .card-content {
       font-size: 0.8rem;
       width: 80%; } }
   @media screen and (max-width: 768px) {
-    .card-content {
+    .quienesSomos__Section .card-content {
       width: 100%;
       font-size: 1rem;
       position: relative; } }
@@ -181,6 +181,9 @@ h4 {
 .flex-columns {
   justify-content: center;
   align-items: center; }
+
+.columns {
+  flex-wrap: wrap; }
 
 .header__columns {
   min-height: 13rem; }
@@ -534,6 +537,23 @@ h4 {
 
 .toolbar-container ul {
   list-style-type: disc; }
+
+.admin-cards {
+  cursor: pointer;
+  top: 0;
+  transition: all ease-in 0.1s;
+  min-width: 270px;
+  max-width: 280px;
+  border-radius: 5px; }
+  .admin-cards:hover {
+    top: -0.5rem;
+    box-shadow: 0 1.5em 1.5em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02); }
+  .admin-cards__img {
+    padding: 1rem;
+    color: #000;
+    opacity: 0.55; }
+  .admin-cards .title {
+    color: #2980b9; }
 
 @media screen and (min-width: 1023px) {
   .navbar-admin .navbar-start {
