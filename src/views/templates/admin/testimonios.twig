@@ -2,4 +2,189 @@
 	<h1 class="title is-2 section has-text-info section-title has-text-centered">
 		Testimonios
 	</h1>
+	<div class="columns">
+		<div class="column is-6">
+			<button class="button is-info section-margin-bottom has-text-weight-bold" id="create">
+				Nuevo Testimonio
+			</button>
+		</div>
+		<div class="column is-6">
+			<form action="/video-testimonios" method="POST" enctype="multipart/form-data" class="center" style="flex-direction: row; justify-content: flex-end;">
+				<div class="field">
+					<div class="file has-name" id="fileJsVideo">
+						<label class="file-label" for="fileVideo">
+							<input class="file-input" type="file" name="video" id="fileVideo">
+							<span class="file-cta">
+								<span class="file-icon">
+									<i class="fas fa-upload"></i>
+								</span>
+								<span class="file-label has-background-light">
+									Video:
+								</span>
+							</span>
+							<span class="file-name has-background-white">
+								Video no seleccionado.
+							</span>
+						</label>
+					</div>
+				</div>
+				<button class="button is-info" type="submit" style="margin-bottom: .75rem; margin-left: 1rem;">Guardar</button>
+			</form>
+		</div>
+	</div>
+	{% if mensajes.done|length > 0 %}
+		<div class="notification is-primary" id="message">
+			<button class="delete"></button>
+			{{ mensajes.done[0] }}
+		</div>
+	{% endif %}
+	{% if mensajes.errorNoform|length > 0 %}
+		<div class="notification is-danger" id="message">
+			<button class="delete"></button>
+			{{ mensajes.errorNoform[0] }}
+		</div>
+	{% endif %}
+	{% if mensajes.error_update|length > 0 %}
+		<div class="notification is-danger" id="message">
+			<button class="delete"></button>
+			{{ mensajes.error_update[0] }}
+		</div>
+	{% endif %}
+	{% if testimonios|length > 0 %}
+		<div class="columns">
+			{% for testimonio in testimonios %}
+				<div class="column is-3 center">
+					<div class="box is-fullwidth admin-box">
+						<article class="media center" style="flex-direction: column;">
+							<figure class="image is-16by9 blog-img has-background-grey-dark" style="width: 100%;">
+								<img src="{{ base_url() }}/public/uploads/{{ testimonio.imagen }}" alt="Actividad" style="opacity: 0.8"/>
+							</figure>
+							<div class="content center" style="height: 50px;">
+								<p class="footer__text has-text-centered has-text-link">
+									{{ testimonio.titulo }}
+								</p>
+							</div>
+							<button class="update-btn button is-primary is-fullwidth has-text-weight-bold" id="update-{{testimonio.id}}">
+								Editar
+								<i class="fas fa-edit" style="margin: 0;"></i>
+							</button>
+
+							<button class="delete-btn button is-danger is-fullwidth has-text-weight-bold" id="delete-{{testimonio.id}}">
+								Eliminar
+								<i class="fas fa-trash-alt" style="margin: 0;"></i>
+							</button>
+						</article>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+</div>
+{# Crear Testimonio #}
+<div id="form-container" style="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
+	<form action="/admin/testimonios" method="POST" enctype="multipart/form-data" id="form">
+		<h2 class="title is-3 has-text-link has-text-weight-bold">
+			Crear Testimonio
+		</h2>
+		{% if mensajes.error|length > 0 %}
+			<p class="help has-text-danger" id="message">
+				{{ mensajes.error[0] }}
+			</p>
+		{% endif %}
+		<div class="field">
+			<label class="label" for="titulo">
+				Nombre:
+			</label>
+			<div class="control">
+				<input class="input" type="text" name="titulo" value="{{ old.titulo }}">
+			</div>
+		</div>
+		<div class="field">
+			<div class="file has-name" id="fileJs">
+				<label class="file-label" for="file">
+					<input class="file-input" type="file" name="imagen" id="file">
+					<span class="file-cta">
+						<span class="file-icon">
+							<i class="fas fa-upload"></i>
+						</span>
+						<span class="file-label has-background-light">
+							Imagen:
+						</span>
+					</span>
+					<span class="file-name has-background-white">
+						Imagen no seleccionada.
+					</span>
+				</label>
+			</div>
+		</div>
+		<div class="field">
+			<label class="label" for="texto">
+				Descripción:
+			</label>
+			<textarea name="texto" class="textarea" rows="5" style="resize: none;">
+				{{ old.texto }}
+			</textarea>
+		</div>
+		<div class="field">
+			<div class="control">
+				<button class="button is-link" type="submit">
+					Agregar
+				</button>
+				<button class="button is-light" id="close">
+					Cerrar
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+{# Actializar testimonio #}
+<div id="form-container--update">
+	<form action="/admin/testimonios" method="POST" enctype="multipart/form-data" id="form--update">
+		<h2 class="title is-3 has-text-link has-text-weight-bold">
+			Actualizar Testimonio
+		</h2>
+		<input type="hidden" name="_METHOD" value="PUT"/>
+		<div class="field">
+			<label class="label" for="titulo">
+				Titulo:
+			</label>
+			<div class="control">
+				<input class="input" type="text" name="titulo" id="titulo">
+			</div>
+		</div>
+		<div class="field">
+			<div id="fileJsUpdate" class="file has-name">
+				<label class="file-label" for="fileUpdate">
+					<input class="file-input" type="file" name="imagen" id="fileUpdate">
+					<span class="file-cta">
+						<span class="file-icon">
+							<i class="fas fa-upload"></i>
+						</span>
+						<span class="file-label has-background-light">
+							Imagen:
+						</span>
+					</span>
+					<span class="file-name has-background-white">
+						Imagen no seleccionada.
+					</span>
+				</label>
+			</div>
+		</div>
+		<div class="field">
+			<label class="label" for="texto">
+				Descripción:
+			</label>
+			<textarea name="texto" class="textarea" id="texto" rows="5" style="resize: none;"></textarea>
+		</div>
+		<div class="field">
+			<div class="control">
+				<button class="button is-link update" type="submit">
+					Actualizar
+				</button>
+				<button class="button is-light" id="close-update">
+					Cerrar
+				</button>
+			</div>
+		</div>
+	</form>
 </div>

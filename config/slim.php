@@ -4,7 +4,8 @@ session_start();
 use App\Controllers\ViewsController;
 use App\Controllers\ApiController;
 use App\Controllers\LoginController;
-
+use App\Controllers\VideoPrincipalController;
+use App\Controllers\VideoTestimoniosController;
 use Slim\Views\TwigExtension;
 use LoveCoding\TwigAsset\TwigAssetManagement;
 use Slim\App;
@@ -57,6 +58,12 @@ $container['ApiController'] = function ($container) {
 };
 $container['LoginController'] = function ($container) {
      return new LoginController($container);
+};
+$container['VideoPrincipalController'] = function ($container) {
+     return new VideoPrincipalController($container);
+};
+$container['VideoTestimoniosController'] = function ($container) {
+     return new VideoTestimoniosController($container);
 };
 
 $app->add(new \App\Middleware\OldDataMiddleware($container));

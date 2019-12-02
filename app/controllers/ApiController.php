@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Models\Testimonio;
 use Slim\Http\UploadedFile;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -106,6 +107,30 @@ class ApiController extends Controller
      public function eliminarBlog(Request $request, Response $response, array $args)
      {
           $this->Delete($request, 'Blog', new Blog);
+     }
+
+     // Testimonios // 
+     public function crearTestimonio(Request $request, Response $response, array $args)
+     {
+          $this->Create($request, 'Testimonio', new Testimonio);
+          return $response->withHeader('Location', '/admin/testimonios');
+     }
+
+     public function verUnTestimonio(Request $request, Response $response, array $args)
+     {
+          $target = $this->Read($request, 'Testimonio', new Testimonio);
+          return json_encode($target);
+     }
+
+     public function actualizarTestimonio(Request $request, Response $response, array $args)
+     {
+          $this->Update($request, 'Testimonio', new Testimonio);
+          return $response->withHeader('Location', '/admin/testimonios');
+     }
+
+     public function eliminarTestimonio(Request $request, Response $response, array $args)
+     {
+          $this->Delete($request, 'Testimonio', new Testimonio);
      }
 
      // CRUD //

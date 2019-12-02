@@ -40,6 +40,11 @@ $app->post('/admin/talleres', 'ApiController:crearTaller');
 $app->put('/admin/talleres/{id}', 'ApiController:actualizarTaller');
 $app->delete('/admin/talleres/{id}', 'ApiController:eliminarTaller');
 
+$app->get('/admin/testimonios/{id}', 'ApiController:verUnTestimonio');
+$app->post('/admin/testimonios', 'ApiController:crearTestimonio');
+$app->put('/admin/testimonios/{id}', 'ApiController:actualizarTestimonio');
+$app->delete('/admin/testimonios/{id}', 'ApiController:eliminarTestimonio');
+
 $app->get('/admin/blog/{id}', 'ApiController:verUnBlog');
 $app->post('/admin/blog', 'ApiController:crearBlog');
 $app->put('/admin/blog/{id}', 'ApiController:actualizarBlog');
@@ -49,6 +54,10 @@ $app->patch('/admin/blog-content/{id}', 'ApiController:crearContenidoBlog');
 
 $app->post('/admin/verifyUser', 'LoginController:verifyUser');
 $app->get('/admin/logoutUser', 'LoginController:logoutUser');
+
+// video routes //
+$app->post('/video-principal', 'VideoPrincipalController:Agregar');
+$app->post('/video-testimonios', 'VideoTestimoniosController:Agregar');
 
 // admin routes //
 $app->get('/admin', 'ViewsController:admin');

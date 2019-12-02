@@ -27,6 +27,9 @@ const fileInput = document.querySelector('#fileJs input[type=file]');
 const fileInputUpdate = document.querySelector(
 	'#fileJsUpdate input[type=file]'
 );
+const fileInputVideo = document.querySelector(
+	'#fileJsVideo input[type=file]'
+);
 
 // Admin Message //
 const message = document.getElementById('message');
@@ -163,6 +166,15 @@ if (fileInputUpdate != null) {
 		if (fileInputUpdate.files.length > 0) {
 			const fileNameUpdate = document.querySelector('#fileJsUpdate .file-name');
 			fileNameUpdate.textContent = fileInputUpdate.files[0].name;
+		}
+	};
+}
+
+if (fileInputVideo != null) {
+	fileInputVideo.onchange = () => {
+		if (fileInputVideo.files.length > 0) {
+			const fileNameVideo = document.querySelector('#fileJsVideo .file-name');
+			fileNameVideo.textContent = fileInputVideo.files[0].name;
 		}
 	};
 }

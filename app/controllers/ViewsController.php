@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\VideoPrincipal;
+use App\Models\VideoTestimonio;
 use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Models\Testimonio;
 use App\Helpers\TimeAgoHelper;
 use App\Helpers\PaginationHelper;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -132,7 +134,13 @@ class ViewsController extends Controller
 
      public function testimonios(Request $request, Response $response, array $args)
      {
-          return $this->container->view->render($response, 'testimonios.twig');
+          $video = VideoTestimonio::get()->first();
+          $testimonios = Testimonio::all();
+
+          return $this->container->view->render($response, 'testimonios.twig', [
+               'testimonios' => $testimonios,
+               'video' => $video
+          ]);
      }
 
      public function transparencia(Request $request, Response $response, array $args)
@@ -197,7 +205,10 @@ class ViewsController extends Controller
      public function admin(Request $request, Response $response, array $args)
      {
           if ($_SESSION['user']) {
-               return $this->container->view->render($response, 'admin.twig');
+               $messages = $this->container->flash->getMessages();
+               return $this->container->view->render($response, 'admin.twig', [
+                    'mensajes' => $messages
+               ]);
           } else return $response->withHeader('Location', '/admin/login');
      }
 
@@ -279,7 +290,12 @@ class ViewsController extends Controller
      public function adminTestimonios(Request $request, Response $response, array $args)
      {
           if ($_SESSION['user']) {
-               return $this->container->view->render($response, 'admin-testimonios.twig');
+               $testimonios = Testimonio::all();
+               $messages = $this->container->flash->getMessages();
+               return $this->container->view->render($response, 'admin-testimonios.twig', [
+                    'mensajes' => $messages,
+                    'testimonios' => $testimonios
+               ]);
           } else return $response->withHeader('Location', '/admin/login');
      }
 
