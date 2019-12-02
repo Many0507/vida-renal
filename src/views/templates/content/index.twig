@@ -3,7 +3,7 @@
 		<div class="column is-8 is-flex header__column">
 			<figure class="image is-16by9 header__video">
 				<video class="has-ratio" controls autoplay muted>
-					<source src="{{ base_url() }}{{ asset('/public/video/video.mp4') }}" type="video/mp4"/>
+					<source src="{{ base_url() }}{{ asset(video.video) }}" type="video/mp4"/>
 				</video>
 			</figure>
 		</div>
@@ -42,7 +42,9 @@
 
 	<section class="section first-section">
 		<h3 class="title is-2 has-text-centered section-title font-weight-bolder">
-			<a href="/actividades" class="has-text-info">Nuestras actividades</a>
+			<a href="/actividades" class="has-text-info">
+				Nuestras actividades
+			</a>
 		</h3>
 
 		<div class="swiper-container swiper-no_slider first-section">

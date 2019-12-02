@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\VideoPrincipal;
 use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
@@ -21,11 +22,13 @@ class ViewsController extends Controller
           $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
           $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
           $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
+          $video = VideoPrincipal::get()->first();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
                'eventos' => $eventos,
-               'blogs' => $blogs
+               'blogs' => $blogs,
+               'video' => $video
           ]);
      }
 

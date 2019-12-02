@@ -320,7 +320,7 @@ h4 {
   .social__img {
     margin: 0.5rem;
     width: 3rem;
-    transition: transform ease 0.5s; }
+    transition: transform ease 0.7s; }
     .social__img:hover {
       transform: rotateY(-360deg); }
   .social__text {

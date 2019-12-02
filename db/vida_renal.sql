@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2019 a las 06:21:45
+-- Tiempo de generación: 02-12-2019 a las 02:18:26
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -143,6 +143,26 @@ INSERT INTO `vr_talleres` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `upd
 (8, 'Inteligencia emocional', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.				\r\n			\r\n			', '13c2a2601e1d190d.jpg', '2019-11-25 10:25:42', '2019-11-25 10:25:42'),
 (9, 'Resiliencia', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', 'b693f65b652cf491.jpg', '2019-11-25 10:26:14', '2019-11-25 10:26:14');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_video_principal`
+--
+
+CREATE TABLE `vr_video_principal` (
+  `id` int(11) NOT NULL,
+  `video` varchar(120) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `vr_video_principal`
+--
+
+INSERT INTO `vr_video_principal` (`id`, `video`, `created_at`, `updated_at`) VALUES
+(1, '/public/video/video.mp4', '2019-12-01 23:46:37', '2019-12-01 23:46:37');
+
 --
 -- Índices para tablas volcadas
 --
@@ -178,6 +198,12 @@ ALTER TABLE `vr_talleres`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `vr_video_principal`
+--
+ALTER TABLE `vr_video_principal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -210,6 +236,12 @@ ALTER TABLE `vr_eventos`
 --
 ALTER TABLE `vr_talleres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `vr_video_principal`
+--
+ALTER TABLE `vr_video_principal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
