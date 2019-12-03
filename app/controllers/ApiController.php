@@ -269,7 +269,7 @@ class ApiController extends Controller
                     if ($blog) {
                          try {
                               $blog->texto = $texto;
-                              $blog->texto_corto = substr($rawTexto, 0, 260);
+                              $blog->texto_corto = substr($rawTexto, 0, 300);
                               $blog->save();
 
                               return json_encode(['success' => true]);

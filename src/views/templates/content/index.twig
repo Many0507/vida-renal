@@ -23,7 +23,7 @@
 								</div>
 								<div class="media-content">
 									<div class="content">
-										<p>
+										<p style="opacity: 0.9;">
 											{{ blog.titulo }}
 										</p>
 									</div>
@@ -75,31 +75,31 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
 					<img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text">
+					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 						Atención Médica
 					</p>
 				</div>
 				<div class="swiper-slide is-flex slider__content">
 					<img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text">
+					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 						Medicamentos
 					</p>
 				</div>
 				<div class="swiper-slide is-flex slider__content">
 					<img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text">
+					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 						Ayuda psicologica
 					</p>
 				</div>
 				<div class="swiper-slide is-flex slider__content">
 					<img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text">
+					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 						Ayuda nutricional
 					</p>
 				</div>
 				<div class="swiper-slide is-flex slider__content">
 					<img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text">
+					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 						Estudios de laboratorio
 					</p>
 				</div>
@@ -111,7 +111,9 @@
 
 	<section class="section last-section">
 		<h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
-			Proximos eventos
+			<a href="/eventos" class="has-text-info">
+				Proximos eventos
+			</a>
 		</h3>
 
 		<div class="swiper-container swiper-no_slider first-section">

@@ -77,7 +77,7 @@
 	}
 }
 .box {
-	box-shadow: 0 1px 1px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !important;
+	box-shadow: 0 4px 3px rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.1) !important;
 }
 .pagination-list {
 	list-style: none;
@@ -175,6 +175,7 @@
 	}
 	&__video {
 		width: 100%;
+		box-shadow: 3px 3px 5px #bdc3c7;
 	}
 }
 .main {

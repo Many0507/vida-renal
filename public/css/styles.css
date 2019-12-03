@@ -103,7 +103,7 @@ h4 {
       width: 100%; } }
 
 .box {
-  box-shadow: 0 1px 1px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !important; }
+  box-shadow: 0 4px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !important; }
 
 .pagination-list {
   list-style: none; }
@@ -197,7 +197,8 @@ h4 {
   letter-spacing: 0.2rem; }
 
 .header__video {
-  width: 100%; }
+  width: 100%;
+  box-shadow: 3px 3px 5px #bdc3c7; }
 
 .main {
   min-height: calc(100vh - 52px - 24px);
@@ -320,6 +321,8 @@ h4 {
   .social__img {
     margin: 0.5rem;
     width: 3rem;
+    box-shadow: 2px 2px 6px #bdc3c7;
+    border-radius: 50%;
     transition: transform ease 0.7s; }
     .social__img:hover {
       transform: rotateY(-360deg); }
