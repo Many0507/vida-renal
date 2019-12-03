@@ -9,6 +9,7 @@ use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
 use App\Models\Testimonio;
+use App\Models\Servicio;
 use App\Helpers\TimeAgoHelper;
 use App\Helpers\PaginationHelper;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -22,12 +23,14 @@ class ViewsController extends Controller
           $eventos = [];
           $blogs = [];
           $actividades = Actividad::orderBy('id', 'desc')->take(3)->get();
+          $servicios = Servicio::orderBy('id', 'asc')->get();
           $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
           $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
           $video = VideoPrincipal::get()->first();
 
           return $this->container->view->render($response, 'index.twig', [
                'actividades' => $actividades,
+               'servicios' => $servicios,
                'eventos' => $eventos,
                'blogs' => $blogs,
                'video' => $video
@@ -273,7 +276,10 @@ class ViewsController extends Controller
                $total_rows = Taller::count();
 
                $pagination = new PaginationHelper($page, $total_rows);
-               $talleres = Taller::orderBy('id', 'desc')->get();
+               $talleres = Taller::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
                $messages = $this->container->flash->getMessages();
 
                return $this->container->view->render($response, 'admin-talleres.twig', [
@@ -290,11 +296,49 @@ class ViewsController extends Controller
      public function adminTestimonios(Request $request, Response $response, array $args)
      {
           if ($_SESSION['user']) {
-               $testimonios = Testimonio::all();
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Testimonio::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
+               $testimonios = Testimonio::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
                $messages = $this->container->flash->getMessages();
+
                return $this->container->view->render($response, 'admin-testimonios.twig', [
                     'mensajes' => $messages,
-                    'testimonios' => $testimonios
+                    'testimonios' => $testimonios,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
+               ]);
+          } else return $response->withHeader('Location', '/admin/login');
+     }
+
+     public function adminServicios(Request $request, Response $response, array $args)
+     {
+          if ($_SESSION['user']) {
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Servicio::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
+               $servicios = Servicio::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
+               $messages = $this->container->flash->getMessages();
+
+               return $this->container->view->render($response, 'admin-servicios.twig', [
+                    'servicios' => $servicios,
+                    'mensajes' => $messages,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
                ]);
           } else return $response->withHeader('Location', '/admin/login');
      }

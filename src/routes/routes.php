@@ -27,7 +27,7 @@ $app->get('/tratamientos', 'ViewsController:tratamientos');
 // api routes //
 $app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');
 $app->post('/admin/actividades', 'ApiController:crearActividad');
-$app->put('/admin/actividades/{id}', 'ApiController:actualizarActividad');
+$app->patch('/admin/actividades/{id}', 'ApiController:actualizarActividad');
 $app->delete('/admin/actividades/{id}', 'ApiController:eliminarActividad');
 
 $app->get('/admin/eventos/{id}', 'ApiController:verUnEvento');
@@ -44,6 +44,11 @@ $app->get('/admin/testimonios/{id}', 'ApiController:verUnTestimonio');
 $app->post('/admin/testimonios', 'ApiController:crearTestimonio');
 $app->put('/admin/testimonios/{id}', 'ApiController:actualizarTestimonio');
 $app->delete('/admin/testimonios/{id}', 'ApiController:eliminarTestimonio');
+
+$app->get('/admin/servicios/{id}', 'ApiController:verUnServicio');
+$app->post('/admin/servicios', 'ApiController:crearServicio');
+$app->put('/admin/servicios/{id}', 'ApiController:actualizarServicio');
+$app->delete('/admin/servicios/{id}', 'ApiController:eliminarServicio');
 
 $app->get('/admin/blog/{id}', 'ApiController:verUnBlog');
 $app->post('/admin/blog', 'ApiController:crearBlog');
@@ -66,5 +71,6 @@ $app->get('/admin/actividades', 'ViewsController:adminActividades');
 $app->get('/admin/eventos', 'ViewsController:adminEventos');
 $app->get('/admin/talleres', 'ViewsController:adminTalleres');
 $app->get('/admin/testimonios', 'ViewsController:adminTestimonios');
+$app->get('/admin/servicios', 'ViewsController:adminServicios');
 $app->get('/admin/blog', 'ViewsController:adminBlog');
 $app->get('/admin/blog-content', 'ViewsController:adminBlogContent');

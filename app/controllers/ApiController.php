@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Models\Servicio;
 use App\Models\Testimonio;
 use Slim\Http\UploadedFile;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -133,6 +134,30 @@ class ApiController extends Controller
           $this->Delete($request, 'Testimonio', new Testimonio);
      }
 
+     // Servicios //
+     public function crearServicio(Request $request, Response $response, array $args)
+     {
+          $this->Create($request, 'Servicio', new Servicio);
+          return $response->withHeader('Location', '/admin/servicios');
+     }
+
+     public function verUnServicio(Request $request, Response $response, array $args)
+     {
+          $target = $this->Read($request, 'Servicio', new Servicio);
+          return json_encode($target);
+     }
+
+     public function actualizarServicio(Request $request, Response $response, array $args)
+     {
+          $this->Update($request, 'Servicio', new Servicio);
+          return $response->withHeader('Location', '/admin/servicios');
+     }
+
+     public function eliminarServicio(Request $request, Response $response, array $args)
+     {
+          $this->Delete($request, 'Servicio', new Servicio);
+     }
+
      // CRUD //
      public function Create($request, $section, $model)
      {
@@ -148,9 +173,14 @@ class ApiController extends Controller
                if ($error) $this->container->flash->addMessage('error', 'Favor de llenar todos los campos');
                else $error = null;
           }
-          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === ''
+          $message = empty($titulo) || $titulo === ''
                ? 'favor de llenar todos los campos'
                : null;
+          if ($section != 'Servicio') {
+               $message = empty($texto) || $texto === ''
+               ? 'favor de llenar todos los campos'
+               : null;
+          }
 
           if (is_null($message) && is_null($error)) {
                $filename = $this->getFileName($request);
@@ -161,7 +191,7 @@ class ApiController extends Controller
                     try {
                          $target = $model;
                          $target->titulo = $titulo;
-                         $target->texto = $texto;
+                         if ($section != 'Servicio') $target->texto = $texto;
                          $target->imagen = $filename;
                          if ($section == 'Blog') $target->autor = $autor;
                          $target->save();
@@ -191,18 +221,26 @@ class ApiController extends Controller
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
 
-          $message = empty($titulo) || $titulo === '' || empty($texto) || $texto === ''
+          $message = empty($titulo) || $titulo === ''
                ? 'favor de llenar todos los campos'
                : null;
 
-          if (is_null($message)) {
-               $filename = $this->getFileName($request);
+          if ($section != 'Servicio') {
+               $message = empty($texto) || $texto === ''
+               ? 'favor de llenar todos los campos'
+               : null;
+          }
 
-               if (is_array($filename))
+          if (is_null($message)) {
+               $uploadedFile = $request->getUploadedFiles()['imagen'];
+               if (strlen($uploadedFile->file) > 0) $filename = $this->getFileName($request);
+               else $filename = 'default';
+
+               if (is_array($filename) && $filename['error'])
                     $this->container->flash->addMessage('error_update', $filename['error']);
                else {
                     $id = intval($request->getAttribute('id'));
-
+               
                     if ($id > 0) {
                          $target = $model::find($id);
 
@@ -211,11 +249,14 @@ class ApiController extends Controller
                          else {
                               try {
                                    $directory = $this->container->get('upload_directory');
-                                   unlink($directory . '/' . $target->imagen);
 
                                    $target->titulo = $titulo;
-                                   $target->texto = $texto;
-                                   $target->imagen = $filename;
+                                   if ($section != 'Servicio') $target->texto = $texto;
+                                   if ($filename == 'default') $target->imagen = $target->imagen;
+                                   else {
+                                        unlink($directory . '/' . $target->imagen);
+                                        $target->imagen = $filename;
+                                   }
                                    $target->save();
 
                                    $this->container->flash->addMessage('done', '¡' . $section . ' actualizado con exito!');

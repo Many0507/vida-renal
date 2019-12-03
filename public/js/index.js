@@ -203,7 +203,7 @@ if (deleteBtn != null) {
 
 			if (confirm) {
 				const id = btn.id.split('-')[1];
-				await axios.delete(`${window.location.href}/${id}`);
+				await axios.delete(`${window.location.protocol}//${window.location.host}${window.location.pathname}/${id}`);
 				location.reload();
 			}
 		});
@@ -214,11 +214,14 @@ if (updateBtn != null) {
 	updateBtn.forEach(btn => {
 		btn.addEventListener('click', async e => {
 			const id = btn.id.split('-')[1];
-			const data = await axios.get(`${window.location.href}/${id}`);
-
+			console.log(window.location)
+			const data = await axios.get(`${window.location.protocol}//${window.location.host}${window.location.pathname}/${id}`);
+			console.log()
 			if (data.data.success) {
 				document.getElementById('titulo').value = data.data.data.titulo;
-				document.getElementById('texto').value = data.data.data.texto;
+				if (document.getElementById('texto')) {
+					document.getElementById('texto').value = data.data.data.texto;
+				}
 			} else console.log('Error al traer los datos');
 			formContainerUpdate.style.top = '0';
 			formUpdate.action = '';

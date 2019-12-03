@@ -78,8 +78,45 @@
 				</div>
 			{% endfor %}
 		</div>
+		<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+            <a class="pagination-previous" 
+				{% if prev <= 0 %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/testimonios?page={{ prev }}"
+				{% endif %}>
+				<i class="fas fa-chevron-left"></i>
+            </a>
+			<a class="pagination-next"
+				{% if next > totalPages %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/testimonios?page={{ next }}"
+				{% endif %}>
+				<i class="fas fa-chevron-right"></i>
+			</a>
+			<ul class="pagination-list">
+				{% for i in 1..totalPages %}
+					{% if i <= 20 %}
+						<li>
+							<a class="pagination-link 
+								{% if i == page %}
+									is-current
+								{% endif %}" 
+							aria-label="Goto page {{i}}" href="/admin/testimonios?page={{i}}">{{i}}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</nav>
+		<a href="/admin/testimonios?page={{i}}">{{i}}</a>
+		{% else %}
+			<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+				No hay Testimonios
+			</p>
 	{% endif %}
 </div>
+
 {# Crear Testimonio #}
 <div id="form-container" style="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
 	<form action="/admin/testimonios" method="POST" enctype="multipart/form-data" id="form">

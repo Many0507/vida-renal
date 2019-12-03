@@ -1,11 +1,11 @@
 <div class="container main-admin">
 	<h1 class="title is-2 section has-text-info section-title has-text-centered">
-		Actividades
+		Servicios
 	</h1>
-	<button class="button is-info section-margin-bottom has-text-weight-bold" id="create">
-		Nueva Actividad
+    <button class="button is-info section-margin-bottom has-text-weight-bold" id="create">
+		Nuevo Servicio
 	</button>
-	{% if mensajes.done|length > 0 %}
+    {% if mensajes.done|length > 0 %}
 		<div class="notification is-primary" id="message">
 			<button class="delete"></button>
 			{{ mensajes.done[0] }}
@@ -23,40 +23,40 @@
 			{{ mensajes.error_update[0] }}
 		</div>
 	{% endif %}
-	{% if actividades|length > 0 %}
+    {% if servicios|length > 0 %}
 		<div class="columns">
-			{% for actividad in actividades %}
-				<div class="column is-3 center">
+			{% for servicio in servicios %}
+                <div class="column is-3 center">
 					<div class="box is-fullwidth admin-box">
 						<article class="media center" style="flex-direction: column;">
 							<figure class="image is-16by9 blog-img has-background-grey-dark" style="width: 100%;">
-								<img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="Actividad" style="opacity: 0.8"/>
+								<img src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" alt="Actividad" style="opacity: 0.8"/>
 							</figure>
 							<div class="content center" style="height: 50px;">
 								<p class="footer__text has-text-centered has-text-link">
-									{{ actividad.titulo }}
+									{{ servicio.titulo }}
 								</p>
 							</div>
-							<button class="update-btn button is-primary is-fullwidth has-text-weight-bold" id="update-{{actividad.id}}">
+							<button class="update-btn button is-primary is-fullwidth has-text-weight-bold" id="update-{{servicio.id}}">
 								Editar
 								<i class="fas fa-edit" style="margin: 0;"></i>
 							</button>
 
-							<button class="delete-btn button is-danger is-fullwidth has-text-weight-bold" id="delete-{{actividad.id}}">
+							<button class="delete-btn button is-danger is-fullwidth has-text-weight-bold" id="delete-{{servicio.id}}">
 								Eliminar
 								<i class="fas fa-trash-alt" style="margin: 0;"></i>
 							</button>
 						</article>
 					</div>
 				</div>
-			{% endfor %}
-		</div>
-		<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+            {% endfor %}
+        </div>
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
             <a class="pagination-previous" 
 				{% if prev <= 0 %}
 					{{'disabled'}}
 				{% else %}
-					href="/admin/actividades?page={{ prev }}"
+					href="/admin/servicios?page={{ prev }}"
 				{% endif %}>
 				<i class="fas fa-chevron-left"></i>
             </a>
@@ -64,7 +64,7 @@
 				{% if next > totalPages %}
 					{{'disabled'}}
 				{% else %}
-					href="/admin/actividades?page={{ next }}"
+					href="/admin/servicios?page={{ next }}"
 				{% endif %}>
 				<i class="fas fa-chevron-right"></i>
 			</a>
@@ -76,25 +76,24 @@
 								{% if i == page %}
 									is-current
 								{% endif %}" 
-							aria-label="Goto page {{i}}" href="/admin/actividades?page={{i}}">{{i}}</a>
+							aria-label="Goto page {{i}}" href="/admin/servicios?page={{i}}">{{i}}</a>
 						</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
 		</nav>
-		<a href="/admin/actividades?page={{i}}">{{i}}</a>
-	{% else %}
-		<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-			No hay Actividades
+		<a href="/admin/servicios?page={{i}}">{{i}}</a>
+    {% else %}
+        <p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+			No hay Servicios
 		</p>
-	{% endif %}
+    {% endif %}
 </div>
-
-{# Crear actividad #}
+{# Crear servicio #}
 <div id="form-container" style="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
-	<form action="/admin/actividades" method="POST" enctype="multipart/form-data" id="form">
+	<form action="/admin/servicios" method="POST" enctype="multipart/form-data" id="form" style="justify-content: space-evenly;">
 		<h2 class="title is-3 has-text-link has-text-weight-bold">
-			Crear actividad
+			Crear Servicio
 		</h2>
 		{% if mensajes.error|length > 0 %}
 			<p class="help has-text-danger" id="message">
@@ -128,14 +127,6 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label" for="texto">
-				Descripción:
-			</label>
-			<textarea name="texto" class="textarea" rows="5" style="resize: none;">
-				{{ old.texto }}
-			</textarea>
-		</div>
-		<div class="field">
 			<div class="control">
 				<button class="button is-link" type="submit">
 					Agregar
@@ -148,13 +139,13 @@
 	</form>
 </div>
 
-{# Actializar actividad #}
+{# Actializar Servicio #}
 <div id="form-container--update">
-	<form action="/admin/actividades" method="POST" enctype="multipart/form-data" id="form--update">
+	<form action="/admin/servicios" method="POST" enctype="multipart/form-data" id="form--update" style="justify-content: space-evenly;">
 		<h2 class="title is-3 has-text-link has-text-weight-bold">
-			Actualizar actividad
+			Actualizar Servicio
 		</h2>
-		<input type="hidden" name="_METHOD" value="PATCH"/>
+		<input type="hidden" name="_METHOD" value="PUT"/>
 		<div class="field">
 			<label class="label" for="titulo">
 				Titulo:
@@ -180,12 +171,6 @@
 					</span>
 				</label>
 			</div>
-		</div>
-		<div class="field">
-			<label class="label" for="texto">
-				Descripción:
-			</label>
-			<textarea name="texto" class="textarea" id="texto" rows="5" style="resize: none;"></textarea>
 		</div>
 		<div class="field">
 			<div class="control">

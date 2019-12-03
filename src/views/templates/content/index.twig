@@ -73,36 +73,23 @@
 
 		<div class="swiper-container" id="swiper">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
-					<img src="{{ base_url() }}{{ asset('/public/img/servicio1.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
-						Atención Médica
+				{% if servicios|length > 0 %}
+					{% for servicio in servicios %}
+						<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
+							<img 
+								src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" 
+								alt="imagen Nuestras actividades" class="image slider__img"
+							/>
+							<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
+								{{ servicio.titulo }}
+							</p>
+						</div>
+					{% endfor %}
+				{% else %}
+					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+						No hay servicios
 					</p>
-				</div>
-				<div class="swiper-slide is-flex slider__content">
-					<img src="{{ base_url() }}{{ asset('/public/img/servicio2.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
-						Medicamentos
-					</p>
-				</div>
-				<div class="swiper-slide is-flex slider__content">
-					<img src="{{ base_url() }}{{ asset('/public/img/servicio3.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
-						Ayuda psicologica
-					</p>
-				</div>
-				<div class="swiper-slide is-flex slider__content">
-					<img src="{{ base_url() }}{{ asset('/public/img/servicio4.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
-						Ayuda nutricional
-					</p>
-				</div>
-				<div class="swiper-slide is-flex slider__content">
-					<img src="{{ base_url() }}{{ asset('/public/img/servicio5.jpg') }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-					<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
-						Estudios de laboratorio
-					</p>
-				</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="swiper-button-next"></div>
