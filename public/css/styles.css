@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background: #f4f4f4;
+  background: #fafafa;
   overflow: hidden; }
   @media screen and (max-width: 768px) {
     body {
@@ -242,6 +242,9 @@ h4 {
 
 .has-background-info {
   background-color: #5faee3 !important; }
+
+.active {
+  background-color: #2472a4; }
 
 .font-weight-bolder {
   font-weight: 900 !important; }

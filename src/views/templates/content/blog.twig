@@ -7,9 +7,9 @@
 			{% for blog in blogs %}
 				<div class="columns section">
 					<div class="column is-6">
-						<figure class="image is-16by9 queHacemos-img">
+						<figure class="image is-16by9 queHacemos-img" style="padding-top: 50%;">
 							<a href="blog/ver/{{ blog.id }}">
-								<img src="{{ base_url() }}{{ asset(blog.imagen) }}" class="zoom">
+								<img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" class="zoom">
 							</a>
 						</figure>
 					</div>
@@ -25,7 +25,7 @@
 									{{ blog.titulo }}
 								</a>
 							</h2>
-							<p class="has-text-link has-text-weight-bold" style="font-size: 1.2rem;">
+							<p class="has-text-link has-text-weight-bold" style="font-size: 1rem;">
 								{{ blog.texto_corto }}
 								... <a href="blog/ver/{{ blog.id }}">Seguir leyendo.</a>
 							</p>

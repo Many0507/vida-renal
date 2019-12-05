@@ -1,9 +1,9 @@
 <div class="container main-admin">
 	<h1 class="title is-2 section has-text-info section-title has-text-centered">
-		Blog - en progreso
+		Blog
 	</h1>
-	<button class="button is-info section-margin-bottom" id="create">
-		Crear Entrada
+	<button class="button is-info section-margin-bottom has-text-weight-bold" id="create">
+		Nueva Entrada
 	</button>
 	{% if mensajes.done|length > 0 %}
 		<div class="notification is-primary" id="message">
@@ -24,34 +24,36 @@
 		</div>
 	{% endif %}
 	{% if blogs|length > 0 %}
-		{% for blog in blogs %}
-			<div class="box">
-				<article class="media">
-					<div class="media-left">
-						<figure class="image is-96x96 blog-img">
-							<img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" alt="imagen de blog"/>
-						</figure>
-					</div>
-					<div class="media-content">
-						<div class="content">
-							<p class="footer__text has-text-link">
-								{{ blog.titulo }}
-							</p>
-						</div>
-					</div>
-					<a href="/admin/blog-content?id={{blog.id}}" class="has-text-white has-text-weight-bold button is-success section-margin-bottom" style="margin-right: 1rem;">
-						Modificar contenido
-					</a>
-					<button class="update-btn button is-primary section-margin-bottom" style="margin-right: 1rem;" id="update-{{blog.id}}">
-						<i class="fas fa-edit" style="margin: 0;"></i>
-					</button>
+		<div class="columns">
+			{% for blog in blogs %}
+				<div class="column is-3 center">
+					<div class="box is-fullwidth admin-box">
+						<article class="media center" style="flex-direction: column;">
+							<figure class="image is-16by9 blog-img has-background-grey-dark" style="width: 100%;">
+								<img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" alt="Entrada" style="opacity: 0.8"/>
+							</figure>
+							<div class="content center" style="height: 100px;">
+								<p class="footer__text has-text-centered has-text-link">
+									{{ blog.titulo }}
+								</p>
+							</div>
+							<a href="/admin/blog-content?id={{blog.id}}" class="button is-success is-fullwidth has-text-weight-bold" style="margin-bottom: 0.5rem;">
+								Modificar contenido
+							</a>
+							<button class="update-btn button is-primary is-fullwidth has-text-weight-bold" id="update-{{blog.id}}">
+								Editar
+								<i class="fas fa-edit" style="margin: 0;"></i>
+							</button>
 
-					<button class="delete-btn button is-danger section-margin-bottom" id="delete-{{blog.id}}">
-						<i class="fas fa-trash-alt" style="margin: 0;"></i>
-					</button>
-				</article>
-			</div>
-		{% endfor %}
+							<button class="delete-btn button is-danger is-fullwidth has-text-weight-bold" id="delete-{{blog.id}}">
+								Eliminar
+								<i class="fas fa-trash-alt" style="margin: 0;"></i>
+							</button>
+						</article>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	{% else %}
 		<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
 			No hay entradas

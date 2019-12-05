@@ -16,6 +16,9 @@
 .has-background-info {
 	background-color: lighten($second-color, 5) !important;
 }
+.active {
+	background-color: darken($primary-color, 5);
+}
 .font-weight-bolder {
 	font-weight: 900 !important;
 }

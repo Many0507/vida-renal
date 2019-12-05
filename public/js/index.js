@@ -122,6 +122,14 @@ if (noSwiper != null) {
 	});
 }
 
+// Tab Active //
+if(navbar != null) {
+	const pathName = window.location.pathname.split('/')[1];
+	document.querySelectorAll('.navbar-item').forEach(nav => {
+		if(nav.id == pathName) nav.classList.add('active');
+	});
+}
+
 // Navbar Hamburguer Menu //
 if (navbarBtn != null) {
 	navbarBtn.addEventListener('click', e => {
