@@ -17,10 +17,10 @@ img {
   object-fit: cover; }
 
 a {
-  color: #2980b9;
+  color: #004c8c;
   font-weight: 900; }
   a:hover {
-    color: #20638f; }
+    color: #0277bd; }
 
 h2 {
   font-size: 1.5rem; }
@@ -41,7 +41,7 @@ h4 {
   padding: 3rem 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 4px solid #2980b9; }
+  border-bottom: 4px solid #0277bd; }
   .section-title {
     padding: 0.4rem 0;
     text-transform: uppercase;
@@ -49,7 +49,7 @@ h4 {
     letter-spacing: 0.1rem;
     margin-bottom: 1rem !important; }
     .section-title-topbar {
-      border-top: 4px solid #2980b9; }
+      border-top: 4px solid #0277bd; }
     .section-title-opacity {
       opacity: 0.8; }
   .section-subtitle {
@@ -63,7 +63,7 @@ h4 {
     padding: 1rem 0; }
 
 .first-section {
-  border-top: 4px solid #2980b9; }
+  border-top: 4px solid #0277bd; }
 
 .last-section {
   border: none; }
@@ -228,23 +228,23 @@ h4 {
 
 .is-link,
 .has-background-link {
-  background-color: #2980b9 !important; }
+  background-color: #0277bd !important; }
 
 .has-text-link {
-  color: #2980b9 !important; }
+  color: #0277bd !important; }
 
 .is-link a:hover,
 .is-link a:focus {
-  background-color: #2472a4 !important; }
+  background-color: #004c8c !important; }
 
 .has-text-info {
-  color: #4aa3df !important; }
+  color: #58a5f0 !important; }
 
 .has-background-info {
-  background-color: #5faee3 !important; }
+  background-color: #58a5f0 !important; }
 
 .active {
-  background-color: #2472a4; }
+  background-color: #004c8c; }
 
 .font-weight-bolder {
   font-weight: 900 !important; }
@@ -286,7 +286,7 @@ h4 {
   width: 100%;
   box-shadow: none;
   transition: all ease 0.2s;
-  border-bottom: 2px solid #20638f; }
+  border-bottom: 2px solid #004c8c; }
   .navbar-menu {
     flex-shrink: unset;
     margin-right: 0 !important; }
@@ -376,7 +376,7 @@ h4 {
       .valor-box__text {
         font-size: 0.8rem; } }
     .valor-box__text span {
-      color: #2980b9; }
+      color: #0277bd; }
 
 .queHacemos__content {
   position: absolute;
@@ -426,7 +426,7 @@ h4 {
   height: 15.6rem; }
 
 .swiper-slide {
-  background: #f4f4f4;
+  background: #fafafa;
   text-align: center;
   font-size: 18px;
   display: -webkit-box;
@@ -567,7 +567,7 @@ h4 {
     color: #000;
     opacity: 0.55; }
   .admin-cards .title {
-    color: #2980b9;
+    color: #0277bd;
     overflow: hidden; }
 
 @media screen and (min-width: 1023px) {

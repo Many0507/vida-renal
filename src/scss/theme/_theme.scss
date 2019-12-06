@@ -1,23 +1,23 @@
 // Themes //
 .is-link,
 .has-background-link {
-	background-color: $primary-color !important;
+	background-color: $normal_blue_color !important;
 }
 .has-text-link {
-	color: $primary-color !important;
+	color: $normal_blue_color !important;
 }
 .is-link a:hover,
 .is-link a:focus {
-	background-color: darken($primary-color, 5) !important;
+	background-color: $darken_blue_color !important;
 }
 .has-text-info {
-	color: $second-color !important;
+	color: $lighten_blue_color !important;
 }
 .has-background-info {
-	background-color: lighten($second-color, 5) !important;
+	background-color: $lighten_blue_color !important;
 }
 .active {
-	background-color: darken($primary-color, 5);
+	background-color: $darken_blue_color;
 }
 .font-weight-bolder {
 	font-weight: 900 !important;

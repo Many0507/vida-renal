@@ -224,11 +224,13 @@ if (updateBtn != null) {
 			const id = btn.id.split('-')[1];
 			console.log(window.location)
 			const data = await axios.get(`${window.location.protocol}//${window.location.host}${window.location.pathname}/${id}`);
-			console.log()
 			if (data.data.success) {
 				document.getElementById('titulo').value = data.data.data.titulo;
 				if (document.getElementById('texto')) {
 					document.getElementById('texto').value = data.data.data.texto;
+				}
+				if (document.getElementById('autor')) {
+					document.getElementById('autor').value = data.data.data.autor;
 				}
 			} else console.log('Error al traer los datos');
 			formContainerUpdate.style.top = '0';

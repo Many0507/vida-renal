@@ -19,10 +19,10 @@ img {
 	object-fit: cover;
 }
 a {
-	color: $primary-color;
+	color: $darken_blue_color;
 	font-weight: 900;
 	&:hover {
-		color: darken($primary-color, 10);
+		color: $normal_blue_color;
 	}
 }
 h2 {

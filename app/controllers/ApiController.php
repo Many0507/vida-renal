@@ -173,13 +173,15 @@ class ApiController extends Controller
                if ($error) $this->container->flash->addMessage('error', 'Favor de llenar todos los campos');
                else $error = null;
           }
+
           $message = empty($titulo) || $titulo === ''
                ? 'favor de llenar todos los campos'
                : null;
+
           if ($section != 'Servicio') {
                $message = empty($texto) || $texto === ''
-               ? 'favor de llenar todos los campos'
-               : null;
+                    ? 'favor de llenar todos los campos'
+                    : null;
           }
 
           if (is_null($message) && is_null($error)) {
@@ -188,6 +190,7 @@ class ApiController extends Controller
                if (is_array($filename)) {
                     $this->container->flash->addMessage('error', $filename['error']);
                } else {
+                    $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
                     try {
                          $target = $model;
                          $target->titulo = $titulo;
@@ -198,7 +201,7 @@ class ApiController extends Controller
 
                          $this->container->flash->addMessage('done', '¡' . $section . ' creado con exito!');
                     } catch (Exception $e) {
-                         $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+                         $this->container->flash->addMessage('error', $tryError);
                     }
                }
           } else $this->container->flash->addMessage('error', $message);
@@ -210,7 +213,6 @@ class ApiController extends Controller
 
           if ($id > 0) {
                $target = $model::find($id);
-
                if ($target != null || !empty($target)) return ['success' => true, 'data' => $target];
           }
           return ['success' => false];
@@ -220,6 +222,16 @@ class ApiController extends Controller
      {
           $titulo = $request->getParam('titulo');
           $texto = $request->getParam('texto');
+          $error = null;
+
+          if ($section == 'Blog') {
+               $autor = $request->getParam('autor');
+               $texto = 'Blog';
+               $error = empty($autor) || $autor === '' ? true : false;
+
+               if ($error) $this->container->flash->addMessage('error', 'Favor de llenar todos los campos');
+               else $error = null;
+          }
 
           $message = empty($titulo) || $titulo === ''
                ? 'favor de llenar todos los campos'
@@ -227,11 +239,11 @@ class ApiController extends Controller
 
           if ($section != 'Servicio') {
                $message = empty($texto) || $texto === ''
-               ? 'favor de llenar todos los campos'
-               : null;
+                    ? 'favor de llenar todos los campos'
+                    : null;
           }
 
-          if (is_null($message)) {
+          if (is_null($message) && is_null($error)) {
                $uploadedFile = $request->getUploadedFiles()['imagen'];
                if (strlen($uploadedFile->file) > 0) $filename = $this->getFileName($request);
                else $filename = 'default';
@@ -248,11 +260,13 @@ class ApiController extends Controller
                               $this->container->flash->addMessage('error_update', 'hay un error');
                          else {
                               try {
+                                   $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
                                    $directory = $this->container->get('upload_directory');
 
                                    $target->titulo = $titulo;
                                    if ($section != 'Servicio') $target->texto = $texto;
                                    if ($filename == 'default') $target->imagen = $target->imagen;
+                                   if ($section == 'Blog') $target->autor = $autor;
                                    else {
                                         unlink($directory . '/' . $target->imagen);
                                         $target->imagen = $filename;
@@ -261,7 +275,7 @@ class ApiController extends Controller
 
                                    $this->container->flash->addMessage('done', '¡' . $section . ' actualizado con exito!');
                               } catch (Exception $e) {
-                                   $this->container->flash->addMessage('error', 'No se lograron enviar todos los datos, favor de intentarlo más tarde');
+                                   $this->container->flash->addMessage('error', $tryError);
                               }
                          }
                     } else $this->container->flash->addMessage('error', 'Error al enviar la informacion, favor de intentar mas tarde');

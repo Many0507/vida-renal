@@ -9,7 +9,7 @@
 	padding: 3rem 1.5rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-	border-bottom: 4px solid $primary-color;
+	border-bottom: 4px solid $normal_blue_color;
 	&-title {
 		padding: 0.4rem 0;
 		text-transform: uppercase;
@@ -17,7 +17,7 @@
 		letter-spacing: 0.1rem;
 		margin-bottom: 1rem !important;
 		&-topbar {
-			border-top: 4px solid $primary-color;
+			border-top: 4px solid $normal_blue_color;
 		}
 		&-opacity {
 			opacity: 0.8;
@@ -37,7 +37,7 @@
 	}
 }
 .first-section {
-	border-top: 4px solid $primary-color;
+	border-top: 4px solid $normal_blue_color;
 }
 .last-section {
 	border: none;

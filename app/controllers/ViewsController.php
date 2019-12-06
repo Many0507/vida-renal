@@ -347,12 +347,24 @@ class ViewsController extends Controller
      {
           if ($_SESSION['user']) {
                $blogs = [];
-               $blogs = Blog::orderBy('id', 'desc')->get();
+               $page = $request->getParam('page');
+               if (!$page) $page = 1;
+               $total_rows = Blog::count();
+
+               $pagination = new PaginationHelper($page, $total_rows);
+               $blogs = Blog::orderBy('id', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
                $messages = $this->container->flash->getMessages();
 
                return $this->container->view->render($response, 'admin-blog.twig', [
                     'blogs' => $blogs,
-                    'mensajes' => $messages
+                    'mensajes' => $messages,
+                    'totalPages' => $pagination->total_pages,
+                    'page' => $page,
+                    'next' => $pagination->next,
+                    'prev' => $pagination->prev
                ]);
           } else return $response->withHeader('Location', '/admin/login');
      }

@@ -3,7 +3,7 @@
 	width: 100%;
 	box-shadow: none;
 	transition: all ease 0.2s;
-	border-bottom: 2px solid darken($primary-color, 10);
+	border-bottom: 2px solid $darken_blue_color;
 	&-menu {
 		flex-shrink: unset;
 		margin-right: 0 !important;

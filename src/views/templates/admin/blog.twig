@@ -54,6 +54,38 @@
 				</div>
 			{% endfor %}
 		</div>
+		<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+            <a class="pagination-previous" 
+				{% if prev <= 0 %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/blog?page={{ prev }}"
+				{% endif %}>
+				<i class="fas fa-chevron-left"></i>
+            </a>
+			<a class="pagination-next"
+				{% if next > totalPages %}
+					{{'disabled'}}
+				{% else %}
+					href="/admin/blog?page={{ next }}"
+				{% endif %}>
+				<i class="fas fa-chevron-right"></i>
+			</a>
+			<ul class="pagination-list">
+				{% for i in 1..totalPages %}
+					{% if i <= 20 %}
+						<li>
+							<a class="pagination-link 
+								{% if i == page %}
+									is-current
+								{% endif %}" 
+							aria-label="Goto page {{i}}" href="/admin/blog?page={{i}}">{{i}}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</nav>
+		<a href="/admin/blog?page={{i}}">{{i}}</a>
 	{% else %}
 		<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
 			No hay entradas
@@ -136,6 +168,14 @@
 			</div>
 		</div>
 		<div class="field">
+			<label class="label" for="titulo">
+				Autor:
+			</label>
+			<div class="control">
+				<input class="input" type="text" name="autor" value="{{ old.autor }}" id="autor">
+			</div>
+		</div>
+		<div class="field">
 			<div id="fileJsUpdate" class="file has-name">
 				<label class="file-label" for="fileUpdate">
 					<input class="file-input" type="file" name="imagen" id="fileUpdate">
@@ -152,12 +192,6 @@
 					</span>
 				</label>
 			</div>
-		</div>
-		<div class="field">
-			<label class="label" for="texto">
-				Descripción:
-			</label>
-			<textarea name="texto" class="textarea" id="texto" rows="5" style="resize: none;"></textarea>
 		</div>
 		<div class="field">
 			<div class="control">
