@@ -255,7 +255,7 @@ if (blogSaveContent != null) {
 
 		const id = blogSaveContent.id.split('-')[1];
 		const data = await axios.patch(
-			`http://localhost:8000/admin/blog-content/${id}`,
+			`${window.location.protocol}//${window.location.host}${window.location.pathname}/${id}`,
 			{
 				texto: editor.innerHTML
 			}
