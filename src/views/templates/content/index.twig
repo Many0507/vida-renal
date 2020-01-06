@@ -45,6 +45,9 @@
 			<a href="/actividades" class="has-text-info">
 				Nuestras actividades
 			</a>
+			<p class="has-text-centered is-size-6 has-text-weight-bold" style="margin-top: 1em; color: #313131;">
+				Fundación Vida Renal ofrece una amplia gama de servicios y actividades que te ayudaran a mejorar tus condiciones como paciente:
+			</p>
 		</h3>
 
 		<div class="swiper-container swiper-no_slider first-section">
@@ -76,10 +79,7 @@
 				{% if servicios|length > 0 %}
 					{% for servicio in servicios %}
 						<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
-							<img 
-								src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" 
-								alt="imagen Nuestras actividades" class="image slider__img"
-							/>
+							<img src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" alt="imagen Nuestras actividades" class="image slider__img"/>
 							<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
 								{{ servicio.titulo }}
 							</p>
@@ -101,6 +101,9 @@
 			<a href="/eventos" class="has-text-info">
 				Proximos eventos
 			</a>
+			<p class="has-text-centered is-size-6 has-text-weight-bold" style="margin-top: 1em; color: #313131">
+				Estos son los próximos eventos que tenemos programados, regístrate y asiste “Cupo limitado”
+			</p>
 		</h3>
 
 		<div class="swiper-container swiper-no_slider first-section">
