@@ -17,10 +17,10 @@ img {
   object-fit: cover; }
 
 a {
-  color: #004c8c;
+  color: #753a6d;
   font-weight: 900; }
   a:hover {
-    color: #0277bd; }
+    color: #944689; }
 
 h2 {
   font-size: 1.5rem; }
@@ -41,7 +41,7 @@ h4 {
   padding: 3rem 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 4px solid #0277bd; }
+  border-bottom: 4px solid #944689; }
   .section-title {
     padding: 0.4rem 0;
     text-transform: uppercase;
@@ -49,7 +49,7 @@ h4 {
     letter-spacing: 0.1rem;
     margin-bottom: 1rem !important; }
     .section-title-topbar {
-      border-top: 4px solid #0277bd; }
+      border-top: 4px solid #944689; }
     .section-title-opacity {
       opacity: 0.8; }
   .section-subtitle {
@@ -63,7 +63,7 @@ h4 {
     padding: 1rem 0; }
 
 .first-section {
-  border-top: 4px solid #0277bd; }
+  border-top: 4px solid #944689; }
 
 .last-section {
   border: none; }
@@ -228,23 +228,37 @@ h4 {
 
 .is-link,
 .has-background-link {
-  background-color: #0277bd !important; }
+  background-color: #944689 !important; }
 
 .has-text-link {
-  color: #0277bd !important; }
+  color: #944689 !important; }
 
 .is-link a:hover,
 .is-link a:focus {
-  background-color: #004c8c !important; }
+  background-color: #753a6d !important; }
 
 .has-text-info {
-  color: #58a5f0 !important; }
+  color: #b457a8 !important; }
+  .has-text-info:hover {
+    color: #944689 !important; }
 
 .has-background-info {
-  background-color: #58a5f0 !important; }
+  background-color: #b457a8 !important; }
+
+.has-green-text {
+  color: #93BB49; }
+
+.has-green-text-light {
+  color: #a7d453; }
+
+.has-green-text-dark {
+  color: #85a842; }
+
+a.has-text-info:hover {
+  color: #944689 !important; }
 
 .active {
-  background-color: #004c8c; }
+  background-color: #753a6d; }
 
 .font-weight-bolder {
   font-weight: 900 !important; }
@@ -286,7 +300,7 @@ h4 {
   width: 100%;
   box-shadow: none;
   transition: all ease 0.2s;
-  border-bottom: 2px solid #004c8c; }
+  border-bottom: 2px solid #753a6d; }
   .navbar-menu {
     flex-shrink: unset;
     margin-right: 0 !important; }
@@ -376,7 +390,7 @@ h4 {
       .valor-box__text {
         font-size: 0.8rem; } }
     .valor-box__text span {
-      color: #0277bd; }
+      color: #944689; }
 
 .queHacemos__content {
   position: absolute;
@@ -567,7 +581,7 @@ h4 {
     color: #000;
     opacity: 0.55; }
   .admin-cards .title {
-    color: #0277bd;
+    color: #944689;
     overflow: hidden; }
 
 @media screen and (min-width: 1023px) {

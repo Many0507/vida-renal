@@ -8,8 +8,8 @@
 			</figure>
 		</div>
 		<div class="column is-4 is-flex header__column">
-			<h2 class="title is-3 has-text-link font-weight-bolder">
-				Blog
+			<h2 class="title is-3 font-weight-bolder">
+				<a href="/blog" class="has-text-info">Blog</a>
 			</h2>
 			{% if blogs|length > 0 %}
 				{% for blog in blogs %}
@@ -23,7 +23,7 @@
 								</div>
 								<div class="media-content">
 									<div class="content">
-										<p style="opacity: 0.9;">
+										<p style="opacity: 0.9;" class="has-green-text-dark">
 											{{ blog.titulo }}
 										</p>
 									</div>
