@@ -12,7 +12,8 @@
 }
 .has-text-info {
 	color: $lighten_blue_color !important;
-	&:hover {
+	&:hover,
+	&:focus {
 		color: $normal_blue_color !important;
 	}
 }
@@ -25,10 +26,11 @@
 .has-green-text-light {
 	color: $lighten_green_color;
 }
-.has-green-text-dark{
+.has-green-text-dark {
 	color: $darken_green_color;
 }
-a.has-text-info:hover {
+a.has-text-info:hover,
+a.has-text-info:focus {
 	color: $normal_blue_color !important;
 }
 .active {

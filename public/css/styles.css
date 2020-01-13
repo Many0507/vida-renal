@@ -103,7 +103,7 @@ h4 {
       width: 100%; } }
 
 .box {
-  box-shadow: 0 4px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !important; }
+  box-shadow: 0 4px 3px rgba(10, 10, 10, 0.1), 0 0 0 0.5px rgba(10, 10, 10, 0.1) !important; }
 
 .pagination-list {
   list-style: none; }
@@ -116,7 +116,7 @@ h4 {
   width: 90%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: #3498db;
+  background: #85a842;
   overflow: hidden; }
   @media screen and (max-width: 768px) {
     .quienesSomos__Section .card-container {
@@ -198,7 +198,7 @@ h4 {
 
 .header__video {
   width: 100%;
-  box-shadow: 3px 3px 5px #bdc3c7; }
+  box-shadow: 4px 4px 5px #bdc3c7; }
 
 .main {
   min-height: calc(100vh - 52px - 24px);
@@ -239,7 +239,7 @@ h4 {
 
 .has-text-info {
   color: #b457a8 !important; }
-  .has-text-info:hover {
+  .has-text-info:hover, .has-text-info:focus {
     color: #944689 !important; }
 
 .has-background-info {
@@ -254,7 +254,8 @@ h4 {
 .has-green-text-dark {
   color: #85a842; }
 
-a.has-text-info:hover {
+a.has-text-info:hover,
+a.has-text-info:focus {
   color: #944689 !important; }
 
 .active {
@@ -340,7 +341,7 @@ a.has-text-info:hover {
     width: 3rem;
     box-shadow: 2px 2px 6px #bdc3c7;
     border-radius: 50%;
-    transition: transform ease 0.7s; }
+    transition: transform ease 1s; }
     .social__img:hover {
       transform: rotateY(-360deg); }
   .social__text {

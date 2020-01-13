@@ -9,7 +9,9 @@
 		</div>
 		<div class="column is-4 is-flex header__column">
 			<h2 class="title is-3 font-weight-bolder">
-				<a href="/blog" class="has-text-info">Blog</a>
+				<a href="/blog" class="has-text-info">
+					Blog
+				</a>
 			</h2>
 			{% if blogs|length > 0 %}
 				{% for blog in blogs %}
@@ -80,7 +82,7 @@
 					{% for servicio in servicios %}
 						<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
 							<img src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" alt="imagen Nuestras actividades" class="image slider__img"/>
-							<p class="has-text-link font-weight-bolder slider__text" style="opacity: 0.8;">
+							<p class="has-green-text-dark font-weight-bolder slider__text" style="opacity: 0.8;">
 								{{ servicio.titulo }}
 							</p>
 						</div>
