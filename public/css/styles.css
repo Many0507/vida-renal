@@ -259,7 +259,8 @@ a.has-text-info:focus {
   color: #944689 !important; }
 
 .active {
-  background-color: #753a6d; }
+  background-color: #753a6d;
+  color: #fff; }
 
 .font-weight-bolder {
   font-weight: 900 !important; }
