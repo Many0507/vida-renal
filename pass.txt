@@ -1,2 +1,0 @@
-admin01 - renalAdmin001
-admin_contenido - contentManager
