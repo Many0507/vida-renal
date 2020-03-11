@@ -4,10 +4,15 @@
 		width: 100%;
 		cursor: pointer;
 	}
+	&-text {
+		word-break: break-all;
+		opacity: 0.8;
+	}
 	&-img {
 		height: auto !important;
 		& img {
 			height: 65px;
+			border-radius: 3px;
 		}
 	}
 }

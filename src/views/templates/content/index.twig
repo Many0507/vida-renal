@@ -3,29 +3,32 @@
 		<div class="column is-8 is-flex header__column">
 			<figure class="image is-16by9 header__video">
 				<video class="has-ratio" controls autoplay muted>
-					<source src="{{ base_url() }}{{ asset(video.video) }}" type="video/mp4"/>
+					<source src="{{ base_url() }}{{ video.video }}" type="video/mp4"/>
 				</video>
 			</figure>
 		</div>
 		<div class="column is-4 is-flex header__column">
 			<h2 class="title is-3 font-weight-bolder">
-				<a href="/blog" class="has-text-info">
+				<a href="/blog" class="has-text-info" style="font-size: 1.7rem">
 					Blog
 				</a>
 			</h2>
 			{% if blogs|length > 0 %}
 				{% for blog in blogs %}
 					<div class="box blog-box">
-						<a href="/blog/ver/{{blog.id}}">
+						<a href="/blog/ver/{{ blog.id }}">
 							<article class="media">
 								<div class="media-left">
 									<figure class="image is-96x96 blog-img">
-										<img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" alt="imagen de blog"/>
+										<img 
+											src="{{ base_url() }}/public/uploads/{{ blog.imagen }}" 
+											alt="{{ blog.titulo }}"
+										/>
 									</figure>
 								</div>
 								<div class="media-content">
 									<div class="content">
-										<p style="opacity: 0.9;" class="has-green-text-dark">
+										<p class="has-green-text-dark blog-text">
 											{{ blog.titulo }}
 										</p>
 									</div>
@@ -35,20 +38,24 @@
 					</div>
 				{% endfor %}
 			{% else %}
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-					El blog esta vacio
+				<p class="has-text-centered has-green-text has-text-weight-bold is-size-5 is-fullwidth">
+					El blog esta vacío.
 				</p>
 			{% endif %}
 		</div>
 	</div>
 
 	<section class="section first-section">
-		<h3 class="title is-2 has-text-centered section-title font-weight-bolder">
+		<h3 class="title is-3 has-text-centered section-title font-weight-bolder">
 			<a href="/actividades" class="has-text-info">
 				Nuestras actividades
 			</a>
-			<p class="has-text-centered is-size-6 has-text-weight-bold" style="margin-top: 1em; color: #313131;">
-				Fundación Vida Renal ofrece una amplia gama de servicios y actividades que te ayudaran a mejorar tus condiciones como paciente:
+			<p 
+				class="has-text-centered is-size-6 has-text-weight-bold" 
+				style="margin-top: 1em; color: #333; opacity: .85;"
+			>
+				Fundación Vida Renal ofrece una amplia gama de servicios y actividades que te ayudaran 
+				a mejorar tus condiciones como paciente:
 			</p>
 		</h3>
 
@@ -56,15 +63,24 @@
 			<div class="swiper-wrapper">
 				{% if actividades|length > 0 %}
 					{% for actividad in actividades %}
-						<div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ actividad.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
+						<div 
+							class="swiper-slide is-clipped tooltip" 
+							data-tippy-content="{{ actividad.titulo }}" 
+							data-swiper-autoplay="4000" 
+							style="cursor: pointer;"
+						>
 							<a href="/actividades" style="height: 100%;">
-								<img src="{{ base_url() }}/public/uploads/{{ asset(actividad.imagen) }}" alt="imagen Nuestras actividades" class="image slider__img zoom">
+								<img 
+									src="{{ base_url() }}/public/uploads/{{ actividad.imagen }}" 
+									alt="{{ actividad.titulo }}" 
+									class="image slider__img zoom"
+								/>
 							</a>
 						</div>
 					{% endfor %}
 				{% else %}
-					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-						No hay actividades
+					<p class="has-text-centered has-green-text has-text-weight-bold is-size-5 is-fullwidth">
+						No hay actividades próximamente.
 					</p>
 				{% endif %}
 			</div>
@@ -72,7 +88,7 @@
 	</section>
 
 	<section class="section slider__section">
-		<h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
+		<h3 class="title is-3 has-text-centered section-subtitle has-text-info font-weight-bolder">
 			Servicios
 		</h3>
 
@@ -81,15 +97,19 @@
 				{% if servicios|length > 0 %}
 					{% for servicio in servicios %}
 						<div class="swiper-slide is-flex slider__content" data-swiper-autoplay="4000">
-							<img src="{{ base_url() }}/public/uploads/{{ asset(servicio.imagen) }}" alt="imagen Nuestras actividades" class="image slider__img"/>
+							<img 
+								src="{{ base_url() }}/public/uploads/{{ servicio.imagen }}" 
+								alt="{{ servicio.titulo }}"
+								class="image slider__img"
+							/>
 							<p class="has-green-text-dark font-weight-bolder slider__text" style="opacity: 0.8;">
 								{{ servicio.titulo }}
 							</p>
 						</div>
 					{% endfor %}
 				{% else %}
-					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-						No hay servicios
+					<p class="has-text-centered has-green-text has-text-weight-bold is-size-5 is-fullwidth">
+						No hay servicios.
 					</p>
 				{% endif %}
 			</div>
@@ -99,12 +119,15 @@
 	</section>
 
 	<section class="section last-section">
-		<h3 class="title is-2 has-text-centered section-subtitle has-text-info font-weight-bolder">
+		<h3 class="title is-3 has-text-centered section-subtitle has-text-info font-weight-bolder">
 			<a href="/eventos" class="has-text-info">
 				Proximos eventos
 			</a>
-			<p class="has-text-centered is-size-6 has-text-weight-bold" style="margin-top: 1em; color: #313131">
-				Estos son los próximos eventos que tenemos programados, regístrate y asiste “Cupo limitado”
+			<p 
+				class="has-text-centered is-size-6 has-text-weight-bold" 
+				style="margin-top: 1em; color: #333; opacity: .85;"
+			>
+				Estos son los próximos eventos que tenemos programados, regístrate y asiste “Cupo limitado”.
 			</p>
 		</h3>
 
@@ -112,15 +135,24 @@
 			<div class="swiper-wrapper">
 				{% if eventos|length > 0 %}
 					{% for evento in eventos %}
-						<div class="swiper-slide is-clipped tooltip" data-tippy-content="{{ evento.titulo }}" data-swiper-autoplay="4000" style="cursor: pointer;">
+						<div 
+							class="swiper-slide is-clipped tooltip" 
+							data-tippy-content="{{ evento.titulo }}" 
+							data-swiper-autoplay="4000" 
+							style="cursor: pointer;"
+						>
 							<a href="/eventos" style="height: 100%;">
-								<img src="{{ base_url() }}/public/uploads/{{ asset(evento.imagen) }}" alt="imagen Nuestros eventos" class="image slider__img zoom">
+								<img 
+									src="{{ base_url() }}/public/uploads/{{ evento.imagen }}" 
+									alt="imagen Nuestros eventos" 
+									class="image slider__img zoom"
+								/>
 							</a>
 						</div>
 					{% endfor %}
 				{% else %}
-					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
-						No hay eventos
+					<p class="has-text-centered has-green-text has-text-weight-bold is-size-5 is-fullwidth">
+						No hay eventos próximamente.
 					</p>
 				{% endif %}
 			</div>

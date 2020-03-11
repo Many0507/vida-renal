@@ -109,18 +109,12 @@ h4 {
   list-style: none; }
 
 .card-column {
-  justify-content: center;
-  align-items: center; }
+  justify-content: center; }
 
 .quienesSomos__Section .card-container {
   width: 90%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: #85a842;
+  background: #fff;
   overflow: hidden; }
-  @media screen and (max-width: 768px) {
-    .quienesSomos__Section .card-container {
-      display: block; } }
 
 .quienesSomos__Section .card-image {
   display: flex;
@@ -128,55 +122,22 @@ h4 {
   justify-content: center; }
   .quienesSomos__Section .card-image figure {
     width: 100%;
-    z-index: 0; }
+    z-index: 0;
+    padding-top: 40% !important; }
     .quienesSomos__Section .card-image figure img {
       transition: 0.2s ease-in;
-      object-fit: cover; }
+      object-fit: cover;
+      opacity: 0.8; }
 
 .quienesSomos__Section .card-content {
   z-index: 1;
   background: #fff;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  width: 50.1%;
-  position: absolute;
-  height: 95%;
+  width: 100%;
+  position: relative;
   top: 0;
   right: 0;
   font-size: 1rem;
   transition: width 0.3s ease, font-size 0.3s ease; }
-  @media screen and (max-width: 1408px) {
-    .quienesSomos__Section .card-content {
-      font-size: 0.8rem; } }
-  @media screen and (max-width: 1216px) {
-    .quienesSomos__Section .card-content {
-      font-size: 0.8rem;
-      width: 80%; } }
-  @media screen and (max-width: 768px) {
-    .quienesSomos__Section .card-content {
-      width: 100%;
-      font-size: 1rem;
-      position: relative; } }
-
-.card-container:hover .card-content {
-  width: 80%;
-  font-size: 1.2rem; }
-  @media screen and (max-width: 1408px) {
-    .card-container:hover .card-content {
-      font-size: 1rem; } }
-  @media screen and (max-width: 1216px) {
-    .card-container:hover .card-content {
-      font-size: 0.8rem; } }
-  @media screen and (max-width: 768px) {
-    .card-container:hover .card-content {
-      width: 100%;
-      font-size: 1rem; } }
-
-.card-container:hover .card-image figure img {
-  filter: blur(5px); }
-  @media screen and (max-width: 768px) {
-    .card-container:hover .card-image figure img {
-      filter: none; } }
 
 .flex-columns {
   justify-content: center;
@@ -210,7 +171,14 @@ h4 {
   margin-top: 2rem; }
 
 .footer {
-  padding: 0; }
+  padding: 0;
+  margin-top: 2rem;
+  position: relative; }
+  .footer .columns {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+    align-items: flex-start; }
   .footer-tel {
     padding: 0 0 1rem 0; }
   .footer__title, .footer__text {
@@ -246,7 +214,7 @@ h4 {
   background-color: #b457a8 !important; }
 
 .has-green-text {
-  color: #93BB49; }
+  color: #93BB49 !important; }
 
 .has-green-text-light {
   color: #a7d453; }
@@ -260,7 +228,8 @@ a.has-text-info:focus {
 
 .active {
   background-color: #753a6d;
-  color: #fff; }
+  color: #fff;
+  opacity: 1 !important; }
 
 .font-weight-bolder {
   font-weight: 900 !important; }
@@ -324,9 +293,11 @@ a.has-text-info:focus {
       .navbar-list {
         margin: 0 auto;
         text-align: center; } }
-  @media screen and (max-width: 1023px) {
-    .navbar-item:hover, .navbar-item:focus {
-      color: #fff !important; } }
+  .navbar-item {
+    opacity: 0.95; }
+    @media screen and (max-width: 1023px) {
+      .navbar-item:hover, .navbar-item:focus {
+        color: #fff !important; } }
 
 .social {
   padding: 0;
@@ -344,7 +315,7 @@ a.has-text-info:focus {
     border-radius: 50%;
     transition: transform ease 1s; }
     .social__img:hover {
-      transform: rotateY(-360deg); }
+      transform: rotateY(-20deg); }
   .social__text {
     letter-spacing: 0.2rem;
     font-weight: 600; }
@@ -498,10 +469,15 @@ a.has-text-info:focus {
   width: 100%;
   cursor: pointer; }
 
+.blog-text {
+  word-break: break-all;
+  opacity: 0.8; }
+
 .blog-img {
   height: auto !important; }
   .blog-img img {
-    height: 65px; }
+    height: 65px;
+    border-radius: 3px; }
 
 #form-container,
 #form-container--update {

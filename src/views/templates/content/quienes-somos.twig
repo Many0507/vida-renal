@@ -1,31 +1,49 @@
 <div class="container">
-	<h1 class="title is-2 has-text-info section-title has-text-centered">
+	<h1 class="title is-3 has-text-info section-title has-text-centered">
 		¿Quienes somos?
 	</h1>
-	<h2 class="title section-title-topbar is-3 has-text-info">
+	<h2 class="title section-title-topbar is-4 has-green-text" style="padding-top: 1rem;">
 		Historia
 	</h2>
 	<section class="section has-background-link">
-		<p class="has-text-white has-text-centered is-size-5">
-			Fundación Vida Renal A.C fue fundada en 2019 como iniciativa del familiar de un paciente con enfermedad renal crónica, orientada a la prevención e intervención en la población mexicana con el objetivo de mejorar la calidad de vida de pacientes y familiares. Por medio de un apoyo humano, integral y oportuno.
+		<p class="has-text-white has-text-centered is-size-6" style="opacity: 0.95;">
+			Fundación Vida Renal es una Asociación Civil creada en 2019 con la intención de apoyar exclusivamente a los enfermos con
+			Insuficiencia renal crónica de bajos recursos. Trabajamos en la prevención, difusión, talleres, programas, actividades y apoyo
+			con artículos como medicina y/o material de curación con el objetivo de mejorar la calidad de vida de pacientes y familiares,
+			por medio de un apoyo humano, integral y oportuno.
 		</p>
 	</section>
 	<section class="section last-section quienesSomos__Section">
 		<div class="columns">
 			<div class="column is-6 is-flex card-column">
 				<div class="card card-container">
+					<div class="card-content" style="padding: 0;">
+						<div class="content">
+							<p 
+								class="has-text-centered has-green-text is-size-5 has-text-weight-bold is-uppercase"
+								style="margin: 0.5rem !important; paffing: 0 !important;"
+							>
+								Misión
+							</p>
+						</div>
+					</div>
 					<div class="card-image">
-						<figure class="image is-4by5 responsive-img has-background-white">
-							<img src="{{ base_url() }}{{ asset('/public/img/mision.jpg') }}" alt="Placeholder image"/>
+						<figure class="image is-4by5 responsive-img is-link">
+							<img src="{{ base_url() }}{{ '/public/img/mision.jpg' }}" alt="Misión"/>
 						</figure>
 					</div>
 					<div class="card-content">
 						<div class="content">
-							<p class="has-text-centered has-text-info has-text-weight-bold is-uppercase">
-								Misión
-							</p>
-							<p class="has-text-centered">
-								Otorgar servicios de alta calidad, mediante una atención personalizada a quienes padecen enfermedades renales crónicas y sus familiares por medio de estrategias y acciones enfocadas a la prevención, detección oportuna e intervención en personas de medios y bajos recursos para mejorar su calidad de vida.
+							<p class="has-text-centered" style="color: #333;">
+								Generar bienestar y condiciones propicias para mejorar la
+								calidad de vida y pronta y en lo posible recuperación de los
+								pacientes de escasos recursos económicos con enfermedades
+								renales crónicas, así como de sus familiares y entorno social
+								mediante una atención médica integral de alta calidad y diversas
+								estrategias y acciones coordinadas enfocadas en la prevención,
+								detección oportuna, diagnóstico preciso, intervención, desarrollo
+								e investigación de nuevas técnicas y tratamientos para dichas
+								enfermedades.
 							</p>
 						</div>
 					</div>
@@ -33,18 +51,30 @@
 			</div>
 			<div class="column is-6 is-6 is-flex card-column">
 				<div class="card card-container">
+					<div class="card-content" style="padding: 0;">
+						<div class="content">
+							<p 
+								class="has-text-centered has-green-text is-size-5 has-text-weight-bold is-uppercase"
+								style="margin: 0.5rem !important; paffing: 0 !important;"
+							>
+								Visión
+							</p>
+						</div>
+					</div>
 					<div class="card-image">
-						<figure class="image is-4by5 responsive-img has-background-white">
-							<img src="{{ base_url() }}{{ asset('/public/img/vision.jpg') }}" alt="Placeholder image"/>
+						<figure class="image is-4by5 responsive-img is-link">
+							<img src="{{ base_url() }}{{ '/public/img/vision.jpg' }}" alt="Visión"/>
 						</figure>
 					</div>
 					<div class="card-content">
 						<div class="content">
-							<p class="has-text-centered has-text-info has-text-weight-bold is-uppercase">
-								Visión
-							</p>
 							<p class="has-text-centered">
-								Fomentar la cultura de prevención de enfermedades renales, dignifica la vida de los pacientes y familiares por medio de estrategias para otorgar una segunda oportunidad a la vida.
+								Ser la mejor institución de apoyo a nivel nacional para el
+								fomento de una cultura de prevención y ayuda de los
+								pacientes con enfermedades renales crónicas y su entorno
+								familiar y social, dignificando su vida y tratamiento para
+								construir nuevas y mejores oportunidades para su desarrollo
+								vital.
 							</p>
 						</div>
 					</div>
@@ -52,7 +82,8 @@
 			</div>
 		</div>
 	</section>
-	<h3 class="title section-title-topbar is-3 has-text-info last-section">
+
+	<h3 class="title section-title-topbar is-4 has-green-text last-section" style="margin-top: 2rem;">
 		Valores
 	</h3>
 	<section class="section first-section is-hidden-mobile">
@@ -200,12 +231,13 @@
 		</div>
 	</section>
 
+	<h3
+		class="title section-title-topbar is-4 has-green-text last-section"
+		style="margin-top: 1rem;"
+	>
+		Objetivos
+	</h3>
 	<section class="section section-margin-bottom">
-		<h3
-			class="title section-title-topbar is-3 has-text-info last-section">
-			{# <i class="fas fa-lightbulb objective-icon has-text-centered has-text-link"></i> #}
-			Objetivos
-		</h3>
 		<div class="columns">
 			<div class="column is-6">
 				<h4 class="title section-title-topbar is-4 font-weight-bolder has-text-centered is-italic has-green-text-dark last-section">

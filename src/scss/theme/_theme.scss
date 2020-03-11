@@ -21,7 +21,7 @@
 	background-color: $lighten_blue_color !important;
 }
 .has-green-text {
-	color: $normal_green_color;
+	color: $normal_green_color !important;
 }
 .has-green-text-light {
 	color: $lighten_green_color;
@@ -36,6 +36,7 @@ a.has-text-info:focus {
 .active {
 	background-color: $darken_blue_color;
 	color: #fff;
+	opacity: 1 !important;
 }
 .font-weight-bolder {
 	font-weight: 900 !important;
