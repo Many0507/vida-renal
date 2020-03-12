@@ -2,6 +2,12 @@
 .container-100 {
 	max-width: 100%;
 }
+.container {
+	@media screen and (max-width: 1024px) {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
 .is-fullwidth {
 	width: 100% !important;
 }
@@ -34,6 +40,14 @@
 	}
 	&-valores {
 		padding: 1rem 0;
+		& .column {
+			@media screen and (max-width: 684px) {
+				width: 50% !important;
+			}
+			@media screen and (max-width: 468px) {
+				width: 100% !important;
+			}
+		}
 	}
 }
 .first-section {

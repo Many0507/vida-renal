@@ -34,6 +34,11 @@ h4 {
 .container-100 {
   max-width: 100%; }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem; } }
+
 .is-fullwidth {
   width: 100% !important; }
 
@@ -61,6 +66,12 @@ h4 {
     margin-bottom: 2rem; }
   .section-valores {
     padding: 1rem 0; }
+    @media screen and (max-width: 684px) {
+      .section-valores .column {
+        width: 50% !important; } }
+    @media screen and (max-width: 468px) {
+      .section-valores .column {
+        width: 100% !important; } }
 
 .first-section {
   border-top: 4px solid #944689; }
@@ -321,12 +332,13 @@ a.has-text-info:focus {
     font-weight: 600; }
 
 .valor-box {
-  width: 90%;
+  width: 70%;
   border-radius: 5px;
   overflow: hidden; }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1215px) {
     .valor-box {
-      width: 100%; } }
+      width: 100%;
+      width: 85%; } }
   .valor-box__img {
     width: 100% !important; }
     .valor-box__img img {
@@ -352,16 +364,9 @@ a.has-text-info:focus {
     background: #f2f2f2;
     border: 2px solid #fff;
     padding: 0.2rem;
-    opacity: 0.9;
+    opacity: 0.8;
     transition: left ease-in 0.2s;
     text-align: center; }
-    @media screen and (max-width: 768px) {
-      .valor-box__text {
-        left: 0;
-        opacity: 0.8; } }
-    @media screen and (max-width: 1281px) {
-      .valor-box__text {
-        font-size: 0.8rem; } }
     .valor-box__text span {
       color: #944689; }
 
