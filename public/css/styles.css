@@ -112,7 +112,7 @@ h4 {
   justify-content: center; }
 
 .quienesSomos__Section .card-container {
-  width: 90%;
+  width: 85%;
   background: #fff;
   overflow: hidden; }
 
@@ -470,7 +470,7 @@ a.has-text-info:focus {
   cursor: pointer; }
 
 .blog-text {
-  word-break: break-all;
+  word-break: break-word;
   opacity: 0.8; }
 
 .blog-img {
