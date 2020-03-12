@@ -89,7 +89,7 @@
 	color: #fff;
 	transition: all ease-in-out 0.3s;
 	text-align: center;
-	background: rgba(#000, 0.75);
+	background: rgba(#000, 0.60);
 }
 .queHacemos-img {
 	width: 100%;
@@ -118,4 +118,8 @@
 }
 .testimonios__bg {
 	background: rgba(#fff, 0.7) !important;
+}
+.list-item-apoyo:hover {
+	color: #85a842;
+	cursor: auto;
 }

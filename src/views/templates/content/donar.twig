@@ -1,41 +1,48 @@
 <div class="container">
-	<h1 class="title is-2 has-text-info section-title has-text-centered">
+	<h1 class="title is-3 has-text-info section-title has-text-centered">
 		¿Cómo puedes ayudarnos?
 	</h1>
 	<section class="section section-title-topbar">
-		<p class="has-text-centered is-size-5 has-text-link has-text-weight-bold">
+		<p class="has-text-centered is-size-6 has-text-weight-bold" style="color: #333; opacity: 0.8;">
 			Juntos podemos mejorar la vida de nuestros pacientes, todos podemos apoyar desde nuestra trinchera, descubre como convertirte en un aliado de este movimiento.
 		</p>
 	</section>
 	<section class="section">
-		<div class="columns section">
+		<div class="columns section center" style="flex-direction: row;">
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img">
-					<img src="{{ base_url() }}{{ asset('/public/img/donar1.jpg') }}" class="zoom">
+				<figure class="image is-16by9 queHacemos-img" style="box-shadow: 0.5px 0.5px 2px 0 #000;">
+					<img src="{{ base_url() }}{{ '/public/img/donar1.jpg' }}" class="zoom">
 				</figure>
 			</div>
 			<div class="column is-6 center">
-				<h2 class="title is-3 has-text-info last-section has-text-centered">
+				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Quiero donar!
 				</h2>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-6">
+				<p 
+					class="has-text-centered has-text-weight-bold is-size-6"
+					style="color: #333; opacity: 0.8;"
+				>
 					Si deseas realizar una donación, puedes hacerlo mediante transferencia bancaria a la cuenta:
 				</p>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-6">
+				<p 
+					class="has-text-centered has-text-link has-text-weight-bold is-size-6"
+					style="opacity: 0.8;"
+				>
 					Banorte
 				</p>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-6">
-					xxx-xxx-xxx-xxx <br /> clabe interbancaria xxx-xxx-xxx
+				<p 
+					class="has-text-centered has-text-weight-bold is-size-6"
+					style="color: #333; opacity: 0.8;"
+				>
+					xxx-xxx-xxx-xxx <br /> clave interbancaria xxx-xxx-xxx
 				</p>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-6">
+				<p 
+					class="has-text-centered has-text-weight-bold is-size-6"
+					style="color: #333; opacity: 0.8;"
+				>
 					O bien a través de nuestra cuenta de Paypal
 				</p>
 				<div class="donar">
-					{# <a href="/quiero-ayudar">
-						<button class="button is-warning has-text-link is-rounded btn__help">
-							Donar
-						</button>
-					</a> #}
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="hidden" name="hosted_button_id" value="2LANUFEWLUQY6" />
@@ -45,66 +52,150 @@
 				</div>
 			</div>
 		</div>
-		<div class="columns section">
+		<div class="columns section center" style="flex-direction: row;">
 			<div class="column is-6 center">
-				<h2 class="title is-3 has-text-info last-section has-text-centered">
+				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Voluntariado!
 				</h2>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-6">
-					Si deseas unirte a la causa, apoyanos con tus datos en el siguiente formulario y nosotros entraremos en contacto contigo:
+				<p 
+					class="has-text-centered has-text-weight-bold is-size-6"
+					style="color: #333; opacity: 0.8;"
+				>
+					Si deseas unirte a la causa, apóyanos con tus datos en el siguiente formulario y nosotros entraremos en contacto contigo:
 				</p>
-				<form style="width: 100%;">
-					<div class="field" style="display: flex; margin-top: 1rem;">
-						<label class="label" style="display: flex; width: 17%; align-items: center; margin-bottom: 0;">Nombre: </label>
-						<div class="control" style="width: 80%; height: 30px;">
-							<input class="input" type="text" placeholder="Text input" style="height: 30px;">
+				<form style="width: 100%; margin-top: 2rem;">
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Nombre:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
 						</div>
 					</div>
-					<div class="field" style="display: flex; margin-top: 1rem;">
-						<label class="label" style="display: flex; width: 17%; align-items: center; margin-bottom: 0;">Edad: </label>
-						<div class="control" style="width: 80%; height: 30px;">
-							<input class="input" type="text" placeholder="Text input" style="height: 30px;">
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Edad:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu edad" style="height: 30px;">
 						</div>
 					</div>
-					<div class="field" style="display: flex; margin-top: 1rem;">
-						<label class="label" style="display: flex; width: 17%; align-items: center; margin-bottom: 0;">Teléfono: </label>
-						<div class="control" style="width: 80%; height: 30px;">
-							<input class="input" type="text" placeholder="Text input" style="height: 30px;">
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Sexo:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
 						</div>
 					</div>
-					<div class="field" style="display: flex; margin-top: 1rem;">
-						<label class="label" style="display: flex; width: 17%; align-items: center; margin-bottom: 0;">E-mail: </label>
-						<div class="control" style="width: 80%; height: 30px;">
-							<input class="input" type="text" placeholder="Text input" style="height: 30px;">
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Teléfono:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
 						</div>
 					</div>
-					<div class="field" style="display: flex; margin-top: 1rem;">
-						<label class="label" style="display: flex; width: 17%; align-items: center; margin-bottom: 0;">Red social: </label>
-						<div class="control" style="width: 80%; height: 30px;">
-							<input class="input" type="text" placeholder="Text input" style="height: 30px;">
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Correo electrónico:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
 						</div>
+					</div>
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Red social:
+						</label>
+						<div class="control">
+							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
+						</div>
+					</div>
+					<div class="field">
+						<label 
+							class="label" 
+							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
+						>
+							Mensaje:
+						</label>
+						<textarea class="textarea has-fixed-size" placeholder="e.g. Hello world"></textarea>
+					</div>
+					<div class="field">
+						<div class="control">
+   						<button class="button is-link is-fullwidth">Enviar</button>
+  						</div>
 					</div>
 				</form>
 			</div>
-			<div class="column is-6">
+			<div class="column is-6 center" style="flex-direction: row;">
 				<figure class="image is-16by9 queHacemos-img">
 					<img src="{{ base_url() }}{{ asset('/public/img/donar2.png') }}" class="zoom">
 				</figure>
 			</div>
 		</div>
-		<div class="columns section last-section">
+		<div class="columns section last-section center" style="flex-direction: row;">
 			<div class="column is-6">
 				<figure class="image is-16by9 queHacemos-img">
 					<img src="{{ base_url() }}{{ asset('/public/img/valor1.jpg') }}" class="zoom">
 				</figure>
 			</div>
-			<div class="column is-6 center">
-				<h2 class="title is-3 has-text-info last-section has-text-centered">
+			<div class="column is-6">
+				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Apoyo en especie!
 				</h2>
-				<p class="has-text-centered has-text-link has-text-weight-bold is-size-5">
-					Conóce con que tipo de artículos puedes apoyar a Vida Renal.
+				<p 
+					class="has-text-centered has-text-weight-bold is-size-6"
+					style="color: #333; opacity: 0.8;"
+				>
+					Para apoyarnos, no necesariamente puedes donarnos dinero, también
+					puedes realizar aportaciones en especie que nosotros haremos llegar a los
+					enfermos, entre las cosas que puedes aportar están:
 				</p>
+				<div class="list" style="margin-top: 1rem;">
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Medicamentos para enfermos renales e inmunosupresores
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Material de construcción
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Herramientas de construcción
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Bolsas de diálisis
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Gasas, guantes, spray desinfectante antiséptico
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Vitaminas
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Ropa que sea utilizable
+					</a>
+					<a class="list-item list-item-apoyo has-green-text-dark">
+						Material de oficina para talleres (Hojas de papel, lápices etc)
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>

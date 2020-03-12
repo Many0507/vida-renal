@@ -383,7 +383,7 @@ a.has-text-info:focus {
   color: #fff;
   transition: all ease-in-out 0.3s;
   text-align: center;
-  background: rgba(0, 0, 0, 0.75); }
+  background: rgba(0, 0, 0, 0.6); }
 
 .queHacemos-img {
   width: 100%;
@@ -409,6 +409,10 @@ a.has-text-info:focus {
 
 .testimonios__bg {
   background: rgba(255, 255, 255, 0.7) !important; }
+
+.list-item-apoyo:hover {
+  color: #85a842;
+  cursor: auto; }
 
 .slider__section {
   position: relative; }
