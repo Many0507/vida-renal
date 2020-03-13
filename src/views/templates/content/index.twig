@@ -69,7 +69,7 @@
 							data-swiper-autoplay="4000" 
 							style="cursor: pointer;"
 						>
-							<a href="/actividades" style="height: 100%;">
+							<a href="/actividad-ver/{{ actividad.id }}" style="height: 100%;">
 								<img 
 									src="{{ base_url() }}/public/uploads/{{ actividad.imagen }}" 
 									alt="{{ actividad.titulo }}" 
@@ -141,7 +141,7 @@
 							data-swiper-autoplay="4000" 
 							style="cursor: pointer;"
 						>
-							<a href="/eventos" style="height: 100%;">
+							<a href="/evento-ver/{{ evento.id }}" style="height: 100%;">
 								<img 
 									src="{{ base_url() }}/public/uploads/{{ evento.imagen }}" 
 									alt="imagen Nuestros eventos" 

@@ -1,64 +1,259 @@
 <div class="container">
-	<h1 class="title is-2 has-text-info section-title has-text-centered">
+	<h1 class="title is-3 has-text-info section-title has-text-centered">
 		Preguntas frecuentes
 	</h1>
 	<section class="section section-title-topbar">
 		<div class="columns has-text-centered">
 			<div class="column is-12 center">
-				<div class="conoce-column has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
+				<div id="comoPuedoAyudar" class="conoce-column has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
 					¿Cómo puedo ayudar?
 				</div>
 			</div>
-		</div>
-		<div class="columns">
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿En qué consiste la atención médica integral de FVR?
+			<div class="modal" id="comoPuedoAyudarModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Cómo puedo ayudar?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									Para los pacientes de FVR cualquier ayuda hace un gran cambio, puede ayudar siendo
+									voluntario o haciendo algún tipo de donación, también puedes apoyar siguiéndonos en
+									nuestras redes sociales y ayudarnos a crecer para así tener un mayor alcance y ayudar al
+									mayor número de personas.
+								</p>
+    						</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿Cómo puedo ser parte de FVR?
-				</div>
-			</div>
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿FVR me ayuda a conseguir un transplante?
-				</div>
-			</div>
-		</div>
-		<div class="columns">
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿FVR me brinda o me canaliza con alguna institución para conseguir algún apoyo económico?
-				</div>
-			</div>
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿Qué tipo de atención recibiré de FVR?
-				</div>
-			</div>
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					Si no puedo ayudar económicamente a FVR ¿De qué manera puedo?
-				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
 			</div>
 		</div>
 		<div class="columns">
 			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿En qué consiste la atención médica integral FVR?
+				<div id="comoSerParte" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Cómo puedo ser parte de Fundación Vida Renal?
 				</div>
 			</div>
-			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿Qué pasa si FVR no puede brindarme la ayuda que requiero?
+			<div class="modal" id="comoSerParteModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Cómo puedo ser parte de Fundación Vida Renal?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									Ser beneficiario de FVR es muy sencillo, el primer paso es contactarnos vía telefónica y
+									seguir los pasos que nuestro equipo de trabajo le indicará.
+								</p>
+    						</div>
+						</div>
+					</div>
 				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
 			</div>
 			<div class="column is-4">
-				<div class="has-background-info has-text-white is-size-5 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff">
-					¿Cómo puedo consultar en qué se destinaron los recursos de la fundación?
+				<div id="fundacionAyuda" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Fundación Vida Renal me ayuda a conseguir un trasplante?
 				</div>
+			</div>
+			<div class="modal" id="fundacionAyudaModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Fundación Vida Renal me ayuda a conseguir un trasplante?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									No, FVR por el momento no cuenta con un proceso de ayuda para conseguir un órgano,
+									sin embargo FVR ayuda en el proceso psicológico para afrontar este cambio.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+			<div class="column is-4">
+				<div id="fundacionBrinda" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Fundación Vida Renal me brinda o me canaliza con alguna institución para conseguir algún apoyo económico?
+				</div>
+			</div>
+			<div class="modal" id="fundacionBrindaModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Fundación Vida Renal me brinda o me canaliza con alguna institución para conseguir algún apoyo económico?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									No, FVR no brinda ningún tipo de apoyo económico, tampoco canalizamos con ninguna institución financiera
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column is-4">
+				<div id="tipoAtencion" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Qué tipo de atención recibiré de Fundación Vida Renal?
+				</div>
+			</div>
+			<div class="modal" id="tipoAtencionModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Qué tipo de atención recibiré de Fundación Vida Renal?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									FVR cuenta con una serie de filtros que le permite clasificar a sus pacientes con base en
+									sus necesidades y adaptarse a lo que requiere el paciente.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+			<div class="column is-4">
+				<div id="maneraAyudar" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					Si no puedo ayudar económicamente, ¿De qué manera puedo ayudar?
+				</div>
+			</div>
+			<div class="modal" id="maneraAyudarModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									Si no puedo ayudar económicamente, ¿De qué manera puedo ayudar?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									Puede ayudar siendo voluntario o realizando alguna donación en especie. Sólo necesita
+									ponerse en contacto con nuestro equipo de trabajo.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+			<div class="column is-4">
+				<div id="atencionMedica" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿En qué consiste la atención médica integral de Fundación Vida Renal?
+				</div>
+			</div>
+			<div class="modal" id="atencionMedicaModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿En qué consiste la atención médica integral de Fundación Vida Renal?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									Los programas de FVR fueron diseñados con base en una exhaustiva investigación de las
+									necesidades de las personas que tienen este padecimiento, por ello, la atención integral
+									brinda apoyo médico, nutricional y psicológico, así como la impartición de talleres que
+									complementan la atención.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column is-4">
+				<div id="ayudaNoBrindada" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Qué pasa si Fundación Vida Renal no puede brindarme la ayuda que requiero?
+				</div>
+			</div>
+			<div class="modal" id="ayudaNoBrindadaModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Qué pasa si Fundación Vida Renal no puede brindarme la ayuda que requiero?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									FVR está comprometida con hacer un cambio, en caso de que FVR no cuente con la
+									ayuda que necesita el paciente, FVR canalizará al paciente en caso de que esta cuente
+									con un contacto o una alianza con una institución que pueda brindar el apoyo.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+			<div class="column is-4">
+				<div id="asistirTaller" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Cómo puedo asistir a algún taller de Fundación Vida Renal?
+				</div>
+			</div>
+			<div class="modal" id="asistirTallerModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Cómo puedo asistir a algún taller de Fundación Vida Renal?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									Se publica mediante nuestras redes sociales y la página oficial de FVR, las fechas y
+									requisitos para poder asistir a algún taller.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
+			</div>
+			<div class="column is-4">
+				<div id="consultarRecursos" class="has-background-info has-text-white is-size-6 has-text-weight-semibold has-text-centered center" style="padding: 2rem 0; height: 100%; border: 3px solid #fff; cursor: pointer; opacity: 0.95;">
+					¿Cómo puedo consultar en que se destinaron los recursos de la Fundación?
+				</div>
+			</div>
+			<div class="modal" id="consultarRecursosModal">
+  				<div class="modal-background" id="modal-background"></div>
+				<div class="modal-content" id="modal-content">
+					<div class="card">
+						<div class="card-content">
+							<div class="content">
+								<h1 class="title is-5 has-text-info section-title has-text-centered">
+									¿Cómo puedo consultar en que se destinaron los recursos de la Fundación?
+								</h1>
+								<p class="is-size-6" style="color: #333; opacity: 0.8; text-align: justify;">
+									En el apartado de transparencia, puede consultar los movimientos generales de la
+									fundación a través de nuestra plataforma dinámica de gastos de la fundación, si desea
+									información más detallada, puede descargar los estados financieros de la Fundación.
+								</p>
+    						</div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-close is-large" aria-label="close" id="modal-close"></button>
 			</div>
 		</div>
 		<div class="columns has-text-centered">

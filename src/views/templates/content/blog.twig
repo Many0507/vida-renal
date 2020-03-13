@@ -20,12 +20,12 @@
 							{{ timeAgo[blog.id].timeAgo }}
 						</p>
 						<div class="section" style="padding-top: 0;">
-							<h2 class="title is-4 has-text-info last-section">
-								<a href="blog/ver/{{ blog.id }}">
+							<h2 class="title is-4 last-section">
+								<a href="blog/ver/{{ blog.id }}" class="has-green-text">
 									{{ blog.titulo }}
 								</a>
 							</h2>
-							<p class="has-text-link has-text-weight-bold" style="font-size: 1rem;">
+							<p class="has-text-weight-bold" style="font-size: 1rem; color: #333; opacity: 0.9;">
 								{{ blog.texto_corto }}
 								... <a href="blog/ver/{{ blog.id }}">Seguir leyendo.</a>
 							</p>

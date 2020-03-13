@@ -269,3 +269,62 @@ if (blogSaveContent != null) {
 			document.getElementById('notification-error').style.display = 'block';
 	});
 }
+
+// Modales de FAQS
+document.querySelector('#comoPuedoAyudar').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#comoPuedoAyudarModal').classList.add('is-active');
+});
+document.querySelector('#comoSerParte').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#comoSerParteModal').classList.add('is-active');
+});
+document.querySelector('#fundacionAyuda').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#fundacionAyudaModal').classList.add('is-active');
+});
+document.querySelector('#fundacionBrinda').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#fundacionBrindaModal').classList.add('is-active');
+});
+document.querySelector('#tipoAtencion').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#tipoAtencionModal').classList.add('is-active');
+});
+document.querySelector('#maneraAyudar').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#maneraAyudarModal').classList.add('is-active');
+});
+document.querySelector('#atencionMedica').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#atencionMedicaModal').classList.add('is-active');
+});
+document.querySelector('#ayudaNoBrindada').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#ayudaNoBrindadaModal').classList.add('is-active');
+});
+document.querySelector('#asistirTaller').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#asistirTallerModal').classList.add('is-active');
+});
+document.querySelector('#consultarRecursos').addEventListener('click', () => {
+	document.querySelector('html').classList.add('is-clipped');
+	document.querySelector('#consultarRecursosModal').classList.add('is-active');
+});
+// Close Modal
+document.querySelectorAll('.modal-background').forEach(modal => {
+	modal.addEventListener('click', e => {
+		document.querySelector('html').classList.remove('is-clipped');
+		document.querySelectorAll('.modal').forEach(modalClose => {
+			modalClose.classList.remove('is-active');
+		});
+	});
+});
+document.querySelectorAll('.modal-close').forEach(modal => {
+	modal.addEventListener('click', () => {
+		document.querySelector('html').classList.remove('is-clipped');
+		document.querySelectorAll('.modal').forEach(modalClose => {
+			modalClose.classList.remove('is-active');
+		});
+	});
+});

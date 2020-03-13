@@ -105,6 +105,60 @@ class ViewsController extends Controller
           } else return $response->withHeader('Location', '/');
      }
 
+     public function tallerVer(Request $request, Response $response, array $args) 
+     {
+          $taller = [];
+          $id = intval($request->getAttribute('id'));
+
+          if ($id > 0) {
+               $taller = Taller::find($id);
+
+               if ($taller == null || empty($taller)) {
+                    return $response->withHeader('Location', '/que-hacemos');
+               }
+
+               return $this->container->view->render($response, 'taller-ver.twig', [
+                    'taller' => $taller
+               ]);
+          } else return $response->withHeader('Location', '/que-hacemos');
+     }
+
+     public function actividadVer(Request $request, Response $response, array $args) 
+     {
+          $actividad = [];
+          $id = intval($request->getAttribute('id'));
+
+          if ($id > 0) {
+               $actividad = Actividad::find($id);
+
+               if ($actividad == null || empty($actividad)) {
+                    return $response->withHeader('Location', '/');
+               }
+
+               return $this->container->view->render($response, 'actividad-ver.twig', [
+                    'actividad' => $actividad
+               ]);
+          } else return $response->withHeader('Location', '/');
+     }
+
+     public function eventoVer(Request $request, Response $response, array $args) 
+     {
+          $evento = [];
+          $id = intval($request->getAttribute('id'));
+
+          if ($id > 0) {
+               $evento = Evento::find($id);
+
+               if ($evento == null || empty($evento)) {
+                    return $response->withHeader('Location', '/');
+               }
+
+               return $this->container->view->render($response, 'evento-ver.twig', [
+                    'evento' => $evento
+               ]);
+          } else return $response->withHeader('Location', '/');
+     }
+
      public function comoApoyarnos(Request $request, Response $response, array $args)
      {
           return $this->container->view->render($response, 'como-apoyarnos.twig');
@@ -202,6 +256,16 @@ class ViewsController extends Controller
      public function tratamientos(Request $request, Response $response, array $args)
      {
           return $this->container->view->render($response, 'tratamientos.twig');
+     }
+
+     public function costoEnfermo(Request $request, Response $response, array $args)
+     {
+          return $this->container->view->render($response, 'costo-de-enfermo.twig');
+     }
+
+     public function trastorno(Request $request, Response $response, array $args)
+     {
+          return $this->container->view->render($response, 'trastorno.twig');
      }
 
      // Admin views

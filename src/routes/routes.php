@@ -11,6 +11,9 @@ $app->get('/conoce', 'ViewsController:conoce');
 $app->get('/donar', 'ViewsController:donar');
 $app->get('/preguntas', 'ViewsController:preguntas');
 $app->get('/que-hacemos', 'ViewsController:queHacemos');
+$app->get('/taller-ver/{id}', 'ViewsController:tallerVer');
+$app->get('/actividad-ver/{id}', 'ViewsController:actividadVer');
+$app->get('/evento-ver/{id}', 'ViewsController:eventoVer');
 $app->get('/talleres', 'ViewsController:talleres');
 $app->get('/testimonios', 'ViewsController:testimonios');
 $app->get('/transparencia', 'ViewsController:transparencia');
@@ -23,6 +26,8 @@ $app->get('/irc', 'ViewsController:irc');
 $app->get('/causas-principales', 'ViewsController:causasPrincipales');
 $app->get('/sintomas', 'ViewsController:sintomas');
 $app->get('/tratamientos', 'ViewsController:tratamientos');
+$app->get('/costo-de-enfermo', 'ViewsController:costoEnfermo');
+$app->get('/trastorno', 'ViewsController:trastorno');
 
 // api routes //
 $app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');

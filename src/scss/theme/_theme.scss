@@ -22,12 +22,21 @@
 }
 .has-green-text {
 	color: $normal_green_color !important;
+	&:hover {
+		color: $darken_green_color !important;
+	}
 }
 .has-green-text-light {
 	color: $lighten_green_color;
+	&:hover {
+		color: $normal_green_color !important;
+	}
 }
 .has-green-text-dark {
 	color: $darken_green_color;
+	&:hover {
+		color: $normal_green_color !important;
+	}
 }
 a.has-text-info:hover,
 a.has-text-info:focus {

@@ -226,12 +226,18 @@ h4 {
 
 .has-green-text {
   color: #93BB49 !important; }
+  .has-green-text:hover {
+    color: #85a842 !important; }
 
 .has-green-text-light {
   color: #a7d453; }
+  .has-green-text-light:hover {
+    color: #93BB49 !important; }
 
 .has-green-text-dark {
   color: #85a842; }
+  .has-green-text-dark:hover {
+    color: #93BB49 !important; }
 
 a.has-text-info:hover,
 a.has-text-info:focus {
@@ -326,7 +332,7 @@ a.has-text-info:focus {
     border-radius: 50%;
     transition: transform ease 1s; }
     .social__img:hover {
-      transform: rotateY(-20deg); }
+      transform: rotateY(-360deg); }
   .social__text {
     letter-spacing: 0.2rem;
     font-weight: 600; }

@@ -1,19 +1,19 @@
 <div class="container">
 	<h1 class="title is-3 has-text-info section-title has-text-centered">
-		{{ blog.titulo }}
+		{{ evento.titulo }}
 	</h1>
-	<section class="section section-title-topbar">
+	<section class="section section-title-topbar" style="text-align: justify !important;">
 		<div class="columns center">
 			<div class="column is-12 conoce-column">
 				<figure class="image is-16by9 queHacemos-img center-image">
-					<img src="{{ base_url() }}/public/uploads/{{ asset(blog.imagen) }}" class="zoom">
+					<img src="{{ base_url() }}/public/uploads/{{ evento.imagen }}" class="zoom">
 				</figure>
 			</div>
 		</div>
 	</section>
 	<section class="section" style="word-break: break-word;">
-		<p class="is-size-6" style="color: #333 !important; opacity: 0.9; white-space: pre-line;">
-			{{ blog.texto|raw }}
+		<p class="is-size-6" style="color: #333; opacity: 0.9; white-space: pre-line;">
+			{{ evento.texto }}
 		</p>
 	</section>
 </div>
