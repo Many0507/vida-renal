@@ -1,13 +1,13 @@
 <div class="container">
-	<h1 class="title section is-3 has-text-info section-title has-text-centered">
+	<h1 class="title section is-3 has-text-info section-title has-text-centered" style="padding-bottom: 1rem;">
 		¿Qué hacemos?
 	</h1>
 	<section class="section">
 		<div class="columns">
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio1.jpg' }}" class="image queHacemos-image" alt="Atencion Medica">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio1.jpg' }}" class="image queHacemos-image" alt="Atencion Medica" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						Una segunda opinión siempre es importante, queremos brindar a las personas, atención
 						médica personalizada con un Nefrólogo que revise su condición periódicamente y
 						conozca todo lo necesario acerca del paciente, todo esto por un precio que se encuentra
@@ -20,9 +20,9 @@
 				</p>
 			</div>
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio3.jpg' }}">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio3.jpg' }}" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						Todas las personas necesitamos ayuda, queremos que la experiencia en Vida Renal sea
 						integral, por eso buscamos tener un trato más íntimo y especializado, el apoyo psicológico
 						busca ayudar a las personas con ERC y a sus familias, para mejorar su calidad de vida,
@@ -36,9 +36,9 @@
 		</div>
 		<div class="columns">
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio4.jpg' }}">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio4.jpg' }}" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						La alimentación es la necesidad básica más importante del ser humano, lamentablemente
 						tendemos a descuidar completamente nuestros hábitos alimenticios, queremos brindarles
 						una atención nutricional personalizada, nuestro nutriólogo se encargará de
@@ -52,9 +52,9 @@
 				</p>
 			</div>
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio5.jpg' }}">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio5.jpg' }}" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						El monitoreo del paciente es una pieza clave para un enfermo renal, contamos con
 						diferentes convenios con laboratorios de análisis clínicos de renombre como el Chopo,
 						Olab o Laboratorios Azteca, que le permite al paciente realizarse estudios a un precio por
@@ -68,9 +68,9 @@
 		</div>
 		<div class="columns">
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio6.jpg' }}">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio6.jpg' }}" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						La prevención ante todo, uno de nuestros objetivos es lograr que las personas conozcan a
 						fondo la enfermedad, queremos fomentar la prevención antes que sea demasiado tarde,
 						por ello brindamos pláticas informativas sobre la enfermedad a jóvenes y personas que se
@@ -82,9 +82,9 @@
 				</p>
 			</div>
 			<div class="column is-6">
-				<figure class="image is-16by9 queHacemos-img is-relative">
-					<img src="{{ base_url() }}{{ '/public/img/servicio2.jpg' }}">
-					<div class="queHacemos__content">
+				<figure class="image is-16by9 queHacemos-img is-relative" style="background: #b457a8;">
+					<img src="{{ base_url() }}{{ '/public/img/servicio2.jpg' }}" style="opacity: .88;">
+					<div class="queHacemos__content" style="font-weight: 600;">
 						Buscamos brindar apoyo con medicinas y materiales que ocupan los enfermos renales a
 						través de otras personas que donen y nos brinden su ayuda.
 					</div>
@@ -107,7 +107,9 @@
 							<img 
 								src="{{ base_url() }}/public/uploads/{{ taller.imagen }}" 
 								alt="imagen de Taller" 
-								class="image slider__img"
+								class="image slider__img taller_img"
+								id="t-{{ taller.id }}"
+								style="cursor: pointer;"
 							/>
 							<p class="slider__text">
 								<a href="/taller-ver/{{ taller.id }}" class="font-weight-bolder has-green-text-dark">
@@ -117,7 +119,7 @@
 						</div>
 					{% endfor %}
 				{% else %}
-					<p class="has-text-centered has-text-link has-text-weight-bold is-size-5 is-fullwidth">
+					<p class="has-text-centered has-green-text has-text-weight-bold is-size-5 is-fullwidth">
 						No hay talleres
 					</p>
 				{% endif %}

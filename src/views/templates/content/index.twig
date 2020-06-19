@@ -2,12 +2,16 @@
 	<div class="columns header__columns">
 		<div class="column is-8 is-flex header__column">
 			<figure class="image is-16by9 header__video">
-				<video class="has-ratio" controls autoplay muted>
+				<video class="has-ratio" controls autoplay>
 					<source src="{{ base_url() }}{{ video.video }}" type="video/mp4"/>
 				</video>
 			</figure>
 		</div>
-		<div class="column is-4 is-flex header__column">
+		{% if blogs|length < 0 %}
+			<div class="column is-4 is-flex header__column" style="justify-content: flex-start;">
+		{% else %}
+			<div class="column is-4 is-flex header__column">
+		{% endif %}
 			<h2 class="title is-3 font-weight-bolder">
 				<a href="/blog" class="has-text-info" style="font-size: 1.7rem">
 					Blog
@@ -23,13 +27,17 @@
 										<img 
 											src="{{ base_url() }}/public/uploads/{{ blog.imagen }}" 
 											alt="{{ blog.titulo }}"
+											loading="lazy"
 										/>
 									</figure>
 								</div>
 								<div class="media-content">
 									<div class="content">
 										<p class="has-green-text-dark blog-text">
-											{{ blog.titulo }}
+											{{ blog.titulo|striptags|length > 85 
+												? blog.titulo|striptags|slice(0, 85) ~ '...' 
+												: blog.titulo|striptags 
+											}}
 										</p>
 									</div>
 								</div>
@@ -47,9 +55,9 @@
 
 	<section class="section first-section">
 		<h3 class="title is-3 has-text-centered section-title font-weight-bolder">
-			<a href="/actividades" class="has-text-info">
+			<span class="has-text-info">
 				Nuestras actividades
-			</a>
+			</span>
 			<p 
 				class="has-text-centered is-size-6 has-text-weight-bold" 
 				style="margin-top: 1em; color: #333; opacity: .85;"
@@ -74,6 +82,7 @@
 									src="{{ base_url() }}/public/uploads/{{ actividad.imagen }}" 
 									alt="{{ actividad.titulo }}" 
 									class="image slider__img zoom"
+									loading="lazy"
 								/>
 							</a>
 						</div>
@@ -101,6 +110,7 @@
 								src="{{ base_url() }}/public/uploads/{{ servicio.imagen }}" 
 								alt="{{ servicio.titulo }}"
 								class="image slider__img"
+								loading="lazy"
 							/>
 							<p class="has-green-text-dark font-weight-bolder slider__text" style="opacity: 0.8;">
 								{{ servicio.titulo }}
@@ -120,9 +130,9 @@
 
 	<section class="section last-section">
 		<h3 class="title is-3 has-text-centered section-subtitle has-text-info font-weight-bolder">
-			<a href="/eventos" class="has-text-info">
+			<span class="has-text-info">
 				Proximos eventos
-			</a>
+			</span>
 			<p 
 				class="has-text-centered is-size-6 has-text-weight-bold" 
 				style="margin-top: 1em; color: #333; opacity: .85;"
@@ -140,6 +150,7 @@
 							data-tippy-content="{{ evento.titulo }}" 
 							data-swiper-autoplay="4000" 
 							style="cursor: pointer;"
+							loading="lazy"
 						>
 							<a href="/evento-ver/{{ evento.id }}" style="height: 100%;">
 								<img 

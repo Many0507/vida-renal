@@ -31,6 +31,19 @@ h3 {
 h4 {
   font-size: 1.1rem; }
 
+input:focus {
+  box-shadow: none;
+  outline: none;
+  border: none; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+input[type=number] {
+  -moz-appearance: textfield; }
+
 .container-100 {
   max-width: 100%; }
 
@@ -38,6 +51,10 @@ h4 {
   .container {
     padding-left: 1rem;
     padding-right: 1rem; } }
+
+@media screen and (max-width: 1023px) {
+  .container .header__columns {
+    margin-top: 1rem; } }
 
 .is-fullwidth {
   width: 100% !important; }
@@ -123,9 +140,12 @@ h4 {
   justify-content: center; }
 
 .quienesSomos__Section .card-container {
-  width: 85%;
+  width: 87%;
   background: #fff;
   overflow: hidden; }
+  @media screen and (max-width: 1023px) {
+    .quienesSomos__Section .card-container {
+      width: 100%; } }
 
 .quienesSomos__Section .card-image {
   display: flex;
@@ -172,6 +192,10 @@ h4 {
   width: 100%;
   box-shadow: 4px 4px 5px #bdc3c7; }
 
+@media screen and (max-width: 768px) {
+  .help_column {
+    width: 100% !important; } }
+
 .main {
   min-height: calc(100vh - 52px - 24px);
   margin-top: 0; }
@@ -204,6 +228,10 @@ h4 {
       text-align: center;
       padding: 0.5rem;
       padding-bottom: 3rem; } }
+
+@media screen and (min-width: 1023px) {
+  .paypal__form {
+    width: 44%; } }
 
 .is-link,
 .has-background-link {
@@ -298,7 +326,8 @@ a.has-text-info:focus {
         height: 100vh;
         position: fixed;
         right: -100vw;
-        transition: right ease 0.3s; } }
+        transition: right ease 0.3s;
+        margin-top: 2px; } }
   .navbar-start {
     flex-wrap: wrap;
     justify-content: center; }
@@ -330,29 +359,39 @@ a.has-text-info:focus {
     width: 3rem;
     box-shadow: 2px 2px 6px #bdc3c7;
     border-radius: 50%;
-    transition: transform ease 1s; }
+    transition: transform ease 0.5s; }
     .social__img:hover {
-      transform: rotateY(-360deg); }
+      transform: rotateY(-180deg); }
   .social__text {
     letter-spacing: 0.2rem;
     font-weight: 600; }
 
+@media screen and (max-width: 1214px) and (min-width: 1024px) {
+  .valor__grid {
+    width: 25% !important; } }
+
 .valor-box {
-  width: 70%;
+  width: 100%;
   border-radius: 5px;
-  overflow: hidden; }
+  overflow: hidden;
+  word-break: break-word; }
   @media screen and (max-width: 1215px) {
     .valor-box {
-      width: 100%;
-      width: 85%; } }
+      width: 100%; } }
+  @media screen and (max-width: 468px) {
+    .valor-box {
+      width: 75% !important; } }
   .valor-box__img {
-    width: 100% !important; }
+    width: 100% !important;
+    background-color: #944689;
+    border-radius: 50%; }
     .valor-box__img img {
       border-radius: 50%;
       width: 100%;
       height: 100%;
       border: 3px solid #fff;
-      transition: all ease-in 0.2s; }
+      transition: all ease-in 0.2s;
+      opacity: .85; }
   .valor-box:hover .valor-box__text {
     left: 0; }
   .valor-box:hover .valor-box__img img {
@@ -372,7 +411,8 @@ a.has-text-info:focus {
     padding: 0.2rem;
     opacity: 0.8;
     transition: left ease-in 0.2s;
-    text-align: center; }
+    text-align: center;
+    z-index: 5; }
     .valor-box__text span {
       color: #944689; }
 
@@ -386,10 +426,16 @@ a.has-text-info:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #222;
   transition: all ease-in-out 0.3s;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6); }
+  text-align: justify;
+  background: rgba(242, 242, 242, 0.75); }
+  @media screen and (max-width: 946px) {
+    .queHacemos__content {
+      font-size: .8rem !important; } }
+  @media screen and (max-width: 440px) {
+    .queHacemos__content {
+      display: none; } }
 
 .queHacemos-img {
   width: 100%;
@@ -400,6 +446,9 @@ a.has-text-info:focus {
     transition: all ease 0.3s; }
   .queHacemos-img:hover img {
     transform: scale(1.3); }
+    @media screen and (max-width: 440px) {
+      .queHacemos-img:hover img {
+        transform: none; } }
   .queHacemos-img:hover .queHacemos__content {
     top: 0; }
 
@@ -414,11 +463,16 @@ a.has-text-info:focus {
       top: 0 !important; } }
 
 .testimonios__bg {
-  background: rgba(255, 255, 255, 0.7) !important; }
+  background: rgba(255, 255, 255, 0.85) !important; }
 
 .list-item-apoyo:hover {
   color: #85a842;
   cursor: auto; }
+
+.paypal__input {
+  width: 100%; }
+  .paypal__input:focus {
+    outline: none; }
 
 .slider__section {
   position: relative; }
@@ -453,7 +507,8 @@ a.has-text-info:focus {
 
 .swiper-button-next,
 .swiper-button-prev {
-  top: 55%; }
+  top: 55%;
+  color: #944689; }
 
 .swiper-button-next:focus,
 .swiper-button-prev:focus {

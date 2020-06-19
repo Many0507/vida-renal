@@ -9,12 +9,12 @@
 	</section>
 	<section class="section">
 		<div class="columns section center" style="flex-direction: row;">
-			<div class="column is-6">
+			<div class="column is-6 is-1-mobile help_column">
 				<figure class="image is-16by9 queHacemos-img" style="box-shadow: 0.5px 0.5px 2px 0 #000;">
 					<img src="{{ base_url() }}{{ '/public/img/donar1.jpg' }}" class="zoom">
 				</figure>
 			</div>
-			<div class="column is-6 center">
+			<div class="column is-6 center is-1-mobile help_column">
 				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Quiero donar!
 				</h2>
@@ -34,7 +34,9 @@
 					class="has-text-centered has-text-weight-bold is-size-6"
 					style="color: #333; opacity: 0.8;"
 				>
-					xxx-xxx-xxx-xxx <br /> clave interbancaria xxx-xxx-xxx
+					1043904423 <br /> 
+					<span class="has-text-link">Clabe interbancaria:</span> 
+					072 180 01043904423 2
 				</p>
 				<p 
 					class="has-text-centered has-text-weight-bold is-size-6"
@@ -53,7 +55,7 @@
 			</div>
 		</div>
 		<div class="columns section center" style="flex-direction: row;">
-			<div class="column is-6 center">
+			<div class="column is-6 center is-1-mobile help_column">
 				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Voluntariado!
 				</h2>
@@ -66,102 +68,189 @@
 					importante y necesaria, compártenos tus datos y nosotros nos
 					pondremos en contacto contigo:
 				</p>
-				<form style="width: 100%; margin-top: 2rem;">
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Nombre:
-						</label>
-						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
+				<form 
+					id="voluntariado_form"
+					style="width: 100%; margin-top: 2rem;"
+				>
+					<div class="columns">
+						<div class="column is-12">
+							<div class="notification is-primary" style="display: none;" id="message_doneV">
+								<span id="message_doneV_text"></span>
+							</div>
+							<div class="notification is-danger" style="display:none;" id="message_errorV">
+								<span id="message_errorV_text"></span>
+							</div>
+							<div class="field">
+								<label
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Nombre completo:
+									</span>
+								</label>
+								<div class="control">
+									<input 
+										id="nombre"
+										class="input" 
+										type="text" 
+										required
+										name="nombre"
+										style="height: 32px; color: #333;"
+									>
+								</div>
+							</div>
+						</div>
+						<div class="column is-6">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Edad:
+									</span>
+								</label>
+								<div class="control">
+									<input 
+										id="edad"
+										class="input" 
+										type="number" 
+										required
+										name="edad"
+										style="height: 32px; color: #333;"
+									>
+								</div>
+							</div>
+						</div>
+						<div class="column is-6">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Sexo:
+									</span>
+								</label>
+								<div class="control" style="height: 32px; display: flex; align-items: center;">
+									<label class="radio">
+    									<input type="radio" style="color: #333;" name="sexo" value="hombre" id="checkHombre">
+    									Hombre
+  									</label>
+  									<label class="radio">
+    									<input type="radio" style="color: #333;" name="sexo" value="mujer" id="checkMujer">
+										Mujer
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="column is-6">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Teléfono:
+									</span>
+								</label>
+								<div class="control">
+									<input 
+										id="telefono"
+										class="input" 
+										type="text" 
+										required
+										name="telefono"
+										style="height: 32px; color: #333;"
+									>
+								</div>
+							</div>
+						</div>
+						<div class="column is-6">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Correo electrónico:
+									</span>
+								</label>
+								<div class="control">
+									<input 
+										id="email"
+										class="input" 
+										type="email" 
+										required
+										name="email"
+										style="height: 32px; color: #333;"
+									>
+								</div>
+							</div>
+						</div>
+						<div class="column is-12">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Red social:
+									</span>
+								</label>
+								<div class="control">
+									<input 
+										id="social"
+										class="input" 
+										type="text" 
+										name="social"
+										style="height: 32px; color: #333;"
+									>
+								</div>
+							</div>
+						</div>
+						<div class="column is-12">
+							<div class="field">
+								<label 
+									class="label" 
+									style="display: flex; align-items: center; margin-bottom: 0;"
+								>
+									<span class="has-green-text-dark">
+										Mensaje:
+									</span>
+								</label>
+								<textarea 
+									id="mensaje"
+									class="textarea has-fixed-size" 
+									name="mensaje"
+									style="color: #333;"
+								></textarea>
+							</div>
 						</div>
 					</div>
 					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Edad:
-						</label>
 						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu edad" style="height: 30px;">
-						</div>
-					</div>
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Sexo:
-						</label>
-						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
-						</div>
-					</div>
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Teléfono:
-						</label>
-						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
-						</div>
-					</div>
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Correo electrónico:
-						</label>
-						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
-						</div>
-					</div>
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Red social:
-						</label>
-						<div class="control">
-							<input class="input" type="text" placeholder="Intruduce tu nombre completo" style="height: 30px;">
-						</div>
-					</div>
-					<div class="field">
-						<label 
-							class="label" 
-							style="display: flex; align-items: center; margin-bottom: 0; color: #333; opacity: 0.8;"
-						>
-							Mensaje:
-						</label>
-						<textarea class="textarea has-fixed-size" placeholder="e.g. Hello world"></textarea>
-					</div>
-					<div class="field">
-						<div class="control">
-   						<button class="button is-link is-fullwidth">Enviar</button>
+   							<button class="button is-link is-fullwidth" type="submit">
+							   Enviar mensaje
+							</button>
   						</div>
 					</div>
 				</form>
 			</div>
-			<div class="column is-6 center" style="flex-direction: row;">
-				<figure class="image is-16by9 queHacemos-img">
-					<img src="{{ base_url() }}{{ asset('/public/img/donar2.png') }}" class="zoom">
+			<div class="column is-6 center is-1-mobile help_column" style="flex-direction: row;">
+				<figure class="image is-16by9 queHacemos-img no-zoom">
+					<img src="{{ base_url() }}{{ asset('/public/img/donar2.png') }}" class="no-zoom">
 				</figure>
 			</div>
 		</div>
 		<div class="columns section last-section center" style="flex-direction: row;">
-			<div class="column is-6">
+			<div class="column is-6 is-1-mobile help_column">
 				<figure class="image is-16by9 queHacemos-img">
 					<img src="{{ base_url() }}{{ asset('/public/img/valor1.jpg') }}" class="zoom">
 				</figure>
 			</div>
-			<div class="column is-6">
+			<div class="column is-6 is-1-mobile help_column">
 				<h2 class="title is-4 has-green-text last-section has-text-centered">
 					¡Apoyo en especie!
 				</h2>

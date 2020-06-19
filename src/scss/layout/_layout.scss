@@ -7,6 +7,11 @@
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
+	.header__columns {
+		@media screen and (max-width: 1023px) {
+			margin-top: 1rem;
+		}
+	}
 }
 .is-fullwidth {
 	width: 100% !important;
@@ -101,9 +106,12 @@
 	justify-content: center;
 }
 .quienesSomos__Section .card-container {
-	width: 85%;
+	width: 87%;
 	background: #fff;
 	overflow: hidden;
+	@media screen and (max-width: 1023px) {
+		width: 100%;
+	}
 }
 .quienesSomos__Section .card-image {
 	display: flex;
@@ -189,6 +197,11 @@
 		box-shadow: 4px 4px 5px #bdc3c7;
 	}
 }
+.help_column {
+	@media screen and (max-width: 768px) {
+		width: 100% !important;
+	}
+}
 .main {
 	min-height: calc(100vh - 52px - 24px);
 	margin-top: 0;
@@ -226,5 +239,10 @@
 		text-align: center;
 		padding: 0.5rem;
 		padding-bottom: 3rem;
+	}
+}
+.paypal__form {
+	@media screen and (min-width: 1023px) {
+		width: 44%;
 	}
 }

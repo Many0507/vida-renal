@@ -6,22 +6,22 @@
 				<ul class="social is-flex">
 					<li class="social__item">
 						<a href="https://www.instagram.com/vidarenalmx/" class="social__link" target="_blank">
-							<img src="{{ base_url() }}{{ '/public/icons/instagram.svg' }}" alt="icono de facebook" class="social__img"/>
+							<img src="{{ base_url() }}{{ '/public/icons/instagram.svg' }}" alt="Instagram" class="social__img"/>
 						</a>
 					</li>
 					<li class="social__item">
 						<a href="https://www.youtube.com/channel/UC5_bLKq-t47ehUjx_hHhDRA" class="social__link" target="_blank">
-							<img src="{{ base_url() }}{{ '/public/icons/youtube.svg' }}" alt="icono de facebook" class="social__img"/>
+							<img src="{{ base_url() }}{{ '/public/icons/youtube.svg' }}" alt="Youtube" class="social__img"/>
 						</a>
 					</li>
 					<li class="social__item">
 						<a href="https://www.facebook.com/VidaRenalMx/?epa=SEARCH_BOX" class="social__link" target="_blank">
-							<img src="{{ base_url() }}{{ '/public/icons/facebook.svg' }}" alt="icono de facebook" class="social__img"/>
+							<img src="{{ base_url() }}{{ '/public/icons/facebook.svg' }}" alt="Facebook" class="social__img"/>
 						</a>
 					</li>
 					<li class="social__item">
 						<a href="https://twitter.com/VidaRenal" class="social__link" target="_blank">
-							<img src="{{ base_url() }}{{ '/public/icons/twitter.svg' }}" alt="icono de facebook" class="social__img"/>
+							<img src="{{ base_url() }}{{ '/public/icons/twitter.svg' }}" alt="Twitter" class="social__img"/>
 						</a>
 					</li>
 				</ul>
@@ -35,17 +35,10 @@
 				</figure>
 			</div>
 			<div class="column is-3 is-flex header__column">
-				{# Buscador
-					<div class="field">
-						<div class="control">
-							<input class="input is-rounded header_search" type="search" placeholder="Buscar"/>
-						</div>
-					</div> 
-				#}
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal__form">
 					<input type="hidden" name="cmd" value="_s-xclick" />
 					<input type="hidden" name="hosted_button_id" value="2LANUFEWLUQY6" />
-					<input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donar con el botón PayPal" />
+					<input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donar con el botón PayPal" class="paypal__input" />
 					<img alt="" border="0" src="https://www.paypal.com/es_MX/i/scr/pixel.gif" width="1" height="1" />
 				</form>
 			</div>

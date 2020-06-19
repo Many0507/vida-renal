@@ -65,6 +65,8 @@ $app->patch('/admin/blog-content/{id}', 'ApiController:crearContenidoBlog');
 $app->post('/admin/verifyUser', 'LoginController:verifyUser');
 $app->get('/admin/logoutUser', 'LoginController:logoutUser');
 
+$app->post('/voluntariado/registro', 'ApiController:voluntariado');
+
 // video routes //
 $app->post('/video-principal', 'VideoPrincipalController:Agregar');
 $app->post('/video-testimonios', 'VideoTestimoniosController:Agregar');

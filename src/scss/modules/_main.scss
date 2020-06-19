@@ -14,9 +14,9 @@
 		width: 3rem;
 		box-shadow: 2px 2px 6px #bdc3c7;
 		border-radius: 50%;
-		transition: transform ease 1s;
+		transition: transform ease 0.5s;
 		&:hover {
-			transform: rotateY(-360deg);
+			transform: rotateY(-180deg);
 		}
 	}
 	&__text {
@@ -24,22 +24,33 @@
 		font-weight: 600;
 	}
 }
+.valor__grid {
+	@media screen and (max-width: 1214px) and (min-width: 1024px) {
+		width: 25% !important;
+	}
+}
 .valor-box {
-	width: 70%;
+	width: 100%;
 	border-radius: 5px;
 	overflow: hidden;
+	word-break: break-word;
 	@media screen and (max-width: 1215px) {
 		width: 100%;
-		width: 85%;
+	}
+	@media screen and (max-width: 468px) {
+		width: 75% !important;
 	}
 	&__img {
 		width: 100% !important;
+		background-color: $normal_blue_color;
+		border-radius: 50%;
 		& img {
 			border-radius: 50%;
 			width: 100%;
 			height: 100%;
 			border: 3px solid #fff;
 			transition: all ease-in 0.2s;
+			opacity: .85;
 		}
 	}
 	&:hover &__text {
@@ -64,6 +75,7 @@
 		opacity: 0.8;
 		transition: left ease-in 0.2s;
 		text-align: center;
+		z-index: 5;
 		// @media screen and(max-width: 768px) {
 		// 	left: 0;
 		// 	opacity: 0.8;
@@ -86,10 +98,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #fff;
+	color: #222;
 	transition: all ease-in-out 0.3s;
-	text-align: center;
-	background: rgba(#000, 0.60);
+	text-align: justify;
+	background: rgba(#f2f2f2, 0.75);
+	@media screen and (max-width: 946px) {
+		font-size: .8rem !important;
+	}
+	@media screen and (max-width: 440px) {
+		display: none;
+	}
 }
 .queHacemos-img {
 	width: 100%;
@@ -101,6 +119,9 @@
 	}
 	&:hover img {
 		transform: scale(1.3);
+		@media screen and (max-width: 440px) {
+			transform: none;
+		}
 	}
 	&:hover .queHacemos__content {
 		top: 0;
@@ -117,9 +138,15 @@
 	}
 }
 .testimonios__bg {
-	background: rgba(#fff, 0.7) !important;
+	background: rgba(#fff, 0.85) !important;
 }
 .list-item-apoyo:hover {
 	color: #85a842;
 	cursor: auto;
+}
+.paypal__input {
+	width: 100%;
+	&:focus {
+		outline: none;
+	}
 }

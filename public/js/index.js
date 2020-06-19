@@ -122,6 +122,16 @@ if (noSwiper != null) {
 	});
 }
 
+// Taller Redirect //
+const tallerImages = document.querySelectorAll('.taller_img');
+tallerImages.forEach(img => {
+	img.addEventListener('click', e => {
+		const id = e.target.id.split('-')[1];
+		window.location.href = `/taller-ver/${id}`;
+		return;
+	});
+});
+
 // Tab Active //
 if(navbar != null) {
 	const pathName = window.location.pathname.split('/')[1];
@@ -140,7 +150,7 @@ if (navbarBtn != null) {
 // Navbar Box Shadow //
 if (navbarContent != null) {
 	window.addEventListener('scroll', e => {
-		if (window.scrollY > 0) navbarContent.style.boxShadow = '1px 1px 5px #000';
+		if (window.scrollY > 0) navbarContent.style.boxShadow = '1px 1px 3px #000';
 		else navbarContent.style.boxShadow = 'none';
 	});
 }
@@ -271,46 +281,48 @@ if (blogSaveContent != null) {
 }
 
 // Modales de FAQS
-document.querySelector('#comoPuedoAyudar').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#comoPuedoAyudarModal').classList.add('is-active');
-});
-document.querySelector('#comoSerParte').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#comoSerParteModal').classList.add('is-active');
-});
-document.querySelector('#fundacionAyuda').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#fundacionAyudaModal').classList.add('is-active');
-});
-document.querySelector('#fundacionBrinda').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#fundacionBrindaModal').classList.add('is-active');
-});
-document.querySelector('#tipoAtencion').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#tipoAtencionModal').classList.add('is-active');
-});
-document.querySelector('#maneraAyudar').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#maneraAyudarModal').classList.add('is-active');
-});
-document.querySelector('#atencionMedica').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#atencionMedicaModal').classList.add('is-active');
-});
-document.querySelector('#ayudaNoBrindada').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#ayudaNoBrindadaModal').classList.add('is-active');
-});
-document.querySelector('#asistirTaller').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#asistirTallerModal').classList.add('is-active');
-});
-document.querySelector('#consultarRecursos').addEventListener('click', () => {
-	document.querySelector('html').classList.add('is-clipped');
-	document.querySelector('#consultarRecursosModal').classList.add('is-active');
-});
+if (document.querySelector('#comoPuedoAyudar') != null) {
+	document.querySelector('#comoPuedoAyudar').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#comoPuedoAyudarModal').classList.add('is-active');
+	});
+	document.querySelector('#comoSerParte').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#comoSerParteModal').classList.add('is-active');
+	});
+	document.querySelector('#fundacionAyuda').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#fundacionAyudaModal').classList.add('is-active');
+	});
+	document.querySelector('#fundacionBrinda').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#fundacionBrindaModal').classList.add('is-active');
+	});
+	document.querySelector('#tipoAtencion').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#tipoAtencionModal').classList.add('is-active');
+	});
+	document.querySelector('#maneraAyudar').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#maneraAyudarModal').classList.add('is-active');
+	});
+	document.querySelector('#atencionMedica').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#atencionMedicaModal').classList.add('is-active');
+	});
+	document.querySelector('#ayudaNoBrindada').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#ayudaNoBrindadaModal').classList.add('is-active');
+	});
+	document.querySelector('#asistirTaller').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#asistirTallerModal').classList.add('is-active');
+	});
+	document.querySelector('#consultarRecursos').addEventListener('click', () => {
+		document.querySelector('html').classList.add('is-clipped');
+		document.querySelector('#consultarRecursosModal').classList.add('is-active');
+	});
+}
 // Close Modal
 document.querySelectorAll('.modal-background').forEach(modal => {
 	modal.addEventListener('click', e => {
@@ -328,3 +340,103 @@ document.querySelectorAll('.modal-close').forEach(modal => {
 		});
 	});
 });
+
+// Validations Voluntariado //
+if (document.getElementById('voluntariado_form') != null) {
+	const validateNombre = (nombre) => {
+		if (nombre == '' || nombre == null || nombre.length <= 0 || nombre.charAt(0) == '') return false;
+		if (nombre.length > 60) return false;
+		if (!/[a-zA-ZñÑáéíóúü ]/g.test(nombre)) return false;
+		return true;
+	}
+	const validateEdad = (edad) => {
+		if (!/[0-9 ]/g.test(edad)) return false;
+		if (edad == '' || edad == null || edad <= 0) return false;
+		if (edad > 100) return false;
+		return true;
+	}
+	const validateTelefono = (telefono) => {
+		if (!/[0-9 ]/g.test(telefono)) return false;
+		if (telefono == '' || telefono == null || telefono <= 0) return false;
+		if (telefono.length > 10) return false;
+		return true;
+	}
+	const validateEmail = (email) => {
+		if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(email)) return false;
+		if (email == '' || email == null || email.length <= 0) return false;
+		return true;
+	}
+	const validateMensaje = (mensaje) => {
+		if (mensaje == '' || mensaje == null || mensaje.length <= 0) return false;
+		if (mensaje.length > 160) return false;
+		return true;
+	}
+
+	document.getElementById('voluntariado_form').addEventListener('submit', async e => {
+		e.preventDefault();
+		const nombre = document.getElementById('nombre').value.trim();
+		const edad = document.getElementById('edad').value.trim();
+		const telefono = document.getElementById('telefono').value.trim();
+		const email = document.getElementById('email').value.trim();
+		const mensaje = document.getElementById('mensaje').value.trim();
+		const social = document.getElementById('social').value.trim();
+		const checkHombre = document.getElementById('checkHombre');
+		const checkMujer = document.getElementById('checkMujer');
+
+		let isValidNombre = validateNombre(nombre);
+		let isValidEdad = validateEdad(edad);
+		let isValidTelefono = validateTelefono(telefono);
+		let isValidEmail = validateEmail(email);
+		let isValidMensaje = validateMensaje(mensaje);
+		let isValidSexo = false;
+
+		if (checkHombre.checked || checkMujer.checked) isValidSexo = true;
+
+		if (!isValidNombre ||
+			!isValidEdad ||
+			!isValidTelefono ||
+			!isValidEmail ||
+			!isValidMensaje ||
+			!isValidSexo) {
+				document.getElementById('message_errorV').style.display = 'block';
+				document.getElementById('message_doneV').style.display = 'none';
+				document.getElementById('message_errorV_text').innerHTML = 'Ha ocurrido un error al enviar sus datos, verifique su informacion e inténtelo más tarde.';
+				return;
+		}
+
+		let sexo = '';
+		if (checkHombre.checked) sexo = 'Hombre'
+		else if (checkMujer.checked) sexo = 'Mujer'
+
+		const data = await axios.post(
+			`${window.location.protocol}//${window.location.host}/voluntariado/registro`, {
+				nombre,
+				edad,
+				telefono,
+				email,
+				mensaje,
+				social,
+				sexo
+		});
+
+		if (data.data.success == 0) {
+			document.getElementById('message_errorV').style.display = 'block';
+			document.getElementById('message_doneV').style.display = 'none';
+			document.getElementById('message_errorV_text').innerHTML = 'Ha ocurrido un error al enviar sus datos, verifique su informacion e inténtelo más tarde.';
+			return;
+		} else {
+			document.getElementById('message_errorV').style.display = 'none';
+			document.getElementById('message_doneV').style.display = 'block';
+			document.getElementById('message_doneV_text').innerHTML = 'Mensaje enviado correctamente';
+
+			document.getElementById('nombre').value = '';
+			document.getElementById('edad').value = '';
+			document.getElementById('telefono').value = '';
+			document.getElementById('email').value = '';
+			document.getElementById('social').value = '';
+			document.getElementById('mensaje').value = '';
+			document.getElementById('checkHombre').checked = false;
+			document.getElementById('checkMujer').checked = false;
+		}
+	});
+}

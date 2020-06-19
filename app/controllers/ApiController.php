@@ -337,6 +337,32 @@ class ApiController extends Controller
           return json_encode(['success' => false]);
      }
 
+     // Voluntariado Mail //
+     public function voluntariado (Request $request, Response $response, array $args)
+     {    
+          $from = "vidarenal.org";
+          $to = "contacto@vidarenal.org";
+
+          $subject = "Solicitud de voluntariado";
+          $headers = "From:" . $from . "\r\n";
+          $headers .= "MIME-Version: 1.0\r\n";
+          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+          $message = '<html><body>';
+          $message .= '<h1 style="color: #85a842;">Solicitud de voluntariado</h1>';
+          $message .= '<p><strong style="color: #944689">Nombre: </strong>'. $request->getParam('nombre') .'</p>';
+          $message .= '<p><strong style="color: #944689">Edad: </strong>'. $request->getParam('edad') .'</p>';
+          $message .= '<p><strong style="color: #944689">Sexo: </strong>'. $request->getParam('sexo') .'</p>';
+          $message .= '<p><strong style="color: #944689">Teléfono: </strong>'. $request->getParam('telefono') .'</p>';
+          $message .= '<p><strong style="color: #944689">Correo electrónico: </strong>'. $request->getParam('email') .'</p>';
+          $message .= '<p><strong style="color: #944689">Red social: </strong>'. $request->getParam('social') .'</p>';
+          $message .= '<p><strong style="color: #944689">Mensaje: </strong>'. $request->getParam('mensaje') .'</p>';
+          $message .= '</body></html>';
+
+          if (mail($to, $subject, $message, $headers)) return json_encode(['success' => 1]);
+          else return json_encode(['success' => 0]);
+     }
+
      // Helpers //
      public function getFileName($request)
      {
