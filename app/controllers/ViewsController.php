@@ -28,8 +28,6 @@ class ViewsController extends Controller
           $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
           $video = VideoPrincipal::get()->first();
 
-          $test = SYSTEM_NAME;
-
           return $this->container->view->render($response, 'index.twig', [               
                'actividades' => $actividades,
                'servicios' => $servicios,
