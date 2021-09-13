@@ -1,35 +1,47 @@
 <?php
+defined('BASEPATH') or exit('No se permite el acceso directo');
 
-// view routes //
-$app->get('/', 'ViewsController:index');
-$app->get('/quienes-somos', 'ViewsController:quienesSomos');
-$app->get('/aliados', 'ViewsController:aliados');
-$app->get('/blog', 'ViewsController:blog');
-$app->get('/blog/ver/{id}', 'ViewsController:blogVer');
-$app->get('/como-apoyarnos', 'ViewsController:comoApoyarnos');
-$app->get('/conoce', 'ViewsController:conoce');
-$app->get('/donar', 'ViewsController:donar');
-$app->get('/preguntas', 'ViewsController:preguntas');
-$app->get('/que-hacemos', 'ViewsController:queHacemos');
-$app->get('/taller-ver/{id}', 'ViewsController:tallerVer');
-$app->get('/actividad-ver/{id}', 'ViewsController:actividadVer');
-$app->get('/evento-ver/{id}', 'ViewsController:eventoVer');
-$app->get('/talleres', 'ViewsController:talleres');
-$app->get('/testimonios', 'ViewsController:testimonios');
-$app->get('/transparencia', 'ViewsController:transparencia');
-$app->get('/actividades', 'ViewsController:actividades');
-$app->get('/eventos', 'ViewsController:eventos');
-$app->get('/quiero-ayudar', 'ViewsController:Ayudar');
-$app->get('/que-hacen-nuestros-rinones', 'ViewsController:queHacenNR');
-$app->get('/tu-salud-tus-rinones', 'ViewsController:tuSalud');
-$app->get('/irc', 'ViewsController:irc');
-$app->get('/causas-principales', 'ViewsController:causasPrincipales');
-$app->get('/sintomas', 'ViewsController:sintomas');
-$app->get('/tratamientos', 'ViewsController:tratamientos');
-$app->get('/costo-de-enfermo', 'ViewsController:costoEnfermo');
-$app->get('/trastorno', 'ViewsController:trastorno');
+// Public Views Routes //
+$app->get('/', 'PublicViewsController:index');
+$app->get('/quienes-somos', 'PublicViewsController:quienesSomos');
+$app->get('/que-hacemos', 'PublicViewsController:queHacemos');
+$app->get('/donar', 'PublicViewsController:donar');
+$app->get('/transparencia', 'PublicViewsController:transparencia');
+$app->get('/testimonios', 'PublicViewsController:testimonios');
+$app->get('/conoce', 'PublicViewsController:conoce');
+$app->get('/aliados', 'PublicViewsController:aliados');
+$app->get('/blog', 'PublicViewsController:blog');
+$app->get('/preguntas', 'PublicViewsController:preguntas');
+$app->get('/talleres', 'PublicViewsController:talleres');
+$app->get('/actividades', 'PublicViewsController:actividades');
+$app->get('/eventos', 'PublicViewsController:eventos');
+$app->get('/taller-ver/{id}', 'PublicViewsController:tallerVer');
+$app->get('/actividad-ver/{id}', 'PublicViewsController:actividadVer');
+$app->get('/evento-ver/{id}', 'PublicViewsController:eventoVer');
+$app->get('/blog/ver/{id}', 'PublicViewsController:blogVer');
 
-// api routes //
+// Admin Views Routes //
+$app->get('/admin', 'AdminViewsController:index');
+$app->get('/admin/actividades', 'AdminViewsController:actividades');
+$app->get('/admin/eventos', 'AdminViewsController:eventos');
+$app->get('/admin/talleres', 'AdminViewsController:talleres');
+$app->get('/admin/testimonios', 'AdminViewsController:testimonios');
+$app->get('/admin/servicios', 'AdminViewsController:servicios');
+$app->get('/admin/transparencia', 'AdminViewsController:transparencia');
+$app->get('/admin/blog', 'AdminViewsController:blog');
+$app->get('/admin/blog-content', 'AdminViewsController:blogContent');
+$app->get('/admin/login', 'AdminViewsController:login');
+
+// Static Info Routes //
+$app->get('/que-hacen-nuestros-rinones', 'StaticInfoViewsController:queHacenNR');
+$app->get('/costo-de-enfermo', 'StaticInfoViewsController:costoEnfermo');
+$app->get('/irc', 'StaticInfoViewsController:irc');
+$app->get('/causas-principales', 'StaticInfoViewsController:causasPrincipales');
+$app->get('/sintomas', 'StaticInfoViewsController:sintomas');
+$app->get('/tratamientos', 'StaticInfoViewsController:tratamientos');
+$app->get('/trastorno', 'StaticInfoViewsController:trastorno');
+
+// Api Routes //
 $app->get('/admin/actividades/{id}', 'ApiController:verUnaActividad');
 $app->post('/admin/actividades', 'ApiController:crearActividad');
 $app->patch('/admin/actividades/{id}', 'ApiController:actualizarActividad');
@@ -71,16 +83,7 @@ $app->post('/voluntariado/registro', 'ApiController:voluntariado');
 $app->post('/video-principal', 'VideoPrincipalController:Agregar');
 $app->post('/video-testimonios', 'VideoTestimoniosController:Agregar');
 
-// admin routes //
-$app->get('/admin', 'ViewsController:admin');
-$app->get('/admin/login', 'ViewsController:adminLogin');
-$app->get('/admin/actividades', 'ViewsController:adminActividades');
-$app->get('/admin/eventos', 'ViewsController:adminEventos');
-$app->get('/admin/talleres', 'ViewsController:adminTalleres');
-$app->get('/admin/testimonios', 'ViewsController:adminTestimonios');
-$app->get('/admin/servicios', 'ViewsController:adminServicios');
-$app->get('/admin/blog', 'ViewsController:adminBlog');
-$app->get('/admin/blog-content', 'ViewsController:adminBlogContent');
+
 
 $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
 	$handler = $this->notFoundHandler; // handle using the default Slim page not found handler

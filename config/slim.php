@@ -1,5 +1,7 @@
 <?php
-use App\Controllers\ViewsController;
+use App\Controllers\PublicViewsController;
+use App\Controllers\AdminViewsController;
+use App\Controllers\StaticInfoViewsController;
 use App\Controllers\ApiController;
 use App\Controllers\LoginController;
 use App\Controllers\VideoPrincipalController;
@@ -31,8 +33,14 @@ $container['view'] = function ($container) {
      return $view;
 };
 
-$container['ViewsController'] = function ($container) {
-     return new ViewsController($container);
+$container['PublicViewsController'] = function ($container) {
+     return new PublicViewsController($container);
+};
+$container['AdminViewsController'] = function ($container) {
+     return new AdminViewsController($container);
+};
+$container['StaticInfoViewsController'] = function ($container) {
+     return new StaticInfoViewsController($container);
 };
 $container['ApiController'] = function ($container) {
      return new ApiController($container);
