@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 17-12-2019 a las 14:34:27
--- Versión del servidor: 5.7.26
--- Versión de PHP: 5.6.40
+-- Tiempo de generación: 11-10-2021 a las 04:23:46
+-- Versión del servidor: 5.7.31
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -104,6 +103,37 @@ INSERT INTO `vr_blog` (`id`, `titulo`, `texto`, `texto_corto`, `autor`, `imagen`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `vr_egresos`
+--
+
+DROP TABLE IF EXISTS `vr_egresos`;
+CREATE TABLE IF NOT EXISTS `vr_egresos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `tipo_consulta` varchar(120) DEFAULT NULL,
+  `consulta_costo` double DEFAULT NULL,
+  `taller` varchar(120) DEFAULT NULL,
+  `costo_taller` double DEFAULT NULL,
+  `insumos` varchar(120) DEFAULT NULL,
+  `costo_insumos` double DEFAULT NULL,
+  `medicamentos` varchar(120) DEFAULT NULL,
+  `costo_medicamentos` double DEFAULT NULL,
+  `laboratorios` varchar(120) DEFAULT NULL,
+  `costo_laboratorios` double DEFAULT NULL,
+  `conferencias` varchar(120) DEFAULT NULL,
+  `costo_conferencias` double DEFAULT NULL,
+  `gastos_fijos` varchar(120) DEFAULT NULL,
+  `costo_gastos_fijos` double DEFAULT NULL,
+  `sueldos` varchar(120) DEFAULT NULL,
+  `costo_sueldos` double DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `vr_eventos`
 --
 
@@ -126,6 +156,25 @@ INSERT INTO `vr_eventos` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `upda
 (8, 'Evento 1', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '5499728bb485d03a.jpg', '2019-11-25 10:22:08', '2019-12-03 04:05:15'),
 (9, 'Evento 2', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '58b5b79073e4dcd5.jpg', '2019-11-25 10:22:40', '2019-11-25 10:22:40'),
 (10, 'Evento 3', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', '6c1cededdbfa8c23.jpg', '2019-11-25 10:24:13', '2019-11-25 10:24:13');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_ingresos`
+--
+
+DROP TABLE IF EXISTS `vr_ingresos`;
+CREATE TABLE IF NOT EXISTS `vr_ingresos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `tipo_donador` varchar(120) NOT NULL,
+  `cantidad` double DEFAULT NULL,
+  `especie` text,
+  `especie_cantidad` double DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -210,6 +259,31 @@ INSERT INTO `vr_testimonios` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `vr_tipo_donador`
+--
+
+DROP TABLE IF EXISTS `vr_tipo_donador`;
+CREATE TABLE IF NOT EXISTS `vr_tipo_donador` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(120) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_tipo_donador`
+--
+
+INSERT INTO `vr_tipo_donador` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
+(1, 'Donador Persona Física', '2021-09-13 04:08:17', '2021-09-13 04:08:17'),
+(2, 'Donador Empresas', '2021-10-04 01:18:08', '2021-10-04 01:18:08'),
+(3, 'Donador Anónimo', '2021-10-04 01:18:30', '2021-10-04 01:18:30'),
+(4, 'Donador en Especie', '2021-10-04 01:18:30', '2021-10-04 01:18:30');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `vr_video_principal`
 --
 
@@ -227,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `vr_video_principal` (
 --
 
 INSERT INTO `vr_video_principal` (`id`, `video`, `created_at`, `updated_at`) VALUES
-(1, '/public/uploads/b923c16f51abeeb8.mp4', '2019-12-01 23:46:37', '2019-12-02 23:13:16');
+(1, '/public/uploads/949f3d25380e89e1.mp4', '2019-12-01 23:46:37', '2021-08-31 03:50:42');
 
 -- --------------------------------------------------------
 

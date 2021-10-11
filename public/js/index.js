@@ -449,7 +449,7 @@ if (document.getElementById('myChart') != null) {
 		data: {
 			labels: ['Donador Persona fisica', 'Donador empresas', 'Donador Anónimo', 'Donador en Especie'],
 			datasets: [{
-				label: '# of Votes',
+				label: '%',
 				data: [12, 19, 3, 5],
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
