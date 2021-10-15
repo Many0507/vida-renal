@@ -8,6 +8,7 @@ use App\Models\Taller;
 use App\Models\Blog;
 use App\Models\Servicio;
 use App\Models\Testimonio;
+use App\Models\Ingreso;
 use Slim\Http\UploadedFile;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -156,6 +157,50 @@ class ApiController extends Controller
      public function eliminarServicio(Request $request, Response $response, array $args)
      {
           $this->Delete($request, 'Servicio', new Servicio);
+     }
+
+     // Transparencia //
+     public function crearIngreso(Request $request, Response $response, array $args)
+     {
+          $nombre = $request->getParam('nombre');
+          $tipo_donador = $request->getParam('tipo_donador');
+          $cantidad = $request->getParam('cantidad');
+          $especie = $request->getParam('especie');
+          $especie_cantidad = $request->getParam('monto_especie');
+
+          $message = ((empty($nombre) || $nombre === '') || (empty($tipo_donador) || $tipo_donador === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if ($tipo_donador == 4) {
+               $message = ((empty($especie) || $especie === '') || (empty($especie_cantidad) || $especie_cantidad === ''))
+                    ? 'favor de llenar todos los campos requeridos'
+                    : null;
+          } else {
+               $message = ((empty($cantidad) || $cantidad === '') || (empty($cantidad) || $cantidad === ''))
+                    ? 'favor de llenar todos los campos requeridos'
+                    : null;
+          }
+
+          if (is_null($message)) {
+               $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';               
+               try {
+                    $target = new Ingreso;
+                    $target->nombre = $nombre;
+                    $target->tipo_donador = $tipo_donador;
+                    if ($tipo_donador == 4) {
+                         $target->especie = $especie;
+                         $target->especie_cantidad = $especie_cantidad;
+                    } else $target->cantidad = $cantidad;
+                    $target->save();
+
+                    $this->container->flash->addMessage('done', '¡Ingreso agregado con exito!');
+               } catch (Exception $e) {
+                    $this->container->flash->addMessage('error', $tryError);
+               }
+          } else $this->container->flash->addMessage('error', $message);
+
+          return $response->withHeader('Location', '/admin/transparencia');
      }
 
      // CRUD //

@@ -8,6 +8,8 @@ use App\Models\Taller;
 use App\Models\Blog;
 use App\Models\Testimonio;
 use App\Models\Servicio;
+use App\Models\Ingreso;
+use App\Models\TipoDonador;
 use App\Helpers\PaginationHelper;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -163,7 +165,21 @@ class AdminViewsController extends Controller
     public function transparencia(Request $request, Response $response, array $args)
     {
         if ($_SESSION['user']) {
-            return $this->container->view->render($response, 'admin-transparencia.twig');
+            $actual_year = date("Y");
+            $ingresos = Ingreso::whereYear('created_at', '=', $actual_year)
+                ->orderBy('id', 'desc')
+                ->take(5)
+                ->get();
+
+            $tipos_donadores = TipoDonador::all();
+
+            $messages = $this->container->flash->getMessages();
+
+            return $this->container->view->render($response, 'admin-transparencia.twig', [
+                'tipo_donadores' => $tipos_donadores,
+                'mensajes' => $messages,
+                'ingresos' => $ingresos
+            ]);
         } else return $response->withHeader('Location', '/admin/login');
     }
 
