@@ -5,6 +5,41 @@
     <h2 class="title is-4 has-green-text last-section">
         Ingresos de Fundación Vida Renal - {{ 'now' | date('Y') }}
     </h2>
+    <form>
+        <div class="columns">
+            <div class="column is-2">
+                <label class="label has-text-dark" for="transparencia_mes">
+                    Mes:
+                </label>
+                <div class="select is-fullwidth" name="transparencia_mes" id="transparencia_mes">
+                    <select class="is-fullwidth">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <label class="label has-text-dark" for="transparencia_anio">
+                    Año:
+                </label>
+                <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
+                    <select class="is-fullwidth">
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
     {% if mensajes.done|length > 0 %}
 		<div class="notification is-primary" id="message">
 			<button class="delete"></button>
@@ -78,6 +113,41 @@
     <h2 class="title is-4 has-green-text last-section">
         Egresos de Fundación Vida Renal
     </h2>
+    <form>
+        <div class="columns">
+            <div class="column is-2">
+                <label class="label has-text-dark" for="transparencia_mes">
+                    Mes:
+                </label>
+                <div class="select is-fullwidth" name="transparencia_mes" id="transparencia_mes">
+                    <select class="is-fullwidth">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <label class="label has-text-dark" for="transparencia_anio">
+                    Año:
+                </label>
+                <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
+                    <select class="is-fullwidth">
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="columns">
         <div class="column is-12">
 			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="create">
@@ -135,7 +205,7 @@
                         Cantidad:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="number" name="cantidad" value="{{ old.cantidad }}">
+                        <input class="input" type="number" name="cantidad" value="{{ old.cantidad }}" id="ingreso_cantidad" disabled>
                         <span class="icon is-small is-left">
                             <i class="fas fa-dollar-sign has-text-info"></i>
                         </span>
@@ -148,7 +218,7 @@
                         Especie:
                     </label>
                     <div class="control">
-                        <input class="input" type="text" name="especie" value="{{ old.especie }}">
+                        <input class="input" type="text" name="especie" value="{{ old.especie }}" id="ingreso_especie" disabled>
                     </div>
                 </div>
             </div>
@@ -158,7 +228,7 @@
                         Monto aproximado de lo donado:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="text" name="monto_especie" value="{{ old.monto_especie }}">
+                        <input class="input" type="text" name="monto_especie" value="{{ old.monto_especie }}" id="ingreso_monto_especie" disabled>
                         <span class="icon is-small is-left has-text-info">
                             <i class="fas fa-dollar-sign"></i>
                         </span>

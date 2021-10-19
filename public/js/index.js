@@ -441,6 +441,22 @@ if (document.getElementById('voluntariado_form') != null) {
 	});
 }
 
+// Transparencia Admin //
+if (document.getElementById('tipo_donador') != null) {
+	var tipo_donador_select = document.getElementById('tipo_donador');
+	tipo_donador_select.addEventListener('change', function (elem) {
+		if (elem.target.value == 4) {
+			document.getElementById('ingreso_especie').removeAttribute('disabled');
+			document.getElementById('ingreso_monto_especie').removeAttribute('disabled');
+			document.getElementById('ingreso_cantidad').disabled = true;
+		} else {
+			document.getElementById('ingreso_cantidad').removeAttribute('disabled');
+			document.getElementById('ingreso_monto_especie').disabled = true;
+			document.getElementById('ingreso_especie').disabled = true;
+		}
+	});
+}
+
 // Chart Js //
 if (document.getElementById('myChart') != null) {
 	var ctx = document.getElementById('myChart').getContext('2d');

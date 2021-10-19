@@ -168,7 +168,7 @@ class AdminViewsController extends Controller
             $actual_year = date("Y");
             $ingresos = Ingreso::whereYear('created_at', '=', $actual_year)
                 ->orderBy('id', 'desc')
-                ->take(5)
+                ->take(10)
                 ->get();
 
             $tipos_donadores = TipoDonador::all();
