@@ -11,6 +11,7 @@ use App\Models\Servicio;
 use App\Models\Ingreso;
 use App\Models\TipoDonador;
 use App\Helpers\PaginationHelper;
+use Illuminate\Database\Capsule\Manager as DB;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -166,19 +167,25 @@ class AdminViewsController extends Controller
     {
         if ($_SESSION['user']) {
             $actual_year = date("Y");
-            $ingresos = Ingreso::whereYear('created_at', '=', $actual_year)
-                ->orderBy('id', 'desc')
-                ->take(10)
+            $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id')
+                ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->orderBy('vr_ingresos.created_at', 'desc')->take(10)->get();
+
+            $years_list = Ingreso::select(DB::raw('YEAR(created_at) as year'))
+                ->distinct()
+                ->orderBy('year', 'desc')
                 ->get();
 
             $tipos_donadores = TipoDonador::all();
+            var_dump($years_list);
 
             $messages = $this->container->flash->getMessages();
 
             return $this->container->view->render($response, 'admin-transparencia.twig', [
                 'tipo_donadores' => $tipos_donadores,
+                'lista_años' => $years_list,
                 'mensajes' => $messages,
-                'ingresos' => $ingresos
+                'ingresos' => $ingresos,
             ]);
         } else return $response->withHeader('Location', '/admin/login');
     }

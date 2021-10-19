@@ -7,36 +7,48 @@
     </h2>
     <form>
         <div class="columns">
-            <div class="column is-2">
+            <div class="column is-3">
+                {% set month = 'now' | date('m') %}
                 <label class="label has-text-dark" for="transparencia_mes">
                     Mes:
                 </label>
                 <div class="select is-fullwidth" name="transparencia_mes" id="transparencia_mes">
                     <select class="is-fullwidth">
-                        <option value="1">Enero</option>
-                        <option value="2">Febrero</option>
-                        <option value="3">Marzo</option>
-                        <option value="4">Abril</option>
-                        <option value="5">Mayo</option>
-                        <option value="6">Junio</option>
-                        <option value="7">Julio</option>
-                        <option value="8">Agosto</option>
-                        <option value="9">Septiembre</option>
-                        <option value="10">Octubre</option>
-                        <option value="11">Noviembre</option>
-                        <option value="12">Diciembre</option>
+                        <option value="01" {{ month == '01' ? 'selected' : '' }}>Enero</option>
+                        <option value="02" {{ month == '02' ? 'selected' : '' }}>Febrero</option>
+                        <option value="03" {{ month == '03' ? 'selected' : '' }}>Marzo</option>
+                        <option value="04" {{ month == '04' ? 'selected' : '' }}>Abril</option>
+                        <option value="05" {{ month == '05' ? 'selected' : '' }}>Mayo</option>
+                        <option value="06" {{ month == '06' ? 'selected' : '' }}>Junio</option>
+                        <option value="07" {{ month == '07' ? 'selected' : '' }}>Julio</option>
+                        <option value="08" {{ month == '08' ? 'selected' : '' }}>Agosto</option>
+                        <option value="09" {{ month == '09' ? 'selected' : '' }}>Septiembre</option>
+                        <option value="10" {{ month == '10' ? 'selected' : '' }}>Octubre</option>
+                        <option value="11" {{ month == '11' ? 'selected' : '' }}>Noviembre</option>
+                        <option value="12" {{ month == '12' ? 'selected' : '' }}>Diciembre</option>
                     </select>
                 </div>
             </div>
-            <div class="column is-2">
+            <div class="column is-3">
+                {% set year = 'now' | date('Y') %}
                 <label class="label has-text-dark" for="transparencia_anio">
                     Año:
                 </label>
                 <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
                     <select class="is-fullwidth">
-                        <option value="2021">2021</option>
+                        {% for año in lista_años %}
+                            <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
+                                {{ año.year }}
+                            </option>
+                        {% endfor %}
                     </select>
                 </div>
+            </div>
+            <div class="column is-3">
+                <div style="height: 32px;"></div>
+                <button class="button is-primary has-text-weight-bold" id="search_transparencia">
+				    Buscar
+			    </button> 
             </div>
         </div>
     </form>
@@ -96,11 +108,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                {{ ingresos }}
                     {% for ingreso in ingresos %}
                         <tr>
                             <td>{{ ingreso.id }}</td>
                             <td>{{ ingreso.nombre }}</td>
-                            <td>{{ ingreso.tipo_donador }}</td>
+                            <td>{{ ingreso.tipo }}</td>
                             <td>{{ ingreso.cantidad }}</td>
                             <td>{{ ingreso.especie}}</td>
                             <td>{{ ingreso.especie_cantidad }}</td>
@@ -190,7 +203,7 @@
                             <select id="tipo_donador" name="tipo_donador">
                                 <option hidden selected disabled>Selecciona una opción</option>
                                 {% for tipo_donador in tipo_donadores %}
-                                    <option value="{{ tipo_donador.id }}">
+                                    <option value="{{ tipo_donador.id_tipo_donador }}">
                                         {{ tipo_donador.tipo }}
                                     </option>
                                 {% endfor %}

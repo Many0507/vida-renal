@@ -9,7 +9,7 @@ class TipoDonador extends Model
 {
 	protected $table = 'vr_tipo_donador';
 
-	protected $primaryKey = 'id';
+	protected $primaryKey = 'id_tipo_donador';
 
 	protected $fillable = [
 		'tipo',
