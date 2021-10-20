@@ -13,7 +13,7 @@
                     Mes:
                 </label>
                 <div class="select is-fullwidth" name="transparencia_mes" id="transparencia_mes">
-                    <select class="is-fullwidth">
+                    <select class="is-fullwidth" id="select_mes">
                         <option value="01" {{ month == '01' ? 'selected' : '' }}>Enero</option>
                         <option value="02" {{ month == '02' ? 'selected' : '' }}>Febrero</option>
                         <option value="03" {{ month == '03' ? 'selected' : '' }}>Marzo</option>
@@ -35,7 +35,7 @@
                     Año:
                 </label>
                 <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
-                    <select class="is-fullwidth">
+                    <select class="is-fullwidth" id="select_anio">
                         {% for año in lista_años %}
                             <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
                                 {{ año.year }}
@@ -78,19 +78,19 @@
                 <tbody>
                     <tr>
                         <td>Donador Persona fisica</td>
-                        <td>12%</td>
+                        <td>{{ porcentaje_1 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador empresas</td>
-                        <td>19%</td>
+                        <td>{{ porcentaje_2 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador Anónimo</td>
-                        <td>3%</td>
+                        <td>{{ porcentaje_3 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador en Especie</td>
-                        <td>5%</td>
+                        <td>{{ porcentaje_4 }}%</td>
                     </tr>
                 </tbody>
             </table>
@@ -107,16 +107,15 @@
                         <th>Monto aproximado de lo donado</th>
                     </tr>
                 </thead>
-                <tbody>
-                {{ ingresos }}
+                <tbody id="ingresos_tbody">
                     {% for ingreso in ingresos %}
                         <tr>
                             <td>{{ ingreso.id }}</td>
                             <td>{{ ingreso.nombre }}</td>
                             <td>{{ ingreso.tipo }}</td>
-                            <td>{{ ingreso.cantidad }}</td>
+                            <td>$ {{ ingreso.cantidad }}</td>
                             <td>{{ ingreso.especie}}</td>
-                            <td>{{ ingreso.especie_cantidad }}</td>
+                            <td>$ {{ ingreso.especie_cantidad }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

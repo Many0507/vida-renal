@@ -167,8 +167,11 @@ class AdminViewsController extends Controller
     {
         if ($_SESSION['user']) {
             $actual_year = date("Y");
-            $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id')
+            $actual_month = date("m");
+
+            $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
                 ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
                 ->orderBy('vr_ingresos.created_at', 'desc')->take(10)->get();
 
             $years_list = Ingreso::select(DB::raw('YEAR(created_at) as year'))
@@ -176,16 +179,43 @@ class AdminViewsController extends Controller
                 ->orderBy('year', 'desc')
                 ->get();
 
-            $tipos_donadores = TipoDonador::all();
-            var_dump($years_list);
+            $sum_tipo_1 = Ingreso::where('tipo_donador', '=', 1)
+                ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
+                ->sum('cantidad');
+            $sum_tipo_2 = Ingreso::where('tipo_donador', '=', 2)
+                ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
+                ->sum('cantidad');
+            $sum_tipo_3 = Ingreso::where('tipo_donador', '=', 3)
+                ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
+                ->sum('cantidad');
+            $sum_tipo_4 = Ingreso::where('tipo_donador', '=', 4)
+                ->whereYear('vr_ingresos.created_at', '=', $actual_year)
+                ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
+                ->sum('especie_cantidad');
 
+            $total = $sum_tipo_1 + $sum_tipo_2 + $sum_tipo_3 + $sum_tipo_4;
+
+            $porcentaje_tipo_1 = round(($sum_tipo_1 * 100) / $total);
+            $porcentaje_tipo_2 = round(($sum_tipo_2 * 100) / $total);
+            $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / $total);
+            $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / $total);
+
+            $tipos_donadores = TipoDonador::all();
+                
             $messages = $this->container->flash->getMessages();
 
             return $this->container->view->render($response, 'admin-transparencia.twig', [
+                'porcentaje_1' => $porcentaje_tipo_1,
+                'porcentaje_2' => $porcentaje_tipo_2,
+                'porcentaje_3' => $porcentaje_tipo_3,
+                'porcentaje_4' => $porcentaje_tipo_4,
                 'tipo_donadores' => $tipos_donadores,
                 'lista_años' => $years_list,
                 'mensajes' => $messages,
-                'ingresos' => $ingresos,
+                'ingresos' => $ingresos
             ]);
         } else return $response->withHeader('Location', '/admin/login');
     }

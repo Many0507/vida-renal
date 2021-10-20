@@ -443,7 +443,7 @@ if (document.getElementById('voluntariado_form') != null) {
 
 // Transparencia Admin //
 if (document.getElementById('tipo_donador') != null) {
-	var tipo_donador_select = document.getElementById('tipo_donador');
+	let tipo_donador_select = document.getElementById('tipo_donador');
 	tipo_donador_select.addEventListener('change', function (elem) {
 		if (elem.target.value == 4) {
 			document.getElementById('ingreso_especie').removeAttribute('disabled');
@@ -453,6 +453,41 @@ if (document.getElementById('tipo_donador') != null) {
 			document.getElementById('ingreso_cantidad').removeAttribute('disabled');
 			document.getElementById('ingreso_monto_especie').disabled = true;
 			document.getElementById('ingreso_especie').disabled = true;
+		}
+	});
+}
+
+// Transparencia - Busqueda de Ingresos //
+if (document.getElementById('search_transparencia') != null) {
+	let search_transparencia = document.getElementById('search_transparencia');
+	search_transparencia.addEventListener('click', async function (e) {
+		e.preventDefault();
+		let ingreso_mes = document.getElementById('select_mes').value;
+		let ingreso_anio = document.getElementById('select_anio').value;
+		let ingresos_tbody = document.getElementById('ingresos_tbody');
+
+		const data = await axios.post(
+			`${window.location.protocol}//${window.location.host}/ingreso/busqueda`, {
+				ingreso_mes,
+				ingreso_anio
+		});
+
+		ingresos_tbody.innerHTML = '';
+		if (data.data.success) {
+			data.data.data.forEach(function (item, index) {
+				ingresos_tbody.innerHTML += `
+					<tr>
+						<td>${ item.id }</td>
+						<td>${ item.nombre }</td>
+						<td>${ item.tipo }</td>
+						<td>$ ${ item.cantidad }</td>
+						<td>${ item.especie == null ? '' : item.especie }</td>
+						<td>$ ${ item.especie_cantidad }</td>
+					</tr>
+				`;
+			});
+		} else {
+			
 		}
 	});
 }

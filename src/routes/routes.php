@@ -80,12 +80,11 @@ $app->post('/admin/verifyUser', 'LoginController:verifyUser');
 $app->get('/admin/logoutUser', 'LoginController:logoutUser');
 
 $app->post('/voluntariado/registro', 'ApiController:voluntariado');
+$app->post('/ingreso/busqueda', 'ApiController:busquedaIngreso');
 
 // video routes //
 $app->post('/video-principal', 'VideoPrincipalController:Agregar');
 $app->post('/video-testimonios', 'VideoTestimoniosController:Agregar');
-
-
 
 $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
 	$handler = $this->notFoundHandler; // handle using the default Slim page not found handler

@@ -203,6 +203,51 @@ class ApiController extends Controller
           return $response->withHeader('Location', '/admin/transparencia');
      }
 
+     public function busquedaIngreso (Request $request, Response $response, array $args)
+     {
+          $ingreso_anio = $request->getParam('ingreso_anio');
+          $ingreso_mes = $request->getParam('ingreso_mes');
+
+          $message = ((empty($ingreso_mes) || $ingreso_mes === '') || (empty($ingreso_anio) || $ingreso_anio === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if (is_null($message)) {
+               $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
+                    ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
+                    ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
+                    ->orderBy('vr_ingresos.created_at', 'desc')->take(10)->get();
+
+               $sum_tipo_1 = Ingreso::where('tipo_donador', '=', 1)
+                    ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
+                    ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
+                    ->sum('cantidad');
+               $sum_tipo_2 = Ingreso::where('tipo_donador', '=', 2)
+                    ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
+                    ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
+                    ->sum('cantidad');
+               $sum_tipo_3 = Ingreso::where('tipo_donador', '=', 3)
+                    ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
+                    ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
+                    ->sum('cantidad');
+               $sum_tipo_4 = Ingreso::where('tipo_donador', '=', 4)
+                    ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
+                    ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
+                    ->sum('especie_cantidad');
+
+               $total = $sum_tipo_1 + $sum_tipo_2 + $sum_tipo_3 + $sum_tipo_4;
+
+               $porcentaje_tipo_1 = round(($sum_tipo_1 * 100) / $total);
+               $porcentaje_tipo_2 = round(($sum_tipo_2 * 100) / $total);
+               $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / $total);
+               $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / $total);
+
+               if (count($ingresos) <= 0) return json_encode(array('success' => false, 'data' => null, 'message' => $message));
+               
+               return json_encode(array('success' => true, 'data' => $ingresos, 'message' => $message));
+          } else return json_encode(array('success' => false, 'data' => null, 'message' => $message));
+     }
+
      // CRUD //
      public function Create($request, $section, $model)
      {
