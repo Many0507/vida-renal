@@ -1,0 +1,33 @@
+<div class="container main-admin">
+	<h1 class="title is-2 section has-text-info section-title has-text-centered">
+		Ingresos - {{ month }} / {{ year }}
+	</h1>
+	<div class="columns">
+		<div class="column is-12">
+			<table class="table is-bordered is-striped is-fullwidth">
+				<thead>
+					<tr>
+						<th>Número de donador</th>
+						<th>Nombre</th>
+						<th>Tipo de donador</th>
+						<th>Cantidad</th>
+						<th>Especie</th>
+						<th>Monto aproximado de lo donado</th>
+					</tr>
+				</thead>
+				<tbody id="ingresos_tbody">
+					{% for ingreso in ingresos %}
+						<tr>
+							<td>{{ ingreso.id }}</td>
+							<td>{{ ingreso.nombre }}</td>
+							<td>{{ ingreso.tipo }}</td>
+							<td>$ {{ ingreso.cantidad }}</td>
+							<td>{{ ingreso.especie}}</td>
+							<td>$ {{ ingreso.especie_cantidad }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

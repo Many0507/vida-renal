@@ -465,6 +465,7 @@ if (document.getElementById('search_transparencia') != null) {
 		let ingreso_mes = document.getElementById('select_mes').value;
 		let ingreso_anio = document.getElementById('select_anio').value;
 		let ingresos_tbody = document.getElementById('ingresos_tbody');
+		document.getElementById('ingreso_busqueda_error').classList.add('is-hidden');
 
 		const data = await axios.post(
 			`${window.location.protocol}//${window.location.host}/ingreso/busqueda`, {
@@ -473,7 +474,18 @@ if (document.getElementById('search_transparencia') != null) {
 		});
 
 		ingresos_tbody.innerHTML = '';
+		document.getElementById('porcentaje_tipo1').innerHTML = '0%';
+		document.getElementById('porcentaje_tipo2').innerHTML = '0%';
+		document.getElementById('porcentaje_tipo3').innerHTML = '0%';
+		document.getElementById('porcentaje_tipo4').innerHTML = '0%';
 		if (data.data.success) {
+			let actual_date = new Date();
+			document.getElementById('ingresos_lista_link').setAttribute('href', `/admin/ingresos/${ingreso_mes}/${ingreso_anio}`);
+			document.querySelectorAll('.button_ingreso').forEach(e => e.disabled = false);
+			if (parseInt(ingreso_mes) != parseInt(actual_date.getMonth()) &&
+			parseInt(ingreso_anio) != parseInt(actual_date.getFullYear())) {
+				document.querySelectorAll('#create.button_ingreso').forEach(e => e.disabled = true);
+			}
 			data.data.data.forEach(function (item, index) {
 				ingresos_tbody.innerHTML += `
 					<tr>
@@ -486,8 +498,15 @@ if (document.getElementById('search_transparencia') != null) {
 					</tr>
 				`;
 			});
+			if (data.data.porcentajes != null) {
+				document.getElementById('porcentaje_tipo1').innerHTML = data.data.porcentajes.tipo_1 + '%';
+				document.getElementById('porcentaje_tipo2').innerHTML = data.data.porcentajes.tipo_2 + '%';
+				document.getElementById('porcentaje_tipo3').innerHTML = data.data.porcentajes.tipo_3 + '%';
+				document.getElementById('porcentaje_tipo4').innerHTML = data.data.porcentajes.tipo_4 + '%';
+			}
 		} else {
-			
+			document.querySelectorAll('.button_ingreso').forEach(e => e.disabled = true);
+			document.getElementById('ingreso_busqueda_error').classList.remove('is-hidden');
 		}
 	});
 }

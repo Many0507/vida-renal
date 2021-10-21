@@ -172,7 +172,7 @@ class AdminViewsController extends Controller
             $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
                 ->whereYear('vr_ingresos.created_at', '=', $actual_year)
                 ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
-                ->orderBy('vr_ingresos.created_at', 'desc')->take(10)->get();
+                ->orderBy('vr_ingresos.created_at', 'desc')->take(7)->get();
 
             $years_list = Ingreso::select(DB::raw('YEAR(created_at) as year'))
                 ->distinct()
@@ -217,6 +217,30 @@ class AdminViewsController extends Controller
                 'mensajes' => $messages,
                 'ingresos' => $ingresos
             ]);
+        } else return $response->withHeader('Location', '/admin/login');
+    }
+
+    public function ingresos(Request $request, Response $response, array $args)
+    {
+        if ($_SESSION['user']) {
+            $year = intval($request->getAttribute('year'));
+            $month = intval($request->getAttribute('month'));
+
+            if ($year > 0 && $month > 0) {
+                $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
+                    ->whereYear('vr_ingresos.created_at', '=', $year)
+                    ->whereMonth('vr_ingresos.created_at', '=', $month)
+                    ->orderBy('vr_ingresos.created_at', 'desc')->get();
+
+                $messages = $this->container->flash->getMessages();
+
+                return $this->container->view->render($response, 'admin-ingresos.twig', [
+                    'ingresos' => $ingresos,
+                    'messages' => $messages,
+                    'month' => $month,
+                    'year' => $year
+                ]);
+            } else return $response->withHeader('Location', '/admin/transparencia');
         } else return $response->withHeader('Location', '/admin/login');
     }
 

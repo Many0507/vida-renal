@@ -44,11 +44,15 @@
                     </select>
                 </div>
             </div>
-            <div class="column is-3">
+            <div class="column is-2">
                 <div style="height: 32px;"></div>
                 <button class="button is-primary has-text-weight-bold" id="search_transparencia">
 				    Buscar
 			    </button> 
+            </div>
+            <div class="column is-3">
+                <div style="height: 32px;"></div>
+                <p id="ingreso_busqueda_error" class="has-text-danger is-hidden">No hay información disponible</p>
             </div>
         </div>
     </form>
@@ -60,12 +64,19 @@
 	{% endif %}
 	<div class="columns">
         <div class="column is-12">
-			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="create">
+			<button 
+                id="create"
+                style="margin-right: .5rem;" 
+                class="button is-info has-text-weight-bold button_ingreso" 
+                {{ ingresos|length <= 0 ? 'disabled' : '' }} 
+            >
 				Nuevo Ingreso
 			</button> 
-			<button class="button has-text-weight-bold" id="create">
-				Ver listado completo de ingresos
-			</button>
+			<a id="ingresos_lista_link" href="/admin/ingresos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
+                <button class="button has-text-weight-bold button_ingreso" {{ ingresos|length <= 0 ? 'disabled' : '' }}>
+                    Ver listado completo de ingresos
+                </button>
+            </a>
 		</div>
         <div class="column is-3">
 			<table class="table is-bordered is-striped is-fullwidth">
@@ -78,19 +89,19 @@
                 <tbody>
                     <tr>
                         <td>Donador Persona fisica</td>
-                        <td>{{ porcentaje_1 }}%</td>
+                        <td id="porcentaje_tipo1">{{ porcentaje_1 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador empresas</td>
-                        <td>{{ porcentaje_2 }}%</td>
+                        <td id="porcentaje_tipo2">{{ porcentaje_2 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador Anónimo</td>
-                        <td>{{ porcentaje_3 }}%</td>
+                        <td id="porcentaje_tipo3">{{ porcentaje_3 }}%</td>
                     </tr>
                     <tr>
                         <td>Donador en Especie</td>
-                        <td>{{ porcentaje_4 }}%</td>
+                        <td id="porcentaje_tipo4">{{ porcentaje_4 }}%</td>
                     </tr>
                 </tbody>
             </table>

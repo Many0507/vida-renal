@@ -237,15 +237,35 @@ class ApiController extends Controller
 
                $total = $sum_tipo_1 + $sum_tipo_2 + $sum_tipo_3 + $sum_tipo_4;
 
-               $porcentaje_tipo_1 = round(($sum_tipo_1 * 100) / $total);
-               $porcentaje_tipo_2 = round(($sum_tipo_2 * 100) / $total);
-               $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / $total);
-               $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / $total);
+               $porcentaje_tipo_1 = round(($sum_tipo_1 * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_tipo_2 = round(($sum_tipo_2 * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / ($total > 0 ? $total : 1));
 
-               if (count($ingresos) <= 0) return json_encode(array('success' => false, 'data' => null, 'message' => $message));
+               if (count($ingresos) <= 0) return json_encode(array(
+                    'success' => false, 
+                    'data' => null, 
+                    'message' => $message, 
+                    'porcentajes' => null
+               ));
                
-               return json_encode(array('success' => true, 'data' => $ingresos, 'message' => $message));
-          } else return json_encode(array('success' => false, 'data' => null, 'message' => $message));
+               return json_encode(array(
+                    'success' => true, 
+                    'data' => $ingresos, 
+                    'message' => $message, 
+                    'porcentajes' => array(
+                         'tipo_1' => $porcentaje_tipo_1,
+                         'tipo_2' => $porcentaje_tipo_2,
+                         'tipo_3' => $porcentaje_tipo_3,
+                         'tipo_4' => $porcentaje_tipo_4
+                    )
+               ));
+          } else return json_encode(array(
+               'success' => false, 
+               'data' => null, 
+               'message' => $message, 
+               'porcentajes' => null
+          ));
      }
 
      // CRUD //

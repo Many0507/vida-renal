@@ -28,6 +28,7 @@ $app->get('/admin/talleres', 'AdminViewsController:talleres');
 $app->get('/admin/testimonios', 'AdminViewsController:testimonios');
 $app->get('/admin/servicios', 'AdminViewsController:servicios');
 $app->get('/admin/transparencia', 'AdminViewsController:transparencia');
+$app->get('/admin/ingresos/{month}/{year}', 'AdminViewsController:ingresos');
 $app->get('/admin/blog', 'AdminViewsController:blog');
 $app->get('/admin/blog-content', 'AdminViewsController:blogContent');
 $app->get('/admin/login', 'AdminViewsController:login');
