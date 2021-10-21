@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-10-2021 a las 04:23:46
--- Versión del servidor: 5.7.31
--- Versión de PHP: 7.3.21
+-- Tiempo de generación: 21-10-2021 a las 21:27:10
+-- Versión del servidor: 5.7.26
+-- Versión de PHP: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -69,6 +70,23 @@ CREATE TABLE IF NOT EXISTS `vr_admin` (
 
 INSERT INTO `vr_admin` (`id`, `user`, `pass`, `created_at`, `updated_at`) VALUES
 (1, 'admin01', '$2y$10$rgz2VY3vg1YI9wq4guFjuuEml59yaJ5pOtqDH81CrU./xStOlLKdW', '2019-11-18 01:27:16', '2019-11-18 01:27:16');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_aliados`
+--
+
+DROP TABLE IF EXISTS `vr_aliados`;
+CREATE TABLE IF NOT EXISTS `vr_aliados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(120) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `imagen` varchar(120) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -168,13 +186,26 @@ CREATE TABLE IF NOT EXISTS `vr_ingresos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(120) NOT NULL,
   `tipo_donador` varchar(120) NOT NULL,
-  `cantidad` double DEFAULT NULL,
+  `cantidad` double DEFAULT '0',
   `especie` text,
-  `especie_cantidad` double DEFAULT NULL,
+  `especie_cantidad` double DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_ingresos`
+--
+
+INSERT INTO `vr_ingresos` (`id`, `nombre`, `tipo_donador`, `cantidad`, `especie`, `especie_cantidad`, `created_at`, `updated_at`) VALUES
+(1, 'manuel alejandro', '1', 200, NULL, 0, '2020-10-15 19:45:03', '2021-10-15 19:45:03'),
+(2, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:53:19', '2021-10-15 19:53:19'),
+(3, 'Manuel', '1', 200, NULL, 0, '2021-10-15 19:53:39', '2021-10-15 19:53:39'),
+(4, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:53:56', '2021-10-15 19:53:56'),
+(5, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:54:10', '2021-10-15 19:54:10'),
+(6, 'Manuel', '2', 123, NULL, 0, '2021-10-15 19:55:43', '2021-10-15 19:55:43'),
+(7, 'PRUEBA', '3', 1200, NULL, 0, '2021-10-20 17:04:35', '2021-10-20 17:04:35');
 
 -- --------------------------------------------------------
 
@@ -264,18 +295,18 @@ INSERT INTO `vr_testimonios` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `
 
 DROP TABLE IF EXISTS `vr_tipo_donador`;
 CREATE TABLE IF NOT EXISTS `vr_tipo_donador` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tipo_donador` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(120) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_tipo_donador`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `vr_tipo_donador`
 --
 
-INSERT INTO `vr_tipo_donador` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
+INSERT INTO `vr_tipo_donador` (`id_tipo_donador`, `tipo`, `created_at`, `updated_at`) VALUES
 (1, 'Donador Persona Física', '2021-09-13 04:08:17', '2021-09-13 04:08:17'),
 (2, 'Donador Empresas', '2021-10-04 01:18:08', '2021-10-04 01:18:08'),
 (3, 'Donador Anónimo', '2021-10-04 01:18:30', '2021-10-04 01:18:30'),
