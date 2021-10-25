@@ -550,7 +550,8 @@ a.has-text-info:focus {
     border-radius: 3px; }
 
 #form-container,
-#form-container--update {
+#form-container--update,
+#form-container_tipo_egreso {
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
@@ -563,7 +564,8 @@ a.has-text-info:focus {
   transition: ease top 0.3s; }
 
 #form,
-#form--update {
+#form--update,
+#form_tipo_egreso {
   min-width: 800px;
   height: 500px;
   background: #fff;
@@ -575,12 +577,14 @@ a.has-text-info:focus {
   justify-content: center; }
   @media screen and (max-width: 768px) {
     #form,
-    #form--update {
+    #form--update,
+    #form_tipo_egreso {
       width: 100%;
       min-width: 100%; } }
 
 #form .field,
-#form--update .field {
+#form--update .field,
+#form_tipo_egreso .field {
   width: 100%; }
 
 .login-form {

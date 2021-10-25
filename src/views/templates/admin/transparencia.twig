@@ -195,6 +195,11 @@
 			</button>
 		</div>
         <div class="column is-12">
+            <button class="button is-link has-text-weight-bold" id="tipo_egreso_modal">
+                Agregar tipo de egreso
+            </button> 
+        </div>
+        <div class="column is-12">
             <div class="table-container">
                 <table class="table is-bordered is-striped is-fullwidth" style="line-height: normal">
                     <thead>
@@ -323,5 +328,71 @@
 				</button>
 			</div>
 		</div>
+	</form>
+</div>
+
+
+{# Tipo de egresos #}
+<div id="form-container_tipo_egreso" style="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
+	<form action="/admin/transparencia" method="POST" enctype="multipart/form-data" id="form_tipo_egreso">
+		<h2 class="title is-3 has-text-link has-text-weight-bold">
+			Nuevo ingreso
+		</h2>
+		{% if mensajes.error|length > 0 %}
+			<p class="help has-text-danger" id="message_tipo_egreso">
+				{{ mensajes.error[0] }}
+			</p>
+		{% endif %}
+        <div class="columns is-fullwidth">
+            <div class="column is-6" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="nombre">
+                        Agregar tipo de: <span class="has-text-info">*</span>
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_donador" name="tipo_donador">
+                                <option hidden selected disabled>Selecciona una opción</option>
+                                {% for tipo_donador in tipo_donadores %}
+                                    <option value="{{ tipo_donador.id_tipo_donador }}">
+                                        {{ tipo_donador.tipo }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-6" style="padding-right: 0;">
+                <div class="field">
+                    <label class="label" for="nombre">
+                        Nombre: <span class="has-text-info">*</span>
+                    </label>
+                    <div class="control">
+                        <input class="input" type="text" name="nombre" value="{{ old.nombre }}">
+                    </div>
+                </div>
+            </div>
+            <div class="column is-6" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="nombre">
+                        Costo: <span class="has-text-info">*</span>
+                    </label>
+                    <div class="control">
+                        <input class="input" type="text" name="nombre" value="{{ old.nombre }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">
+                    Agregar
+                </button>
+                <button class="button is-light" id="close_tipo_egreso">
+                    Cerrar
+                </button>
+            </div>
+        </div>
 	</form>
 </div>

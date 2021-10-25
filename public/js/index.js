@@ -201,7 +201,9 @@ if (fileInputVideo != null) {
 if (createBtn != null) {
 	createBtn.addEventListener('click', e => {
 		formContainer.style.top = '0';
-		document.querySelector('.textarea').value = '';
+		document.querySelector('.textarea') != null 
+			? document.querySelector('.textarea').value = ''
+			: '';
 	});
 	if (closeBtn != null) {
 		closeBtn.addEventListener('click', e => {
@@ -211,6 +213,24 @@ if (createBtn != null) {
 	}
 	formContainer.addEventListener('click', e => {
 		if (e.target.id == 'form-container') formContainer.style.top = '-200vh';
+	});
+}
+
+const tipo_egreso_modal = document.getElementById('tipo_egreso_modal');
+const tipo_egreso_form = document.getElementById('form-container_tipo_egreso');
+const tipo_egreso_close = document.getElementById('close_tipo_egreso');
+if (tipo_egreso_modal != null) {
+	tipo_egreso_modal.addEventListener('click', e => {
+		tipo_egreso_form.style.top = '0';
+	});
+	if (tipo_egreso_close != null) {
+		tipo_egreso_close.addEventListener('click', e => {
+			e.preventDefault();
+			tipo_egreso_form.style.top = '-200vh';
+		});
+	}
+	tipo_egreso_form.addEventListener('click', e => {
+		if (e.target.id == 'form-container_tipo_egreso') tipo_egreso_form.style.top = '-200vh';
 	});
 }
 

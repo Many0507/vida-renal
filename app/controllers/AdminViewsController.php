@@ -169,6 +169,7 @@ class AdminViewsController extends Controller
             $actual_year = date("Y");
             $actual_month = date("m");
 
+            // Ingresos //
             $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
                 ->whereYear('vr_ingresos.created_at', '=', $actual_year)
                 ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
