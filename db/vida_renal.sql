@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-10-2021 a las 21:27:10
+-- Tiempo de generación: 25-10-2021 a las 22:00:40
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -121,6 +121,22 @@ INSERT INTO `vr_blog` (`id`, `titulo`, `texto`, `texto_corto`, `autor`, `imagen`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `vr_conferencias`
+--
+
+DROP TABLE IF EXISTS `vr_conferencias`;
+CREATE TABLE IF NOT EXISTS `vr_conferencias` (
+  `id_conferencia` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `costo` double DEFAULT '0',
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_conferencia`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `vr_egresos`
 --
 
@@ -210,6 +226,53 @@ INSERT INTO `vr_ingresos` (`id`, `nombre`, `tipo_donador`, `cantidad`, `especie`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `vr_insumos`
+--
+
+DROP TABLE IF EXISTS `vr_insumos`;
+CREATE TABLE IF NOT EXISTS `vr_insumos` (
+  `id_insumo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `costo` double DEFAULT '0',
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_insumo`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_laboratorios`
+--
+
+DROP TABLE IF EXISTS `vr_laboratorios`;
+CREATE TABLE IF NOT EXISTS `vr_laboratorios` (
+  `id_laboratorio` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `costo` double DEFAULT '0',
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_laboratorio`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_medicamentos`
+--
+
+DROP TABLE IF EXISTS `vr_medicamentos`;
+CREATE TABLE IF NOT EXISTS `vr_medicamentos` (
+  `id_medicamentos` int(11) NOT NULL,
+  `nombre` int(11) NOT NULL,
+  `costo` int(11) DEFAULT '0',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `vr_servicios`
 --
 
@@ -286,6 +349,22 @@ INSERT INTO `vr_testimonios` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `
 (3, 'Manuel', 'Descripción de testimonio', '93e7f18d9da71c36.jpg', '2019-12-03 03:48:02', '2019-12-03 03:48:02'),
 (4, 'Maria', 'Descripción de testimonio', 'bf6c919d7f24863b.jpg', '2019-12-03 03:48:18', '2019-12-03 03:48:18'),
 (5, 'Julia', 'Descripción de testimonio', '8122efadc62f7157.jpg', '2019-12-03 03:48:32', '2019-12-03 03:48:32');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_tipo_consulta`
+--
+
+DROP TABLE IF EXISTS `vr_tipo_consulta`;
+CREATE TABLE IF NOT EXISTS `vr_tipo_consulta` (
+  `id_tipo_consulta` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) NOT NULL,
+  `costo` double DEFAULT '0',
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_tipo_consulta`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
