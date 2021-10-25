@@ -226,19 +226,36 @@ class AdminViewsController extends Controller
             $year = intval($request->getAttribute('year'));
             $month = intval($request->getAttribute('month'));
 
+            $page = $request->getParam('page');
+            if (!$page) $page = 1;
+
+            $total_rows = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
+                ->whereYear('vr_ingresos.created_at', '=', $year)
+                ->whereMonth('vr_ingresos.created_at', '=', $month)
+                ->count();
+            $pagination = new PaginationHelper($page, $total_rows);
+            
             if ($year > 0 && $month > 0) {
                 $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
-                    ->whereYear('vr_ingresos.created_at', '=', $year)
                     ->whereMonth('vr_ingresos.created_at', '=', $month)
-                    ->orderBy('vr_ingresos.created_at', 'desc')->get();
-
+                    ->whereYear('vr_ingresos.created_at', '=', $year)
+                    ->orderBy('vr_ingresos.created_at', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
+                    
                 $messages = $this->container->flash->getMessages();
 
                 return $this->container->view->render($response, 'admin-ingresos.twig', [
-                    'ingresos' => $ingresos,
-                    'messages' => $messages,
+                    'page' => $page,
+                    'year' => $year,
                     'month' => $month,
-                    'year' => $year
+                    'messages' => $messages,
+                    'ingresos' => $ingresos,
+                    'total_rows' => $total_rows,
+                    'prev' => $pagination->prev,
+                    'next' => $pagination->next,
+                    'totalPages' => $pagination->total_pages
                 ]);
             } else return $response->withHeader('Location', '/admin/transparencia');
         } else return $response->withHeader('Location', '/admin/login');

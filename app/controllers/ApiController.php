@@ -216,7 +216,7 @@ class ApiController extends Controller
                $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
                     ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)
                     ->whereMonth('vr_ingresos.created_at', '=', $ingreso_mes)
-                    ->orderBy('vr_ingresos.created_at', 'desc')->take(10)->get();
+                    ->orderBy('vr_ingresos.created_at', 'desc')->take(7)->get();
 
                $sum_tipo_1 = Ingreso::where('tipo_donador', '=', 1)
                     ->whereYear('vr_ingresos.created_at', '=', $ingreso_anio)

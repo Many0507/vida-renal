@@ -57,7 +57,7 @@
         </div>
     </form>
     {% if mensajes.done|length > 0 %}
-		<div class="notification is-primary" id="message">
+		<div class="notification is-primary" id="message" style="margin-top: 1rem;">
 			<button class="delete"></button>
 			{{ mensajes.done[0] }}
 		</div>
@@ -107,79 +107,133 @@
             </table>
 		</div>
         <div class="column is-9">
-			<table class="table is-bordered is-striped is-fullwidth" style="line-height: normal">
-                <thead>
-                    <tr>
-                        <th>Número de donador</th>
-                        <th>Nombre</th>
-                        <th>Tipo de donador</th>
-                        <th>Cantidad</th>
-                        <th>Especie</th>
-                        <th>Monto aproximado de lo donado</th>
-                    </tr>
-                </thead>
-                <tbody id="ingresos_tbody">
-                    {% for ingreso in ingresos %}
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-fullwidth" style="line-height: normal">
+                    <thead>
                         <tr>
-                            <td>{{ ingreso.id }}</td>
-                            <td>{{ ingreso.nombre }}</td>
-                            <td>{{ ingreso.tipo }}</td>
-                            <td>$ {{ ingreso.cantidad }}</td>
-                            <td>{{ ingreso.especie}}</td>
-                            <td>$ {{ ingreso.especie_cantidad }}</td>
+                            <th>Número de donador</th>
+                            <th>Nombre</th>
+                            <th>Tipo de donador</th>
+                            <th>Cantidad</th>
+                            <th>Especie</th>
+                            <th>Monto aproximado de lo donado</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="ingresos_tbody">
+                        {% for ingreso in ingresos %}
+                            <tr>
+                                <td>{{ ingreso.id }}</td>
+                                <td>{{ ingreso.nombre }}</td>
+                                <td>{{ ingreso.tipo }}</td>
+                                <td>$ {{ ingreso.cantidad }}</td>
+                                <td>{{ ingreso.especie}}</td>
+                                <td>$ {{ ingreso.especie_cantidad }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 		</div>
     </div>
     <h2 class="title is-4 has-green-text last-section">
-        Egresos de Fundación Vida Renal
+        Egresos de Fundación Vida Renal - {{ 'now' | date('Y') }}
     </h2>
     <form>
         <div class="columns">
-            <div class="column is-2">
-                <label class="label has-text-dark" for="transparencia_mes">
+            <div class="column is-3">
+                {% set month = 'now' | date('m') %}
+                <label class="label has-text-dark" for="transparencia_egresos_mes">
                     Mes:
                 </label>
-                <div class="select is-fullwidth" name="transparencia_mes" id="transparencia_mes">
-                    <select class="is-fullwidth">
-                        <option value="1">Enero</option>
-                        <option value="2">Febrero</option>
-                        <option value="3">Marzo</option>
-                        <option value="4">Abril</option>
-                        <option value="5">Mayo</option>
-                        <option value="6">Junio</option>
-                        <option value="7">Julio</option>
-                        <option value="8">Agosto</option>
-                        <option value="9">Septiembre</option>
-                        <option value="10">Octubre</option>
-                        <option value="11">Noviembre</option>
-                        <option value="12">Diciembre</option>
+                <div class="select is-fullwidth" name="transparencia_egresos_mes" id="transparencia_egresos_mes">
+                    <select class="is-fullwidth" id="select_egresos_mes">
+                        <option value="01" {{ month == '01' ? 'selected' : '' }}>Enero</option>
+                        <option value="02" {{ month == '02' ? 'selected' : '' }}>Febrero</option>
+                        <option value="03" {{ month == '03' ? 'selected' : '' }}>Marzo</option>
+                        <option value="04" {{ month == '04' ? 'selected' : '' }}>Abril</option>
+                        <option value="05" {{ month == '05' ? 'selected' : '' }}>Mayo</option>
+                        <option value="06" {{ month == '06' ? 'selected' : '' }}>Junio</option>
+                        <option value="07" {{ month == '07' ? 'selected' : '' }}>Julio</option>
+                        <option value="08" {{ month == '08' ? 'selected' : '' }}>Agosto</option>
+                        <option value="09" {{ month == '09' ? 'selected' : '' }}>Septiembre</option>
+                        <option value="10" {{ month == '10' ? 'selected' : '' }}>Octubre</option>
+                        <option value="11" {{ month == '11' ? 'selected' : '' }}>Noviembre</option>
+                        <option value="12" {{ month == '12' ? 'selected' : '' }}>Diciembre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-3">
+                {% set year = 'now' | date('Y') %}
+                <label class="label has-text-dark" for="transparencia_egresos_anio">
+                    Año:
+                </label>
+                <div class="select is-fullwidth" name="transparencia_egresos_anio" id="transparencia_egresos_anio">
+                    <select class="is-fullwidth" id="select_anio">
+                        {% for año in lista_años %}
+                            <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
+                                {{ año.year }}
+                            </option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
             <div class="column is-2">
-                <label class="label has-text-dark" for="transparencia_anio">
-                    Año:
-                </label>
-                <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
-                    <select class="is-fullwidth">
-                        <option value="2021">2021</option>
-                    </select>
-                </div>
+                <div style="height: 32px;"></div>
+                <button class="button is-primary has-text-weight-bold" id="search_transparencia_egresos">
+				    Buscar
+			    </button> 
             </div>
         </div>
     </form>
     <div class="columns">
         <div class="column is-12">
-			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="create">
+			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="create_egreso">
 				Nuevo Egreso
 			</button>
 			<button class="button has-text-weight-bold" id="create">
 				Ver listado completo de Egresos
 			</button>
 		</div>
+        <div class="column is-12">
+            <div class="table-container">
+                <table class="table is-bordered is-striped is-fullwidth" style="line-height: normal">
+                    <thead>
+                        <tr>
+                            <th>Numero de afiliado</th>
+                            <th>Nombre del paciente</th>
+                            <th>Tipo de consulta</th>
+                            <th>Costo</th>
+                            <th>Talleres</th>
+                            <th>Costo</th>
+                            <th>Insumos</th>
+                            <th>Costo</th>
+                            <th>Medicamentos</th>
+                            <th>Costo</th>
+                            <th>Laboratorios</th>
+                            <th>Costo</th>
+                            <th>Conferencias</th>
+                            <th>Costo</th>
+                            <th>Gastos Fijos</th>
+                            <th>Costo</th>
+                            <th>Sueldos</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ingresos_tbody">
+                        {% for ingreso in ingresos %}
+                            <tr>
+                                <td>{{ ingreso.id }}</td>
+                                <td>{{ ingreso.nombre }}</td>
+                                <td>{{ ingreso.tipo }}</td>
+                                <td>$ {{ ingreso.cantidad }}</td>
+                                <td>{{ ingreso.especie}}</td>
+                                <td>$ {{ ingreso.especie_cantidad }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

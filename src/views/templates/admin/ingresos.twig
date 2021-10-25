@@ -3,6 +3,17 @@
 		Ingresos - {{ month }} / {{ year }}
 	</h1>
 	<div class="columns">
+		<div class="column is-11">
+			<a href="/admin/transparencia">
+                <button class="button is-primary has-text-weight-bold">
+                    <i class="fas fa-chevron-left" style="margin-right: 7px;"></i> 
+					Volver
+                </button>
+            </a>
+		</div>
+		<div class="column is-1 has-text-centered has-text-info font-weight-bolder" style="font-size: 1rem;">
+			{{ total_rows }} registros
+		</div>
 		<div class="column is-12">
 			<table class="table is-bordered is-striped is-fullwidth">
 				<thead>
@@ -30,4 +41,36 @@
 			</table>
 		</div>
 	</div>
+	<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+		<a class="pagination-previous" 
+			{% if prev <= 0 %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/ingresos/{{ month }}/{{ year }}?page={{ prev }}"
+			{% endif %}>
+			<i class="fas fa-chevron-left"></i>
+		</a>
+		<a class="pagination-next"
+			{% if next > totalPages %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/ingresos/{{ month }}/{{ year }}?page={{ next }}"
+			{% endif %}>
+			<i class="fas fa-chevron-right"></i>
+		</a>
+		<ul class="pagination-list">
+			{% for i in 1..totalPages %}
+				{% if i <= 20 %}
+					<li>
+						<a class="pagination-link 
+							{% if i == page %}
+								is-current
+							{% endif %}" 
+						aria-label="Goto page {{i}}" href="/admin/ingresos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
+	<a href="/admin/ingresos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
 </div>

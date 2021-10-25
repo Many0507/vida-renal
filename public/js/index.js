@@ -482,7 +482,7 @@ if (document.getElementById('search_transparencia') != null) {
 			let actual_date = new Date();
 			document.getElementById('ingresos_lista_link').setAttribute('href', `/admin/ingresos/${ingreso_mes}/${ingreso_anio}`);
 			document.querySelectorAll('.button_ingreso').forEach(e => e.disabled = false);
-			if (parseInt(ingreso_mes) != parseInt(actual_date.getMonth()) &&
+			if (parseInt(ingreso_mes) != parseInt(actual_date.getMonth()) + 1 &&
 			parseInt(ingreso_anio) != parseInt(actual_date.getFullYear())) {
 				document.querySelectorAll('#create.button_ingreso').forEach(e => e.disabled = true);
 			}
@@ -513,57 +513,76 @@ if (document.getElementById('search_transparencia') != null) {
 
 // Chart Js //
 if (document.getElementById('myChart') != null) {
-	var ctx = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'pie',
-		data: {
-			labels: ['Donador Persona fisica', 'Donador empresas', 'Donador Anónimo', 'Donador en Especie'],
-			datasets: [{
-				label: '%',
-				data: [12, 19, 3, 5],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)'
-				],
-				borderColor: [
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)'
-				],
-				borderWidth: 1
-			}]
-		},
-		options: {
-			plugins: {
-				legend: {
-					display: true,
-					position: 'bottom'
-				}
+	let porcentajes = [];
+	async function getGraphicData () {
+		let d = new Date();
+		let ingreso_mes = parseInt(d.getMonth()) + 1;
+		let ingreso_anio = parseInt(d.getFullYear());
+		const data = await axios.post(
+			`${window.location.protocol}//${window.location.host}/ingreso/busqueda`, {
+				ingreso_mes,
+				ingreso_anio
+		});
+		porcentajes = data.data.porcentajes;
+
+		document.getElementById('porcentaje_fisica').innerHTML = porcentajes.tipo_1 + '%';
+		document.getElementById('porcentaje_empresas').innerHTML = porcentajes.tipo_2 + '%';
+		document.getElementById('porcentaje_anonimo').innerHTML = porcentajes.tipo_3 + '%';
+		document.getElementById('porcentaje_especie').innerHTML = porcentajes.tipo_4 + '%';
+
+		var ctx = document.getElementById('myChart').getContext('2d');
+		new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ['Donador Persona fisica', 'Donador empresas', 'Donador Anónimo', 'Donador en Especie'],
+				datasets: [{
+					label: '%',
+					data: [porcentajes.tipo_1, porcentajes.tipo_2, porcentajes.tipo_3, porcentajes.tipo_4],
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)'
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: 1
+				}]
 			},
-			scales: {
-				x: {
-					grid: {
-						display: false,
-						drawBorder: false
-					},
-					ticks: {
-						display: false,
-						drawBorder: false
+			options: {
+				plugins: {
+					legend: {
+						display: true,
+						position: 'bottom'
 					}
 				},
-				y: {
-				 	grid:{
-				  		display: false,
-						drawBorder: false
+				scales: {
+					x: {
+						grid: {
+							display: false,
+							drawBorder: false
+						},
+						ticks: {
+							display: false,
+							drawBorder: false
+						}
 					},
-					ticks: {
-						display: false
+					y: {
+						grid:{
+							display: false,
+							drawBorder: false
+						},
+						ticks: {
+							display: false
+						}
 					}
 				}
 			}
-		}
-	});
+		});
+	}
+	getGraphicData();
 }

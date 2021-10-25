@@ -4,7 +4,7 @@
 	</h1>
 	<section class="section section-title-topbar">
 		<h2 class="title is-4 has-green-text last-section">
-			Ingresos de Fundación Vida Renal
+			Ingresos de Fundación Vida Renal - {{ 'now' | date('m') }} / {{ 'now' | date('Y') }}
 		</h2>
 
 		<div class="columns" style="margin-top: 1.5rem;">
@@ -24,27 +24,27 @@
 					<tbody>
 						<tr>
 							<td>Donador Persona fisica</td>
-							<td>12%</td>
+							<td id="porcentaje_fisica">0%</td>
 						</tr>
 						<tr>
 							<td>Donador empresas</td>
-							<td>19%</td>
+							<td id="porcentaje_empresas">0%</td>
 						</tr>
 						<tr>
 							<td>Donador Anónimo</td>
-							<td>3%</td>
+							<td id="porcentaje_anonimo">0%</td>
 						</tr>
 						<tr>
 							<td>Donador en Especie</td>
-							<td>5%</td>
+							<td id="porcentaje_especie">0%</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
-		<h2 class="title is-4 has-green-text last-section" style="margin-top: 2rem;">
-			Egresos de Fundación Vida Renal
+		<h2 class="title is-4 has-green-text last-section" style="margin-top: 3rem;">
+			Egresos de Fundación Vida Renal - {{ 'now' | date('m') }} / {{ 'now' | date('Y') }}
 		</h2>
 		<table class="table is-bordered is-striped is-fullwidth">
 			<thead>
