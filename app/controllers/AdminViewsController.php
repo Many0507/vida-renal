@@ -11,6 +11,12 @@ use App\Models\Servicio;
 use App\Models\Ingreso;
 use App\Models\TipoDonador;
 use App\Helpers\PaginationHelper;
+use App\Models\Conferencias;
+use App\Models\Egreso;
+use App\Models\Insumos;
+use App\Models\Laboratorios;
+use App\Models\Medicamentos;
+use App\Models\TipoConsulta;
 use Illuminate\Database\Capsule\Manager as DB;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -204,19 +210,36 @@ class AdminViewsController extends Controller
             $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / $total);
             $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / $total);
 
+            $tipo_laboratorios = Laboratorios::all();
+            $tipo_medicamentos = Medicamentos::all();
+            $tipo_conferencias = Conferencias::all();
             $tipos_donadores = TipoDonador::all();
+            $tipo_consultas = TipoConsulta::all();
+            $tipo_talleres = Taller::all();
+            $tipo_insumos = Insumos::all();
+
+            $egresos = Egreso::whereYear('created_at', '=', $actual_year)
+                ->whereMonth('created_at', '=', $actual_month)
+                ->orderBy('created_at', 'desc')->take(7)->get();
                 
             $messages = $this->container->flash->getMessages();
 
             return $this->container->view->render($response, 'admin-transparencia.twig', [
+                'tipo_laboratorios' => $tipo_laboratorios,
+                'tipo_medicamentos' => $tipo_medicamentos,
+                'tipo_conferencias' => $tipo_conferencias,
                 'porcentaje_1' => $porcentaje_tipo_1,
                 'porcentaje_2' => $porcentaje_tipo_2,
                 'porcentaje_3' => $porcentaje_tipo_3,
                 'porcentaje_4' => $porcentaje_tipo_4,
                 'tipo_donadores' => $tipos_donadores,
+                'tipo_consultas' => $tipo_consultas,
+                'tipo_talleres' => $tipo_talleres,
+                'tipo_insumos' => $tipo_insumos,
                 'lista_años' => $years_list,
                 'mensajes' => $messages,
-                'ingresos' => $ingresos
+                'ingresos' => $ingresos,
+                'egresos' => $egresos
             ]);
         } else return $response->withHeader('Location', '/admin/login');
     }

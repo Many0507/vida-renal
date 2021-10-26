@@ -76,6 +76,8 @@ $app->delete('/admin/blog/{id}', 'ApiController:eliminarBlog');
 $app->patch('/admin/blog-content/{id}', 'ApiController:crearContenidoBlog');
 
 $app->post('/admin/transparencia', 'ApiController:crearIngreso');
+$app->post('/admin/tipo_egreso', 'ApiController:tipoEgreso');
+$app->post('/admin/egreso', 'ApiController:crearEgreso');
 
 $app->post('/admin/verifyUser', 'LoginController:verifyUser');
 $app->get('/admin/logoutUser', 'LoginController:logoutUser');

@@ -6,9 +6,16 @@ use App\Models\Actividad;
 use App\Models\Evento;
 use App\Models\Taller;
 use App\Models\Blog;
+use App\Models\Conferencias;
+use App\Models\Egreso;
 use App\Models\Servicio;
 use App\Models\Testimonio;
 use App\Models\Ingreso;
+use App\Models\Insumos;
+use App\Models\Laboratorios;
+use App\Models\Medicamentos;
+use App\Models\TipoConsulta;
+use Exception;
 use Slim\Http\UploadedFile;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -203,6 +210,54 @@ class ApiController extends Controller
           return $response->withHeader('Location', '/admin/transparencia');
      }
 
+     public function crearEgreso(Request $request, Response $response, array $args)
+     {
+          $nombre = $request->getParam('nombre_egreso');
+          $tipo_consulta = $request->getParam('tipo_consulta_egreso');
+          $cantidad_consulta = $request->getParam('cantidad_consulta_egreso');
+          $tipo_taller = $request->getParam('tipo_taller_egreso');
+          $cantidad_taller = $request->getParam('cantidad_taller_egreso');
+          $tipo_insumo = $request->getParam('tipo_insumo_egreso');
+          $cantidad_insumo = $request->getParam('cantidad_insumo_egreso');
+          $tipo_medicamento = $request->getParam('tipo_medicamento_egreso');
+          $cantidad_medicamento = $request->getParam('cantidad_medicamento_egreso');
+          $tipo_laboratorio = $request->getParam('tipo_laboratorio_egreso');
+          $cantidad_laboratorio = $request->getParam('cantidad_laboratorio_egreso');
+          $tipo_conferencia = $request->getParam('tipo_conferencia_egreso');
+          $cantidad_conferencia = $request->getParam('cantidad_conferencia_egreso');
+
+          $message = ((empty($nombre) || $nombre === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if (is_null($message)) {
+               $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
+               try {
+                    $target = new Egreso;
+                    $target->nombre = $nombre;
+                    if (!empty($tipo_consulta) || $tipo_consulta != '') $target->tipo_consulta = $tipo_consulta;
+                    if (!empty($cantidad_consulta) || $cantidad_consulta != '') $target->consulta_costo = $cantidad_consulta;
+                    if (!empty($tipo_taller) || $tipo_taller != '') $target->taller = $tipo_taller;
+                    if (!empty($cantidad_taller) || $cantidad_taller != '') $target->costo_taller = $cantidad_taller;
+                    if (!empty($tipo_insumo) || $tipo_insumo != '') $target->insumos = $tipo_insumo;
+                    if (!empty($cantidad_insumo) || $cantidad_insumo != '') $target->costo_insumos = $cantidad_insumo;
+                    if (!empty($tipo_medicamento) || $tipo_medicamento != '') $target->medicamentos = $tipo_medicamento;
+                    if (!empty($cantidad_medicamento) || $cantidad_medicamento != '') $target->costo_medicamentos = $cantidad_medicamento;
+                    if (!empty($tipo_laboratorio) || $tipo_laboratorio != '') $target->laboratorios = $tipo_laboratorio;
+                    if (!empty($cantidad_laboratorio) || $cantidad_laboratorio != '') $target->costo_laboratorios = $cantidad_laboratorio;
+                    if (!empty($tipo_conferencia) || $tipo_conferencia != '') $target->conferencias = $tipo_conferencia;
+                    if (!empty($cantidad_conferencia) || $cantidad_conferencia != '') $target->costo_conferencias = $cantidad_conferencia;
+                    $target->save();
+
+                    $this->container->flash->addMessage('done', '¡Egreso agregado con exito!');
+               } catch (Exception $e) {
+                    $this->container->flash->addMessage('error_egreso', $tryError);
+               }
+          } else $this->container->flash->addMessage('error_egreso', $message);
+
+          return $response->withHeader('Location', '/admin/transparencia');
+     }
+
      public function busquedaIngreso (Request $request, Response $response, array $args)
      {
           $ingreso_anio = $request->getParam('ingreso_anio');
@@ -266,6 +321,39 @@ class ApiController extends Controller
                'message' => $message, 
                'porcentajes' => null
           ));
+     }
+
+     public function tipoEgreso(Request $request, Response $response, array $args)
+     {
+          $tipo_egreso = $request->getParam('tipo_egreso');
+          $nombre = $request->getParam('nombre_tipo_egreso');
+          $costo = $request->getParam('costo_tipo_egreso');
+
+          $message = ((empty($tipo_egreso) || $tipo_egreso === '') || (empty($nombre) || $nombre === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+          
+          if (is_null($message)) {
+               $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';               
+               try {
+                    $target = null;
+                    if ($tipo_egreso == 'consulta') $target = new TipoConsulta;
+                    if ($tipo_egreso == 'insumo') $target = new Insumos;
+                    if ($tipo_egreso == 'medicamento') $target = new Medicamentos;
+                    if ($tipo_egreso == 'laboratorio') $target = new Laboratorios;
+                    if ($tipo_egreso == 'conferencia') $target = new Conferencias;
+                    if (!is_null($target)) {
+                         $target->nombre = $nombre;
+                         if (!empty($costo) || $costo != '') $target->costo = $costo;
+                         $target->save();
+
+                         $this->container->flash->addMessage('done', '¡Tipo de egreso agregado con exito!');
+                    } else $this->container->flash->addMessage('error_tipo_egreso', $tryError);
+               } catch (Exception $e) {
+                    $this->container->flash->addMessage('error_tipo_egreso', $tryError);
+               }
+          } else $this->container->flash->addMessage('error_tipo_egreso', $message);
+          return $response->withHeader('Location', '/admin/transparencia');
      }
 
      // CRUD //

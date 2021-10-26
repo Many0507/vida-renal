@@ -187,7 +187,7 @@
     </form>
     <div class="columns">
         <div class="column is-12">
-			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="create_egreso">
+			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="egreso_modal">
 				Nuevo Egreso
 			</button>
 			<button class="button has-text-weight-bold" id="create">
@@ -218,21 +218,25 @@
                             <th>Costo</th>
                             <th>Conferencias</th>
                             <th>Costo</th>
-                            <th>Gastos Fijos</th>
-                            <th>Costo</th>
-                            <th>Sueldos</th>
-                            <th>Costo</th>
                         </tr>
                     </thead>
                     <tbody id="ingresos_tbody">
-                        {% for ingreso in ingresos %}
+                        {% for egreso in egresos %}
                             <tr>
-                                <td>{{ ingreso.id }}</td>
-                                <td>{{ ingreso.nombre }}</td>
-                                <td>{{ ingreso.tipo }}</td>
-                                <td>$ {{ ingreso.cantidad }}</td>
-                                <td>{{ ingreso.especie}}</td>
-                                <td>$ {{ ingreso.especie_cantidad }}</td>
+                                <td>{{ egreso.id }}</td>
+                                <td>{{ egreso.nombre }}</td>
+                                <td>{{ egreso.tipo_consulta }}</td>
+                                <td>{{ egreso.consulta_costo }}</td>
+                                <td>{{ egreso.taller }}</td>
+                                <td>{{ egreso.costo_taller }}</td>
+                                <td>{{ egreso.insumos }}</td>
+                                <td>{{ egreso.costo_insumos }}</td>
+                                <td>{{ egreso.medicamentos }}</td>
+                                <td>{{ egreso.costo_medicamentos }}</td>
+                                <td>{{ egreso.laboratorios }}</td>
+                                <td>{{ egreso.costo_laboratorios }}</td>
+                                <td>{{ egreso.conferencias }}</td>
+                                <td>{{ egreso.costo_conferencias }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -331,33 +335,32 @@
 	</form>
 </div>
 
-
 {# Tipo de egresos #}
-<div id="form-container_tipo_egreso" style="{% if mensajes.error|length > 0 %} top: 0; {% endif %}">
-	<form action="/admin/transparencia" method="POST" enctype="multipart/form-data" id="form_tipo_egreso">
+<div id="form-container_tipo_egreso" style="{% if mensajes.error_tipo_egreso|length > 0 %} top: 0; {% endif %}">
+	<form action="/admin/tipo_egreso" method="POST" enctype="multipart/form-data" id="form_tipo_egreso">
 		<h2 class="title is-3 has-text-link has-text-weight-bold">
-			Nuevo ingreso
+			Agregar tipo de egreso
 		</h2>
-		{% if mensajes.error|length > 0 %}
+		{% if mensajes.error_tipo_egreso|length > 0 %}
 			<p class="help has-text-danger" id="message_tipo_egreso">
-				{{ mensajes.error[0] }}
+				{{ mensajes.error_tipo_egreso[0] }}
 			</p>
 		{% endif %}
         <div class="columns is-fullwidth">
             <div class="column is-6" style="padding-left: 0;">
                 <div class="field">
-                    <label class="label" for="nombre">
+                    <label class="label" for="tipo_egreso">
                         Agregar tipo de: <span class="has-text-info">*</span>
                     </label>
                     <div class="control">
                         <div class="select is-fullwidth">
-                            <select id="tipo_donador" name="tipo_donador">
+                            <select id="tipo_egreso" name="tipo_egreso">
                                 <option hidden selected disabled>Selecciona una opción</option>
-                                {% for tipo_donador in tipo_donadores %}
-                                    <option value="{{ tipo_donador.id_tipo_donador }}">
-                                        {{ tipo_donador.tipo }}
-                                    </option>
-                                {% endfor %}
+                                <option value="consulta">Consulta</option>
+                                <option value="insumo">Insumo</option>
+                                <option value="medicamento">Medicamento</option>
+                                <option value="laboratorio">Laboratorio</option>
+                                <option value="conferencia">Conferencia</option>
                             </select>
                         </div>
                     </div>
@@ -365,21 +368,24 @@
             </div>
             <div class="column is-6" style="padding-right: 0;">
                 <div class="field">
-                    <label class="label" for="nombre">
+                    <label class="label" for="nombre_tipo_egreso">
                         Nombre: <span class="has-text-info">*</span>
                     </label>
                     <div class="control">
-                        <input class="input" type="text" name="nombre" value="{{ old.nombre }}">
+                        <input class="input" type="text" name="nombre_tipo_egreso" value="{{ old.nombre_tipo_egreso }}">
                     </div>
                 </div>
             </div>
             <div class="column is-6" style="padding-left: 0;">
                 <div class="field">
-                    <label class="label" for="nombre">
-                        Costo: <span class="has-text-info">*</span>
+                    <label class="label" for="costo_tipo_egreso">
+                        Costo:
                     </label>
-                    <div class="control">
-                        <input class="input" type="text" name="nombre" value="{{ old.nombre }}">
+                    <div class="control has-icons-left">
+                        <input class="input" type="number" name="costo_tipo_egreso" value="{{ old.costo_tipo_egreso }}">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -394,5 +400,302 @@
                 </button>
             </div>
         </div>
+	</form>
+</div>
+
+{# Crear Egreso #}
+<div id="form-container_egreso" style="{% if mensajes.error_egreso|length > 0 %} top: 0; {% endif %}">
+	<form action="/admin/egreso" method="POST" enctype="multipart/form-data" id="form_egreso" style="height: 550px">
+		<h2 class="title is-3 has-text-link has-text-weight-bold">
+			Nuevo Egreso
+		</h2>
+		{% if mensajes.error_egreso|length > 0 %}
+			<p class="help has-text-danger" id="message_egreso">
+				{{ mensajes.error_egreso[0] }}
+			</p>
+		{% endif %}
+        <div class="columns is-fullwidth">
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="nombre_egreso">
+                        Nombre: <span class="has-text-info">*</span>
+                    </label>
+                    <div class="control">
+                        <input class="input" type="text" name="nombre_egreso" value="{{ old.nombre_egreso }}" placeholder="Nombre">
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_consulta_egreso">
+                        Tipo de consulta:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_consulta_egreso" name="tipo_consulta_egreso" {% if tipo_consultas|length <= 0 %} disabled {% endif %}>
+                                {% if tipo_consultas|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_consulta in tipo_consultas %}
+                                    <option value="{{ tipo_consulta.nombre }}">
+                                        {{ tipo_consulta.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_consulta_egreso">
+                        Costo del tipo de consulta:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input" 
+                            type="number" 
+                            name="cantidad_consulta_egreso" 
+                            value="{{ old.cantidad_consulta_egreso }}" 
+                            placeholder="Costo del tipo de consulta"
+                            {% if tipo_consultas|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_taller_egreso">
+                        Tipo de taller:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_taller_egreso" name="tipo_taller_egreso" {% if tipo_talleres|length <= 0 %} disabled {% endif %}>
+                                {% if tipo_talleres|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_taller in tipo_talleres %}
+                                    <option value="{{ tipo_taller.titulo }}">
+                                        {{ tipo_taller.titulo }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_taller_egreso">
+                        Costo del tipo de taller:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input" 
+                            type="number" 
+                            name="cantidad_taller_egreso" 
+                            placeholder="Costo del tipo de taller"
+                            value="{{ old.cantidad_taller_egreso }}" 
+                            {% if tipo_talleres|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_insumo_egreso">
+                        Tipo de insumo:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_insumo_egreso" name="tipo_insumo_egreso" {% if tipo_insumos|length <= 0 %} disabled {% endif %}>
+                                {% if tipo_insumos|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_insumo in tipo_insumos %}
+                                    <option value="{{ tipo_insumo.nombre }}">
+                                        {{ tipo_insumo.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_insumo_egreso">
+                        Costo del tipo de insumo:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input" 
+                            type="number" 
+                            name="cantidad_insumo_egreso"
+                            placeholder="Costo del tipo de insumo"
+                            value="{{ old.cantidad_insumo_egreso }}" 
+                            {% if tipo_insumos|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_medicamento_egreso">
+                        Tipo de medicamento:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_medicamento_egreso" name="tipo_medicamento_egreso" {% if tipo_medicamentos|length <= 0 %} disabled {% endif %}>
+                                <option hidden selected disabled>Selecciona una opción</option>
+                                {% if tipo_medicamentos|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_medicamento in tipo_medicamentos %}
+                                    <option value="{{ tipo_medicamento.nombre }}">
+                                        {{ tipo_medicamento.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_medicamento_egreso">
+                        Costo del tipo de medicamento:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input" 
+                            type="number" 
+                            name="cantidad_medicamento_egreso" 
+                            placeholder="Costo del tipo de medicamento"
+                            value="{{ old.cantidad_medicamento_egreso }}" 
+                            {% if tipo_medicamentos|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_laboratorio_egreso">
+                        Tipo de laboratorio:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_laboratorio_egreso" name="tipo_laboratorio_egreso" {% if tipo_laboratorios|length <= 0 %} disabled {% endif %}>
+                                <option hidden selected disabled>Selecciona una opción</option>
+                                {% if tipo_laboratorios|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_laboratorio in tipo_laboratorios %}
+                                    <option value="{{ tipo_laboratorio.nombre }}">
+                                        {{ tipo_laboratorio.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_laboratorio_egreso">
+                        Costo del tipo de laboratorio:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input 
+                            class="input" 
+                            type="number"
+                            name="cantidad_laboratorio_egreso" 
+                            placeholder="Costo del tipo de laboratorio"
+                            value="{{ old.cantidad_laboratorio_egreso }}" 
+                            {% if tipo_laboratorios|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="tipo_conferencia_egreso">
+                        Tipo de conferencia:
+                    </label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="tipo_conferencia_egreso" name="tipo_conferencia_egreso" {% if tipo_conferencias|length <= 0 %} disabled {% endif %}>
+                                <option hidden selected disabled>Selecciona una opción</option>
+                                {% if tipo_conferencias|length <= 0 %}
+                                    <option hidden selected disabled>No existen opciones disponibles</option>
+                                {% else %}
+                                    <option hidden selected disabled>Selecciona una opción</option>
+                                {% endif %}
+                                {% for tipo_conferencia in tipo_conferencias %}
+                                    <option value="{{ tipo_conferencia.nombre }}">
+                                        {{ tipo_conferencia.nombre }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3" style="padding-left: 0;">
+                <div class="field">
+                    <label class="label" for="cantidad_conferencia_egreso">
+                        Costo del tipo de conferencia:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input
+                            class="input" 
+                            type="number" 
+                            name="cantidad_conferencia_egreso" 
+                            placeholder="Costo del tipo de conferencia"
+                            value="{{ old.cantidad_conferencia_egreso }}" 
+                            {% if tipo_conferencias|length <= 0 %} disabled {% endif %}
+                        >
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="field">
+			<div class="control">
+				<button class="button is-link" type="submit">
+					Agregar
+				</button>
+				<button class="button is-light" id="close_egreso">
+					Cerrar
+				</button>
+			</div>
+		</div>
 	</form>
 </div>

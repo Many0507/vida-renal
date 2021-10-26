@@ -234,6 +234,24 @@ if (tipo_egreso_modal != null) {
 	});
 }
 
+const egreso_modal = document.getElementById('egreso_modal');
+const egreso_form = document.getElementById('form-container_egreso');
+const egreso_close = document.getElementById('close_egreso');
+if (egreso_modal != null) {
+	egreso_modal.addEventListener('click', e => {
+		egreso_form.style.top = '0';
+	});
+	if (egreso_close != null) {
+		egreso_close.addEventListener('click', e => {
+			e.preventDefault();
+			egreso_form.style.top = '-200vh';
+		});
+	}
+	egreso_form.addEventListener('click', e => {
+		if (e.target.id == 'form-container_egreso') egreso_form.style.top = '-200vh';
+	});
+}
+
 if (deleteBtn != null) {
 	deleteBtn.forEach(btn => {
 		btn.addEventListener('click', async e => {
