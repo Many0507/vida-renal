@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 25-10-2021 a las 22:00:40
+-- Tiempo de generación: 26-10-2021 a las 22:27:46
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -156,14 +156,17 @@ CREATE TABLE IF NOT EXISTS `vr_egresos` (
   `costo_laboratorios` double DEFAULT NULL,
   `conferencias` varchar(120) DEFAULT NULL,
   `costo_conferencias` double DEFAULT NULL,
-  `gastos_fijos` varchar(120) DEFAULT NULL,
-  `costo_gastos_fijos` double DEFAULT NULL,
-  `sueldos` varchar(120) DEFAULT NULL,
-  `costo_sueldos` double DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_egresos`
+--
+
+INSERT INTO `vr_egresos` (`id`, `nombre`, `tipo_consulta`, `consulta_costo`, `taller`, `costo_taller`, `insumos`, `costo_insumos`, `medicamentos`, `costo_medicamentos`, `laboratorios`, `costo_laboratorios`, `conferencias`, `costo_conferencias`, `created_at`, `updated_at`) VALUES
+(1, 'Manuel Lizama', 'TIPO A', 800, 'Inteligencia emocional', 1200, NULL, NULL, NULL, NULL, 'Laboratorio A', 300, NULL, NULL, '2021-10-26 22:11:34', '2021-10-26 22:11:34');
 
 -- --------------------------------------------------------
 
@@ -208,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `vr_ingresos` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `vr_ingresos`
@@ -221,7 +224,8 @@ INSERT INTO `vr_ingresos` (`id`, `nombre`, `tipo_donador`, `cantidad`, `especie`
 (4, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:53:56', '2021-10-15 19:53:56'),
 (5, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:54:10', '2021-10-15 19:54:10'),
 (6, 'Manuel', '2', 123, NULL, 0, '2021-10-15 19:55:43', '2021-10-15 19:55:43'),
-(7, 'PRUEBA', '3', 1200, NULL, 0, '2021-10-20 17:04:35', '2021-10-20 17:04:35');
+(7, 'PRUEBA', '3', 1200, NULL, 0, '2021-10-20 17:04:35', '2021-10-20 17:04:35'),
+(8, 'manuel alejandro2', '2', 20, NULL, 0, '2021-10-26 15:49:13', '2021-10-26 15:49:13');
 
 -- --------------------------------------------------------
 
@@ -253,7 +257,14 @@ CREATE TABLE IF NOT EXISTS `vr_laboratorios` (
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_laboratorio`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_laboratorios`
+--
+
+INSERT INTO `vr_laboratorios` (`id_laboratorio`, `nombre`, `costo`, `created_at`, `updated_at`) VALUES
+(1, 'Laboratorio A', 0, '2021-10-26 15:44:48', '2021-10-26 15:44:48');
 
 -- --------------------------------------------------------
 
@@ -321,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `vr_talleres` (
 INSERT INTO `vr_talleres` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `updated_at`) VALUES
 (7, 'Tanatologia', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.				\r\n			', 'bb858d8924b29ccc.jpg', '2019-11-25 10:25:11', '2019-11-25 10:25:11'),
 (8, 'Inteligencia emocional', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.				\r\n			\r\n			', '13c2a2601e1d190d.jpg', '2019-11-25 10:25:42', '2019-11-25 10:25:42'),
-(9, 'Resiliencia', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', 'b693f65b652cf491.jpg', '2019-11-25 10:26:14', '2019-11-25 10:26:14');
+(9, 'DUELO Y TANATOLOGÍA.', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', 'b693f65b652cf491.jpg', '2019-11-25 10:26:14', '2019-11-25 10:26:14');
 
 -- --------------------------------------------------------
 
@@ -364,7 +375,14 @@ CREATE TABLE IF NOT EXISTS `vr_tipo_consulta` (
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_tipo_consulta`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_tipo_consulta`
+--
+
+INSERT INTO `vr_tipo_consulta` (`id_tipo_consulta`, `nombre`, `costo`, `created_at`, `updated_at`) VALUES
+(1, 'TIPO A', 200, '2021-10-26 15:37:17', '2021-10-26 15:37:17');
 
 -- --------------------------------------------------------
 
