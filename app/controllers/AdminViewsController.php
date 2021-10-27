@@ -186,6 +186,11 @@ class AdminViewsController extends Controller
                 ->orderBy('year', 'desc')
                 ->get();
 
+            $years_list_egresos = Egreso::select(DB::raw('YEAR(created_at) as year'))
+                ->distinct()
+                ->orderBy('year', 'desc')
+                ->get();
+
             $sum_tipo_1 = Ingreso::where('tipo_donador', '=', 1)
                 ->whereYear('vr_ingresos.created_at', '=', $actual_year)
                 ->whereMonth('vr_ingresos.created_at', '=', $actual_month)
@@ -225,6 +230,7 @@ class AdminViewsController extends Controller
             $messages = $this->container->flash->getMessages();
 
             return $this->container->view->render($response, 'admin-transparencia.twig', [
+                'lista_años_egresos' => $years_list_egresos,
                 'tipo_laboratorios' => $tipo_laboratorios,
                 'tipo_medicamentos' => $tipo_medicamentos,
                 'tipo_conferencias' => $tipo_conferencias,
@@ -276,6 +282,45 @@ class AdminViewsController extends Controller
                     'month' => $month,
                     'messages' => $messages,
                     'ingresos' => $ingresos,
+                    'total_rows' => $total_rows,
+                    'prev' => $pagination->prev,
+                    'next' => $pagination->next,
+                    'totalPages' => $pagination->total_pages
+                ]);
+            } else return $response->withHeader('Location', '/admin/transparencia');
+        } else return $response->withHeader('Location', '/admin/login');
+    }
+
+    public function egresos(Request $request, Response $response, array $args)
+    {
+        if ($_SESSION['user']) {
+            $year = intval($request->getAttribute('year'));
+            $month = intval($request->getAttribute('month'));
+
+            $page = $request->getParam('page');
+            if (!$page) $page = 1;
+
+            $total_rows = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->count();
+            $pagination = new PaginationHelper($page, $total_rows);
+            
+            if ($year > 0 && $month > 0) {
+                $egresos = Egreso::whereYear('created_at', '=', $year)
+                    ->whereMonth('created_at', '=', $month)
+                    ->orderBy('created_at', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
+                    
+                $messages = $this->container->flash->getMessages();
+
+                return $this->container->view->render($response, 'admin-egresos.twig', [
+                    'page' => $page,
+                    'year' => $year,
+                    'month' => $month,
+                    'messages' => $messages,
+                    'egresos' => $egresos,
                     'total_rows' => $total_rows,
                     'prev' => $pagination->prev,
                     'next' => $pagination->next,

@@ -67,8 +67,7 @@
 			<button 
                 id="create"
                 style="margin-right: .5rem;" 
-                class="button is-info has-text-weight-bold button_ingreso" 
-                {{ ingresos|length <= 0 ? 'disabled' : '' }} 
+                class="button is-info has-text-weight-bold button_ingreso"
             >
 				Nuevo Ingreso
 			</button> 
@@ -168,8 +167,8 @@
                     Año:
                 </label>
                 <div class="select is-fullwidth" name="transparencia_egresos_anio" id="transparencia_egresos_anio">
-                    <select class="is-fullwidth" id="select_anio">
-                        {% for año in lista_años %}
+                    <select class="is-fullwidth" id="select_egresos_anio">
+                        {% for año in lista_años_egresos %}
                             <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
                                 {{ año.year }}
                             </option>
@@ -183,16 +182,30 @@
 				    Buscar
 			    </button> 
             </div>
+            <div class="column is-3">
+                <div style="height: 32px;"></div>
+                <p id="egreso_busqueda_error" class="has-text-danger is-hidden">No hay información disponible</p>
+            </div>
         </div>
     </form>
     <div class="columns">
         <div class="column is-12">
-			<button class="button is-info has-text-weight-bold" style="margin-right: .5rem;" id="egreso_modal">
+			<button 
+                class="button is-info has-text-weight-bold button_egreso" 
+                style="margin-right: .5rem;" 
+                id="egreso_modal"
+            >
 				Nuevo Egreso
 			</button>
-			<button class="button has-text-weight-bold" id="create">
-				Ver listado completo de Egresos
-			</button>
+            <a id="egresos_lista_link" href="/admin/egresos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
+                <button 
+                    class="button has-text-weight-bold button_egreso" 
+                    id="egresos_lista_link" 
+                    {{ egresos|length <= 0 ? 'disabled' : '' }}
+                >
+                    Ver listado completo de Egresos
+                </button>
+            </a>
 		</div>
         <div class="column is-12">
             <button class="button is-link has-text-weight-bold" id="tipo_egreso_modal">
@@ -220,7 +233,7 @@
                             <th>Costo</th>
                         </tr>
                     </thead>
-                    <tbody id="ingresos_tbody">
+                    <tbody id="egresos_tbody">
                         {% for egreso in egresos %}
                             <tr>
                                 <td>{{ egreso.id }}</td>

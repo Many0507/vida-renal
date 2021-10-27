@@ -549,6 +549,57 @@ if (document.getElementById('search_transparencia') != null) {
 	});
 }
 
+if (document.getElementById('search_transparencia_egresos') != null) {
+	let search_transparencia_egresos = document.getElementById('search_transparencia_egresos');
+	search_transparencia_egresos.addEventListener('click', async function (e) {
+		e.preventDefault();
+		let egreso_mes = document.getElementById('select_egresos_mes').value;
+		let egreso_anio = document.getElementById('select_egresos_anio').value;
+		let egresos_tbody = document.getElementById('egresos_tbody');
+		document.getElementById('egreso_busqueda_error').classList.add('is-hidden');
+
+		const data = await axios.post(
+			`${window.location.protocol}//${window.location.host}/egreso/busqueda`, {
+				egreso_mes,
+				egreso_anio
+		});
+
+		egresos_tbody.innerHTML = '';
+		if (data.data.success) {
+			let actual_date = new Date();
+			document.getElementById('egresos_lista_link').setAttribute('href', `/admin/egresos/${egreso_mes}/${egreso_anio}`);
+			document.querySelectorAll('.button_egreso').forEach(e => e.disabled = false);
+			if (parseInt(egreso_mes) != parseInt(actual_date.getMonth()) + 1 &&
+			parseInt(egreso_anio) != parseInt(actual_date.getFullYear())) {
+				document.querySelectorAll('#create.button_egreso').forEach(e => e.disabled = true);
+			}
+			data.data.data.forEach(function (item, index) {
+				egresos_tbody.innerHTML += `
+					<tr>
+						<td>${ item.id != null ? item.id : '' }</td>
+						<td>${ item.nombre != null ? item.nombre : '' }</td>
+						<td>${ item.tipo_consulta != null ? item.tipo_consulta : '' }</td>
+						<td>${ item.consulta_costo != null ? item.consulta_costo : '' }</td>
+						<td>${ item.taller != null ? item.taller : '' }</td>
+						<td>${ item.costo_taller != null ? item.costo_taller : '' }</td>
+						<td>${ item.insumos != null ? item.insumos : '' }</td>
+						<td>${ item.costo_insumos != null ? item.costo_insumos : '' }</td>
+						<td>${ item.medicamentos != null ? item.medicamentos : '' }</td>
+						<td>${ item.costo_medicamentos != null ? item.costo_medicamentos : '' }</td>
+						<td>${ item.laboratorios != null ? item.laboratorios : '' }</td>
+						<td>${ item.costo_laboratorios != null ? item.costo_laboratorios : '' }</td>
+						<td>${ item.conferencias != null ? item.conferencias : '' }</td>
+						<td>${ item.costo_conferencias != null ? item.costo_conferencias : '' }</td>
+					</tr>
+				`;
+			});
+		} else {
+			document.querySelectorAll('.button_egreso').forEach(e => e.disabled = true);
+			document.getElementById('egreso_busqueda_error').classList.remove('is-hidden');
+		}
+	});
+}
+
 // Chart Js //
 if (document.getElementById('myChart') != null) {
 	let porcentajes = [];

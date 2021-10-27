@@ -1,0 +1,94 @@
+<div class="container main-admin">
+	<h1 class="title is-2 section has-text-info section-title has-text-centered">
+		Egresos - {{ month }} / {{ year }}
+	</h1>
+	<div class="columns">
+		<div class="column is-11">
+			<a href="/admin/transparencia">
+				<button class="button is-primary has-text-weight-bold">
+					<i class="fas fa-chevron-left" style="margin-right: 7px;"></i> 
+					Volver
+				</button>
+			</a>
+		</div>
+		<div class="column is-1 has-text-centered has-text-info font-weight-bolder" style="font-size: 1rem;">
+			{{ total_rows }} registros
+		</div>
+		<div class="column is-12">
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th>Numero de afiliado</th>
+							<th>Nombre del paciente</th>
+							<th>Tipo de consulta</th>
+							<th>Costo</th>
+							<th>Talleres</th>
+							<th>Costo</th>
+							<th>Insumos</th>
+							<th>Costo</th>
+							<th>Medicamentos</th>
+							<th>Costo</th>
+							<th>Laboratorios</th>
+							<th>Costo</th>
+							<th>Conferencias</th>
+							<th>Costo</th>
+						</tr>
+					</thead>
+					<tbody id="egresos_tbody">
+						{% for egreso in egresos %}
+							<tr>
+								<td>{{ egreso.id }}</td>
+								<td>{{ egreso.nombre }}</td>
+								<td>{{ egreso.tipo_consulta }}</td>
+								<td>{{ egreso.consulta_costo }}</td>
+								<td>{{ egreso.taller }}</td>
+								<td>{{ egreso.costo_taller }}</td>
+								<td>{{ egreso.insumos }}</td>
+								<td>{{ egreso.costo_insumos }}</td>
+								<td>{{ egreso.medicamentos }}</td>
+								<td>{{ egreso.costo_medicamentos }}</td>
+								<td>{{ egreso.laboratorios }}</td>
+								<td>{{ egreso.costo_laboratorios }}</td>
+								<td>{{ egreso.conferencias }}</td>
+								<td>{{ egreso.costo_conferencias }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+		<a class="pagination-previous" 
+			{% if prev <= 0 %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/egresos/{{ month }}/{{ year }}?page={{ prev }}"
+			{% endif %}>
+			<i class="fas fa-chevron-left"></i>
+		</a>
+		<a class="pagination-next"
+			{% if next > totalPages %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/egresos/{{ month }}/{{ year }}?page={{ next }}"
+			{% endif %}>
+			<i class="fas fa-chevron-right"></i>
+		</a>
+		<ul class="pagination-list">
+			{% for i in 1..totalPages %}
+				{% if i <= 20 %}
+					<li>
+						<a class="pagination-link 
+							{% if i == page %}
+								is-current
+							{% endif %}" 
+						aria-label="Goto page {{i}}" href="/admin/egresos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
+	<a href="/admin/egresos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
+</div>

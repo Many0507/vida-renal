@@ -29,6 +29,7 @@ $app->get('/admin/testimonios', 'AdminViewsController:testimonios');
 $app->get('/admin/servicios', 'AdminViewsController:servicios');
 $app->get('/admin/transparencia', 'AdminViewsController:transparencia');
 $app->get('/admin/ingresos/{month}/{year}', 'AdminViewsController:ingresos');
+$app->get('/admin/egresos/{month}/{year}', 'AdminViewsController:egresos');
 $app->get('/admin/blog', 'AdminViewsController:blog');
 $app->get('/admin/blog-content', 'AdminViewsController:blogContent');
 $app->get('/admin/login', 'AdminViewsController:login');
@@ -84,6 +85,7 @@ $app->get('/admin/logoutUser', 'LoginController:logoutUser');
 
 $app->post('/voluntariado/registro', 'ApiController:voluntariado');
 $app->post('/ingreso/busqueda', 'ApiController:busquedaIngreso');
+$app->post('/egreso/busqueda', 'ApiController:busquedaEgreso');
 
 // video routes //
 $app->post('/video-principal', 'VideoPrincipalController:Agregar');

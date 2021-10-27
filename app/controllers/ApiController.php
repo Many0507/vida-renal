@@ -258,7 +258,7 @@ class ApiController extends Controller
           return $response->withHeader('Location', '/admin/transparencia');
      }
 
-     public function busquedaIngreso (Request $request, Response $response, array $args)
+     public function busquedaIngreso(Request $request, Response $response, array $args)
      {
           $ingreso_anio = $request->getParam('ingreso_anio');
           $ingreso_mes = $request->getParam('ingreso_mes');
@@ -314,6 +314,40 @@ class ApiController extends Controller
                          'tipo_3' => $porcentaje_tipo_3,
                          'tipo_4' => $porcentaje_tipo_4
                     )
+               ));
+          } else return json_encode(array(
+               'success' => false, 
+               'data' => null, 
+               'message' => $message, 
+               'porcentajes' => null
+          ));
+     }
+
+     public function busquedaEgreso(Request $request, Response $response, array $args)
+     {
+          $egreso_anio = $request->getParam('egreso_anio');
+          $egreso_mes = $request->getParam('egreso_mes');
+
+          $message = ((empty($egreso_mes) || $egreso_mes === '') || (empty($egreso_anio) || $egreso_anio === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if (is_null($message)) {
+               $egresos = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->orderBy('created_at', 'desc')->take(7)->get();
+
+               if (count($egresos) <= 0) return json_encode(array(
+                    'success' => false, 
+                    'data' => null, 
+                    'message' => $message, 
+                    'porcentajes' => null
+               ));
+               
+               return json_encode(array(
+                    'success' => true, 
+                    'data' => $egresos, 
+                    'message' => $message
                ));
           } else return json_encode(array(
                'success' => false, 
