@@ -337,6 +337,39 @@ class ApiController extends Controller
                     ->whereMonth('created_at', '=', $egreso_mes)
                     ->orderBy('created_at', 'desc')->take(7)->get();
 
+               $sum_consulta = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('consulta_costo');
+
+               $sum_taller = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo_taller');
+
+               $sum_insumo = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo_insumos');
+
+               $sum_medicamento = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo_medicamentos');
+
+               $sum_laboratorios = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo_laboratorios');
+
+               $sum_conferencias = Egreso::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo_conferencias');
+
+               $total = $sum_consulta + $sum_taller + $sum_insumo + $sum_medicamento + $sum_laboratorios + $sum_conferencias;
+
+               $porcentaje_consulta = round(($sum_consulta * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_taller = round(($sum_taller * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_insumo = round(($sum_insumo * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_medicamento = round(($sum_medicamento * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_laboratorios = round(($sum_laboratorios * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_conferencias = round(($sum_conferencias * 100) / ($total > 0 ? $total : 1));
+
                if (count($egresos) <= 0) return json_encode(array(
                     'success' => false, 
                     'data' => null, 
@@ -347,7 +380,15 @@ class ApiController extends Controller
                return json_encode(array(
                     'success' => true, 
                     'data' => $egresos, 
-                    'message' => $message
+                    'message' => $message,
+                    'porcentajes' => array(
+                         'porcentaje_consulta' => $porcentaje_consulta,
+                         'porcentaje_taller' => $porcentaje_taller,
+                         'porcentaje_insumo' => $porcentaje_insumo,
+                         'porcentaje_medicamento' => $porcentaje_medicamento,
+                         'porcentaje_laboratorios' => $porcentaje_laboratorios,
+                         'porcentaje_conferencias' => $porcentaje_conferencias
+                    )
                ));
           } else return json_encode(array(
                'success' => false, 

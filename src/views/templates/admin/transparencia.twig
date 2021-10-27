@@ -201,16 +201,41 @@
                 <button 
                     class="button has-text-weight-bold button_egreso" 
                     id="egresos_lista_link" 
+                    style="margin-right: .5rem;" 
                     {{ egresos|length <= 0 ? 'disabled' : '' }}
                 >
                     Ver listado completo de Egresos
                 </button>
             </a>
-		</div>
-        <div class="column is-12">
             <button class="button is-link has-text-weight-bold" id="tipo_egreso_modal">
                 Agregar tipo de egreso
             </button> 
+		</div>
+        <div class="column is-8">
+            <div class="columns">
+                <div class="column is-4">
+                    <label class="label has-text-dark" for="transparencia_egresos_gastosfijos">
+                        Gastos fijos del mes:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="text" name="gastos_fijos" value="{{ old.gastos_fijos }}" placeholder="Gastos fijos">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <label class="label has-text-dark" for="transparencia_egresos_gastosfijos">
+                        Sueldos del mes:
+                    </label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="text" name="gastos_fijos" value="{{ old.gastos_fijos }}" placeholder="Gastos fijos">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-dollar-sign has-text-info"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="column is-12">
             <div class="table-container">
@@ -239,17 +264,17 @@
                                 <td>{{ egreso.id }}</td>
                                 <td>{{ egreso.nombre }}</td>
                                 <td>{{ egreso.tipo_consulta }}</td>
-                                <td>{{ egreso.consulta_costo }}</td>
+                                <td>${{ egreso.consulta_costo }}</td>
                                 <td>{{ egreso.taller }}</td>
-                                <td>{{ egreso.costo_taller }}</td>
+                                <td>${{ egreso.costo_taller }}</td>
                                 <td>{{ egreso.insumos }}</td>
-                                <td>{{ egreso.costo_insumos }}</td>
+                                <td>${{ egreso.costo_insumos }}</td>
                                 <td>{{ egreso.medicamentos }}</td>
-                                <td>{{ egreso.costo_medicamentos }}</td>
+                                <td>${{ egreso.costo_medicamentos }}</td>
                                 <td>{{ egreso.laboratorios }}</td>
-                                <td>{{ egreso.costo_laboratorios }}</td>
+                                <td>${{ egreso.costo_laboratorios }}</td>
                                 <td>{{ egreso.conferencias }}</td>
-                                <td>{{ egreso.costo_conferencias }}</td>
+                                <td>${{ egreso.costo_conferencias }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

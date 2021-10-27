@@ -549,6 +549,7 @@ if (document.getElementById('search_transparencia') != null) {
 	});
 }
 
+// Transparencia - Busqueda de Egresos //
 if (document.getElementById('search_transparencia_egresos') != null) {
 	let search_transparencia_egresos = document.getElementById('search_transparencia_egresos');
 	search_transparencia_egresos.addEventListener('click', async function (e) {
@@ -603,6 +604,7 @@ if (document.getElementById('search_transparencia_egresos') != null) {
 // Chart Js //
 if (document.getElementById('myChart') != null) {
 	let porcentajes = [];
+	let egresos_body = '';
 	async function getGraphicData () {
 		let d = new Date();
 		let ingreso_mes = parseInt(d.getMonth()) + 1;
@@ -673,5 +675,26 @@ if (document.getElementById('myChart') != null) {
 			}
 		});
 	}
+	async function getDataEgresos() {
+		let d = new Date();
+		let egreso_mes = parseInt(d.getMonth()) + 1;
+		let egreso_anio = parseInt(d.getFullYear());
+
+		const data = await axios.post(
+			`${window.location.protocol}//${window.location.host}/egreso/busqueda`, {
+				egreso_mes,
+				egreso_anio
+		});
+
+		porcentajes = data.data.porcentajes;
+			
+		document.getElementById('porcentaje_consulta').innerHTML = porcentajes.porcentaje_consulta + '%';
+		document.getElementById('porcentaje_taller').innerHTML = porcentajes.porcentaje_taller + '%';
+		document.getElementById('porcentaje_insumo').innerHTML = porcentajes.porcentaje_insumo + '%';
+		document.getElementById('porcentaje_medicamento').innerHTML = porcentajes.porcentaje_medicamento + '%';
+		document.getElementById('porcentaje_laboratorio').innerHTML = porcentajes.porcentaje_laboratorios + '%';
+		document.getElementById('porcentaje_conferencia').innerHTML = porcentajes.porcentaje_conferencias + '%';
+	}
+	getDataEgresos();
 	getGraphicData();
 }
