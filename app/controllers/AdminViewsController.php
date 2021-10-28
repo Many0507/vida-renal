@@ -13,9 +13,11 @@ use App\Models\TipoDonador;
 use App\Helpers\PaginationHelper;
 use App\Models\Conferencias;
 use App\Models\Egreso;
+use App\Models\Gastos_fijos;
 use App\Models\Insumos;
 use App\Models\Laboratorios;
 use App\Models\Medicamentos;
+use App\Models\Sueldo;
 use App\Models\TipoConsulta;
 use Illuminate\Database\Capsule\Manager as DB;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -226,6 +228,14 @@ class AdminViewsController extends Controller
             $egresos = Egreso::whereYear('created_at', '=', $actual_year)
                 ->whereMonth('created_at', '=', $actual_month)
                 ->orderBy('created_at', 'desc')->take(7)->get();
+
+            $sum_gastos_fijos = Gastos_fijos::whereYear('created_at', '=', $actual_year)
+                ->whereMonth('created_at', '=', $actual_month)
+                ->sum('costo');
+
+            $sum_sueldos = Sueldo::whereYear('created_at', '=', $actual_year)
+                ->whereMonth('created_at', '=', $actual_month)
+                ->sum('costo');
                 
             $messages = $this->container->flash->getMessages();
 
@@ -234,6 +244,7 @@ class AdminViewsController extends Controller
                 'tipo_laboratorios' => $tipo_laboratorios,
                 'tipo_medicamentos' => $tipo_medicamentos,
                 'tipo_conferencias' => $tipo_conferencias,
+                'sum_gastos_fijos' => $sum_gastos_fijos,
                 'porcentaje_1' => $porcentaje_tipo_1,
                 'porcentaje_2' => $porcentaje_tipo_2,
                 'porcentaje_3' => $porcentaje_tipo_3,
@@ -242,6 +253,7 @@ class AdminViewsController extends Controller
                 'tipo_consultas' => $tipo_consultas,
                 'tipo_talleres' => $tipo_talleres,
                 'tipo_insumos' => $tipo_insumos,
+                'sum_sueldos' => $sum_sueldos,
                 'lista_años' => $years_list,
                 'mensajes' => $messages,
                 'ingresos' => $ingresos,
@@ -264,6 +276,15 @@ class AdminViewsController extends Controller
                 ->whereMonth('vr_ingresos.created_at', '=', $month)
                 ->count();
             $pagination = new PaginationHelper($page, $total_rows);
+
+            $sum_ingresos_cantidad = Ingreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('cantidad');
+            $sum_ingresos_especie = Ingreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('especie_cantidad');
+
+            $sum_ingresos = $sum_ingresos_cantidad + $sum_ingresos_especie;
             
             if ($year > 0 && $month > 0) {
                 $ingresos = Ingreso::join('vr_tipo_donador', 'vr_ingresos.tipo_donador', '=', 'vr_tipo_donador.id_tipo_donador')
@@ -285,6 +306,7 @@ class AdminViewsController extends Controller
                     'total_rows' => $total_rows,
                     'prev' => $pagination->prev,
                     'next' => $pagination->next,
+                    'sum_ingresos' => $sum_ingresos,
                     'totalPages' => $pagination->total_pages
                 ]);
             } else return $response->withHeader('Location', '/admin/transparencia');
@@ -304,6 +326,36 @@ class AdminViewsController extends Controller
                 ->whereMonth('created_at', '=', $month)
                 ->count();
             $pagination = new PaginationHelper($page, $total_rows);
+
+            $sum_egresos_consulta = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('consulta_costo');
+            $sum_egresos_taller = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('costo_taller');
+            $sum_egresos_insumo = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('costo_insumos');
+            $sum_egresos_medicamento = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('costo_medicamentos');
+            $sum_egresos_laboratorio = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('costo_laboratorios');
+            $sum_egresos_conferencia = Egreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('costo_conferencias');
+
+            $sum_egresos = $sum_egresos_consulta + $sum_egresos_taller + $sum_egresos_insumo + $sum_egresos_medicamento + $sum_egresos_laboratorio + $sum_egresos_conferencia;
+
+            $sum_ingresos_cantidad = Ingreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('cantidad');
+            $sum_ingresos_especie = Ingreso::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->sum('especie_cantidad');
+
+            $sum_ingresos = $sum_ingresos_cantidad + $sum_ingresos_especie;
             
             if ($year > 0 && $month > 0) {
                 $egresos = Egreso::whereYear('created_at', '=', $year)
@@ -324,10 +376,144 @@ class AdminViewsController extends Controller
                     'total_rows' => $total_rows,
                     'prev' => $pagination->prev,
                     'next' => $pagination->next,
+                    'sum_egresos' => $sum_egresos,
+                    'sum_ingresos' => $sum_ingresos,
                     'totalPages' => $pagination->total_pages
                 ]);
             } else return $response->withHeader('Location', '/admin/transparencia');
         } else return $response->withHeader('Location', '/admin/login');
+    }
+
+    public function gastosFijos(Request $request, Response $response, array $args)
+    {
+        if ($_SESSION['user']) {
+            $year = intval($request->getAttribute('year'));
+            $month = intval($request->getAttribute('month'));
+
+            $page = $request->getParam('page');
+            if (!$page) $page = 1;
+
+            $total_rows = Gastos_fijos::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->count();
+            $pagination = new PaginationHelper($page, $total_rows);
+
+            if ($year > 0 && $month > 0) {
+                $gastos_fijos = Gastos_fijos::whereYear('created_at', '=', $year)
+                    ->whereMonth('created_at', '=', $month)
+                    ->orderBy('created_at', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
+
+                $sum_gastos_fijos = Gastos_fijos::whereYear('created_at', '=', $year)
+                    ->whereMonth('created_at', '=', $month)
+                    ->sum('costo');
+                
+                $messages = $this->container->flash->getMessages();
+
+                return $this->container->view->render($response, 'admin-gastos-fijos.twig', [
+                    'page' => $page,
+                    'year' => $year,
+                    'month' => $month,
+                    'messages' => $messages,
+                    'total_rows' => $total_rows,
+                    'prev' => $pagination->prev,
+                    'next' => $pagination->next,
+                    'gastos_fijos' => $gastos_fijos,
+                    'sum_gastos_fijos' => $sum_gastos_fijos,
+                    'totalPages' => $pagination->total_pages
+                ]);
+            } else return $response->withHeader('Location', '/admin/transparencia');
+        } else return $response->withHeader('Location', '/admin/login');
+    }
+
+    public function sueldos(Request $request, Response $response, array $args)
+    {
+        if ($_SESSION['user']) {
+            $year = intval($request->getAttribute('year'));
+            $month = intval($request->getAttribute('month'));
+
+            $page = $request->getParam('page');
+            if (!$page) $page = 1;
+
+            $total_rows = Sueldo::whereYear('created_at', '=', $year)
+                ->whereMonth('created_at', '=', $month)
+                ->count();
+            $pagination = new PaginationHelper($page, $total_rows);
+
+            if ($year > 0 && $month > 0) {
+                $sueldos = Sueldo::whereYear('created_at', '=', $year)
+                    ->whereMonth('created_at', '=', $month)
+                    ->orderBy('created_at', 'desc')
+                    ->take($pagination->n_per_page)
+                    ->skip($pagination->offset)
+                    ->get();
+
+                $sum_sueldos = Sueldo::whereYear('created_at', '=', $year)
+                    ->whereMonth('created_at', '=', $month)
+                    ->sum('costo');
+                
+                $messages = $this->container->flash->getMessages();
+
+                return $this->container->view->render($response, 'admin-sueldos.twig', [
+                    'page' => $page,
+                    'year' => $year,
+                    'month' => $month,
+                    'messages' => $messages,
+                    'total_rows' => $total_rows,
+                    'prev' => $pagination->prev,
+                    'next' => $pagination->next,
+                    'sueldos' => $sueldos,
+                    'sum_sueldos' => $sum_sueldos,
+                    'totalPages' => $pagination->total_pages
+                ]);
+            } else return $response->withHeader('Location', '/admin/transparencia');
+        } else return $response->withHeader('Location', '/admin/login');
+    }
+
+    public function actualizar(Request $request, Response $response, array $args)
+    {
+        if ($_SESSION['user']) {
+            $tipo = $request->getAttribute('tipo');
+            $id = intval($request->getAttribute('id'));
+            $year = intval($request->getAttribute('year'));
+            $month = intval($request->getAttribute('month'));
+
+            $message = ((empty($tipo) || $tipo === '') || (empty($id) || $id === 0))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+            if (is_null($message)) {
+                if ($tipo == 'ingresos') $data = Ingreso::find($id);
+                else if ($tipo == 'egresos') $data = Egreso::find($id);
+                else return $response->withHeader('Location', '/admin/transparencia');
+
+                $tipo_laboratorios = Laboratorios::all();
+                $tipo_medicamentos = Medicamentos::all();
+                $tipo_conferencias = Conferencias::all();
+                $tipo_donadores = TipoDonador::all();
+                $tipo_consultas = TipoConsulta::all();
+                $tipo_talleres = Taller::all();
+                $tipo_insumos = Insumos::all();
+                $messages = $this->container->flash->getMessages();
+    
+                return $this->container->view->render($response, 'admin-actualizar.twig', [
+                    'tipo_donadores' => $tipo_donadores,
+                    'tipo_laboratorios' => $tipo_laboratorios,
+                    'tipo_medicamentos' => $tipo_medicamentos,
+                    'tipo_conferencias' => $tipo_conferencias,
+                    'tipo_consultas' => $tipo_consultas,
+                    'tipo_talleres' => $tipo_talleres,
+                    'tipo_insumos' => $tipo_insumos,
+                    'mensajes' => $messages,
+                    'month' => $month,
+                    'year' => $year,
+                    'tipo' => $tipo,
+                    'data' => $data
+                ]);
+            } else return $response->withHeader('Location', '/admin/transparencia');
+        }  else return $response->withHeader('Location', '/admin/login');
     }
 
     public function blog(Request $request, Response $response, array $args)

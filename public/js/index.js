@@ -574,6 +574,8 @@ if (document.getElementById('search_transparencia_egresos') != null) {
 			parseInt(egreso_anio) != parseInt(actual_date.getFullYear())) {
 				document.querySelectorAll('#create.button_egreso').forEach(e => e.disabled = true);
 			}
+			document.getElementById('gastos_fijos').value = data.data.sum_gastos_fijos;
+			document.getElementById('sueldo').value = data.data.sum_sueldos;
 			data.data.data.forEach(function (item, index) {
 				egresos_tbody.innerHTML += `
 					<tr>
@@ -597,6 +599,8 @@ if (document.getElementById('search_transparencia_egresos') != null) {
 		} else {
 			document.querySelectorAll('.button_egreso').forEach(e => e.disabled = true);
 			document.getElementById('egreso_busqueda_error').classList.remove('is-hidden');
+			document.getElementById('gastos_fijos').value = '0';
+			document.getElementById('sueldo').value = '0';
 		}
 	});
 }
@@ -645,31 +649,21 @@ if (document.getElementById('myChart') != null) {
 				}]
 			},
 			options: {
+				tooltips: {
+					enabled: false
+		  		},
 				plugins: {
-					legend: {
-						display: true,
-						position: 'bottom'
-					}
-				},
-				scales: {
-					x: {
-						grid: {
-							display: false,
-							drawBorder: false
+					datalabels: {
+						formatter: (value, ctx) => {
+							let sum = 0;
+							let dataArr = ctx.chart.data.datasets[0].data;
+							dataArr.map(data => {
+								sum += data;
+							});
+							let percentage = (value*100 / sum).toFixed()+"%";
+							return percentage;
 						},
-						ticks: {
-							display: false,
-							drawBorder: false
-						}
-					},
-					y: {
-						grid:{
-							display: false,
-							drawBorder: false
-						},
-						ticks: {
-							display: false
-						}
+						color: '#111',
 					}
 				}
 			}
@@ -694,6 +688,8 @@ if (document.getElementById('myChart') != null) {
 		document.getElementById('porcentaje_medicamento').innerHTML = porcentajes.porcentaje_medicamento + '%';
 		document.getElementById('porcentaje_laboratorio').innerHTML = porcentajes.porcentaje_laboratorios + '%';
 		document.getElementById('porcentaje_conferencia').innerHTML = porcentajes.porcentaje_conferencias + '%';
+		document.getElementById('porcentaje_gastos_fijos').innerHTML = porcentajes.porcentaje_gastos_fijos + '%';
+		document.getElementById('porcentaje_sueldos').innerHTML = porcentajes.porcentaje_sueldos + '%';
 	}
 	getDataEgresos();
 	getGraphicData();

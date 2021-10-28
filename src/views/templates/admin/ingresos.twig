@@ -14,7 +14,7 @@
 		<div class="column is-1 has-text-centered has-text-info font-weight-bolder" style="font-size: 1rem;">
 			{{ total_rows }} registros
 		</div>
-		<div class="column is-12">
+		<div class="column is-9">
 			<table class="table is-bordered is-striped is-fullwidth">
 				<thead>
 					<tr>
@@ -24,6 +24,7 @@
 						<th>Cantidad</th>
 						<th>Especie</th>
 						<th>Monto aproximado de lo donado</th>
+						<th>Editar</th>
 					</tr>
 				</thead>
 				<tbody id="ingresos_tbody">
@@ -35,10 +36,33 @@
 							<td>$ {{ ingreso.cantidad }}</td>
 							<td>{{ ingreso.especie}}</td>
 							<td>$ {{ ingreso.especie_cantidad }}</td>
+							<td class="has-text-centered">
+								<a href="/admin/actualizar/ingresos/{{ ingreso.id }}/{{ month }}/{{ year }}">
+									<button class="button is-primary has-text-weight-bold is-fullwidth" style="margin-right: .5rem; margin-bottom: 0.5rem;">
+										<i class="fas fa-edit"></i>
+									</button>
+                    		</a>
+							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
+		</div>
+		<div class="column is-3">
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th class="has-text-centered">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$ {{ sum_ingresos|length > 0 ? sum_ingresos : 0 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">

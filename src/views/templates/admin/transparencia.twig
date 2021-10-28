@@ -211,29 +211,45 @@
                 Agregar tipo de egreso
             </button> 
 		</div>
-        <div class="column is-8">
+        <div class="column is-12">
             <div class="columns">
                 <div class="column is-4">
-                    <label class="label has-text-dark" for="transparencia_egresos_gastosfijos">
-                        Gastos fijos del mes:
+                    <label class="label has-text-dark" for="gastos_fijos">
+                        Monto de gastos fijos del mes:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="text" name="gastos_fijos" value="{{ old.gastos_fijos }}" placeholder="Gastos fijos">
+                        <input class="input" type="text" name="gastos_fijos" value="{{ sum_gastos_fijos }}" placeholder="Gastos fijos" disabled id="gastos_fijos">
                         <span class="icon is-small is-left">
                             <i class="fas fa-dollar-sign has-text-info"></i>
                         </span>
                     </div>
                 </div>
+                <div class="column is-1">
+                    <div style="margin-bottom: 31px;"></div>
+                    <a href="/admin/gastos-fijos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
+                        <button class="button is-info has-text-weight-bold" style="margin-right: .5rem;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </a>
+                </div>
                 <div class="column is-4">
-                    <label class="label has-text-dark" for="transparencia_egresos_gastosfijos">
-                        Sueldos del mes:
+                    <label class="label has-text-dark" for="sueldos">
+                        Monto de sueldos del mes:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="text" name="gastos_fijos" value="{{ old.gastos_fijos }}" placeholder="Gastos fijos">
+                        <input class="input" type="text" name="sueldos" value="{{ sum_sueldos }}" placeholder="Sueldos" disabled id="sueldo">
                         <span class="icon is-small is-left">
                             <i class="fas fa-dollar-sign has-text-info"></i>
                         </span>
                     </div>
+                </div>
+                <div class="column is-1">
+                    <div style="margin-bottom: 31px;"></div>
+                        <a href="/admin/sueldos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
+                            <button class="button is-info has-text-weight-bold" style="margin-right: .5rem;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </a>
                 </div>
             </div>
         </div>
@@ -336,7 +352,7 @@
                     </div>
                 </div>
             </div>
-             <div class="column is-6" style="padding-left: 0;">
+            <div class="column is-6" style="padding-left: 0;">
                 <div class="field">
                     <label class="label" for="especie">
                         Especie:

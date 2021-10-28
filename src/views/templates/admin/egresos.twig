@@ -14,7 +14,7 @@
 		<div class="column is-1 has-text-centered has-text-info font-weight-bolder" style="font-size: 1rem;">
 			{{ total_rows }} registros
 		</div>
-		<div class="column is-12">
+		<div class="column is-9">
 			<div class="table-container">
 				<table class="table is-bordered is-striped is-fullwidth">
 					<thead>
@@ -33,6 +33,7 @@
 							<th>Costo</th>
 							<th>Conferencias</th>
 							<th>Costo</th>
+							<th>Editar</th>
 						</tr>
 					</thead>
 					<tbody id="egresos_tbody">
@@ -52,8 +53,59 @@
 								<td>{{ egreso.costo_laboratorios }}</td>
 								<td>{{ egreso.conferencias }}</td>
 								<td>{{ egreso.costo_conferencias }}</td>
+								<td class="has-text-centered">
+									<a href="/admin/actualizar/egresos/{{ egreso.id }}/{{ month }}/{{ year }}">
+										<button class="button is-primary has-text-weight-bold is-fullwidth" style="margin-right: .5rem; margin-bottom: 0.5rem;">
+											<i class="fas fa-edit"></i>
+										</button>
+									</a>
+								</td>
 							</tr>
 						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="column is-3">
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th class="has-text-centered">Ingresos del mes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$ {{ sum_ingresos|length > 0 ? sum_ingresos : 0 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th class="has-text-centered">Egresos del mes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$ {{ sum_egresos|length > 0 ? sum_egresos : 0 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th class="has-text-centered">Total del mes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$ {{ sum_ingresos - sum_egresos|length > 0 ? sum_ingresos - sum_egresos : 0 }}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

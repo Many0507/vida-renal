@@ -1,0 +1,154 @@
+<div class="container main-admin">
+	<h1 class="title is-2 section has-text-info section-title has-text-centered">
+		Gastos fijos - {{ month }} / {{ year }}
+	</h1>
+	<div class="columns">
+		<div class="column is-11">
+			<a href="/admin/transparencia">
+				<button class="button is-primary has-text-weight-bold">
+					<i class="fas fa-chevron-left" style="margin-right: 7px;"></i> 
+					Volver
+				</button>
+			</a>
+			<button class="button is-info section-margin-bottom has-text-weight-bold" style="margin-bottom: 0px; margin-left: 0.5rem;" id="create">
+				Nuevo gasto
+			</button>
+		</div>
+		<div class="column is-1 has-text-centered has-text-info font-weight-bolder" style="font-size: 1rem;">
+			{{ total_rows }} registros
+		</div>
+		<div class="is-fullwidth">
+			{% if messages.done|length > 0 %}
+				<div class="notification is-primary" id="message">
+					<button class="delete"></button>
+					{{ messages.done[0] }}
+				</div>
+			{% endif %}
+		</div>
+		<div class="column is-9">
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th>Tipo de gasto</th>
+							<th>Costo</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for gasto in gastos_fijos %}
+							<tr>
+								<td>{{ gasto.titulo }}</td>
+								<td>$ {{ gasto.costo }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="column is-3">
+			<div class="table-container">
+				<table class="table is-bordered is-striped is-fullwidth">
+					<thead>
+						<tr>
+							<th class="has-text-centered">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$ {{ sum_gastos_fijos|length > 0 ? sum_gastos_fijos : 0 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<nav class="pagination is-centered" role="navigation" aria-label="pagination" style="margin-top: 2rem;">
+		<a class="pagination-previous" 
+			{% if prev <= 0 %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/gastos-fijos/{{ month }}/{{ year }}?page={{ prev }}"
+			{% endif %}>
+			<i class="fas fa-chevron-left"></i>
+		</a>
+		<a class="pagination-next"
+			{% if next > totalPages %}
+				{{'disabled'}}
+			{% else %}
+				href="/admin/gastos-fijos/{{ month }}/{{ year }}?page={{ next }}"
+			{% endif %}>
+			<i class="fas fa-chevron-right"></i>
+		</a>
+		<ul class="pagination-list">
+			{% for i in 1..totalPages %}
+				{% if i <= 20 %}
+					<li>
+						<a class="pagination-link 
+							{% if i == page %}
+								is-current
+							{% endif %}" 
+						aria-label="Goto page {{i}}" href="/admin/gastos-fijos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
+	<a href="/admin/gastos-fijos/{{ month }}/{{ year }}?page={{i}}">{{i}}</a>
+</div>
+
+{# Crear gasto fijo #}
+<div id="form-container" style="{% if messages.error|length > 0 %} top: 0; {% endif %}">
+	<form action="/admin/gastos-fijos" method="POST" enctype="multipart/form-data" id="form">
+		<h2 class="title is-3 has-text-link has-text-weight-bold">
+			Gasto fijo
+		</h2>
+		{% if messages.error|length > 0 %}
+			<p class="help has-text-danger" style="margin-bottom: 0.5rem;" id="message">
+				{{ messages.error[0] }}
+			</p>
+		{% endif %}
+		<div class="columns is-fullwidth">
+			<div class="column is-6">
+				<div class="field">
+					<label class="label" for="titulo">
+						Titulo:
+					</label>
+					<div class="control">
+						<input class="input" type="text" name="titulo" value="{{ old.titulo }}">
+					</div>
+				</div>
+			</div>
+			<div class="column is-6">
+				<div class="field">
+					<label class="label" for="costo_gasto_fijo">
+						Costo del tipo de gasto:
+					</label>
+					<div class="control has-icons-left">
+						<input 
+							class="input" 
+							type="number" 
+							name="costo_gasto_fijo"
+							placeholder="Costo del tipo de gasto"
+							value="{{ old.costo_gasto_fijo }}"
+						>
+						<span class="icon is-small is-left">
+							<i class="fas fa-dollar-sign has-text-info"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<div class="control">
+				<button class="button is-link" type="submit">
+					Agregar
+				</button>
+				<button class="button is-light" id="close">
+					Cerrar
+				</button>
+			</div>
+		</div>
+		<input class="input is-hidden" type="text" name="month" value="{{ month }}">
+		<input class="input is-hidden" type="text" name="year" value="{{ year }}">
+	</form>
+</div>

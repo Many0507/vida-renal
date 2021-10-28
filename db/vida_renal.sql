@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-10-2021 a las 22:27:46
+-- Tiempo de generación: 28-10-2021 a las 21:29:52
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -159,14 +159,15 @@ CREATE TABLE IF NOT EXISTS `vr_egresos` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `vr_egresos`
 --
 
 INSERT INTO `vr_egresos` (`id`, `nombre`, `tipo_consulta`, `consulta_costo`, `taller`, `costo_taller`, `insumos`, `costo_insumos`, `medicamentos`, `costo_medicamentos`, `laboratorios`, `costo_laboratorios`, `conferencias`, `costo_conferencias`, `created_at`, `updated_at`) VALUES
-(1, 'Manuel Lizama', 'TIPO A', 800, 'Inteligencia emocional', 1200, NULL, NULL, NULL, NULL, 'Laboratorio A', 300, NULL, NULL, '2021-10-26 22:11:34', '2021-10-26 22:11:34');
+(1, 'Manuel Lizama NEW', 'TIPO A', 800, 'Tanatologia', 1200, NULL, NULL, NULL, NULL, 'Laboratorio A', 3001, NULL, NULL, '2021-10-26 22:11:34', '2021-10-28 20:26:13'),
+(2, 'TEST', 'TIPO A', 233, 'Inteligencia emocional', 44, NULL, NULL, NULL, NULL, 'Laboratorio A', 233, NULL, NULL, '2021-10-27 17:24:02', '2021-10-27 17:24:02');
 
 -- --------------------------------------------------------
 
@@ -193,6 +194,32 @@ INSERT INTO `vr_eventos` (`id`, `titulo`, `texto`, `imagen`, `created_at`, `upda
 (8, 'Evento 1', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '5499728bb485d03a.jpg', '2019-11-25 10:22:08', '2019-12-03 04:05:15'),
 (9, 'Evento 2', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.', '58b5b79073e4dcd5.jpg', '2019-11-25 10:22:40', '2019-11-25 10:22:40'),
 (10, 'Evento 3', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, aliquid eligendi modi dolorem sapiente explicabo quo officia numquam distinctio. Sunt dicta qui rem voluptatum veritatis autem adipisci exercitationem inventore atque.\r\n			', '6c1cededdbfa8c23.jpg', '2019-11-25 10:24:13', '2019-11-25 10:24:13');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_gastos_fijos`
+--
+
+DROP TABLE IF EXISTS `vr_gastos_fijos`;
+CREATE TABLE IF NOT EXISTS `vr_gastos_fijos` (
+  `id_gastos_fijos` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(120) NOT NULL,
+  `costo` double NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_gastos_fijos`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_gastos_fijos`
+--
+
+INSERT INTO `vr_gastos_fijos` (`id_gastos_fijos`, `titulo`, `costo`, `created_at`, `updated_at`) VALUES
+(1, 'Agua', 200, '2021-10-28 15:46:02', '2021-10-28 15:46:02'),
+(2, 'Telefono', 350, '2021-10-28 16:05:13', '2021-10-28 16:05:13'),
+(3, 'Gasto', 100, '2021-10-28 16:05:48', '2021-10-28 16:05:48'),
+(4, 'sad', 213, '2021-10-28 16:07:28', '2021-10-28 16:07:28');
 
 -- --------------------------------------------------------
 
@@ -224,8 +251,8 @@ INSERT INTO `vr_ingresos` (`id`, `nombre`, `tipo_donador`, `cantidad`, `especie`
 (4, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:53:56', '2021-10-15 19:53:56'),
 (5, 'Manuel', '4', 0, 'tipo 2', 234, '2021-10-15 19:54:10', '2021-10-15 19:54:10'),
 (6, 'Manuel', '2', 123, NULL, 0, '2021-10-15 19:55:43', '2021-10-15 19:55:43'),
-(7, 'PRUEBA', '3', 1200, NULL, 0, '2021-10-20 17:04:35', '2021-10-20 17:04:35'),
-(8, 'manuel alejandro2', '2', 20, NULL, 0, '2021-10-26 15:49:13', '2021-10-26 15:49:13');
+(7, 'PRUEBA', '3', 120, '', 0, '2021-10-20 17:04:35', '2021-10-28 20:18:03'),
+(8, 'manuel alejandro new', '4', 0, 'tipo 2', 900, '2021-10-26 15:49:13', '2021-10-28 19:55:24');
 
 -- --------------------------------------------------------
 
@@ -307,6 +334,30 @@ INSERT INTO `vr_servicios` (`id`, `titulo`, `imagen`, `created_at`, `updated_at`
 (3, 'Ayuda psicologica', '00bdb25ad76e6380.jpg', '2019-12-03 15:41:47', '2019-12-03 23:18:40'),
 (4, 'Ayuda nutricional', '742cf70fb362f41b.jpg', '2019-12-03 15:42:15', '2019-12-03 23:18:33'),
 (5, 'Estudios de laboratorio', '2cbc1733dab2d104.jpg', '2019-12-03 15:42:15', '2019-12-03 23:18:27');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vr_sueldos`
+--
+
+DROP TABLE IF EXISTS `vr_sueldos`;
+CREATE TABLE IF NOT EXISTS `vr_sueldos` (
+  `id_sueldo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(120) NOT NULL,
+  `costo` double NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id_sueldo`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vr_sueldos`
+--
+
+INSERT INTO `vr_sueldos` (`id_sueldo`, `titulo`, `costo`, `created_at`, `updated_at`) VALUES
+(1, 'Sueldo 1', 600, '2021-10-28 16:56:13', '2021-10-28 16:56:13'),
+(2, 'Sueldo 2', 350, '2021-10-28 16:56:27', '2021-10-28 16:56:27');
 
 -- --------------------------------------------------------
 

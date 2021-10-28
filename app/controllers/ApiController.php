@@ -8,12 +8,14 @@ use App\Models\Taller;
 use App\Models\Blog;
 use App\Models\Conferencias;
 use App\Models\Egreso;
+use App\Models\Gastos_fijos;
 use App\Models\Servicio;
 use App\Models\Testimonio;
 use App\Models\Ingreso;
 use App\Models\Insumos;
 use App\Models\Laboratorios;
 use App\Models\Medicamentos;
+use App\Models\Sueldo;
 use App\Models\TipoConsulta;
 use Exception;
 use Slim\Http\UploadedFile;
@@ -258,6 +260,62 @@ class ApiController extends Controller
           return $response->withHeader('Location', '/admin/transparencia');
      }
 
+     public function crearGastoFijo(Request $request, Response $response, array $args)
+     {
+          $nombre = $request->getParam('titulo');
+          $costo = $request->getParam('costo_gasto_fijo');
+          $month = $request->getParam('month');
+          $year = $request->getParam('year');
+
+          $message = ((empty($nombre) || $nombre === '') || (empty($costo) || $costo === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if (is_null($message)) {
+               $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
+               try {
+                    $target = new Gastos_fijos;
+                    $target->titulo = $nombre;
+                    $target->costo = $costo;                    
+                    $target->save();
+
+                    $this->container->flash->addMessage('done', '¡Gasto fijo agregado con exito!');
+               } catch (Exception $e) {
+                    $this->container->flash->addMessage('error', $tryError);
+               }
+          } else $this->container->flash->addMessage('error', $message);
+
+          return $response->withHeader('Location', '/admin/gastos-fijos/' . $month . '/' . $year);
+     }
+
+     public function crearSueldo(Request $request, Response $response, array $args)
+     {
+          $nombre = $request->getParam('titulo');
+          $costo = $request->getParam('costo_sueldo');
+          $month = $request->getParam('month');
+          $year = $request->getParam('year');
+
+          $message = ((empty($nombre) || $nombre === '') || (empty($costo) || $costo === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+          if (is_null($message)) {
+               $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
+               try {
+                    $target = new Sueldo;
+                    $target->titulo = $nombre;
+                    $target->costo = $costo;                    
+                    $target->save();
+
+                    $this->container->flash->addMessage('done', '¡Sueldo agregado con exito!');
+               } catch (Exception $e) {
+                    $this->container->flash->addMessage('error', $tryError);
+               }
+          } else $this->container->flash->addMessage('error', $message);
+
+          return $response->withHeader('Location', '/admin/sueldos/' . $month . '/' . $year);
+     }
+
      public function busquedaIngreso(Request $request, Response $response, array $args)
      {
           $ingreso_anio = $request->getParam('ingreso_anio');
@@ -361,7 +419,15 @@ class ApiController extends Controller
                     ->whereMonth('created_at', '=', $egreso_mes)
                     ->sum('costo_conferencias');
 
-               $total = $sum_consulta + $sum_taller + $sum_insumo + $sum_medicamento + $sum_laboratorios + $sum_conferencias;
+               $sum_gastos_fijos = Gastos_fijos::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo');
+
+               $sum_sueldos = Sueldo::whereYear('created_at', '=', $egreso_anio)
+                    ->whereMonth('created_at', '=', $egreso_mes)
+                    ->sum('costo');
+
+               $total = $sum_consulta + $sum_taller + $sum_insumo + $sum_medicamento + $sum_laboratorios + $sum_conferencias + $sum_gastos_fijos + $sum_sueldos;
 
                $porcentaje_consulta = round(($sum_consulta * 100) / ($total > 0 ? $total : 1));
                $porcentaje_taller = round(($sum_taller * 100) / ($total > 0 ? $total : 1));
@@ -369,12 +435,14 @@ class ApiController extends Controller
                $porcentaje_medicamento = round(($sum_medicamento * 100) / ($total > 0 ? $total : 1));
                $porcentaje_laboratorios = round(($sum_laboratorios * 100) / ($total > 0 ? $total : 1));
                $porcentaje_conferencias = round(($sum_conferencias * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_gastos_fijos = round(($sum_gastos_fijos * 100) / ($total > 0 ? $total : 1));
+               $porcentaje_sueldos = round(($sum_sueldos * 100) / ($total > 0 ? $total : 1));
 
                if (count($egresos) <= 0) return json_encode(array(
                     'success' => false, 
                     'data' => null, 
                     'message' => $message, 
-                    'porcentajes' => null
+                    'porcentajes' => null,
                ));
                
                return json_encode(array(
@@ -387,8 +455,12 @@ class ApiController extends Controller
                          'porcentaje_insumo' => $porcentaje_insumo,
                          'porcentaje_medicamento' => $porcentaje_medicamento,
                          'porcentaje_laboratorios' => $porcentaje_laboratorios,
-                         'porcentaje_conferencias' => $porcentaje_conferencias
-                    )
+                         'porcentaje_conferencias' => $porcentaje_conferencias,
+                         'porcentaje_gastos_fijos' => $porcentaje_gastos_fijos,
+                         'porcentaje_sueldos' => $porcentaje_sueldos
+                    ),
+                    'sum_gastos_fijos' => $sum_gastos_fijos,
+                    'sum_sueldos' => $sum_sueldos
                ));
           } else return json_encode(array(
                'success' => false, 
@@ -430,6 +502,109 @@ class ApiController extends Controller
           } else $this->container->flash->addMessage('error_tipo_egreso', $message);
           return $response->withHeader('Location', '/admin/transparencia');
      }
+
+     public function actualizar(Request $request, Response $response, array $args)
+     {
+          $tipo = $request->getAttribute('tipo');
+          $id = intval($request->getAttribute('id'));
+          $year = intval($request->getAttribute('year'));
+          $month = intval($request->getAttribute('month'));
+          
+          if ($tipo == 'ingresos') {
+               $nombre = $request->getParam('nombre');
+               $tipo_donador = $request->getParam('tipo_donador');
+               $cantidad = $request->getParam('cantidad');
+               $especie = $request->getParam('especie');
+               $especie_cantidad = $request->getParam('monto_especie');
+
+               $message = ((empty($nombre) || $nombre === '') || (empty($tipo_donador) || $tipo_donador === ''))
+               ? 'favor de llenar todos los campos requeridos'
+               : null;
+
+               if ($tipo_donador == 4) {
+                    $message = ((empty($especie) || $especie === '') || (empty($especie_cantidad) || $especie_cantidad === ''))
+                         ? 'favor de llenar todos los campos requeridos'
+                         : null;
+               } else {
+                    $message = ((empty($cantidad) || $cantidad === '') || (empty($cantidad) || $cantidad === ''))
+                         ? 'favor de llenar todos los campos requeridos'
+                         : null;
+               }
+          } else if ($tipo == 'egresos') {
+               $nombre = $request->getParam('nombre_egreso');
+               $tipo_consulta = $request->getParam('tipo_consulta_egreso');
+               $cantidad_consulta = $request->getParam('cantidad_consulta_egreso');
+               $tipo_taller = $request->getParam('tipo_taller_egreso');
+               $cantidad_taller = $request->getParam('cantidad_taller_egreso');
+               $tipo_insumo = $request->getParam('tipo_insumo_egreso');
+               $cantidad_insumo = $request->getParam('cantidad_insumo_egreso');
+               $tipo_medicamento = $request->getParam('tipo_medicamento_egreso');
+               $cantidad_medicamento = $request->getParam('cantidad_medicamento_egreso');
+               $tipo_laboratorio = $request->getParam('tipo_laboratorio_egreso');
+               $cantidad_laboratorio = $request->getParam('cantidad_laboratorio_egreso');
+               $tipo_conferencia = $request->getParam('tipo_conferencia_egreso');
+               $cantidad_conferencia = $request->getParam('cantidad_conferencia_egreso');
+
+               $message = ((empty($nombre) || $nombre === ''))
+                    ? 'favor de llenar todos los campos requeridos'
+                    : null;
+          }
+
+          $message_fatal = ((empty($tipo) || $tipo === '') || (empty($id) || $id === 0))
+               ? 'Ha ocurrido un error'
+               : null;
+
+          if (is_null($message) && is_null($message_fatal)) {
+               if ($tipo == 'ingresos') $target = Ingreso::find($id);
+               else if ($tipo == 'egresos') $target = Egreso::find($id);
+               else return $response->withHeader('Location', '/admin/transparencia');
+
+               if ($target == null || empty($target)) {
+                    $this->container->flash->addMessage('error_update', 'hay un error');
+               } else {
+                    $tryError = 'No se lograron enviar todos los datos, favor de intentarlo más tarde';
+                    try {
+                         if ($tipo == 'ingresos') {
+                              $target->nombre = $nombre;
+                              $target->tipo_donador = $tipo_donador;
+                              if ($tipo_donador == 4) {
+                                   $target->cantidad = 0;
+                                   $target->especie = $especie;
+                                   $target->especie_cantidad = $especie_cantidad;
+                              } else {
+                                   $target->cantidad = $cantidad;
+                                   $target->especie = '';
+                                   $target->especie_cantidad = 0;
+                              }
+                              $target->save();
+                         } else if ($tipo == 'egresos') {
+                              $target->nombre = $nombre;
+                              if (!empty($tipo_consulta) || $tipo_consulta != '') $target->tipo_consulta = $tipo_consulta;
+                              if (!empty($cantidad_consulta) || $cantidad_consulta != '') $target->consulta_costo = $cantidad_consulta;
+                              if (!empty($tipo_taller) || $tipo_taller != '') $target->taller = $tipo_taller;
+                              if (!empty($cantidad_taller) || $cantidad_taller != '') $target->costo_taller = $cantidad_taller;
+                              if (!empty($tipo_insumo) || $tipo_insumo != '') $target->insumos = $tipo_insumo;
+                              if (!empty($cantidad_insumo) || $cantidad_insumo != '') $target->costo_insumos = $cantidad_insumo;
+                              if (!empty($tipo_medicamento) || $tipo_medicamento != '') $target->medicamentos = $tipo_medicamento;
+                              if (!empty($cantidad_medicamento) || $cantidad_medicamento != '') $target->costo_medicamentos = $cantidad_medicamento;
+                              if (!empty($tipo_laboratorio) || $tipo_laboratorio != '') $target->laboratorios = $tipo_laboratorio;
+                              if (!empty($cantidad_laboratorio) || $cantidad_laboratorio != '') $target->costo_laboratorios = $cantidad_laboratorio;
+                              if (!empty($tipo_conferencia) || $tipo_conferencia != '') $target->conferencias = $tipo_conferencia;
+                              if (!empty($cantidad_conferencia) || $cantidad_conferencia != '') $target->costo_conferencias = $cantidad_conferencia;
+                              $target->save();
+                         }
+                         $this->container->flash->addMessage('done', '¡actualizado con exito!');
+                    } catch(Exception $e) {
+                         $this->container->flash->addMessage('error', $tryError);
+                    }
+               }
+          } else {
+               if (!is_null($message)) $this->container->flash->addMessage('error', $message);
+               else $this->container->flash->addMessage('error', $message_fatal);
+          }
+
+          return $response->withHeader('Location', '/admin/actualizar/' . $tipo . '/' . $id . '/' . $month . '/' . $year);
+     } 
 
      // CRUD //
      public function Create($request, $section, $model)
