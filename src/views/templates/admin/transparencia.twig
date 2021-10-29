@@ -36,31 +36,37 @@
                 </label>
                 <div class="select is-fullwidth" name="transparencia_anio" id="transparencia_anio">
                     <select class="is-fullwidth" id="select_anio">
+                        <option hidden disabled selected>---</option>
                         {% for año in lista_años %}
-                            <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
-                                {{ año.year }}
-                            </option>
+                        <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
+                            {{ año.year }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
             </div>
             <div class="column is-2">
                 <div style="height: 32px;"></div>
-                <button class="button is-primary has-text-weight-bold" id="search_transparencia">
+                <button class="button is-link has-text-weight-bold" id="search_transparencia">
 				    Buscar
 			    </button> 
             </div>
             <div class="column is-3">
                 <div style="height: 32px;"></div>
-                <p id="ingreso_busqueda_error" class="has-text-danger is-hidden">No hay información disponible</p>
+                <p 
+                    id="ingreso_busqueda_error" 
+                    class="has-text-danger {{ ingresos|length > 0 ? 'is-hidden' : '' }}"
+                >
+                    No hay información disponible
+                </p>
             </div>
         </div>
     </form>
     {% if mensajes.done|length > 0 %}
-		<div class="notification is-primary" id="message" style="margin-top: 1rem;">
-			<button class="delete"></button>
-			{{ mensajes.done[0] }}
-		</div>
+    <div class="notification is-primary" id="message" style="margin-top: 1rem;">
+        <button class="delete"></button>
+        {{ mensajes.done[0] }}
+    </div>
 	{% endif %}
 	<div class="columns">
         <div class="column is-12">
@@ -68,12 +74,12 @@
                 id="create"
                 style="margin-right: .5rem;" 
                 class="button is-info has-text-weight-bold button_ingreso"
-            >
+            />
 				Nuevo Ingreso
 			</button> 
 			<a id="ingresos_lista_link" href="/admin/ingresos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
-                <button class="button has-text-weight-bold button_ingreso" {{ ingresos|length <= 0 ? 'disabled' : '' }}>
-                    Ver listado completo de ingresos
+                <button class="button is-primary has-text-weight-bold button_ingreso" {{ ingresos|length <= 0 ? 'disabled' : '' }}>
+                    Lista completa de ingresos
                 </button>
             </a>
 		</div>
@@ -168,23 +174,29 @@
                 </label>
                 <div class="select is-fullwidth" name="transparencia_egresos_anio" id="transparencia_egresos_anio">
                     <select class="is-fullwidth" id="select_egresos_anio">
+                    <option hidden disabled selected>---</option>
                         {% for año in lista_años_egresos %}
-                            <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
-                                {{ año.year }}
-                            </option>
+                        <option value="{{ año.year }}" {{ año.year ==  year ? 'selected' : ''}}>
+                            {{ año.year }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
             </div>
             <div class="column is-2">
                 <div style="height: 32px;"></div>
-                <button class="button is-primary has-text-weight-bold" id="search_transparencia_egresos">
+                <button class="button is-link has-text-weight-bold" id="search_transparencia_egresos">
 				    Buscar
 			    </button> 
             </div>
             <div class="column is-3">
                 <div style="height: 32px;"></div>
-                <p id="egreso_busqueda_error" class="has-text-danger is-hidden">No hay información disponible</p>
+                <p 
+                    id="egreso_busqueda_error" 
+                    class="has-text-danger {{ egresos|length > 0 ? 'is-hidden' : '' }}"
+                >
+                    No hay información disponible
+                </p>
             </div>
         </div>
     </form>
@@ -199,26 +211,23 @@
 			</button>
             <a id="egresos_lista_link" href="/admin/egresos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
                 <button 
-                    class="button has-text-weight-bold button_egreso" 
+                    class="button has-text-weight-bold button_egreso is-primary" 
                     id="egresos_lista_link" 
                     style="margin-right: .5rem;" 
                     {{ egresos|length <= 0 ? 'disabled' : '' }}
                 >
-                    Ver listado completo de Egresos
+                    Lista completa de Egresos
                 </button>
             </a>
-            <button class="button is-link has-text-weight-bold" id="tipo_egreso_modal">
-                Agregar tipo de egreso
-            </button> 
 		</div>
         <div class="column is-12">
             <div class="columns">
-                <div class="column is-4">
+                <div class="column is-3">
                     <label class="label has-text-dark" for="gastos_fijos">
                         Monto de gastos fijos del mes:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="text" name="gastos_fijos" value="{{ sum_gastos_fijos }}" placeholder="Gastos fijos" disabled id="gastos_fijos">
+                        <input class="input" type="text" name="gastos_fijos" value="{{ sum_gastos_fijos }}" placeholder="Gastos fijos" readonly id="gastos_fijos">
                         <span class="icon is-small is-left">
                             <i class="fas fa-dollar-sign has-text-info"></i>
                         </span>
@@ -228,16 +237,16 @@
                     <div style="margin-bottom: 31px;"></div>
                     <a href="/admin/gastos-fijos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
                         <button class="button is-info has-text-weight-bold" style="margin-right: .5rem;">
-                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-edit"></i>
                         </button>
                     </a>
                 </div>
-                <div class="column is-4">
+                <div class="column is-3">
                     <label class="label has-text-dark" for="sueldos">
                         Monto de sueldos del mes:
                     </label>
                     <div class="control has-icons-left">
-                        <input class="input" type="text" name="sueldos" value="{{ sum_sueldos }}" placeholder="Sueldos" disabled id="sueldo">
+                        <input class="input" type="text" name="sueldos" value="{{ sum_sueldos }}" placeholder="Sueldos" readonly id="sueldo">
                         <span class="icon is-small is-left">
                             <i class="fas fa-dollar-sign has-text-info"></i>
                         </span>
@@ -245,12 +254,18 @@
                 </div>
                 <div class="column is-1">
                     <div style="margin-bottom: 31px;"></div>
-                        <a href="/admin/sueldos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
-                            <button class="button is-info has-text-weight-bold" style="margin-right: .5rem;">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </a>
+                    <a href="/admin/sueldos/{{ 'now' | date('m') }}/{{ 'now' | date('Y') }}">
+                        <button class="button is-info has-text-weight-bold" style="margin-right: .5rem;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </a>
                 </div>
+                <div class="column is-4" style="text-align: end;">
+                    <div style="margin-bottom: 31px;"></div>
+                    <button class="button is-info has-text-weight-bold" id="tipo_egreso_modal">
+                        Editar tipo de egresos
+                    </button>
+                </div> 
             </div>
         </div>
         <div class="column is-12">
@@ -430,7 +445,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-6" style="padding-left: 0;">
+            {# <div class="column is-6" style="padding-left: 0;">
                 <div class="field">
                     <label class="label" for="costo_tipo_egreso">
                         Costo:
@@ -442,7 +457,7 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            </div> #}
         </div>
         <div class="field">
             <div class="control">

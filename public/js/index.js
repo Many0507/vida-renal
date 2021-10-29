@@ -582,17 +582,17 @@ if (document.getElementById('search_transparencia_egresos') != null) {
 						<td>${ item.id != null ? item.id : '' }</td>
 						<td>${ item.nombre != null ? item.nombre : '' }</td>
 						<td>${ item.tipo_consulta != null ? item.tipo_consulta : '' }</td>
-						<td>${ item.consulta_costo != null ? item.consulta_costo : '' }</td>
+						<td>$${ item.consulta_costo != null ? item.consulta_costo : '' }</td>
 						<td>${ item.taller != null ? item.taller : '' }</td>
-						<td>${ item.costo_taller != null ? item.costo_taller : '' }</td>
+						<td>$${ item.costo_taller != null ? item.costo_taller : '' }</td>
 						<td>${ item.insumos != null ? item.insumos : '' }</td>
-						<td>${ item.costo_insumos != null ? item.costo_insumos : '' }</td>
+						<td>$${ item.costo_insumos != null ? item.costo_insumos : '' }</td>
 						<td>${ item.medicamentos != null ? item.medicamentos : '' }</td>
-						<td>${ item.costo_medicamentos != null ? item.costo_medicamentos : '' }</td>
+						<td>$${ item.costo_medicamentos != null ? item.costo_medicamentos : '' }</td>
 						<td>${ item.laboratorios != null ? item.laboratorios : '' }</td>
-						<td>${ item.costo_laboratorios != null ? item.costo_laboratorios : '' }</td>
+						<td>$${ item.costo_laboratorios != null ? item.costo_laboratorios : '' }</td>
 						<td>${ item.conferencias != null ? item.conferencias : '' }</td>
-						<td>${ item.costo_conferencias != null ? item.costo_conferencias : '' }</td>
+						<td>$${ item.costo_conferencias != null ? item.costo_conferencias : '' }</td>
 					</tr>
 				`;
 			});
@@ -608,7 +608,6 @@ if (document.getElementById('search_transparencia_egresos') != null) {
 // Chart Js //
 if (document.getElementById('myChart') != null) {
 	let porcentajes = [];
-	let egresos_body = '';
 	async function getGraphicData () {
 		let d = new Date();
 		let ingreso_mes = parseInt(d.getMonth()) + 1;
@@ -618,56 +617,59 @@ if (document.getElementById('myChart') != null) {
 				ingreso_mes,
 				ingreso_anio
 		});
-		porcentajes = data.data.porcentajes;
 
-		document.getElementById('porcentaje_fisica').innerHTML = porcentajes.tipo_1 + '%';
-		document.getElementById('porcentaje_empresas').innerHTML = porcentajes.tipo_2 + '%';
-		document.getElementById('porcentaje_anonimo').innerHTML = porcentajes.tipo_3 + '%';
-		document.getElementById('porcentaje_especie').innerHTML = porcentajes.tipo_4 + '%';
+		if (data.data.success) {
+			porcentajes = data.data.porcentajes;
 
-		var ctx = document.getElementById('myChart').getContext('2d');
-		new Chart(ctx, {
-			type: 'pie',
-			data: {
-				labels: ['Donador Persona fisica', 'Donador empresas', 'Donador Anónimo', 'Donador en Especie'],
-				datasets: [{
-					label: '%',
-					data: [porcentajes.tipo_1, porcentajes.tipo_2, porcentajes.tipo_3, porcentajes.tipo_4],
-					backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)'
-					],
-					borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)'
-					],
-					borderWidth: 1
-				}]
-			},
-			options: {
-				tooltips: {
-					enabled: false
-		  		},
-				plugins: {
-					datalabels: {
-						formatter: (value, ctx) => {
-							let sum = 0;
-							let dataArr = ctx.chart.data.datasets[0].data;
-							dataArr.map(data => {
-								sum += data;
-							});
-							let percentage = (value*100 / sum).toFixed()+"%";
-							return percentage;
-						},
-						color: '#111',
+			document.getElementById('porcentaje_fisica').innerHTML = porcentajes.tipo_1 + '%';
+			document.getElementById('porcentaje_empresas').innerHTML = porcentajes.tipo_2 + '%';
+			document.getElementById('porcentaje_anonimo').innerHTML = porcentajes.tipo_3 + '%';
+			document.getElementById('porcentaje_especie').innerHTML = porcentajes.tipo_4 + '%';
+	
+			var ctx = document.getElementById('myChart').getContext('2d');
+			new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: ['Donador Persona fisica', 'Donador empresas', 'Donador Anónimo', 'Donador en Especie'],
+					datasets: [{
+						label: '%',
+						data: [porcentajes.tipo_1, porcentajes.tipo_2, porcentajes.tipo_3, porcentajes.tipo_4],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					tooltips: {
+						enabled: false
+					  },
+					plugins: {
+						datalabels: {
+							formatter: (value, ctx) => {
+								let sum = 0;
+								let dataArr = ctx.chart.data.datasets[0].data;
+								dataArr.map(data => {
+									sum += data;
+								});
+								let percentage = (value*100 / sum).toFixed()+"%";
+								return percentage;
+							},
+							color: '#111',
+						}
 					}
 				}
-			}
-		});
+			});
+		}
 	}
 	async function getDataEgresos() {
 		let d = new Date();
@@ -680,16 +682,18 @@ if (document.getElementById('myChart') != null) {
 				egreso_anio
 		});
 
-		porcentajes = data.data.porcentajes;
+		if (data.data.success) {
+			porcentajes = data.data.porcentajes;
 			
-		document.getElementById('porcentaje_consulta').innerHTML = porcentajes.porcentaje_consulta + '%';
-		document.getElementById('porcentaje_taller').innerHTML = porcentajes.porcentaje_taller + '%';
-		document.getElementById('porcentaje_insumo').innerHTML = porcentajes.porcentaje_insumo + '%';
-		document.getElementById('porcentaje_medicamento').innerHTML = porcentajes.porcentaje_medicamento + '%';
-		document.getElementById('porcentaje_laboratorio').innerHTML = porcentajes.porcentaje_laboratorios + '%';
-		document.getElementById('porcentaje_conferencia').innerHTML = porcentajes.porcentaje_conferencias + '%';
-		document.getElementById('porcentaje_gastos_fijos').innerHTML = porcentajes.porcentaje_gastos_fijos + '%';
-		document.getElementById('porcentaje_sueldos').innerHTML = porcentajes.porcentaje_sueldos + '%';
+			document.getElementById('porcentaje_consulta').innerHTML = porcentajes.porcentaje_consulta + '%';
+			document.getElementById('porcentaje_taller').innerHTML = porcentajes.porcentaje_taller + '%';
+			document.getElementById('porcentaje_insumo').innerHTML = porcentajes.porcentaje_insumo + '%';
+			document.getElementById('porcentaje_medicamento').innerHTML = porcentajes.porcentaje_medicamento + '%';
+			document.getElementById('porcentaje_laboratorio').innerHTML = porcentajes.porcentaje_laboratorios + '%';
+			document.getElementById('porcentaje_conferencia').innerHTML = porcentajes.porcentaje_conferencias + '%';
+			document.getElementById('porcentaje_gastos_fijos').innerHTML = porcentajes.porcentaje_gastos_fijos + '%';
+			document.getElementById('porcentaje_sueldos').innerHTML = porcentajes.porcentaje_sueldos + '%';
+		}
 	}
 	getDataEgresos();
 	getGraphicData();

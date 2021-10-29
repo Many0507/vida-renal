@@ -212,10 +212,10 @@ class AdminViewsController extends Controller
 
             $total = $sum_tipo_1 + $sum_tipo_2 + $sum_tipo_3 + $sum_tipo_4;
 
-            $porcentaje_tipo_1 = round(($sum_tipo_1 * 100) / $total);
-            $porcentaje_tipo_2 = round(($sum_tipo_2 * 100) / $total);
-            $porcentaje_tipo_3 = round(($sum_tipo_3 * 100) / $total);
-            $porcentaje_tipo_4 = round(($sum_tipo_4 * 100) / $total);
+            $porcentaje_tipo_1 = $sum_tipo_1 > 0 ? round(($sum_tipo_1 * 100) / $total) : 0;
+            $porcentaje_tipo_2 = $sum_tipo_2 > 0 ? round(($sum_tipo_2 * 100) / $total) : 0;
+            $porcentaje_tipo_3 = $sum_tipo_3 > 0 ? round(($sum_tipo_3 * 100) / $total) : 0;
+            $porcentaje_tipo_4 = $sum_tipo_4 > 0 ? round(($sum_tipo_4 * 100) / $total) : 0;
 
             $tipo_laboratorios = Laboratorios::all();
             $tipo_medicamentos = Medicamentos::all();
